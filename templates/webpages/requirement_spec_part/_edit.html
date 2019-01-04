@@ -16,9 +16,9 @@
    [% LxERP.t8("No articles have been added yet.") %]
   </div>
 
-  <table id="edit_additional_parts_list"[% IF !parts.size %] style="display: none;"[% END %]>
+  <table id="edit_additional_parts_list" class="tbl-list"[% IF !parts.size %] style="display: none;"[% END %]>
    <thead>
-    <tr class="listheading">
+    <tr>
      <th></th>
      <th>[%- LxERP.t8("Part Number") %]</th>
      <th>[%- LxERP.t8("Description") %]</th>

@@ -2,15 +2,7 @@
 [%- DEFAULT id_base="edit_section" %]
 [%- SET style="width: 500px" %]
 <form id="[% id_base %]_form">
- [%- IF SELF.item.id %]
-  [%- SET hidden = '#section-header-' _ SELF.item.id %]
-  <h1>[%- LxERP.t8("Edit section #1", SELF.item.fb_number) %]</h1>
 
- [%- ELSE %]
-  [%- SET hidden = '#column-content > *' %]
-  <h1>[%- LxERP.t8("Add section") %]</h1>
-
- [%- END %]
 
  [% L.hidden_tag('form_prefix',                    id_base       id=id_base _ '_form_prefix') %]
  [% L.hidden_tag('id',                             SELF.item.id, id=id_base _ '_id') %]
@@ -20,33 +12,49 @@
   [% L.hidden_tag(id_base _ '.insert_after',       insert_after) %]
  [% END %]
 
- <p>
-  [%- LxERP.t8("Title") %]:<br>
-  [% L.input_tag(id_base _ '.title', SELF.item.title, style=style) %]
- </p>
+<table class="tbl-horizontal">
+   [%- IF SELF.item.id %]
+  [%- SET hidden = '#section-header-' _ SELF.item.id %]
+  <caption>[%- LxERP.t8("Edit section #1", SELF.item.fb_number) %]</caption>
+ [%- ELSE %]
+  [%- SET hidden = '#column-content > *' %]
+  <caption>[%- LxERP.t8("Add section") %]</caption>
+ [%- END %]
+  <tbody>
+    <tr>
+      <th>[%- LxERP.t8("Title") %]:</th>
+      <td>[% L.input_tag(id_base _ '.title', SELF.item.title, style=style) %]</td>
+    </tr>
 
  [%- IF SELF.predefined_texts.size %]
-  <p>
-   [%- LxERP.t8("Pre-defined Texts") %]:<br>
-   [%- L.select_tag(id_base _ '_predefined_text_block', SELF.predefined_texts, title_key='description', style=style) %]
-   <a href="#" onclick="insert_selected_predefined_text()">[%- LxERP.t8("Insert") %]</a>
-  </p>
+    <tr>
+      <th>[%- LxERP.t8("Pre-defined Texts") %]:</th>
+      <td>[%- L.select_tag(id_base _ '_predefined_text_block', SELF.predefined_texts, title_key='description', style=style) %] <a href="#" onclick='insert_selected_predefined_text()'>[%- LxERP.t8("Insert") %]</a>
+      </td>
+    </tr>
  [%- END %]
 
- <table border="0">
-  <tr valign="top">
-   <td>
-    [%- LxERP.t8("Description") %]:<br>
-    [% L.textarea_tag(id_base _ '.description_as_restricted_html', SELF.item.description_as_restricted_html, id=id_base _ '_description', rows=8, cols=80, style=style, class='texteditor') %]<br>
-    [% L.ajax_submit_tag('controller.pl?action=RequirementSpecItem/ajax_' _ (SELF.item.id ? 'update' : 'create'), '#' _ id_base _ '_form', LxERP.t8('Save')) %]
-    <a href="#" onclick="kivi.requirement_spec.cancel_edit_item_form('[% id_base %]', { to_show: '[% hidden %]' })">[%- LxERP.t8("Cancel") %]</a>
-   </td>
 
+  <tr>
+   <th>[%- LxERP.t8("Description") %]:</th>
    <td>
-   [% LxERP.t8("Price Factor") %]:<br>
-   [% L.input_tag(id_base _ ".sellprice_factor_as_number", SELF.item.sellprice_factor_as_number, size="6") %]<br>
+    [% L.textarea_tag(id_base _ '.description_as_restricted_html', SELF.item.description_as_restricted_html, id=id_base _ '_description', rows=8, cols=80, style=style, class='texteditor') %]<br>
+   </td>
+    </tr>
+    <tr>
+   <td>[% LxERP.t8("Price Factor") %]:</td>
+   <td>[% L.input_tag(id_base _ ".sellprice_factor_as_number", SELF.item.sellprice_factor_as_number, size="6") %]
    </td>
   </tr>
+  <tr>
+  <td>&nbsp;</td>
+  <td>[% L.ajax_submit_tag('controller.pl?action=RequirementSpecItem/ajax_' _ (SELF.item.id ? 'update' : 'create'), '#' _ id_base _ '_form', LxERP.t8('Save')) %]
+    <a href="#" onclick='kivi.requirement_spec.cancel_edit_item_form("[% id_base %]", { to_show: "[% hidden %]" })' class="button">[%- LxERP.t8("Cancel") %]</a></td>
+  </tr>
+
+
+
+  </tbody>
  </table>
 
 [%- IF SELF.predefined_texts.size %]
