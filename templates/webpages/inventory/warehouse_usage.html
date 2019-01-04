@@ -1,121 +1,122 @@
-[%- USE T8 %]
-[%- USE L %]
-[%- USE HTML %]
-[%- USE LxERP %]
-[%- WAREHOUSE_FILTER = 1 %]
-[%- PROCESS 'common/select_warehouse_bin.html' %]
+[% USE T8 %]
+[% USE L %]
+[% USE HTML %]
+[% USE LxERP %]
+[% WAREHOUSE_FILTER = 1 %]
+[% PROCESS 'common/select_warehouse_bin.html' %]
 
 <h1>[% title | html %]</h1>
 
-[%- INCLUDE 'common/flash.html' %]
+[% INCLUDE 'common/flash.html' %]
 
 <form name="Form" method="post" action="controller.pl" id="form">
 
- <table border="0">
-    <tr>
-     <th class="listheading" align="left" valign="top" colspan="5" nowrap>[% 'Period:' | $T8 %]</th>
-    </tr>
+<div class="wrapper">
+
+<table class="tbl-horizontal col">
+  <caption>[% 'Periods' | $T8 %]</caption>
+  <colgroup> <col class="wi-smallest"><col class="wi-small"><col class="wi-small"><col class="wi-small"> </colgroup>
+  <tbody>
   <tr>
-    <th align=left><input name=reporttype class=radio type=radio value="custom" checked>[% 'Customized Report' | $T8 %]</th>
+    <th colspan="4"><h4><input name=reporttype type=radio value="custom" checked> [% 'Customized Report' | $T8 %]</h4></th>
   </tr>
   <tr>
-    <th colspan=1>[% 'Year' | $T8 %]</th>
-    <td><input name=year size=11 title="[% 'YYYY' | $T8 %]" value="[% year %]" class="initial_focus"></td>
-  </tr>
-  <tr>
-    <td align=right> <b>[% 'Yearly' | $T8 %]</b> </td>
-    <th align=left>[% 'Quarterly' | $T8 %]</th>
-    <th align=left colspan=3>[% 'Monthly' | $T8 %]</th>
-  </tr>
-  <tr>
-    <td align=right>&nbsp; <input name=duetyp class=radio type=radio value="13" checked></td>
-    <td><input name=duetyp class=radio type=radio value="A">&nbsp;1. [% 'Quarter' | $T8 %]</td>
-    <td><input name=duetyp class=radio type=radio value="1">&nbsp;[% 'January' | $T8 %]</td>
-    <td><input name=duetyp class=radio type=radio value="5">&nbsp;[% 'May' | $T8 %]</td>
-    <td><input name=duetyp class=radio type=radio value="9">&nbsp;[% 'September' | $T8 %]</td>
-  </tr>
-  <tr>
-    <td align= right>&nbsp;</td>
-    <td><input name=duetyp class=radio type=radio value="B">&nbsp;2. [% 'Quarter' | $T8 %]</td>
-    <td><input name=duetyp class=radio type=radio value="2">&nbsp;[% 'February' | $T8 %]</td>
-    <td><input name=duetyp class=radio type=radio value="6">&nbsp;[% 'June' | $T8 %]</td>
-    <td><input name=duetyp class=radio type=radio value="10">&nbsp;[% 'October' | $T8 %]</td>
-  </tr>
-  <tr>
-    <td> &nbsp;</td>
-    <td><input name=duetyp class=radio type=radio value="C">&nbsp;3. [% 'Quarter' | $T8 %]</td>
-    <td><input name=duetyp class=radio type=radio value="3">&nbsp;[% 'March' | $T8 %]</td>
-    <td><input name=duetyp class=radio type=radio value="7">&nbsp;[% 'July' | $T8 %]</td>
-    <td><input name=duetyp class=radio type=radio value="11">&nbsp;[% 'November' | $T8 %]</td>
-  </tr>
-  <tr>
-    <td> &nbsp;</td>
-    <td><input name=duetyp class=radio type=radio value="D">&nbsp;4. [% 'Quarter' | $T8 %]</td>
-    <td><input name=duetyp class=radio type=radio value="4">&nbsp;[% 'April' | $T8 %]</td>
-    <td><input name=duetyp class=radio type=radio value="8">&nbsp;[% 'August' | $T8 %]</td>
-    <td><input name=duetyp class=radio type=radio value="12">&nbsp;[% 'December' | $T8 %]</td>
-  </tr>
-  <tr>
-    <td colspan="5"><hr size=3 noshade></td>
-  </tr>
-  <tr>
-    <th align=left><input name=reporttype class=radio type=radio value="free">[% 'Free report period' | $T8 %]</th>
-    <td align=left colspan=4>
-      [% 'From' | $T8 %] [% L.date_tag('fromdate', fromdate) %]
-      [% 'Bis' | $T8 %] [% L.date_tag('todate', todate) %]
+    <th></th>
+    <th>[% 'Year' | $T8 %]</th>
+    <td colspan="2">
+      <input type="text" name=year class="wi-smallest" title="[% 'YYYY' | $T8 %]" value="[% year %]" class="initial_focus" oninput='set_from_to(duetyp.value, this.value)'>
     </td>
   </tr>
+  <tr>
+    <th></th>
+    <th>[% 'Yearly'    | $T8 %]</th>
+    <th>[% 'Quarterly' | $T8 %]</th>
+    <th>[% 'Monthly'   | $T8 %]</th>
+  </tr>
+  <tr>
+    <th></th>
+    <td>
+      <input name=duetyp type=radio value="13" checked onchange='set_from_to(this.value, year.value)'>[% 'Yearly'    | $T8 %]
+    </td>
+    <td>
+      <input name=duetyp type=radio value="A" onchange='set_from_to(this.value, year.value)'>1. [% 'Quarter' | $T8 %]<br>
+      <input name=duetyp type=radio value="B" onchange='set_from_to(this.value, year.value)'>2. [% 'Quarter' | $T8 %]<br>
+      <input name=duetyp type=radio value="C" onchange='set_from_to(this.value, year.value)'>3. [% 'Quarter' | $T8 %]<br>
+      <input name=duetyp type=radio value="D" onchange='set_from_to(this.value, year.value)'>4. [% 'Quarter' | $T8 %]<br>
+    </td>
+    <td>
+      <input name=duetyp type=radio value="1" onchange='set_from_to(this.value, year.value)'>[% 'January' | $T8 %]<br>
+      <input name=duetyp type=radio value="2" onchange='set_from_to(this.value, year.value)'>[% 'February' | $T8 %]<br>
+      <input name=duetyp type=radio value="3" onchange='set_from_to(this.value, year.value)'>[% 'March' | $T8 %]<br>
+      <input name=duetyp type=radio value="4" onchange='set_from_to(this.value, year.value)'>[% 'April' | $T8 %]<br>
+      <input name=duetyp type=radio value="5" onchange='set_from_to(this.value, year.value)'>[% 'May' | $T8 %]<br>
+      <input name=duetyp type=radio value="6" onchange='set_from_to(this.value, year.value)'>[% 'June' | $T8 %]<br>
+      <input name=duetyp type=radio value="7" onchange='set_from_to(this.value, year.value)'>[% 'July' | $T8 %]<br>
+      <input name=duetyp type=radio value="8" onchange='set_from_to(this.value, year.value)'>[% 'August' | $T8 %]<br>
+      <input name=duetyp type=radio value="9" onchange='set_from_to(this.value, year.value)'>[% 'September' | $T8 %]<br>
+      <input name=duetyp type=radio value="10" onchange='set_from_to(this.value, year.value)'>[% 'October' | $T8 %]<br>
+      <input name=duetyp type=radio value="11" onchange='set_from_to(this.value, year.value)'>[% 'November' | $T8 %]<br>
+      <input name=duetyp type=radio value="12" onchange='set_from_to(this.value, year.value)'>[% 'December' | $T8 %]<br>
+    </td>
+  </tr>
+  <tr>
+    <th colspan="4"><h4><input name=reporttype type=radio value="free">[% 'Free report period' | $T8 %]</h4></th>
+  </tr>
+  <tr>
+    <th></th>
+    <td colspan="3">
+      [% 'From' | $T8 %] [% L.date_tag('fromdate', fromdate) %]
+      [% 'Bis' | $T8 %] [% L.date_tag('todate', todate)  %]
+    </td>
+  </tr>
+  </tbody>
+</table>
+
+<table class="tbl-horizontal col">
+  <caption>[% 'Storage & Article' | $T8 %]</caption>
+  <tbody>
     <tr>
-     <th class="listheading" align="left" valign="top" colspan="5" nowrap>[% 'Filter' | $T8 %]</th>
-    </tr>
-    <tr>
-     <td colspan="5">
-      <table>
-       <tr>
-        <th align="right" nowrap>[% 'Warehouse' | $T8 %]:</th>
-        <td>
-         <select name="warehouse_id" id="warehouse_id" onchange="warehouse_selected(this.value, 0)">
+      <th>[% 'Warehouse' | $T8 %]</th>
+      <td>
+        <select name="warehouse_id" id="warehouse_id" onchange="warehouse_selected(this.value, 0)" class="wi-normal">
           <option value="">---</option>
-          [%- FOREACH warehouse = WAREHOUSES %]
-          <option value="[% HTML.escape(warehouse.id) %]">[% warehouse.description %]</option>
-          [%- END %]
-         </select>
-        </td>
-       </tr>
-       <tr>
-        <th align="right" nowrap>[% 'Bin' | $T8 %]:</th>
-        <td><select name="bin_id" id="bin_id"></select></td>
-       </tr>
-       <tr>
-        <th align="right" nowrap>[% 'Part Number' | $T8 %]:</th>
-        <td><input name="partnumber" size=20></td>
-       </tr>
-       <tr>
-        <th align="right" nowrap>[% 'Part Description' | $T8 %]:</th>
-        <td><input name="description" size=40></td>
-       </tr>
-[% IF PARTSCLASSIFICATIONS %]
-       <tr>
-        <td>
-           [% L.select_tag('partsclassification',PARTSCLASSIFICATION,title_key="partsclassification") %]
-        </td>
-       </tr>
-[% END %]
-       <tr>
-        <th align="right" nowrap>[% 'Charge Number' | $T8 %]:</th>
-        <td><input name="chargenumber" size=40></td>
-       </tr>
-       [% IF INSTANCE_CONF.get_show_bestbefore %]
-       <tr>
-        <th align="right" nowrap>[% 'Best Before' | $T8 %]:</th>
-        <td>
-          [% L.date_tag('bestbefore') %]
-        </td>
-       </tr>
-       [% END %]
-      </table>
-     </td>
+          [% FOREACH warehouse = WAREHOUSES %]
+            <option value="[% HTML.escape(warehouse.id) %]">[% warehouse.description %]</option>
+          [% END %]
+        </select>
+      </td>
     </tr>
-   </table>
-  </p>
- </form>
+    <tr>
+      <th>[% 'Bin' | $T8 %]</th>
+      <td><select name="bin_id" id="bin_id" class="wi-normal"></select></td>
+    </tr>
+    <tr>
+      <th>[% 'Part Number' | $T8 %]</th>
+      <td><input type="text" name="partnumber" class="wi-normal"></td>
+    </tr>
+    <tr>
+      <th>[% 'Part Description' | $T8 %]</th>
+      <td><input type="text" name="description" class="wi-normal"></td>
+    </tr>
+    [% IF PARTSCLASSIFICATIONS %]
+      <tr>
+        <th>[% 'Part Classification' | $T8 %]</th>
+        <td>[% L.select_tag('partsclassification',PARTSCLASSIFICATION,title_key="partsclassification", class='wi-normal') %]</td>
+      </tr>
+    [% END %]
+    <tr>
+      <th>[% 'Charge Number' | $T8 %]</th>
+      <td><input type="text" name="chargenumber" class="wi-normal"></td>
+    </tr>
+    [% IF INSTANCE_CONF.get_show_bestbefore %]
+    <tr>
+      <th>[% 'Best Before' | $T8 %]</th>
+      <td>[% L.date_tag('bestbefore') %]</td>
+    </tr>
+    [% END %]
+  </tbody>
+</table>
+
+</div>
+
+</form>
