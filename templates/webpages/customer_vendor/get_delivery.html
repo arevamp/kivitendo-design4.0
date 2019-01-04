@@ -32,19 +32,19 @@
               [%- ELSE -%]
                 <td>[% IF row.oe_id %]<a href='oe.pl?action=edit&type=[% IF SELF.is_customer %]sales_order[% ELSE %]purchase_order[% END %]&vc=customer&id=[% HTML.escape(row.oe_id) %]'>[% END %][% HTML.escape(row.ordnumber)   || '&nbsp;' %][% IF row.oe_id %]</a>[% END %]</td>
               [%- END -%]
-              <td>[% HTML.escape(row.transdate)   || '&nbsp;' %]</td>
-              <td>[% HTML.escape(row.description) || '&nbsp;' %]</td>
-              <td>[% HTML.escape(row.qty)         || '&nbsp;' %]</td>
-              <td>[% HTML.escape(row.unit)        || '&nbsp;' %]</td>
-              <td>[% LxERP.format_amount(row.sellprice, 2) || '&nbsp;' %]</td>
-            </tr>
-          [% END %]
+        <td>[% HTML.escape(row.transdate)   || '&nbsp;' %]</td>
+        <td>[% HTML.escape(row.description) || '&nbsp;' %]</td>
+        <td>[% HTML.escape(row.qty)         || '&nbsp;' %]</td>
+        <td>[% HTML.escape(row.unit)        || '&nbsp;' %]</td>
+        <td>[% LxERP.format_amount(row.sellprice, 2) || '&nbsp;' %]</td>
+      </tr>
+    [% END %]
+   
+  </table>
 
-        </table>
-
-        [% IF DELIVERY.size == 15 %]
-          <p>[% 'This list is capped at 15 items to keep it fast. If you need a full list, please use reports.' | $T8 %]</p>
-        [% END %]
+  [% IF DELIVERY.size == 15 %]
+    <p>[% 'This list is capped at 15 items to keep it fast. If you need a full list, please use reports.' | $T8 %]</p>
+  [% END %]
 
       </td>
     </tr>

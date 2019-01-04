@@ -34,7 +34,7 @@ this should have three '-' before and after touching:<br>
 ---[% P.customer_vendor.picker('vendor5_id', '', type='vendor') %]---
 
 
-<script type='text/javascript'>
+<script type="text/javascript">
  $('#customer_id2').change(function() { $('#change1').html($('#customer_id2').val()) })
  $('#customer_id2').on('set_item:CustomerVendorPicker', function(e,o) { $('#change2').html(o.greeting) })
 
