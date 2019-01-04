@@ -1,51 +1,34 @@
-[%- USE T8 %]
-[%- USE HTML %]
+[% USE T8 %]
+[% USE HTML %]
 <h1>[% HTML.escape(title) %]</h1>
 
- [%- IF message %]
- <p>
-  [% HTML.escape(message) %]
- </p>
- [%- END %]
+<div class="wrapper">
 
- <form method="post" action="generictranslations.pl" id="form">
+[% IF message %]
+  <p>[% HTML.escape(message) %]</p>
+[% END %]
 
-  <table>
+<form method="post" action="generictranslations.pl" id="form">
 
-   <tr>
-    <th class="listheading">&nbsp;</th>
-    <th class="listheading">[% 'Remittance information prefix' | $T8 %]</th>
-   </tr>
+<table class="tbl-list width-moderate">
+  <thead>
+    <tr>
+      <th>&nbsp;</th>
+      <th>[% 'Remittance information prefix' | $T8 %]</th>
+      <th>[% 'Remittance information optional Vendor/Customer No postfix' | $T8 %]</th>
+    </tr>
+  </thead>
+  <tbody>
+    [% FOREACH language = LANGUAGES %]
+    <tr>
+      <th>[% IF language.id == 'default' %] [% 'Default (no language selected)' | $T8 %] [% ELSE %] [% HTML.escape(language.description) %] [% END %]</th>
+      <td><input name="translation__[% language.id %]" value="[% HTML.escape(language.translation) %]" type="text" class="wi-wide"></td>
+      <td><input name="translation__[% language.id %]__vc" value="[% HTML.escape(language.translation_vc) %]" type="text" class="wi-wide"></td>
+    </tr>
+    [% END %]
+  </tbody>
+</table>
 
-   [%- FOREACH language = LANGUAGES %]
-   <tr>
-    <td>
-     [%- IF language.id == 'default' %]
-     [% 'Default (no language selected)' | $T8 %]
-     [%- ELSE %]
-     [%- HTML.escape(language.description) %]
-     [%- END %]
-    </td>
-    <td><input name="translation__[% language.id %]" size="40" value="[% HTML.escape(language.translation) %]"></td>
-   </tr>
-   [%- END %]
-   <tr>
-    <th class="listheading">&nbsp;</th>
-    <th class="listheading">[% 'Remittance information optional Vendor/Customer No postfix' | $T8 %]</th>
-   </tr>
+</form>
 
-   [%- FOREACH language = LANGUAGES %]
-   <tr>
-    <td>
-     [%- IF language.id == 'default' %]
-     [% 'Default (no language selected)' | $T8 %]
-     [%- ELSE %]
-     [%- HTML.escape(language.description) %]
-     [%- END %]
-    </td>
-    <td><input name="translation__[% language.id %]__vc" size="40" value="[% HTML.escape(language.translation_vc) %]"></td>
-   </tr>
-   [%- END %]
-
-  </table>
- </form>
+</div>

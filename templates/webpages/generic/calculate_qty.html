@@ -1,86 +1,95 @@
-[%- USE T8 %]
-[%- USE HTML %]
- <form name="CalcQtyForm" id="calc_qty_form_id">
+[% USE T8 %]
+[% USE HTML %]
 
-  <input type="hidden" name="input_name" value="[% HTML.escape(input_name) %]">
-  <input type="hidden" name="input_id"   value="[% HTML.escape(input_id) %]">
+<form name="CalcQtyForm" id="calc_qty_form_id">
 
-  <table width="100%">
-   <tr><td>[% 'Please insert object dimensions below.' | $T8 %]</td></tr>
+<!-- <h1>[% #title %]</h1> --><!-- PENDENT: wieso wurde das entfernt? Braucht es hier keinen Titel? -->
 
-   <tr>
-    <td>
+<input type="hidden" name="input_name" value="[% HTML.escape(input_name) %]">
+<input type="hidden" name="input_id" value="[% HTML.escape(input_id) %]">
 
-     <table>
-      <tr class="listheading">
+<table class="tbl-list">
+  <caption>[% 'Please insert object dimensions below.' | $T8 %]</caption>
+  <thead>
+     <tr>
        [% FOREACH col = HEADER %]
-        <th nowrap class="listheading">[% col.column_title %]</a></th>
+         <th>[% col.column_title %]</a></th>
        [% END %]
-      </tr>
-
-      [% FOREACH row = VARIABLES %]
-       <tr class="listrow[% loop.count % 2 %]">
-        <td>[% HTML.escape(row.description) %]:</td><td><input id="[% row.name %]" name="[% row.name %]" value=""></td>
+     </tr>
+  </thead>
+  <tbody>
+    [% FOREACH row = VARIABLES %]
+      <tr class="listrow[% loop.count % 2 %]">
+        <td>[% HTML.escape(row.description) %]:</td><td><input type="text" id="[% row.name %]" name="[% row.name %]" value=""></td>
         <td>[% HTML.escape(row.unit) %]</td>
-       </tr>
-      [% END %]
-     </table>
+      </tr>
+    [% END %]
+  </tbody>
+</table>
 
-    </td>
-   </tr>
-  </table>
- <button type="button" onclick="calculate_qty()">[% 'Calculate' | $T8 %]</button>
- </form>
+<div class="buttons">
+  <button type="button" onclick="calculate_qty()">[% 'Calculate' | $T8 %]</button>
+</div>
 
- <script type="text/javascript">
-   function calculate_qty() {
-[%- FOREACH row = VARIABLES %]
-     var [% row.name %] = parse_amount('[% MYCONFIG.numberformat %]', $('#calc_qty_form_id #[% row.name %]').val());
-[%- END %]
+</form>
+
+<script type="text/javascript">
+
+  function calculate_qty() {
+
+    [% FOREACH row = VARIABLES %]
+      var [% row.name %] = parse_amount('[% MYCONFIG.numberformat %]', $('#calc_qty_form_id #[% row.name %]').val());
+    [% END %]
      var result = [% formel %];
      result = number_format(result, 2, '[% MYCONFIG.numberformat %]');
+     /* Every Element should be assigned by ID and not with NAME, modern Browsers handle that since 2006 or a bit later */
      if (document.CalcQtyForm.input_id.value) {
        document.getElementById(document.CalcQtyForm.input_id.value).value = result;
      } else {
        document.getElementsByName(document.CalcQtyForm.input_name.value)[0].value = result;
      }
      $('#calc_qty_dialog').dialog('close');
-   }
 
-   function parse_amount(numberformat, amount) {
-     if (numberformat == '1.000,00' || numberformat == '1000,00')
-       amount = amount.replace(/\./g, "").replace(/,/, ".");
-     if (numberformat == "1'000.00")
-       amount = amount.replace(/\'/g, '');
-     return amount.replace(/,/g, '');
-   }
+  }
 
-   function number_format(number, precision, numberformat) {
-     number = Math.round( number * Math.pow(10, precision) ) / Math.pow(10, precision);
-     var nf     = numberformat.replace(/\d/g, '').split('').reverse();
-     var sep    = nf[0];
-     var th_sep = nf[1];
+  function parse_amount(numberformat, amount) {
+  
+    if (numberformat == '1.000,00' || numberformat == '1000,00')
+      amount = amount.replace(/\./g, "").replace(/,/, ".");
+    if (numberformat == "1'000.00")
+      amount = amount.replace(/\'/g, '');
+    return amount.replace(/,/g, '');
 
-     str_number = number+"";
-     arr_int = str_number.split(".");
-     if(!arr_int[0]) arr_int[0] = "0";
-     if(!arr_int[1]) arr_int[1] = "";
-     if(arr_int[1].length < precision) {
-       nachkomma = arr_int[1];
-       for(i=arr_int[1].length+1; i <= precision; i++) {
-         nachkomma += "0";
-       }
-       arr_int[1] = nachkomma;
-     }
-     if(th_sep != "" && arr_int[0].length > 3) {
-       raw_arr_int = arr_int[0];
-       arr_int[0] = "";
-       for(j = 3; j < raw_arr_int.length ; j+=3) {
-         arr_int[0] = th_sep + raw_arr_int.slice(raw_arr_int.length - j, raw_arr_int.length - j + 3) +  arr_int[0] + "";
-       }
-       str_first = raw_arr_int.substr(0, (raw_arr_int.length % 3 == 0) ? 3 : (raw_arr_int.length % 3));
-       arr_int[0] = str_first + arr_int[0];
-     }
-     return arr_int[0] + sep + arr_int[1];
-   }
- </script>
+  }
+
+  function number_format(number, precision, numberformat) {
+  
+    number = Math.round( number * Math.pow(10, precision) ) / Math.pow(10, precision);
+    var nf     = numberformat.replace(/\d/g, '').split('').reverse();
+    var sep    = nf[0];
+    var th_sep = nf[1];
+
+    str_number = number+"";
+    arr_int = str_number.split(".");
+    if(!arr_int[0]) arr_int[0] = "0";
+    if(!arr_int[1]) arr_int[1] = "";
+    if(arr_int[1].length < precision) {
+      nachkomma = arr_int[1];
+      for(i=arr_int[1].length+1; i <= precision; i++) {
+        nachkomma += "0";
+      }
+      arr_int[1] = nachkomma;
+    }
+    if(th_sep != "" && arr_int[0].length > 3) {
+      raw_arr_int = arr_int[0];
+      arr_int[0] = "";
+      for(j = 3; j < raw_arr_int.length ; j+=3) {
+        arr_int[0] = th_sep + raw_arr_int.slice(raw_arr_int.length - j, raw_arr_int.length - j + 3) +  arr_int[0] + "";
+      }
+      str_first = raw_arr_int.substr(0, (raw_arr_int.length % 3 == 0) ? 3 : (raw_arr_int.length % 3));
+      arr_int[0] = str_first + arr_int[0];
+    }
+    return arr_int[0] + sep + arr_int[1];
+    
+  }
+</script>
