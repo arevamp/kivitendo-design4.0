@@ -1,195 +1,185 @@
-[%- USE T8 %]
-[%- USE L %]
-[%- USE P %]
-[%- USE HTML %][%- USE JavaScript %]
+[% USE T8 %]
+[% USE L %]
+[% USE P %]
+[% USE HTML %]
+[% USE JavaScript %]
+
 <h1>[% 'Report about warehouse contents' | $T8 %]</h1>
 
- <script type="text/javascript">
-   <!--
-      warehouses = new Array();
-      warehouses[0] = new Array();
-      warehouses[0]['id'] = "0";
-      warehouses[0]['bins'] = new Array();
-      warehouses[0]['bins'][0] = new Array();
-      warehouses[0]['bins'][0]['description'] = "---";
-      warehouses[0]['bins'][0]['id'] = "";
-      [%- USE WAREHOUSES_it = Iterator(WAREHOUSES) %][%- FOREACH warehouse = WAREHOUSES_it %]
-      warehouses[[% WAREHOUSES_it.count %]] = new Array();
-      warehouses[[% WAREHOUSES_it.count %]]['id'] = [% warehouse.id %];
-      warehouses[[% WAREHOUSES_it.count %]]['bins'] = new Array();
-      warehouses[[% WAREHOUSES_it.count %]]['bins'][0] = new Array();
-      warehouses[[% WAREHOUSES_it.count %]]['bins'][0]['description'] = "---";
-      warehouses[[% WAREHOUSES_it.count %]]['bins'][0]['id'] = "";
-      [% USE BINS_it = Iterator(warehouse.BINS) %][% FOREACH bin = BINS_it %]
+<script type="text/javascript"><!--
+  warehouses = new Array();
+  warehouses[0] = new Array();
+  warehouses[0]['id'] = "0";
+  warehouses[0]['bins'] = new Array();
+  warehouses[0]['bins'][0] = new Array();
+  warehouses[0]['bins'][0]['description'] = "---";
+  warehouses[0]['bins'][0]['id'] = "";
+  [%- USE WAREHOUSES_it = Iterator(WAREHOUSES) %]
+  [%- FOREACH warehouse = WAREHOUSES_it %]
+    warehouses[[% WAREHOUSES_it.count %]] = new Array();
+    warehouses[[% WAREHOUSES_it.count %]]['id'] = [% warehouse.id %];
+    warehouses[[% WAREHOUSES_it.count %]]['bins'] = new Array();
+    warehouses[[% WAREHOUSES_it.count %]]['bins'][0] = new Array();
+    warehouses[[% WAREHOUSES_it.count %]]['bins'][0]['description'] = "---";
+    warehouses[[% WAREHOUSES_it.count %]]['bins'][0]['id'] = "";
+    [% USE BINS_it = Iterator(warehouse.BINS) %]
+    [% FOREACH bin = BINS_it %]
       warehouses[[% WAREHOUSES_it.count %]]['bins'][[% BINS_it.count %]] = new Array();
       warehouses[[% WAREHOUSES_it.count %]]['bins'][[% BINS_it.count %]]['description'] = "[% JavaScript.escape(bin.description) %]";
       warehouses[[% WAREHOUSES_it.count %]]['bins'][[% BINS_it.count %]]['id'] = [% bin.id %];
-      [% END %]
-      [% END %]
+    [% END %]
+  [% END %]
 
-      function warehouse_selected(warehouse_id, bin_id) {
-        var control = document.getElementById("bin_id");
+  function warehouse_selected(warehouse_id, bin_id) {
+    var control = document.getElementById("bin_id");
 
-        for (var i = control.options.length - 1; i >= 0; i--) {
-          control.options[i] = null;
-        }
+    for (var i = control.options.length - 1; i >= 0; i--) {
+      control.options[i] = null;
+    }
 
-        var warehouse_index = 0;
+    var warehouse_index = 0;
 
-        for (i = 0; i < warehouses.length; i++)
-          if (warehouses[i]['id'] == warehouse_id) {
-            warehouse_index = i;
-            break;
-          }
-
-        var warehouse = warehouses[warehouse_index];
-        var bin_index = 0;
-
-        for (i = 0; i < warehouse['bins'].length; i++)
-          if (warehouse['bins'][i]['id'] == bin_id) {
-            bin_index = i;
-            break;
-          }
-
-        for (i = 0; i < warehouse['bins'].length; i++) {
-          control.options[i] = new Option(warehouse['bins'][i]['description'], warehouse['bins'][i]['id']);
-        }
-
-
-        control.options[bin_index].selected = true;
+    for (i = 0; i < warehouses.length; i++)
+      if (warehouses[i]['id'] == warehouse_id) {
+        warehouse_index = i;
+        break;
       }
 
-      $(function () {
-        warehouse_selected(0, 0);
-        document.Form.partnumber.focus();
-      });
-     -->
- </script>
+    var warehouse = warehouses[warehouse_index];
+    var bin_index = 0;
 
- <form method="post" name="Form" action="wh.pl" id="form">
+    for (i = 0; i < warehouse['bins'].length; i++)
+      if (warehouse['bins'][i]['id'] == bin_id) {
+        bin_index = i;
+        break;
+      }
 
-  <input type="hidden" name="nextsub" value="generate_report">
+    for (i = 0; i < warehouse['bins'].length; i++) {
+      control.options[i] = new Option(warehouse['bins'][i]['description'], warehouse['bins'][i]['id']);
+    }
 
-   <table>
+
+    control.options[bin_index].selected = true;
+  }
+
+  $(function () {
+    warehouse_selected(0, 0);
+    document.Form.partnumber.focus();
+  });
+
+--></script>
+
+<form method="post" name="Form" action="wh.pl" id="form">
+<div class="wrapper">
+
+<input type="hidden" name="nextsub" value="generate_report">
+
+<table class="tbl-horizontal">
+  <tbody>
     <tr>
-     <th class="listheading" align="left" valign="top" colspan="6" nowrap>[% 'Filter' | $T8 %]</th>
-    </tr>
-
-    <tr>
-     <td>
-      <table>
-       <tr>
-        <th align="right" nowrap>[% 'Warehouse' | $T8 %]:</th>
-        <td>
-         <select name="warehouse_id" id="warehouse_id" onchange="warehouse_selected(warehouses[this.selectedIndex]['id'], 0)">
-          <option value="">---</option>
-          [%- FOREACH warehouse = WAREHOUSES %]
-          <option value="[% HTML.escape(warehouse.id) %]">[% warehouse.description %]</option>
-          [%- END %]
-         </select>
-        </td>
-       </tr>
-       <tr>
-        <th align="right" nowrap>[% 'Bin' | $T8 %]:</th>
-        <td><select name="bin_id" id="bin_id"></select></td>
-       </tr>
-       <tr>
-        <th align="right" nowrap>[% 'Part Number' | $T8 %]:</th>
-        <td><input name="partnumber" size=20></td>
-       </tr>
-       <tr>
-        <th align="right" nowrap>[% 'Parts Classification' | $T8 %]:</th>
-        <td>[% P.part.select_classification('classification_id') %]</td>
-       </tr>
-       <tr>
-        <th align="right" nowrap>[% 'Part Description' | $T8 %]:</th>
-        <td><input name="description" size=40></td>
-       </tr>
-       <tr>
-        <th align="right" nowrap>[% 'Charge Number' | $T8 %]:</th>
-        <td><input name="chargenumber" size=40></td>
-       </tr>
-       [% IF INSTANCE_CONF.get_show_bestbefore %]
-       <tr>
-        <th align="right" nowrap>[% 'Best Before' | $T8 %]:</th>
-        <td>
-          [% L.date_tag('bestbefore') %]
-        </td>
-       </tr>
-       [% END %]
-       <tr>
-        <th align="right" nowrap>[% 'Qty in stock' | $T8 %]:</th>
-        <td>
-         <select name="qty_op">
-          <option value="dontcare">---</option>
-          <option value="atleast">[% 'At least' | $T8 %]</option>
-          <option value="atmost">[% 'At most' | $T8 %]</option>
-          <option value="exact">[% 'Exact' | $T8 %]</option>
-         </select>
-         <input name="qty">
-         <select name="qty_unit">
-          [%- FOREACH unit = UNITS %]<option>[% unit.name %]</option>[% END %]
-         </select>
-        </td>
-       </tr>
-       <tr>
-        <th align="right" nowrap>[% 'Stock Qty for Date' | $T8 %]:</th>
-        <td>[% L.date_tag('date') %]</td>
-       </tr>
-      </table>
-     </td>
-    </tr>
-
-    <tr height="5"><td>&nbsp;</td></tr>
-
-    <tr>
-     <th class="listheading" align="left" valign="top" colspan="6" nowrap>[% 'Include in Report' | $T8 %]</th>
-    </tr>
-
-    <tr>
-     <td>
-      <input name="l_partdescription" type="hidden" value="Y">
-      <input name="l_qty" type="hidden" value="Y">
-
-      <table>
-       <tr>
-        <td align="right"><input name="l_warehousedescription" id="l_warehousedescription" class="checkbox" type="checkbox" value="Y" checked></td>
-        <td nowrap><label for="l_warehousedescription">[% 'Warehouse' | $T8 %]</label></td>
-        <td align="right"><input name="l_bindescription" id="l_bindescription" class="checkbox" type="checkbox" value="Y" checked></td>
-        <td nowrap><label for="l_bindescription">[% 'Bin' | $T8 %]</label></td>
-       </tr>
-
-       <tr>
-        <td align="right"><input name="l_partnumber" id="l_partnumber" class="checkbox" type="checkbox" value="Y" checked></td>
-        <td nowrap><label for="l_partnumber">[% 'Part Number' | $T8 %]</label></td>
-        <td align="right"><input name="l_chargenumber" id="l_chargenumber" class="checkbox" type="checkbox" value="Y" checked></td>
-        <td nowrap><label for="l_chargenumber">[% 'Charge Number' | $T8 %]</label></td>
-        [% IF INSTANCE_CONF.get_show_bestbefore %]
-        <td align="right"><input name="l_bestbefore" id="l_bestbefore" class="checkbox" type="checkbox" value="Y" checked></td>
-        <td nowrap><label for="l_bestbefore">[% 'Best Before' | $T8 %]</label></td>
+      <th>[% 'Warehouse' | $T8 %]:</th>
+      <td>
+      <select name="warehouse_id" id="warehouse_id" onchange="warehouse_selected(warehouses[this.selectedIndex]['id'], 0)" class="wi-normal">
+        <option value="">---</option>
+        [% FOREACH warehouse = WAREHOUSES %]
+        <option value="[% HTML.escape(warehouse.id) %]">[% warehouse.description %]</option>
         [% END %]
-       </tr>
-
-       <tr><td colspan="4"><hr noshade height="1"></td></tr>
-
-       <tr>
-        <td align="right"><input name="subtotal" id="subtotal" class="checkbox" type="checkbox" value="Y"></td>
-        <td nowrap><label for="subtotal">[% 'Subtotal' | $T8 %]</label></td>
-        <td align="right"><input name="include_empty_bins" id="include_empty_bins" class="checkbox" type="checkbox" value="Y"></td>
-        <td nowrap><label for="include_empty_bins">[% 'Include empty bins' | $T8 %]</label></td>
-        <td align="right"><input name="include_invalid_warehouses" id="include_invalid_warehouses" class="checkbox" type="checkbox" value="Y"></td>
-        <td nowrap><label for="include_invalid_warehouses">[% 'Include invalid warehouses ' | $T8 %]</label></td>
-       </tr>
-
-       <tr>
-        <td align="right"><input name="l_stock_value" id="l_stock_value" class="checkbox" type="checkbox" value="Y"></td>
-        <td nowrap><label for="l_stock_value">[% 'Stock value' | $T8 %]</label></td>
-        <td align="right"><input name="l_purchase_price" id="l_purchase_price" class="checkbox" type="checkbox" value="Y"></td>
-        <td nowrap><label for="l_purchase_price">[% 'Purchase price' | $T8 %]</label></td>
-       </tr>
-
-      </table>
-     </td>
+      </select>
+      </td>
     </tr>
-   </table>
- </form>
+    <tr>
+      <th>[% 'Bin' | $T8 %]:</th>
+      <td>
+      <select name="bin_id" id="bin_id" class="wi-normal">
+      </select>
+      </td>
+    </tr>
+    <tr>
+      <th>[% 'Part Number' | $T8 %]:</th>
+      <td><input type="text" name="partnumber" class="wi-normal">
+      </td>
+    </tr>
+    <tr>
+      <th>[% 'Parts Classification' | $T8 %]:</th>
+      <td>[% P.part.select_classification('classification_id', class='wi-normal') %]</td>
+    </tr>
+    <tr>
+      <th>[% 'Part Description' | $T8 %]:</th>
+      <td><input type="text" name="description" class="wi-normal">
+      </td>
+    </tr>
+    <tr>
+      <th>[% 'Charge Number' | $T8 %]:</th>
+      <td><input type="text" name="chargenumber" class="wi-normal">
+      </td>
+    </tr>
+    [% IF INSTANCE_CONF.get_show_bestbefore %]
+    <tr>
+      <th>[% 'Best Before' | $T8 %]:</th>
+      <td><span class="wi-date">[% L.date_tag('bestbefore') %]</span></td>
+    </tr>
+    [% END %]
+    <tr>
+      <th>[% 'Qty in stock' | $T8 %]:</th>
+      <td>
+      <select name="qty_op" class="wi-normal">
+        <option value="dontcare">---</option>
+        <option value="atleast">[% 'At least' | $T8 %]</option>
+        <option value="atmost">[% 'At most' | $T8 %]</option>
+        <option value="exact">[% 'Exact' | $T8 %]</option>
+      </select>
+      <input type="text" name="qty" class="wi-verysmall">
+      <select name="qty_unit" class="wi-small">
+        [% FOREACH unit = UNITS %]
+          <option>[% unit.name %]</option>
+        [% END %]
+      </select>
+      </td>
+    </tr>
+    <tr>
+      <th>[% 'Stock Qty for Date' | $T8 %]:</th>
+      <td><span class="wi-date">[% L.date_tag('date') %]</span></td>
+    </tr>
+  </tbody>
+</table>
+
+</div><!-- /.wrapper -->
+
+<div class="form-addition control-panel">
+  <h3>[% 'Include in Report' | $T8 %]</h3>
+  <input name="l_partdescription" type="hidden" value="Y">
+  <input name="l_qty" type="hidden" value="Y">
+
+  <div class="list col">
+    <h4>[% 'Store & Articles' | $T8 %]</h4>
+    <input name="l_warehousedescription" id="l_warehousedescription" type="checkbox" value="Y" checked>
+    <label for="l_warehousedescription">[% 'Warehouse' | $T8 %]</label>
+    <input name="l_bindescription" id="l_bindescription" type="checkbox" value="Y" checked>
+    <label for="l_bindescription">[% 'Bin' | $T8 %]</label>
+    <input name="l_partnumber" id="l_partnumber" type="checkbox" value="Y" checked>
+    <label for="l_partnumber">[% 'Part Number' | $T8 %]</label>
+    <input name="l_chargenumber" id="l_chargenumber" type="checkbox" value="Y" checked>
+    <label for="l_chargenumber">[% 'Charge Number' | $T8 %]</label>
+  </div>
+  <div class="list col">
+    <h4>[% 'Options' | $T8 %]</h4>
+    [% IF INSTANCE_CONF.get_show_bestbefore %] <input name="l_bestbefore" id="l_bestbefore" type="checkbox" value="Y" checked>
+    <label for="l_bestbefore">[% 'Best Before' | $T8 %]</label>
+    [% END %] <input name="subtotal" id="subtotal" type="checkbox" value="Y">
+    <label for="subtotal">[% 'Subtotal' | $T8 %]</label>
+    <input name="include_empty_bins" id="include_empty_bins" type="checkbox" value="Y">
+    <label for="include_empty_bins">[% 'Include empty bins' | $T8 %]</label>
+    <input name="include_invalid_warehouses" id="include_invalid_warehouses" type="checkbox" value="Y">
+    <label for="include_invalid_warehouses">[% 'Include invalid warehouses ' | $T8 %]</label>
+  </div>
+  <div class="list col">
+    <h4>[% 'Values & Prices' | $T8 %]</h4>
+    <input name="l_stock_value" id="l_stock_value" type="checkbox" value="Y">
+    <label for="l_stock_value">[% 'Stock value' | $T8 %]</label>
+    <input name="l_purchase_price" id="l_purchase_price" type="checkbox" value="Y">
+    <label for="l_purchase_price">[% 'Purchase price' | $T8 %]</label>
+  </div>
+</div>
+<!-- /.form-addition -->
+
+</form>
