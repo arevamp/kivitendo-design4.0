@@ -5,57 +5,20 @@
 [% L.button_tag('', LxERP.t8('Hide buttons'), id="hide_buttons_button", class="hide") %]
 [% L.button_tag('', LxERP.t8('Show charts'),  id="show_charts_button",  class="hide") %]
 [% L.button_tag('', LxERP.t8('Hide charts'),  id="hide_charts_button",  class="hide") %]
+<!-- PENDENT: Ueberschriften mal genauer anschauen -->
+<h3 id="show_buttons"> [% title %]</h3>
+<h3>[% period %]<br><big>[% accounting_method %]<br></big><i>[% report_date %]</i></h3>
 
-<h3 align="center" id="show_buttons"> [% title %]</h3>
-<h3 align=center>
-[% period %]<br>
-[% accounting_method %]<br>
-
-<br>[% report_date %]
-</h3>
-
-<style type="text/css">
-
-#eurtable {
-  border-collapse: collapse;
-  width: 100%;
-}
-
-tr.category {
-  /* background set via jquery */
-}
-
-tr.chart {
-  border: 0;
-}
-
-td.chartname {
-  padding-left: 50px;
-}
-
-tr.chartrow {
-  font-size: 75%;
-}
-
-.guv_row_background {
-  background:#f0f0f0;
-}
-</style>
-
-<table id="eurtable">
+<table id="eurtable" class="tbl-list">
+<tbody>
 <tr>
-  <td width=75% align=left colspan=2><font size="+1"><b>A. Betriebseinnahmen</font></b><br></td>
-  <td></td>
+  <th colspan="2" class="caption">A. Betriebseinnahmen</td>
 </tr>
 
 [% FOREACH i IN categories_income %]
   <tr class="category" data-catid="cat[% i %]">
-    <td>
-      [% HTML.escape(category_names.item(i)) %]
-    </td>
-    <td class="numeric">
-      [% eur_amounts.item(i) %]
-    </td>
+    <td>[% HTML.escape(category_names.item(i)) %]</td>
+    <td class="numeric">[% eur_amounts.item(i) %]</td>
   </tr>
   [% FOREACH chart = charts_by_category.item(i).list %]
   <tr class="chartrow cat[% i %]">
@@ -64,32 +27,23 @@ tr.chartrow {
   </tr>
   [% END %]
 [% END %]
-<tr>
-  <td> </td>
-  <td><hr noshade size=1></td>
-</tr>
 
-<tr valign=top>
-  <th align=left><b>Summe Einnahmen</b></th>
-  <td align=right>[% sumeura %]<hr noshade size=2></td>
+
+<tr class="inrows-footer">
+  <th><b>Summe Einnahmen</b></th>
+  <th class="numeric">[% sumeura %]</td>
+</tr>
+<tr class="spacer">
+  <td colspan="2">&nbsp;</td>
 </tr>
 <tr>
-  <td></td>
-  <td><br><br></td>
-</tr>
-<tr>
-  <td align=left><font size="+1"><b>B. Betriebsausgaben</font></b><br></td>
-  <td></td>
+  <th class="caption" colspan="2">B. Betriebsausgaben</th>
 </tr>
 
 [% FOREACH i IN categories_expense %]
   <tr class="category" data-catid="cat[% i %]">
-    <td>
-      [% HTML.escape(category_names.item(i)) %]
-    </td>
-    <td class="numeric">
-      [% eur_amounts.item(i) %]
-    </td>
+    <td>[% HTML.escape(category_names.item(i)) %]</td>
+    <td class="numeric">[% eur_amounts.item(i) %]</td>
   </tr>
   [% FOREACH chart = charts_by_category.item(i).list %]
   <tr class="chartrow cat[% i %]">
@@ -98,24 +52,17 @@ tr.chartrow {
   </tr>
   [% END %]
 [% END %]
+</tbody>
+<tfoot>
 <tr>
-  <td> </td>
-  <td><hr noshade size=1></td>
-</tr>
-
-<tr valign=top>
-  <th align=left><b>Summe Ausgaben</b></th>
-  <td align=right>[% sumeurb %] <br><hr noshade size=2</td>
+  <th><b>Summe Ausgaben</b></th>
+  <td>[% sumeurb %]</td>
 </tr>
 <tr>
-  <td></td>
-  <td><br><br></td>
+  <td>GEWINN / VERLUST</td>
+  <td>[% guvsumme %]<br><hr noshade size=2></td>
 </tr>
-<tr valign=top>
-  <td align=left>GEWINN / VERLUST</td>
-  <td align=right>[% guvsumme %]<br><hr noshade size=2></td>
-</tr>
-
+</tfoot>
 </table>
 
 
