@@ -1,0 +1,167 @@
+// ----------------------------------------------------------------------------
+//
+// DEVELOPERS DEMO
+//
+// ----------------------------------------------------------------------------
+// DESCRIPTION: All colors for the demo color page in /css/developing/farben-demo.html
+// use following statement for creating the demo-css-file:
+//   lessc developing-demo.less ../css/developement/farben-demo.css
+//
+// For creating the HTML demo blocks from variables.less use following grep patterns
+//   @([a-z-]+)[ ]*:[ ]*[@][0-9a-z-]+[ ]*;         replace with:
+//   .\1 { background-color: @\1 } or .$1 { background-color: @$1 }
+// ----------------------------------------------------------------------------
+
+
+@import 'variables';
+
+// --------------
+// Grey shades
+.gray-darker { background-color: @gray-darker }
+.gray-dark { background-color: @gray-dark }
+.gray-mediumdark { background-color: @gray-mediumdark }
+.gray { background-color: @gray }
+.gray-medium { background-color: @gray-medium }
+.gray-light { background-color: @gray-light }
+.gray-lighter { background-color: @gray-lighter }
+.gray-morelighter { background-color: @gray-morelighter }
+.gray-verylight { background-color: @gray-verylight }
+.gray-superlight { background-color: @gray-superlight }
+// --------------
+// Divers Color Specications
+// for message and other coloured stuff
+// error
+.color-red-strong { background-color: @color-red-strong }
+.color-red-light { background-color: @color-red-light }
+// ok
+.color-green-strong { background-color: @color-green-strong }
+.color-green-light { background-color: @color-green-light }
+// info/hint
+.color-blue-strong { background-color: @color-blue-strong }
+.color-blue-light { background-color: @color-blue-light }
+// warning
+.color-orange-strong { background-color: @color-orange-strong } // more brown
+.color-orange-light { background-color: @color-orange-light }
+// divers
+.rainbow-green { background-color: @rainbow-green }
+.rainbow-blue { background-color: @rainbow-blue }
+.rainbow-red { background-color: @rainbow-red }
+.rainbow-yellow { background-color: @rainbow-yellow }
+
+// --------------
+// Brand colors
+
+// Text (Label & data)
+.brand-primary { background-color: @brand-primary }
+.brand-label { background-color: @brand-label }
+.brand-label-bg { background-color: @brand-label-bg }
+
+// Messages & info types
+.brand-info { background-color: @brand-info }
+.brand-info-bg { background-color: @brand-info-bg }
+
+.brand-ok { background-color: @brand-ok }
+.brand-ok-bg { background-color: @brand-ok-bg }
+
+.brand-warning { background-color: @brand-warning }
+.brand-warning-bg { background-color: @brand-warning-bg }
+
+.brand-error { background-color: @brand-error }
+.brand-error-bg { background-color: @brand-error-bg }
+
+// Positive & negative colors
+.brand-positive { background-color: @brand-positive }
+.brand-positive-bg { background-color: @brand-positive-bg }
+.brand-negative { background-color: @brand-negative }
+.brand-negative-bg { background-color: @brand-negative-bg }
+
+
+// Buttons
+// Button with manipulation (submit etc.)
+.button-strong { background-color: @button-strong }
+.button-strong-bg { background-color: @button-strong-bg }
+.button-strong-border { background-color: @button-strong-border }
+.button-strong-hover { background-color: @button-strong-hover }
+.button-strong-hover-bg { background-color: @button-strong-hover-bg }
+.button-strong-hover-border { background-color: @button-strong-hover-border }
+.button-strong-active { background-color: @button-strong-active }
+.button-strong-active-bg { background-color: @button-strong-active-bg }
+.button-strong-active-border { background-color: @button-strong-active-border }
+// button withoud data manipulation (reset, cancel, open, show etc.)
+.button-soft { background-color: @button-soft }
+.button-soft-bg { background-color: @button-soft-bg }
+.button-soft-border { background-color: @button-soft-border }
+.button-soft-hover { background-color: @button-soft-hover }
+.button-soft-hover-bg { background-color: @button-soft-hover-bg }
+.button-soft-hover-border { background-color: @button-soft-hover-border }
+.button-soft-active { background-color: @button-soft-active }
+.button-soft-active-bg { background-color: @button-soft-active-bg }
+.button-soft-active-border { background-color: @button-soft-active-border }
+
+
+// --------------------------------------
+// SCAFFOLDING
+// --------------------------------------
+.body-bg { background-color: @body-bg } // general
+.content-bg { background-color: @content-bg } // background first tabs
+.tabs-bg { background-color: @tabs-bg } // background tabs panel (data/content)
+.heading-bg { background-color: @heading-bg } // controlpanels & other stuff
+.controlpanel-bg { background-color: @controlpanel-bg } // controlpanels
+
+.text-color { background-color: @text-color }
+.heading-color { background-color: @heading-color } // labels & table headings
+.caption-color { background-color: @caption-color } // caption
+
+#demo{
+  h1,
+  h2{
+    clear: both;
+    color: @gray !important;
+    padding: 0 ;
+    margin:  0 ;
+  }
+  h1 { font-size: 14pt; padding-top: 1.0em ; }
+  h2 { font-size: 12pt; margin-top: 0.2em ; }
+  div.selector{
+    display: block ;
+    width: 8.0em ;
+    float: left ;
+    margin: 0 1.0em 0 0 ;
+    overflow: hidden ;
+    padding: 0 ;
+
+    h3{
+      color: @gray !important;
+      font-size: 9pt;
+      font-weight: normal;
+      height: 2.8em ;
+      display: table-cell;
+      vertical-align: bottom ;
+    }
+    div.color{
+      width: 8.0em ;
+      height: 8.0em ;
+      display: block;
+      overflow: hidden ;
+      padding: 0 ;
+      margin: 0;
+      border: 1px #000 solid ;
+    }
+  }
+  .group {
+    display: inline-block;
+    float: left;
+    overflow: hidden ;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+

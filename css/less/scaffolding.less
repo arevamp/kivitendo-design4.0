@@ -1,0 +1,201 @@
+// ----------------------------------------------------------------------------
+//
+// SCAFFOLDING (PAGE & PAGE COMPONENTS)
+//
+// ----------------------------------------------------------------------------
+// DESCRIPTION:
+// All main components of a Kivitendo page are defined here
+// but not in all details. See therefore in the mentioned specialized
+// LESS-files
+//
+//
+// CONTENTS:
+// - BODY
+// - FRAME-HEADER
+// - MENUV3
+// - LAYOUT-ACTIONBAR
+// - CONTENT
+// - COLUMNS
+//   - SINGLE COLUMN
+// - WRAPPER POSITIONS-TABLE (FULL-WIDTH)
+// - DIVERS COMPONENTS (General Wrapper)
+// - MEDIA: Print
+// ----------------------------------------------------------------------------
+
+
+
+
+// --------------------------------------
+// BODY
+// --------------------------------------
+
+body {
+  margin:           0 ;
+  background-color: @body-bg;
+  color:            @brand-primary ;
+  font-family:      @font-family-sans-serif;
+  font-size:        @font-size-base ;
+
+
+
+  // --------------------------------------
+  // Frame-Header
+  // --------------------------------------
+  // Quicksearch, User, Client, Logout
+  // see also frame-header.less
+  #frame-header{
+    position: fixed;
+    top: 0;
+    z-index: @zindex-dashboard;
+  }
+
+
+
+  // --------------------------------------
+  // MENUV3
+  // --------------------------------------
+
+  // admin section &
+  & #menuv3:first-child{
+    top: 0 !important;
+  }
+  // see also menu.less
+  #menuv3  {
+    position:  fixed;
+    z-index:   @zindex-navbar;
+    top:       28px ;
+    width:     100%;
+    height:    32px;
+  }
+
+
+
+  // --------------------------------------
+  // LAYOUT-ACTIONBAR
+  // --------------------------------------
+
+  // see also menu_actionbar.less
+  .layout-actionbar  {
+    display: block;
+    z-index: @zindex-actionbar;
+    position: fixed;
+    float: left !important;
+    width: auto;
+    top: 68px ;
+    left: 656px ;
+    right: 0.2em ;
+    margin: 0 0.4em 0 0;
+    padding: 0;
+    background: none;
+
+    & ~ div:first {
+      padding-top: 25px;
+    }
+
+    & > div + div {
+      margin-left: 2px;
+    }
+
+  }
+
+
+
+
+  // --------------------------------------
+  // CONTENT
+  // --------------------------------------
+  & > #content {
+    overflow:         hidden;
+    display:          block;
+    padding:          @content-padding;
+    margin:           @content-margin;
+
+
+
+
+    // --------------------------------------
+    // Wrapper & Columns
+    // --------------------------------------
+    // PENDENT: .cols-no-padding???
+    .wrapper{
+      clear:       both;
+      display:     block;
+      overflow:    hidden;
+      width:       auto;
+      height:      auto;
+
+      // --------------
+      // Single Column (DIV or HORIZONTAL TABLE)
+      //
+      & > .col {
+        display: block;
+        overflow: hidden;
+        float: left;
+        margin-right: 1.6em;
+        div label {
+          font-size: 10pt;
+          line-height: 12.6pt;
+        }
+        p { font-size: @font-size-small }
+      }
+      & > .col,
+      & > .tbl-horizontal{
+        float: left;
+        margin-right: 1.6em;
+        padding-bottom: 2px ; // needed to avoid crops of buttons
+      }
+      // Centered Column
+      &.center{
+        margin: 0 auto;
+        display: table;
+        width: auto;
+      }
+      // PENDENT: anschauen
+      &.width-moderate{
+        width: auto;
+      }
+    }
+    // /.wrapper
+
+
+
+    // --------------------------------------
+    // UI-TABS-PANEL
+    // --------------------------------------
+    .ui-tabs-panel {
+       background-color: @tabs-bg;
+    }
+
+
+  } // /#content
+
+
+
+  // --------------------------------------
+  // WRAPPER POSITIONS-TABLE (FULL-WIDTH)
+  // --------------------------------------
+  // Special Container with Full-Width-Table (Positions) and Show/Hide-Buttons
+  // PENDENT: woanders plazieren
+  .full-width {
+    width:   100% ;
+    padding: 0 0 1.0em 0 ;
+    margin:  0 0 0 0;
+
+    // Use this Selector on the same Level for Show/Hide Details-Buttons
+    // Edit these Buttons in tables.less
+    // PENDENT: vielleicht anders loesen
+    &.positions{ }
+  }
+
+  // zentrierte Elemente
+  // PENDENT: braucht es das?
+  div.center{
+      margin: 0 auto;
+      display: table;
+      width: auto;
+  }
+
+
+}
+// /body
+

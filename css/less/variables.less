@@ -1,0 +1,804 @@
+// ----------------------------------------------------------------------------
+//
+// VARIABLES (Less-Style) for general use (most of it is Bootstrap-Stuff)
+//
+// ----------------------------------------------------------------------------
+// DESCRIPTION:
+//
+// CONTENTS:
+// - COLORS
+//   - Greys
+//   - Branding
+//   - Divers Color Specifications
+// - SCAFFOLDING
+//   - Body/Content Background color, Text color
+//   - Content Boxes (Wrapper & Columns Container)
+// - LINKS
+// - TYPOGRAPHY
+//   - Font family
+//   - Font size
+//   - Line height
+//   - Heading 1 - 6
+//   - Heading 1 (H1)
+// - ICONOGRAPHY
+// - TABLES
+//   - Table & Caption
+//   - Table Cells
+//   - Dimensions (Table Cells Only)
+// - BUTTONS
+// - FORMS
+//   - Input fields
+//   - Legend, Labels, Fieldsets
+//   - Highlighting (Focus and so on)
+//   - Dimensions (input, select)
+// - DROPDOWNS
+// - COMPONENTS
+//   - Z-Index
+//   - Dashboard (frame-header)
+//   - Menu (menuv3)
+//   - Context-Menu (layout-actionbar) -> missing
+//   - Component properties
+// - MESSAGES
+//   - Messages Old Style
+//   - Flash Messages
+// - DIMENSIONS
+//   - Standard Dimensions
+//   - Dimensions for Table Colums (COL)
+// ----------------------------------------------------------------------------
+
+
+// --------------------------------------
+// COLORS
+// --------------------------------------
+// Base Colors see variables_color_scheme.less
+
+
+
+// -------------------
+// General text color (label & data)
+//
+// Standard text
+@brand-primary:         @brand-text-color;
+@brand-label:           @brand-data-label-color;
+@brand-label-bg:        @brand-lighter;
+
+// Messages & info types
+@brand-ok:              @color-green-strong;
+@brand-ok-bg:           @color-green-light;
+
+@brand-error:           @color-red-strong;
+@brand-error-bg:        @color-red-light;
+
+@brand-info:            @color-blue-strong;
+@brand-info-bg:         @color-blue-light;
+
+@brand-warning:         @color-orange-strong;
+@brand-warning-bg:      @color-orange-light;
+
+// Positive & negative colors
+@brand-positive:        @color-green-strong;
+@brand-positive-bg:     @color-green-light;
+@brand-negative:        @color-red-strong;
+@brand-negative-bg:     @color-red-light;
+
+
+// -------------------
+// Messages & info types
+//
+@brand-ok:              @color-green-strong;
+@brand-ok-bg:           @color-green-light;
+
+@brand-error:           @color-red-strong;
+@brand-error-bg:        @color-red-light;
+
+@brand-info:            @color-blue-strong;
+@brand-info-bg:         @color-blue-light;
+
+@brand-warning:         @color-orange-strong;
+@brand-warning-bg:      @color-orange-light;
+
+// Positive & negative colors
+@brand-positive:        @color-green-strong;
+@brand-positive-bg:     @color-green-light;
+@brand-negative:        @color-red-strong;
+@brand-negative-bg:     @color-red-light;
+
+
+
+// --------------
+// Content Boxes
+//
+
+@text-min-width:            400px ;
+@text-max-width:            600px ;
+
+
+// like Wrappers, Colums Containers, Flash-Messages and Record Selection
+@content-padding:           0 0 0 0; // 0 is OK otherwise there will be a border after the ui-tabs-panels
+@content-margin:            104px 0 1.0em 0; // PENDENT: ueberpruefen
+
+
+@margin-left-from-content:  0.6em ; // directly inside #content
+@margin-left-from-wrapper:  0   ;       // directly inside .wrapper
+
+@margin-from-content:       1em 1em 1em   @margin-left-from-content ; // directly inside #content
+@margin-from-wrapper:       0   0   0.4em @margin-left-from-wrapper ;       // directly inside .wrapper
+
+// Paragraphs, messages
+@text-container-width:      auto ;
+@text-container-min-width:  @text-min-width ;
+@text-container-max-width:  @text-max-width ;
+
+@messages_width:            60.0em;
+@messages-min-width:        60.0em;
+@messages-max-width:        40.0em;
+
+
+@contentbox-margin:         1.0em 1.0em 1.0em 0.6em ;
+@contentbox-padding:        0.6em 1.0em 1.2em 1.8em ;
+@contentbox-radius:         0.6em ;
+
+// --------------
+// Content Panels
+//
+@controlpanel-margin:       @contentbox-margin      ;
+@controlpanel-padding:      1.2em 1.0em 0.8em 1.2em ;
+@controlpanel-padding-bold: 0.8em 1.0em 1.4em 1.2em ;
+@controlpanel-bg:           @brand-lighter          ;
+@controlpanel-color:        @brand-darkest          ;
+@controlpanel-border:       1px @brand-darkest solid  ;
+@controlpanel-radius:       @contentbox-radius      ;
+@controlpanel-bg-hover:     @brand-darkest          ;
+@controlpanel-bg-hover-text:@brand-light          ;
+@controlpanel-active-bg:    @brand-strong-dimmed          ;
+@controlpanel-active-text:  @brand-lighter          ;
+
+@controlpanel-h3-color:     @brand-heading-color ;
+@controlpanel-h3-size:      110%    ;
+@controlpanel-h3-style:     normal  ;
+@controlpanel-h3-weight:    normal  ;
+
+@controlpanel-h4-color:     @brand-heading-color ;
+@controlpanel-h4-size:      105%    ;
+@controlpanel-h4-weight:    bold    ;
+@controlpanel-h4-style:     normal  ;
+
+// select item control panel
+@controlpanel-select-item-padding:   0.6em 1.0em 0.6em 0.8em ;
+
+@instructionbox-bg:       @controlpanel-bg ;
+@instructionbox-border:   1px @brand-darkest solid ;
+
+
+
+// --------------------------------------
+// LINKS
+// --------------------------------------
+@link-color:            @brand-link-color;
+@link-hover-color:      darken(@link-color, 15%);
+@link-decoration:       none;
+@link-hover-decoration: underline;
+
+
+
+// --------------------------------------
+// TYPOGRAPHY
+// --------------------------------------
+
+// --------------
+// Font family
+//
+@font-family-sans-serif:  Verdana, "Helvetica Neue", Helvetica, Arial, sans-serif ;
+@font-family-serif:       Georgia, "Times New Roman", Times, serif ;
+@font-family-monospace:   Monaco, Menlo, Consolas, "Courier New", monospace;
+
+@font-family-base:        @font-family-sans-serif;
+
+// --------------
+// Font size
+//
+@font-size-base:          11pt; // vorh.14px
+@font-size-large:         ceil(@font-size-base * 1.25); //  ~18px
+@font-size-medium:        ceil(@font-size-base * 1.0 ); //  ~18px
+@font-size-small:         ceil(@font-size-base * 0.85); //  ~11px
+@font-size-smaller:       ceil(@font-size-base * 0.76); //  ~12px
+@font-size-verysmall:     ceil(@font-size-base * 0.6); //   ~12px
+
+// --------------
+// Line height
+//
+@line-height-base:        1.428571429; //  20/14
+@line-height-computed:    floor(@font-size-base * @line-height-base); //  ~20px
+
+
+// --------------
+// Heading 1-6
+//
+@headings-font-family:    @font-family-base;
+@headings-weight:         500;
+@headings-line-height:    1.3em;
+@headings-color:          @brand-heading-color;
+@headings-color-accent:   #000;
+
+@headings-color-error:    @brand-error;
+@headings-color-confirm:  @brand-ok;
+
+@h1-size:            floor(@font-size-base * 1.1); //  ~**px
+@h2-size:            floor(@font-size-base * 1.2); //  ~**px
+@h3-size:            ceil(@font-size-base * 1.1); //  ~**px
+@h4-size:            ceil(@font-size-base * 1.0); //  ~**px
+@h5-size:            @font-size-base;
+@h6-size:            ceil(@font-size-base * 0.85); //  ~**px
+
+@h1-style:           normal;
+@h2-style:           normal;
+@h3-style:           normal;
+@h4-style:           normal;
+
+@h1-weight:          bold;
+@h2-weight:          bold;
+@h3-weight:          normal;
+@h4-weight:          normal;
+
+// --------------
+// Heading 1 (H1)
+// Fixed on top of every page together with the action bar
+@h1-color:    @brand-h1-color;
+@h1-bg:       @brand-h1-bg;
+@h1-padding:  0.7em 0.5em 0.7em 0.7em;
+@h1-margin:   0;
+
+// Heading Controlpanels
+
+@h3-controlpanel-size:    @h3-size;
+@h4-controlpanel-size:    @h4-size;
+
+@h3-controlpanel-style:   bold;
+@h4-controlpanel-style:   bold;
+
+@h3-controlpanel-weight:  normal;
+@he-controlpanel-weight:  bold;
+
+
+// -------------------
+// Data types
+//
+@heading-and-label-color:   @brand-data-label-color  ;
+@heading-and-label-bg:      @brand-data-label-color  ;
+@data-color:                @brand-data-color ;
+
+@long-desc-size:            @font-size-verysmall ;
+@long-desc-color:           @brand-text-color ;
+
+
+
+// --------------------------------------
+// Iconography
+// --------------------------------------
+//@icon-font-path:          "../bootstrap/fonts/";
+//@icon-font-name:          "glyphicons-halflings-regular";
+
+
+
+
+// --------------------------------------
+// TABLES
+// --------------------------------------
+
+// --------------
+// Table & Caption
+//
+@table-bg:                       transparent; //  overall background-color
+@table-bg-accent:                @brand-lighter; //  for striping
+@table-bg-hover:                 #ffffff;
+@table-bg-active:                @table-bg-hover;
+@table-border-color:             @brand-darkest; //  table and cell border
+
+@table-caption-bg:               transparent ;
+@table-caption-color:            @brand-darkest;
+@table-caption-size:             @h3-size - 1pt ;
+@table-caption-style:            @h3-style ;
+@table-caption-weight:           @h3-weight ;
+
+
+// --------------
+// Table Cells
+//
+@t-cell-padding:                 8px;
+@t-cell-padding-condensed:       5px;
+
+@t-cell-text-color:              @brand-darkest;
+
+@t-cell-head-bg:                 @brand-strong;
+@t-cell-head-bg-accent:          @gray-light;
+@t-cell-head-text:               @brand-light;
+@t-cell-head-text-accent:        @brand-lighter;
+
+@t-cell-label-text:              @brand-strong-dimmed;
+@t-cell-label-text-accent:       @brand-strong-dimmed-hover;
+@t-cell-data-text:               @brand-darkest;
+@t-cell-data-text-accent:        @brand-darkest;
+
+
+@t-cell-foot-text:               @brand-darkest;
+
+// Zebra effect in list tables
+@t-row-zebra-bg-odd:             @brand-lighter;
+@t-row-zebra-bg-even:            @brand-light;
+@t-row-zebra-bg-hover:           #ffffff;
+
+@t-row-zebra-bg-error:           @brand-error-bg;
+@t-row-zebra-bg-special:         #FEF2C5; // PENDENT: ANSCHAUEN
+@t-row-zebra-bg-highlight:       #B4F4FE; // PENDENT: ANSCHAUEN
+
+
+// --------------------------------------
+// BUTTONS
+// --------------------------------------
+
+@btn-font-weight:                normal;
+// -------------------
+// STANDARD-Button Strong (with Submission / data manipulation)
+//
+// Standard
+@btn-default-color:               @brand-verylight;
+@btn-default-bg:                  @brand-strong;
+@btn-default-border:              @brand-darkest;
+// Hover
+@btn-default-hover-color:         #ffffff;
+@btn-default-hover-bg:            @brand-strong-dimmed;
+@btn-default-hover-border:        @brand-darkest;
+// Active
+@btn-default-active-color:        #ffffff;
+@btn-default-active-bg:           @brand-strong-dimmed;
+@btn-default-active-border:       @brand-darkest;
+
+// -------------------
+// NEUTRAL-Button (NO Submission)
+//
+// Standard
+@btn-neutral-color:               @brand-strong;
+@btn-neutral-bg:                  @brand-lighter;
+@btn-neutral-border:              @brand-darkest;
+// Hover
+@btn-neutral-hover-color:         @brand-strong;
+@btn-neutral-hover-bg:            @brand-light;
+@btn-neutral-hover-border:        @brand-darkest;
+// Active
+@btn-neutral-active-color:        #ffffff;
+@btn-neutral-active-bg:           @brand-light;
+@btn-neutral-active-border:       @brand-darkest;
+
+
+// -------------------
+// Diverse Button states
+//
+
+@btn-primary-color:              #ffffff;
+@btn-primary-bg:                 @brand-primary;
+@btn-primary-border:             darken(@btn-primary-bg, 5%);
+
+@btn-success-color:              #ffffff;
+@btn-success-bg:                 @color-green-strong;
+@btn-success-border:             darken(@color-green-light, 5%);
+
+@btn-warning-color:              #ffffff;
+@btn-warning-bg:                 @brand-warning;
+@btn-warning-border:             darken(@btn-warning-bg, 5%);
+
+@btn-info-color:                 #ffffff;
+@btn-info-bg:                    @brand-info;
+@btn-info-border:                darken(@btn-info-bg, 5%);
+
+@btn-link-disabled-color:        @gray-light;
+
+
+
+
+// --------------------------------------
+// FORMS
+// --------------------------------------
+
+
+// --------------
+// Input elements
+//
+
+@input-bg:                       #fff;
+@input-bg-disabled:              @gray-lighter;
+
+@input-color:                    @gray;
+@input-border:                   #ccc;
+@input-border-radius:            @border-radius-base;
+@input-border-focus:             #66afe9;
+
+@input-color-placeholder:        @gray-light;
+
+@input-height-base:              (@line-height-computed + (@padding-base-vertical * 2) + 2);
+@input-height-large:             (floor(@font-size-large * @line-height-large) + (@padding-large-vertical * 2) + 2);
+@input-height-small:             (floor(@font-size-small * @line-height-small) + (@padding-small-vertical * 2) + 2);
+
+@input-group-addon-bg:           @gray-lighter;
+@input-group-addon-border-color: @input-border;
+
+
+
+// --------------
+// Legend, Labels, Fieldsets
+//
+
+@legend-color:                   @gray-dark;
+@legend-border-color:            #e5e5e5;
+
+
+// --------------
+//  Highlighting (Focused, Activated)
+//
+
+@formelement-focus-bg:     #E7FFCE ;
+@formelement-focus-border: 1px solid #9ccb21 ;
+
+
+
+
+
+
+
+// --------------------------------------
+// Dropdowns
+// --------------------------------------
+
+@dropdown-bg:                    #fff;
+@dropdown-border:                rgba(0,0,0,.15);
+@dropdown-fallback-border:       #ccc;
+@dropdown-divider-bg:            #e5e5e5;
+
+@dropdown-link-color:            @gray-dark;
+@dropdown-link-hover-color:      darken(@gray-dark, 5%);
+@dropdown-link-hover-bg:         #f5f5f5;
+
+@dropdown-link-active-color:     @component-active-color;
+@dropdown-link-active-bg:        @component-active-bg;
+
+@dropdown-link-disabled-color:   @gray-light;
+
+@dropdown-header-color:          @gray-light;
+
+@dropdown-caret-color:           #000;
+
+
+
+
+// --------------------------------------
+// COMPONENTS
+// --------------------------------------
+
+
+// --------------
+// Z-index
+// Stack-/Layer Positions of components
+// only for specialists
+
+// General
+@zindex-dropdown:          1000;
+@zindex-popover:           1010;
+@zindex-tooltip:           1030;
+@zindex-navbar-fixed:      1030;
+@zindex-modal-background:  1040;
+@zindex-modal:             1050;
+
+// Components
+@zindex-dashboard:         1040; // frame-header
+@zindex-navbar:            1999; // menuv3 muss zuoberst sein
+@zindex-h1:                1020; // h1 innerhalb content
+
+@zindex-actionbar:         1030; // action-bar (Workflow)
+@zindex-actionbar-action:  1031;
+@zindex-actionbar-combobox: 1031;
+@zindex-actionbar-combobox-head: 1033;
+@zindex-actionbar-combobox-list: 1032;
+
+
+
+// --------------
+// Dashboard (frame-header)
+//
+@dashbrd_bg:            @brand-darkest ;
+@dashbrd_text:          @brand-light ;
+@dashbrd_link:          @brand-light ;
+@dashbrd_link_hover:    #ffffff ;
+@dashbrd_link_deco:     underline ;
+@dashbrd_input_bg:      @brand-light;
+@dashbrd_input_text:    #000000 ;
+
+
+// --------------
+// Menue (menuv3)
+//
+
+@menu_bg:               #fff ;
+@menu_link:             #000 ;
+@menu_link_bg:          #ebebeb ; // display:block
+@menu_link_hover:       #000 ;
+@menu_link_hover_bg:    #ebebeb ;
+@menu_link_hover_deco:  underline ;
+
+
+@menu_link_bg_level1:         #dcdcdc ;
+@menu_link_bg_level1_hover:   #cdcdcd ;
+@menu_link_bg_level2:         #cdcdcd ;
+@menu_link_bg_level2_hover:   #dcdcdc ;
+@menu_link_bg_level3:         #dcdcdc ;
+@menu_link_bg_level3_hover:   #cdcdcd ;
+
+
+
+// --------------
+// Context-Menu (layout-actionbar)
+//
+@actionbar-bg:                  @brand-light;
+@actionbar-bg-active:           @brand-light;
+@actionbar-font-color:          #ffffff;
+@actionbar-font-color-active:   #ffffff;
+@actionbar-border-color:        @brand-strong;
+@actionbar-border-color-active: @brand-strong;
+
+
+
+// --------------
+// Component properties
+//
+// Based on 14px font-size and 1.428 line-height (~20px to start)
+// PENDENT: UI-Tabs und so weiter
+
+
+@padding-base-vertical:          6px;
+@padding-base-horizontal:        12px;
+
+@padding-large-vertical:         10px;
+@padding-large-horizontal:       16px;
+
+@padding-small-vertical:         5px;
+@padding-small-horizontal:       10px;
+
+@line-height-large:              1.33;
+@line-height-small:              1.5;
+
+@border-radius-base:             4px;
+@border-radius-large:            6px;
+@border-radius-small:            3px;
+
+@component-active-color:         #fff;
+@component-active-bg:            @brand-primary;
+
+@caret-width-base:               4px;
+@caret-width-large:              5px;
+
+
+
+
+// --------------------------------------
+// Messages
+// --------------------------------------
+@message-margin:          3.6em 2.0em 0.6em 1.0em ;
+@message-padding:         0.6em 0.6em 0.5em 0.6em ;
+
+// Error
+@message_error_bg:       @brand-error-bg ;
+@message_error_border:   1px solid @brand-error ;
+@message_error_text:     @brand-error ;
+// OK
+@message_ok_bg:          @brand-ok-bg ;
+@message_ok_border:      1px solid @brand-ok ;
+@message_ok_text:        @brand-ok ;
+// Info & Hint
+@message_info_bg:        @brand-info-bg ;
+@message_info_border:    1px solid @brand-info ;
+@message_info_text:      @brand-info ;
+// Warning
+@message_warning_bg:     @brand-warning-bg ;
+@message_warning_border: 1px solid @brand-warning ;
+@message_warning_text:   @brand-warning ;
+// Hint (like Info above, just to make it sure working)
+@message_hint_bg:        @message_info_bg ;
+@message_hint_border:    @message_info_border ;
+@message_hint_text:      @message_info_text ;
+
+
+
+// --------------------------------------
+// DIMENSIONS (width)
+// --------------------------------------
+
+
+// --------------
+// Standard Dimensions
+// Only for Containers like DIV, TABLE, TH, TD, COL, P
+//
+// Table cells:   COL, TD, TH, DIV
+//
+@wi-smallest:       42px ;  //   2.6em ; // one or two ciphers
+@wi-verysmall:      80px ;  //   5.0em ;
+@wi-small:         128px ;   //   8.0em ; // also date e.g. 2018/06/06
+@wi-mediumsmall:   160px ;   //  10.0em ;
+@wi-normal:        208px ;   //  13.0em ;
+@wi-lightwide:     256px ;   //  16.0em ;
+@wi-wide:          320px ;   //  20.0em ;
+@wi-wider:         384px ;   //  24.0em ;
+@wi-verywide:      576px ;   //  36.0em ;
+
+// --------------
+// Dimensions for DIVs
+//
+@div-wi-smallest:     (@wi-smallest    ) ;
+@div-wi-verysmall:    (@wi-verysmall   ) ;
+@div-wi-small:        (@wi-small       ) ;
+@div-wi-mediumsmall:  (@wi-mediumsmall ) ;
+@div-wi-normal:       (@wi-normal      ) ;
+@div-wi-lightwide:    (@wi-lightwide   ) ;
+@div-wi-wide:         (@wi-wide        ) ; // min-width
+@div-wi-wider:        (@wi-wider       ) ; // min-width
+@div-wi-verywide:     (@wi-verywide    ) ; // min-width
+
+// --------------
+// Dimensions for Table Colums (TH, TD & Col)
+//
+@tcol-wi-smallest:     (@wi-smallest    ) ;
+@tcol-wi-verysmall:    (@wi-verysmall   ) ;
+@tcol-wi-small:        (@wi-small       ) ;
+@tcol-wi-mediumsmall:  (@wi-mediumsmall ) ;
+@tcol-wi-normal:       (@wi-normal      ) ;
+@tcol-wi-lightwide:    (@wi-lightwide   ) ;
+@tcol-wi-wide:         (@wi-wide        ) ; // min-width
+@tcol-wi-wider:        (@wi-wider       ) ; // min-width
+@tcol-wi-verywide:     (@wi-verywide    ) ; // min-width
+
+// --------------
+// Dimensions for combined rows with combination Table column widths
+//
+@tcol-wi-small-small:            (@tcol-wi-small       + @tcol-wi-small        ) ;
+@tcol-wi-small-mediumsmall:      (@tcol-wi-small       + @tcol-wi-mediumsmall  ) ;
+@tcol-wi-small-normal:           (@tcol-wi-small       + @tcol-wi-normal       ) ;
+@tcol-wi-small-lightwide:        (@tcol-wi-small       + @tcol-wi-lightwide    ) ;
+@tcol-wi-small-wide:             (@tcol-wi-small       + @tcol-wi-wide         ) ;
+@tcol-wi-small-wider:            (@tcol-wi-small       + @tcol-wi-wider        ) ;
+@tcol-wi-small-verywide:         (@tcol-wi-small       + @tcol-wi-verywide     ) ;
+
+@tcol-wi-mediumsmall-small:      (@tcol-wi-mediumsmall + @tcol-wi-small        ) ;
+@tcol-wi-mediumsmall-mediumsmall:(@tcol-wi-mediumsmall + @tcol-wi-mediumsmall  ) ;
+@tcol-wi-mediumsmall-normal:     (@tcol-wi-mediumsmall + @tcol-wi-normal       ) ;
+@tcol-wi-mediumsmall-lightwide:  (@tcol-wi-mediumsmall + @tcol-wi-lightwide    ) ;
+@tcol-wi-mediumsmall-wide:       (@tcol-wi-mediumsmall + @tcol-wi-wide         ) ;
+@tcol-wi-mediumsmall-wider:      (@tcol-wi-mediumsmall + @tcol-wi-wider        ) ;
+@tcol-wi-mediumsmall-verywide:   (@tcol-wi-mediumsmall + @tcol-wi-verywide     ) ;
+
+@tcol-wi-normal-small:           (@tcol-wi-normal      + @tcol-wi-small        ) ;
+@tcol-wi-normal-mediumsmall:     (@tcol-wi-normal      + @tcol-wi-mediumsmall  ) ;
+@tcol-wi-normal-normal:          (@tcol-wi-normal      + @tcol-wi-normal       ) ;
+@tcol-wi-normal-lightwide:       (@tcol-wi-normal      + @tcol-wi-lightwide    ) ;
+@tcol-wi-normal-wide:            (@tcol-wi-normal      + @tcol-wi-wide         ) ;
+@tcol-wi-normal-wider:           (@tcol-wi-normal      + @tcol-wi-wider        ) ;
+@tcol-wi-normal-verywide:        (@tcol-wi-normal      + @tcol-wi-verywide     ) ;
+
+@tcol-wi-lightwide-small:        (@tcol-wi-lightwide   + @tcol-wi-small        ) ;
+@tcol-wi-lightwide-mediumsmall:  (@tcol-wi-lightwide   + @tcol-wi-mediumsmall  ) ;
+@tcol-wi-lightwide-normal:       (@tcol-wi-lightwide   + @tcol-wi-normal       ) ;
+@tcol-wi-lightwide-lightwide:    (@tcol-wi-lightwide   + @tcol-wi-lightwide    ) ;
+@tcol-wi-lightwide-wide:         (@tcol-wi-lightwide   + @tcol-wi-wide         ) ;
+@tcol-wi-lightwide-wider:        (@tcol-wi-lightwide   + @tcol-wi-wider        ) ;
+@tcol-wi-lightwide-verywide:     (@tcol-wi-lightwide   + @tcol-wi-verywide     ) ;
+
+// --------------
+// Dimensions for Form elements
+//
+@diff-input-select: 36px ; //1.6em ;
+
+// Input elements
+@form-element-margin-right: 5px ;
+
+@input-wi-smallest:     (@wi-smallest  ) ;
+@input-wi-verysmall:    (@wi-verysmall ) ;
+@input-wi-small:        (@wi-small       - @diff-input-select) ;
+@input-wi-mediumsmall:  (@wi-mediumsmall - @diff-input-select) ;
+@input-wi-normal:       (@wi-normal      - @diff-input-select) ;
+@input-wi-lightwide:    (@wi-lightwide   - @diff-input-select) ;
+@input-wi-wide:         (@wi-wide)       - @diff-input-select ; // min-width
+@input-wi-wider:        (@wi-wider)      - @diff-input-select ; // min-width
+@input-wi-verywide:     (@wi-verywide)   - @diff-input-select ; // min-width
+
+// Input elements with combined dimensions
+
+// Minus size combinations (take care of the double hyphen --)
+@input-wi-lightwide--verysmall: ( @input-wi-lightwide - @input-wi-verysmall ) - 1 ;
+@input-wi-wide--verysmall:      ( @input-wi-wide      - @input-wi-verysmall ) - ( @form-element-margin-right  ) + 4px ;
+
+// Select elements
+@select-wi-smallest:    (@wi-smallest    ) ;
+@select-wi-verysmall:   (@wi-verysmall   ) ;
+@select-wi-small:       (@wi-small       - @diff-input-select ) ;
+@select-wi-mediumsmall: (@wi-mediumsmall - @diff-input-select ) ;
+@select-wi-normal:      (@wi-normal      - @diff-input-select ) ;
+@select-wi-lightwide:   (@wi-lightwide   - @diff-input-select ) ;
+@select-wi-wide:        (@wi-wide        - @diff-input-select ) ; // min-width
+@select-wi-wider:       (@wi-wider       - @diff-input-select ) ; // min-width
+@select-wi-verywide:    (@wi-verywide    - @diff-input-select ) ; // min-width
+
+// Select elements with combined dimensions
+@diff-select-combined:  0 ;
+
+@select-wi-small-normal:          ((@wi-small + (@wi-normal - @diff-input-select))     - @diff-select-combined ) ;
+@select-wi-small-lightwide:       ((@wi-small + (@wi-lightwide - @diff-input-select))  - @diff-select-combined ) ;
+@select-wi-small-wide:            ((@wi-small + (@wi-wide - @diff-input-select))       - @diff-select-combined ) ;
+@select-wi-small-wider:           ((@wi-small + (@wi-wider - @diff-input-select))      - @diff-select-combined ) ;
+@select-wi-small-verywide:        ((@wi-small + (@wi-verywide - @diff-input-select))   - @diff-select-combined ) ;
+@select-wi-mediumsmall-normal:    ((@wi-mediumsmall + (@wi-normal - @diff-input-select))     - @diff-select-combined ) ;
+@select-wi-mediumsmall-lightwide: ((@wi-mediumsmall + (@wi-lightwide - @diff-input-select))  - @diff-select-combined ) ;
+@select-wi-mediumsmall-wide:      ((@wi-mediumsmall + (@wi-wide - @diff-input-select))       - @diff-select-combined ) ;
+@select-wi-mediumsmall-wider:     ((@wi-mediumsmall + (@wi-wider - @diff-input-select))      - @diff-select-combined ) ;
+@select-wi-mediumsmall-verywide:  ((@wi-mediumsmall + (@wi-verywide - @diff-input-select))   - @diff-select-combined ) ;
+@select-wi-normal-normal:         ((@wi-normal + (@wi-normal - @diff-input-select))     - @diff-select-combined ) ;
+@select-wi-normal-lightwide:      ((@wi-normal + (@wi-lightwide - @diff-input-select))  - @diff-select-combined ) ;
+@select-wi-normal-wide:           ((@wi-normal + (@wi-wide - @diff-input-select))       - @diff-select-combined ) ;
+@select-wi-normal-wider:          ((@wi-normal + (@wi-wider - @diff-input-select))      - @diff-select-combined ) ;
+@select-wi-normal-verywide:       ((@wi-normal + (@wi-verywide - @diff-input-select))   - @diff-select-combined ) ;
+@select-wi-lightwide-normal:      ((@wi-lightwide + (@wi-normal - @diff-input-select))     - @diff-select-combined ) ;
+@select-wi-lightwide-lightwide:   ((@wi-lightwide + (@wi-lightwide - @diff-input-select))  - @diff-select-combined ) ;
+@select-wi-lightwide-wide:        ((@wi-lightwide + (@wi-wide - @diff-input-select))       - @diff-select-combined ) ;
+@select-wi-lightwide-wider:       ((@wi-lightwide + (@wi-wider - @diff-input-select))      - @diff-select-combined ) ;
+@select-wi-lightwide-verywide:    ((@wi-lightwide + (@wi-verywide - @diff-input-select))   - @diff-select-combined ) ;
+@select-wi-wide-normal:           ((@wi-wide + (@wi-normal - @diff-input-select))     - @diff-select-combined ) ;
+@select-wi-wide-lightwide:        ((@wi-wide + (@wi-lightwide - @diff-input-select))  - @diff-select-combined ) ;
+@select-wi-wide-wide:             ((@wi-wide + (@wi-wide - @diff-input-select))       - @diff-select-combined ) ;
+@select-wi-wide-wider:            ((@wi-wide + (@wi-wider - @diff-input-select))      - @diff-select-combined ) ;
+@select-wi-wide-verywide:         ((@wi-wide + (@wi-verywide - @diff-input-select))   - @diff-select-combined ) ;
+
+// Textarea elements with standard dimensions
+@textarea-wi-normal:      (@wi-normal      - @diff-input-select ) ;
+@textarea-wi-lightwide:   (@wi-lightwide   - @diff-input-select ) ;
+@textarea-wi-wide:        (@wi-wide        - @diff-input-select ) ; // min-width
+@textarea-wi-wider:       (@wi-wider       - @diff-input-select ) ; // min-width
+@textarea-wi-verywide:    (@wi-verywide    - @diff-input-select ) ; // min-width
+
+// Textarea elements with combined dimensions
+@diff-input-textarea-combined: 0px ; //1.6em ;
+//@textarea-margin-combined: 24px ;
+
+@textarea-wi-small-small:       ((@tcol-wi-small + @input-wi-small)        - @diff-input-textarea-combined) ;
+@textarea-wi-small-mediumsmall: ((@tcol-wi-small + @input-wi-mediumsmall)  - @diff-input-textarea-combined) ;
+@textarea-wi-small-normal:      ((@tcol-wi-small + @input-wi-normal)       - @diff-input-textarea-combined) ;
+@textarea-wi-small-lightwide:   ((@tcol-wi-small + @input-wi-lightwide)    - @diff-input-textarea-combined) ;
+@textarea-wi-small-wide:        ((@tcol-wi-small + @input-wi-wide)         - @diff-input-textarea-combined) ;
+@textarea-wi-small-wider:       ((@tcol-wi-small + @input-wi-wider)        - @diff-input-textarea-combined) ;
+@textarea-wi-small-verywide:    ((@tcol-wi-small + @input-wi-verywide)     - @diff-input-textarea-combined) ;
+
+@textarea-wi-mediumsmall-small:        ((@tcol-wi-mediumsmall + @input-wi-small)         - @diff-input-textarea-combined) ;
+@textarea-wi-mediumsmall-mediumsmall:  ((@tcol-wi-mediumsmall + @input-wi-mediumsmall)   - @diff-input-textarea-combined) ;
+@textarea-wi-mediumsmall-normal:       ((@tcol-wi-mediumsmall + @input-wi-normal)        - @diff-input-textarea-combined) ;
+@textarea-wi-mediumsmall-lightwide:    ((@tcol-wi-mediumsmall + @input-wi-lightwide)     - @diff-input-textarea-combined) ;
+@textarea-wi-mediumsmall-wide:         ((@tcol-wi-mediumsmall + @input-wi-wide)          - @diff-input-textarea-combined) ;
+@textarea-wi-mediumsmall-wider:        ((@tcol-wi-mediumsmall + @input-wi-wider)         - @diff-input-textarea-combined) ;
+@textarea-wi-mediumsmall-verywide:     ((@tcol-wi-mediumsmall + @input-wi-verywide)      - @diff-input-textarea-combined) ;
+
+@textarea-wi-normal-small:        ((@tcol-wi-normal + @input-wi-small)         - @diff-input-textarea-combined) ;
+@textarea-wi-normal-mediumsmall:  ((@tcol-wi-normal + @input-wi-mediumsmall)   - @diff-input-textarea-combined) ;
+@textarea-wi-normal-normal:       ((@tcol-wi-normal + @input-wi-normal)        - @diff-input-textarea-combined) ;
+@textarea-wi-normal-lightwide:    ((@tcol-wi-normal + @input-wi-lightwide)     - @diff-input-textarea-combined) ;
+@textarea-wi-normal-wide:         ((@tcol-wi-normal + @input-wi-wide)          - @diff-input-textarea-combined) ;
+@textarea-wi-normal-wider:        ((@tcol-wi-normal + @input-wi-wider)         - @diff-input-textarea-combined) ;
+@textarea-wi-normal-verywide:     ((@tcol-wi-normal + @input-wi-verywide)      - @diff-input-textarea-combined) ;
+
+@textarea-wi-lightwide-small:       ((@tcol-wi-lightwide + @input-wi-small)         - @diff-input-textarea-combined) ;
+@textarea-wi-lightwide-mediumsmall: ((@tcol-wi-lightwide + @input-wi-mediumsmall)   - @diff-input-textarea-combined) ;
+@textarea-wi-lightwide-normal:      ((@tcol-wi-lightwide + @input-wi-normal)        - @diff-input-textarea-combined) ;
+@textarea-wi-lightwide-lightwide:   ((@tcol-wi-lightwide + @input-wi-lightwide)     - @diff-input-textarea-combined) ;
+@textarea-wi-lightwide-wide:        ((@tcol-wi-lightwide + @input-wi-wide)          - @diff-input-textarea-combined) ;
+@textarea-wi-lightwide-wider:       ((@tcol-wi-lightwide + @input-wi-wider)         - @diff-input-textarea-combined) ;
+@textarea-wi-lightwide-verywide:    ((@tcol-wi-lightwide + @input-wi-verywide)      - @diff-input-textarea-combined) ;
+
+@textarea-wi-wide-small:        ((@tcol-wi-wide + @input-wi-small)         - @diff-input-textarea-combined) ;
+@textarea-wi-wide-mediumsmall:  ((@tcol-wi-wide + @input-wi-mediumsmall)   - @diff-input-textarea-combined) ;
+@textarea-wi-wide-normal:       ((@tcol-wi-wide + @input-wi-normal)        - @diff-input-textarea-combined) ;
+@textarea-wi-wide-lightwide:    ((@tcol-wi-wide + @input-wi-lightwide)     - @diff-input-textarea-combined) ;
+@textarea-wi-wide-wide:         ((@tcol-wi-wide + @input-wi-wide)          - @diff-input-textarea-combined) ;
+@textarea-wi-wide-wider:        ((@tcol-wi-wide + @input-wi-wider)         - @diff-input-textarea-combined) ;
+@textarea-wi-wide-verywide:     ((@tcol-wi-wide + @input-wi-verywide)      - @diff-input-textarea-combined) ;

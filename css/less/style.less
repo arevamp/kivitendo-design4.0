@@ -1,0 +1,94 @@
+// ----------------------------------------------------------------------------
+//
+// MAIN-LESS-FILE
+//
+// ----------------------------------------------------------------------------
+// DESCRIPTION:
+// Use this file for rendering the file ../style.css
+// with the following command:
+// lessc style.less ../style.css
+// the cursor in your shell should be on /css/less/
+//
+// CONTENTS:
+// - Variables
+// - LOGGED IN
+// ----------------------------------------------------------------------------
+
+
+
+// Variablen
+// fuer die Anpassung des Erscheinungsbildes
+// in dieser Datei koennen z.b. Farbvarianten eines Themes einfach erstellt werden
+
+// Color Schemes
+//@import 'variables_color_scheme.less' ; // Standard-Farbschema
+//@import 'variables_color.less'; // use it for a  special style
+//@import 'variables_color_1.less'; // use it for a  special style
+@import 'variables_color_2.less'; // use it for a  special style
+// Standard-Variables
+@import 'variables.less';
+
+// Your custom LESS variables (new or overrides of the previous LESS variable stuff)
+@import 'custom_variables.less';
+
+// Basic Settings
+@import 'common.less';
+
+
+// Mixins (general & sitewide properties)
+// IMPORTANT: edit this properties right after variables.less
+@import 'mixins.less' ;
+
+// Main areas and main boxes of the Kivitendo Webpage
+@import 'scaffolding.less';
+
+// jQuery Stuff
+@import 'jquery-ui.less'; // jQuery-UI
+// Original Standard jQuery Stuff (no overrides, )
+@import 'jquery.autocomplete.less';
+@import 'jquery.multiselect2side.less';
+@import 'jquery.tooltipster.less';
+@import 'jquery.tooltipster-light.less';
+// Special jQuery Stuff
+@import 'jquery.chartpicker.less';
+// Overrides of all jquery stuff above
+@import 'jquery-ui_overrides.less';
+
+// Standard Kivitendo CSS_Stuff
+@import 'main.less';
+@import 'main_login.less';
+// Menus
+@import 'menu.less';
+@import 'menu_actionbar.less';
+@import 'menu_frame_header.less'; // Quick_Search, User/Mandatory, Logout
+
+// Content
+// Every HTML Stuff within the Element #content
+@import 'messages.less';
+@import 'tables.less';
+@import 'lists.less';
+@import 'forms.less';
+@import 'buttons.less';
+@import 'control_panels.less';
+
+@import 'requirement_spec.less'; // Stupid non_generic stuff
+@import 'specials.less';
+
+// General overrides from the settings above
+@import 'main_overrides.less';
+
+// Admin_Stuff (Overrides)
+@import 'admin.less';
+
+// div. (necessary???)
+@import 'icons16.less';
+
+// Responsive & Print Stuff
+@import 'responsive.less';
+@import 'print.less';
+
+// Your personal custom LESS stuff
+@import 'custom.less';
+
+// Developer stuff (don't hesitate to disable this')
+@import 'developing.less';

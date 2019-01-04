@@ -1,0 +1,153 @@
+// ----------------------------------------------------------------------------
+//
+// VARIABLES (Less-Style) for general use (most of it is Bootstrap-Stuff)
+//
+// ----------------------------------------------------------------------------
+// DESCRIPTION:
+//
+// CONTENTS:
+// - BASE COLORS
+//   - Greys
+//   - Branding
+//   - Divers Color Specifications
+// - TYPOGRAPHY
+//   - Font family
+//   - Font size
+//   - Line height
+//   - Heading 1 - 6
+//   - Heading 1 (H1)
+// ----------------------------------------------------------------------------
+
+
+
+// --------------------------------------
+// BASE COLORS
+// --------------------------------------
+// Original Kivitendo Colors
+// --------------
+// Background:    #EBEBEB burlywood
+// Links:         #006400 DarkGreen
+// Link-hover     #FE5F14 Orange / #FFFFE0 lightyellow
+// Titles, BG/VG: #79B61B Mid-green FFFFFF White
+// Tabcolor:      #CAFFA3
+
+// --------------
+// Grey shades
+@gray-darker:            #222222 ;
+@gray-dark:              #555555 ;
+@gray-mediumdark:        #666666 ;
+@gray:                   #888888 ;
+@gray-medium:            #aaaaaa ;
+@gray-light:             #cfcfcf ;
+@gray-lighter:           #dedede ;
+@gray-morelighter:       #e0e0e0 ;
+@gray-verylight:         #ececec ;
+@gray-superlight:        #efefef ;
+
+// --------------
+// Color Specications
+// for message and other coloured stuff
+// ok
+@color-green-strong:    #003c18;
+@color-green-light:     #9ccb21;
+// error
+@color-red-strong:      #ae0014;
+@color-red-light:       #ffd6d6;
+// info/hint
+@color-blue-strong:     #209ec8;
+@color-blue-light:      #b6e6e5;
+// warning
+@color-orange-strong:   #8D6A00; // more brown
+@color-orange-light:    #f6d972;
+// divers
+@rainbow-green:         #408000;
+@rainbow-blue:          #0080FF;
+@rainbow-red:           #FF0000;
+@rainbow-yellow:        #FFFF00;
+
+// --------------
+// Brand colors
+@brand-standard:            hsl( 128, 83%, 34%) ; // Standard color
+
+@brand-strong:              @brand-standard ; // Strong brand color (for text)
+@brand-strong-dimmed:       lighten( @brand-strong , 10% ) ;
+@brand-strong-dimmed-hover: lighten( @brand-strong , 20% ) ;
+@brand-darkest:             darken(  @brand-strong , 30% ) ;
+
+@brand-text-color:          darken(  @brand-strong , 50% ) ;
+
+@brand-light:               lighten( @brand-strong , 30% ) ;
+@brand-lighter:             lighten( @brand-strong , 40% ) ;
+@brand-verylight:           lighten( @brand-strong , 50% ) ;
+@brand-superlight:          lighten( @brand-strong , 60% ) ;
+
+
+@brand-table-text-color:    @brand-darkest ; //
+@brand-heading-color:       @brand-darkest ; // Standard heading color
+@brand-heading-bg:          @brand-strong-dimmed-hover ; //
+@brand-h1-color:            @brand-lighter ; //
+@brand-h1-bg:               @brand-strong ; //
+@brand-data-color:          @brand-standard ; //
+@brand-data-label-color:    @brand-strong ; // Standard-Label color
+@brand-text-color-accent:   @brand-standard ; //
+@brand-link-color:          @brand-strong-dimmed ; //
+@brand-link-color-hover:    @brand-strong-dimmed-hover ;
+
+// Text (Label & data)
+@brand-primary:         @brand-text-color;
+@brand-label:           @brand-data-label-color;
+@brand-label-bg:        @brand-lighter;
+
+// --------------
+// Buttons
+//
+// Button with manipulation (submit etc.)
+@button-strong:                @brand-lighter;
+@button-strong-bg:             @brand-strong;
+@button-strong-border:         @brand-darkest;
+@button-strong-hover:          @brand-lighter;
+@button-strong-hover-bg:       @brand-strong-dimmed-hover;
+@button-strong-hover-border:   @brand-darkest;
+@button-strong-active:         @brand-lighter;
+@button-strong-active-bg:      @brand-strong-dimmed;
+@button-strong-active-border:  @brand-darkest;
+// Button without data manipulation (reset, cancel, open, show etc.)
+@button-soft:                  @brand-strong;
+@button-soft-bg:               @brand-light;
+@button-soft-border:           @brand-darkest;
+@button-soft-hover:            @brand-strong;
+@button-soft-hover-bg:         @brand-lighter;
+@button-soft-hover-border:     @brand-darkest;
+@button-soft-active:           @brand-darkest;
+@button-soft-active-bg:        @brand-strong-dimmed;
+@button-soft-active-border:    @brand-darkest;
+
+// --------------------------------------
+// SCAFFOLDING
+// --------------------------------------
+@body-bg:               @brand-verylight; // general
+@content-bg:            @brand-superlight; // background first tabs
+@heading-bg:            @brand-lighter ; // controlpanels & other stuff
+
+// Tabs
+@tabs-bg:               @brand-verylight; // background tabs panel (data/content)
+@tabs-bg-hover:         @brand-superlight; // background tabs panel (data/content)
+@tabs-bg-hover-active:  @tabs-bg; // background tabs panel (data/content)
+@tabs-text-hover:       @brand-strong; // background tabs panel (data/content)
+
+
+@text-color:            @brand-primary;
+@heading-color:         @brand-heading-color ; // labels & table headings
+@caption-color:         @brand-heading-color ; // caption
+
+
+// Table list zebra effect
+// Zebra effect in list tables
+@t-row-zebra-bg-odd:             @brand-lighter;
+@t-row-zebra-bg-even:            @brand-verylight;
+@t-row-zebra-bg-hover:           #ffffff;
+
+@t-row-zebra-bg-error:           @brand-error-bg;
+@t-row-zebra-bg-special:         #FEF2C5; // PENDENT: ANSCHAUEN
+@t-row-zebra-bg-highlight:       #B4F4FE; // PENDENT: ANSCHAUEN
+
