@@ -299,7 +299,7 @@ label {
 }
 
 .unbalanced_ledger {
-  background-color: #ffa0a0;
+  background-color: @brand-warning-bg;
 }
 
 .flash_message_error {
