@@ -1,16 +1,11 @@
-[%- USE HTML %]
-[%- USE L %]
-[%- USE LxERP %]
-[%- USE T8 %]
+[% USE HTML %]
+[% USE L %]
+[% USE LxERP %]
+[% USE T8 %]
 
-<div style='overflow:hidden'>
-
-[% LxERP.t8("Filter") %]: [% L.input_tag('part_picker_filter', SELF.models.filtered.laundered.all_substr_multi__ilike, class='part_picker_filter') %]
-
-<div class='float-right'>
+<div class="select-item control-panel">
+  [% LxERP.t8("Filter") %] [% L.input_tag('part_picker_filter', SELF.models.filtered.laundered.all_substr_multi__ilike, class='part_picker_filter') %]
   [% L.checkbox_tag('no_paginate', checked=FORM.no_paginate, id='no_paginate', for_submit=1, label=LxERP.t8('All as list')) %]
 </div>
 
-<div style='clear:both'></div>
-<div id='part_picker_result'></div>
-</div>
+<div id="part_picker_result"></div>
