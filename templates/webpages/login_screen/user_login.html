@@ -1,77 +1,77 @@
-[%- USE T8 %]
-[%- USE HTML %][%- USE L -%][%- USE LxERP -%]
-[%- SET auth_client = '{AUTH}client' %]
-[%- SET auth_login  = '{AUTH}login'  %]
- <center>
-  <table class="login" border="3" cellpadding="20">
-   <tr>
-    <td class="login" align="center">
-     <a href="http://www.kivitendo.de" target="_top" class="no-underlined-links"><img src="image/kivitendo.png" class='kivitendo-logo' border="0"></a>
-     <h1>[% LxERP.t8('kivitendo v#1', version) %]</h1>
+[% USE T8 %]
+[% USE HTML %]
+[% USE L %]
+[% USE LxERP %]
+[% SET auth_client = '{AUTH}client' %]
+[% SET auth_login  = '{AUTH}login'  %]
+
+
+<h1>[% LxERP.t8('kivitendo v#1', version) %]</h1>
+<div id="login-elements">
+<div class="logo">
+  <a href="http://www.kivitendo.de" target="_top" class="no-underlined-links"><img src="image/kivitendo.png" class='kivitendo-logo'></a>
+</div>
 
 [% IF error %]
-     <div class="message_error_login">[% HTML.escape(error) %]</div>
+  <div class="message message_error">[% HTML.escape(error) %]</div>
 [% END %]
 [% IF warning %]
-     <div class="message_hint">[% HTML.escape(warning) %]</div>
+  <div class="message message_hint">[% HTML.escape(warning) %]</div>
 [% END %]
 [% IF info %]
-     <div class="message_ok">[% HTML.escape(info) %]</div>
+  <div class="message message_ok">[% HTML.escape(info) %]</div>
 [% END %]
 
+<div class="separate-form">
+
 [% IF SELF.clients.size %]
-[%- SET style="width: 250px" %]
-      <form method="post" name="loginscreen" action="controller.pl" target="_top">
+<form method="post" name="loginscreen" action="controller.pl" target="_top">
+<input type="hidden" name="show_dbupdate_warning" value="1">
 
-       <input type="hidden" name="show_dbupdate_warning" value="1">
+<table class="tbl-horizontal login">
+  <caption>[% 'User login' | $T8 %]</caption>
+  <colgroup><col class="wi-small"><col class="wi-normal"></colgroup>
+  <tbody>
+    <tr>
+      <th>[% 'Login Name' | $T8 %]</th>
+      <td>[% L.input_tag('{AUTH}login', FORM.$auth_login, id='auth_login', class='initial_focus wi-normal') %]</td>
+    </tr>
+    <tr>
+      <th>[% 'Password' | $T8 %]</th>
+      <td>[% L.input_tag('{AUTH}password', '', type='password', class='wi-normal') %]</td>
+    </tr>
+    <tr>
+      <th>[% 'Client' | $T8 %]</th>
+      <td>[% L.select_tag('{AUTH}client_id', SELF.clients, title_key='name', default=SELF.default_client_id, class='wi-normal') %]</td>
+    </tr>
+    <tr>
+      <th>&nbsp;</th>
+      <td>
+      <input type="hidden" name="action" value="LoginScreen/login">
+      <input type="submit" value="[% 'Login' | $T8 %]">
+      </td>
+    </tr>
+  </tbody>
+</table>
 
-       <table width="100%">
-        <tr>
-         <td align="center">
-          <table>
-           <tr>
-            <th align="right">[% 'Login Name' | $T8 %]</th>
-            <td>[% L.input_tag('{AUTH}login', FORM.$auth_login, id='auth_login', style=style, class='initial_focus') %]</td>
-           </tr>
-           <tr>
-            <th align="right">[% 'Password' | $T8 %]</th>
-            <td>[% L.input_tag('{AUTH}password', '', type='password', style=style) %]</td>
-           </tr>
-           <tr>
-            <th align="right">[% 'Client' | $T8 %]</th>
-            <td>[% L.select_tag('{AUTH}client_id', SELF.clients, title_key='name', default=SELF.default_client_id, style=style) %]</td>
-           </tr>
-          </table>
 
-          <br>
-          <input type="hidden" name="action" value="LoginScreen/login">
-          <input type="submit" value="[% 'Login' | $T8 %]">
+</form>
+</div><!-- /.separate-form -->
 
-         </td>
-        </tr>
-       </table>
-
-      </form>
-[%- ELSE %]
-      <p>
-       [% LxERP.t8("No clients have been created yet.") %]
-       [% LxERP.t8("Please do so in the administration area.") %]
-      </p>
-
-      <p>
-       <a href="controller.pl?action=Admin/login">[% LxERP.t8("Administration area") %]</a>
-      </p>
-[%- END %]
-
-    </td>
-   </tr>
-  </table>
-
+[% ELSE %]
   <p>
-   <a href="controller.pl?action=Admin/login" target="_top">[%- LxERP.t8('Administration area') %]</a>
-   &nbsp;|&nbsp;
-   <a href="doc/kivitendo-Dokumentation.pdf" target="_top">[%- LxERP.t8('Documentation') %]</a>
+    [% LxERP.t8("No clients have been created yet.") %]
+    [% LxERP.t8("Please do so in the administration area.") %]
   </p>
+  <p><a href="controller.pl?action=Admin/login">[% LxERP.t8("Administration area") %]</a></p>
+[% END %]
+
+<div>
+  <p> <a href="controller.pl?action=Admin/login" target="_top">[% LxERP.t8('Administration area') %]</a> &nbsp;|&nbsp; <a href="doc/kivitendo-Dokumentation.pdf" target="_top">[% LxERP.t8('Documentation') %]</a> </p>
+</div>
+
+</div>
+
 
 [% IF FORM.$auth_client %]
 <script type='text/javascript'>
