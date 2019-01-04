@@ -1,4 +1,6 @@
-[%- USE HTML -%][%- USE LxERP -%][% USE Base64 %]
+[% USE HTML %]
+[% USE LxERP %]
+[% USE Base64 %]
 [% SET title=LxERP.t8('Picture #1: #2', picture.number, picture.description ? picture.description _ ' (' _ picture.picture_file_name _ ')' : picture.picture_file_name) %]
 <div id="text-block-picture-[% HTML.escape(picture.id) %]" class="requirement-spec-text-block-picture-thumbnail text-block-picture-context-menu">
  <div class="requirement-spec-text-block-picture-thumbnail-img-container">
