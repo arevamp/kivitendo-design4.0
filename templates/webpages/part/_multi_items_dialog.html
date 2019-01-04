@@ -1,23 +1,33 @@
-[%- USE T8 %][%- USE HTML %][%- USE L %][%- USE LxERP %]
+[% USE T8 %]
+[% USE HTML %]
+[% USE L %]
+[% USE LxERP %]
 
 <form method="post" id="multi_items_form" method="POST">
 
-<table id='multi_items_filter_table'>
-  <tr>
-    <th>[%- LxERP.t8("Description") %]/[%- LxERP.t8("Partnumber") %]:</th>
-    <td>[%- L.input_tag('multi_items.filter.all:substr:multi::ilike', SELF.multi_items_models.filtered.laundered.all_substr_multi__ilike) %]</td>
-    <th>[%- LxERP.t8("Partsgroup") %]</th>
-    <td>[%- L.select_tag('multi_items.filter.partsgroup_id', all_partsgroups, title_key='partsgroup', value_key='id', with_empty=1) %]</td>
-  <tr>
-</table>
+<div class="select-item control-panel">
+  <table id="multi_items_filter_table" class="tbl-plain">
+    <tr>
+      <th>[% LxERP.t8("Description") %]/[% LxERP.t8("Partnumber") %]</th>
+      <td>[% L.input_tag('multi_items.filter.all:substr:multi::ilike', SELF.multi_items_models.filtered.laundered.all_substr_multi__ilike, size=10, class='wi-normal') %]</td>
+    </tr>
+    <tr>
+      <th>[% LxERP.t8("Partsgroup") %]</th>
+      <td>[% L.select_tag('multi_items.filter.partsgroup_id', all_partsgroups, title_key='partsgroup', value_key='id', with_empty=1, class='wi-normal') %]</td>
+    <tr>
+  </table>
+</div>
 
-[% L.button_tag('', LxERP.t8('Filter'), id='multi_items_filter_button') %]
-[% L.button_tag('', LxERP.t8('Reset'), id='multi_items_filter_reset') %]
+<div class="buttons">
+  [% L.button_tag('', LxERP.t8('Filter'), id='multi_items_filter_button') %]
+  [% L.button_tag('', LxERP.t8('Reset'), id='multi_items_filter_reset') %]
+</div>
 
-<hr>
-<div id='multi_items_result'></div>
-<hr>
 
-[% L.button_tag('', LxERP.t8('Continue'), id='continue_button') %]
+<div id="multi_items_result"></div>
+
+<div class="buttons">
+  [% L.button_tag('', LxERP.t8('Continue'), id='continue_button') %]
+</div>
 
 </form>
