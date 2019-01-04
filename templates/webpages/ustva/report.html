@@ -47,15 +47,9 @@
             [%- IF fa_steuerberater_name %]
               <fieldset>
               <legend>
-                <input checked="checked"
-                 title="[% 'Assume Tax Consultant Data in Tax Computation?' | $T8 %]"
-                 name="fa_steuerberater"
-                 id="steuerberater"
-                 class="checkbox"
-                 type="checkbox"
-                 value="1" >
+                <input type="checkbox" title="[% 'Assume Tax Consultant Data in Tax Computation?' | $T8 %]" name="fa_steuerberater" id="steuerberater" value="1" checked>
                  &nbsp;<b>[% 'Tax Consultant' | $T8 %]</b>
-                </legend>
+              </legend>
 
                 [% HTML.escape(fa_steuerberater_name) %]<br />
                 [% HTML.escape(fa_steuerberater_street) %]<br />
