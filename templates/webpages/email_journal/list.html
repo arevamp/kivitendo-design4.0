@@ -12,9 +12,9 @@
 
 [% ELSE %]
 
- <table id="email_journal_list" width="100%">
+<table id="email_journal_list" class="tbl-list wi-moderate">
   <thead>
-   <tr class="listheading">
+    <tr>
       [% IF SELF.can_view_all %]
         <th>[% L.sortable_table_header("sender") %]</th>
       [% END %]
@@ -27,8 +27,8 @@
     </tr>
   </thead>
   <tbody>
-  <tr class="listrow[% IF entry.status != 'ok' %]_error[% END %]" id="email_journal_id_[% entry.id %]">
     [% FOREACH entry = ENTRIES %]
+    <tr[% IF entry.status != 'ok' %] class="row_error[% END %]" id="email_journal_id_[% entry.id %]">
       [% IF SELF.can_view_all %]
         <td>[% IF entry.sender %] [% HTML.escape(entry.sender.name) %] [% ELSE %] [% LxERP.t8("kivitendo") %] [% END %]</td>
       [% END %]
