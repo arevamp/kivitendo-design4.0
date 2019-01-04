@@ -1,20 +1,18 @@
 [% USE HTML %]
+[% USE T8 %]
 
 <div id="custom_variables">
-  <p>
-    <table>
-      [% FOREACH var = SELF.cv.cvars_by_config %]
-        <tr>
-          <th align="right" valign="top" nowrap>[% var.config.description | html %]</th>
-
-          <td valign="top">
-            [% INCLUDE 'common/render_cvar_input.html'
-                        cvar_name_prefix = 'cv_cvars.'
-                        var_name = ''
-            %]
-          </td>
-        </tr>
-      [% END %]
+  <div class="wrapper">
+    <table class="tbl-horizontal">
+      <caption>[% 'Custom variables' | $T8 %]</caption>
+      <tbody>
+        [% FOREACH var = SELF.cv.cvars_by_config %]
+          <tr>
+            <th>[% var.config.description | html %]</th>
+            <td>[% INCLUDE 'common/render_cvar_input.html', cvar_name_prefix = 'cv_cvars.', var_name = '' %]</td>
+          </tr>
+        [% END %]
+      </tbody>
     </table>
-  </p>
+  </div>
 </div>
