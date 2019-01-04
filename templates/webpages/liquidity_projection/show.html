@@ -1,15 +1,15 @@
-[% USE HTML %][% USE LxERP %][%- USE L -%]
+[% USE HTML %]
+[% USE LxERP %]
+[% USE L %]
 <body>
 
- <h1>[% HTML.escape(title) %]</h1>
+<h1>[% HTML.escape(title) %]</h1>
 
- [% PROCESS 'liquidity_projection/_filter.html' %]
+[% PROCESS 'liquidity_projection/_filter.html' %]
 
- [%- IF SELF.liquidity %]
-  <hr>
-
+[% IF SELF.liquidity %]
   [% PROCESS 'liquidity_projection/_result.html' %]
- [% END %]
+[% END %]
 
 </body>
 </html>
