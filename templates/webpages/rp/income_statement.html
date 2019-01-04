@@ -50,12 +50,8 @@ tr.chartrow {
 
 [% FOREACH i IN categories_income %]
   <tr class="category" data-catid="cat[% i %]">
-    <td>
-      [% HTML.escape(category_names.item(i)) %]
-    </td>
-    <td class="numeric">
-      [% eur_amounts.item(i) %]
-    </td>
+    <td>[% HTML.escape(category_names.item(i)) %]</td>
+    <td class="numeric">[% eur_amounts.item(i) %]</td>
   </tr>
   [% FOREACH chart = charts_by_category.item(i).list %]
   <tr class="chartrow cat[% i %]">
@@ -84,12 +80,8 @@ tr.chartrow {
 
 [% FOREACH i IN categories_expense %]
   <tr class="category" data-catid="cat[% i %]">
-    <td>
-      [% HTML.escape(category_names.item(i)) %]
-    </td>
-    <td class="numeric">
-      [% eur_amounts.item(i) %]
-    </td>
+    <td>[% HTML.escape(category_names.item(i)) %]</td>
+    <td class="numeric">[% eur_amounts.item(i) %]</td>
   </tr>
   [% FOREACH chart = charts_by_category.item(i).list %]
   <tr class="chartrow cat[% i %]">
