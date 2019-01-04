@@ -7,9 +7,9 @@
   <tr class='[% class %]'>
   [% FOREACH col IN column_index %]
     <td class='[% class %] numeric'>
-      [%- SWITCH col %]
-      [%- CASE [ 'netamount', 'tax', 'amount' ] %][% LxERP.format_amount(row.$col, 2) %]
-      [%- CASE %]&nbsp;[% END %]
+      [% SWITCH col %]
+      [% CASE [ 'netamount', 'tax', 'amount' ] %][% LxERP.format_amount(row.$col, 2) %]
+      [% CASE %]&nbsp;[% END %]
     </td>
   [% END %]
   </tr>

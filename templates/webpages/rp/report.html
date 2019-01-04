@@ -4,7 +4,7 @@
 [% USE P %]
 [% USE T8 %]
 
-[%- BLOCK customized_report %]
+[% BLOCK customized_report %]
   <tr>
     <th align=left><input name=reporttype class=radio type=radio value="custom" checked>[% 'Customized Report' | $T8 %]</th>
   </tr>
@@ -103,14 +103,14 @@
       [% L.radio_button_tag('method', value='cash', checked=(INSTANCE_CONF.get_accounting_method=='cash'), label=LxERP.t8('cash')) %]
     </td>
   </tr>
-[%- END %]
-[%- BLOCK customer %]
+[% END   #BLOCK cash_or_accrual %]
+[% BLOCK customer %]
   <tr>
     <th align=right nowrap>[% 'Customer' | $T8 %]</th>
     <td colspan=3>[% P.customer_vendor.picker('customer_id', '', type='customer') %]</td>
   </tr>
-[%- END %]
-[%- BLOCK projectnumber %]
+[% END   #BLOCK customer %]
+[% BLOCK projectnumber %]
   <tr>
     <th align=right nowrap>[% 'Project' | $T8 %]</th>
     <td colspan=3>[% P.project.picker('project_id', '') %]</td>
