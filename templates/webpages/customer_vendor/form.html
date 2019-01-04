@@ -1,8 +1,8 @@
-[%- USE T8 %]
-[%- USE HTML %]
-[%- USE LxERP %]
-[%- USE L %]
-[%- USE Dumper %]
+[% USE T8 %]
+[% USE HTML %]
+[% USE LxERP %]
+[% USE L %]
+[% USE Dumper %]
 <h1>[% FORM.title %] [% IF SELF.cv.id %] - [% HTML.escape(SELF.cv.displayable_name) %][% END %]</h1>
 [% L.hidden_tag('_cti_enabled', !!LXCONFIG.cti.dial_command) %]
 
@@ -14,19 +14,19 @@
   [% L.hidden_tag('callback', FORM.callback) %]
   [% L.hidden_tag('cv.id', SELF.cv.id) %]
 
-  [%- INCLUDE 'common/flash.html' %]
+  [% INCLUDE 'common/flash.html' %]
 
   <div class="tabwidget" id="customer_vendor_tabs">
-    <ul>
+    <ul class="ui-tabs">
       <li><a href="#billing">[% 'Billing Address' | $T8 %]</a></li>
       <li><a href="#bank">[% 'Bank account' | $T8 %]</a></li>
       <li><a href="#shipto">[% 'Shipping Address' | $T8 %]</a></li>
       <li><a href="#contacts">[% 'Contacts' | $T8 %]</a></li>
       [% IF ( SELF.cv.id && AUTH.assert('sales_all_edit', 1) ) %]
         <li><a href="#deliveries">[% 'Supplies' | $T8 %]</a></li>
-[%- IF INSTANCE_CONF.get_doc_storage %]
-      <li><a href="controller.pl?action=File/list&file_type=attachment&object_type=[% FORM.db == 'vendor' ? 'vendor' : 'customer' %]&object_id=[% SELF.cv.id %]">[% 'Attachments' | $T8 %]</a></li>
-[%- END %]
+        [% IF INSTANCE_CONF.get_doc_storage %]
+        <li><a href="controller.pl?action=File/list&file_type=attachment&object_type=[% FORM.db == 'vendor' ? 'vendor' : 'customer' %]&object_id=[% SELF.cv.id %]">[% 'Attachments' | $T8 %]</a></li>
+        [% END %]
       [% END %]
       <li><a href="#vcnotes">[% 'Notes' | $T8 %]</a></li>
 
@@ -69,8 +69,7 @@
   </div>
 </form>
 
-<script type="text/javascript">
-<!--
+<script type="text/javascript"><!--
   function submitInputButton(action)
   {
     var $hidden = $("<input type='hidden' name='action' value='CustomerVendor/" + action + "'>"),
@@ -87,5 +86,4 @@
     }
     return true;
   }
--->
-</script>
+--></script>
