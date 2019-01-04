@@ -1,14 +1,18 @@
-[%- USE T8 %]
-[%- USE HTML %]
-[%- USE L %]
-[%- USE LxERP %]
+[% USE T8 %]
+[% USE HTML %]
+[% USE L %]
+[% USE LxERP %]
+
 <h1>[% 'Search projects' | $T8 %]</h1>
 
-[%- INCLUDE 'common/flash.html' %]
 
- <form method="post" action="controller.pl" id="search_form">
+<form method="post" action="controller.pl" id="search_form">
+<div class="wrapper">
 
-  <p>
-[%- INCLUDE 'project/_filter.html' %]
-  </p>
- </form>
+[% INCLUDE 'common/flash.html' %]
+
+
+[% INCLUDE 'project/_filter.html' %]
+
+</div>
+</form>

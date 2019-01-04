@@ -1,57 +1,55 @@
-[%- USE T8 %]
-[%- USE HTML %]
-[%- USE L %]
-[%- USE LxERP %]
+[% USE T8 %]
+[% USE HTML %]
+[% USE L %]
+[% USE LxERP %]
 
-<table id="filter_table">
- <tr>
-  <th align="right">[% 'Number' | $T8 %]</th>
-  <td>[% L.input_tag('filter.projectnumber:substr::ilike', filter.projectnumber_substr__ilike, size=60) %]</td>
- </tr>
-
- <tr>
-  <th align="right">[% 'Description' | $T8 %]</th>
-  <td>[% L.input_tag('filter.description:substr::ilike', filter.description_substr__ilike, size=60, class='initial_focus') %]</td>
- </tr>
-
- <tr>
-  <th align="right">[% 'Customer' | $T8 %]</th>
-  <td>[% L.input_tag('filter.customer.name:substr::ilike', filter.customer.name_substr__ilike, size=60) %]</td>
- </tr>
-
- <tr>
-  <th align="right">[% 'Project Type' | $T8 %]</th>
-  <td>[% L.select_tag('filter.project_type_id', SELF.project_types, default=filter.project_type_id, title_key='description', with_empty=1, style="width: 200px") %]</td>
- </tr>
-
- <tr>
-  <th align="right">[% 'Project Status' | $T8 %]</th>
-  <td>[% L.select_tag('filter.project_status_id', SELF.project_statuses, default=filter.project_status_id, title_key='description', with_empty=1, style="width: 200px") %]</td>
- </tr>
-
- [% CUSTOM_VARIABLES_FILTER_CODE %]
-
- <tr>
-  <th>[% 'Include in Report' | $T8 %]</th>
-  <td>
-   <table>
+[% BLOCK filter_toggle_panel %]
+<table id="filter_table" class="tbl-horizontal">
+  <caption>[% 'Project' | $T8 %]</caption>
+  <tbody>
     <tr>
-     <td>[% L.select_tag('filter.active', [ [ 'active', LxERP.t8('Active') ], [ 'inactive', LxERP.t8('Inactive') ], [ 'both', LxERP.t8('Both') ] ], default=filter.active, style="width: 200px") %]</td>
+      <th>[% 'Number' | $T8 %]</th>
+      <td>[% L.input_tag('filter.projectnumber:substr::ilike', filter.projectnumber_substr__ilike, class='wi-normal') %]</td>
     </tr>
-
     <tr>
-     <td>[% L.select_tag('filter.valid', [ [ 'valid', LxERP.t8('Valid') ], [ 'invalid', LxERP.t8('Invalid') ], [ 'both', LxERP.t8('Both') ] ], default=filter.valid, style="width: 200px") %]</td>
+      <th>[% 'Description' | $T8 %]</th>
+      <td>[% L.input_tag('filter.description:substr::ilike', filter.description_substr__ilike, class='wi-normal initial_focus') %]</td>
     </tr>
-
     <tr>
-     <td>[% L.select_tag('filter.status', [ [ 'all', LxERP.t8('All') ], [ 'orphaned', LxERP.t8('Orphaned') ] ], default=filter.status, style="width: 200px") %]</td>
+      <th>[% 'Customer' | $T8 %]</th>
+      <td>[% L.input_tag('filter.customer.name:substr::ilike', filter.customer.name_substr__ilike, class='wi-normal') %]</td>
     </tr>
-
-    [% CUSTOM_VARIABLES_INCLUSION_CODE %]
-
-   </table>
-  </td>
- </tr>
+    <tr>
+      <th>[% 'Project Type' | $T8 %]</th>
+      <td>[% L.select_tag('filter.project_type_id', SELF.project_types, default=filter.project_type_id, title_key='description', with_empty=1, class='wi-normal') %]</td>
+    </tr>
+    <tr>
+      <th>[% 'Project Status' | $T8 %]</th>
+      <td>[% L.select_tag('filter.project_status_id', SELF.project_statuses, default=filter.project_status_id, title_key='description', with_empty=1, class='wi-normal') %]</td>
+    </tr>
+    [% CUSTOM_VARIABLES_FILTER_CODE %]
+  </tbody>
 </table>
 
-[% L.button_tag('$("#search_form").resetForm()', LxERP.t8('Reset')) %]
+<table class="tbl-horizontal">
+  <caption>[% 'Include in Report' | $T8 %]</caption>
+  <tbody>
+    <tr>
+      <td>[% L.select_tag('filter.active', [ [ 'active', LxERP.t8('Active') ], [ 'inactive', LxERP.t8('Inactive') ], [ 'both', LxERP.t8('Both') ] ], default=filter.active, style="width: 200px") %]</td>
+    </tr>
+    <tr>
+      <td>[% L.select_tag('filter.valid', [ [ 'valid', LxERP.t8('Valid') ], [ 'invalid', LxERP.t8('Invalid') ], [ 'both', LxERP.t8('Both') ] ], default=filter.valid, style="width: 200px") %]</td>
+    </tr>
+    <tr>
+      <td>[% L.select_tag('filter.status', [ [ 'all', LxERP.t8('All') ], [ 'orphaned', LxERP.t8('Orphaned') ] ], default=filter.status, style="width: 200px") %]</td>
+    </tr>
+    [% CUSTOM_VARIABLES_INCLUSION_CODE %]
+  </tbody>
+</table>
+
+<div class="buttons">
+  [% L.button_tag('$("#search_form").resetForm()', LxERP.t8('Reset'), class="neutral") %]
+</div>
+[% END # /BLOCK filter_toggle_panel %]
+
+[% INCLUDE 'common/toggle_panel.html' %]
