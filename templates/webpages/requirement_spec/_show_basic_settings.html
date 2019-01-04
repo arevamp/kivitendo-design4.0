@@ -1,63 +1,61 @@
-[%- USE HTML -%][%- USE LxERP -%]
+[% USE HTML %]
+[% USE LxERP %]
+
 <div id="basic_settings" class="basic-settings-context-menu">
- <h2>
-  [% IF SELF.requirement_spec.is_template %]
-   [% LxERP.t8("Basic Settings for the Requirement Spec Template") %]
-  [% ELSE %]
-   [% LxERP.t8("Basic Settings for the Requirement Spec") %]
-  [% END %]
- </h2>
+<div class="wrapper">
 
- <table>
-  <tr class="listrow">
-   <td>[% LxERP.t8("Title") %]:</td>
-   <td>[% HTML.escape(SELF.requirement_spec.title) %]</td>
-  </tr>
+<h2>
+[% IF SELF.requirement_spec.is_template %]
+  [% LxERP.t8("Basic Settings for the Requirement Spec Template") %]
+[% ELSE %]
+  [% LxERP.t8("Basic Settings for the Requirement Spec") %]
+[% END %]
+</h2>
 
-  <tr class="listrow">
-   <td>[% LxERP.t8("Requirement Spec Type") %]:</td>
-   <td>[% HTML.escape(SELF.requirement_spec.type.description) %]</td>
-  </tr>
-
-[%- UNLESS SELF.requirement_spec.is_template %]
-
-  <tr class="listrow">
-   <td>[% LxERP.t8("Requirement Spec Status") %]:</td>
-   <td>[% HTML.escape(SELF.requirement_spec.status.description) %]</td>
-  </tr>
-
-  <tr class="listrow">
-   <td>[% LxERP.t8("Customer") %]:</td>
-   <td>[% HTML.escape(SELF.requirement_spec.customer.name) %]</td>
-  </tr>
-
-  <tr class="listrow">
-   <td>[% LxERP.t8("Hourly Rate") %]:</td>
-   <td>[% HTML.escape(SELF.requirement_spec.hourly_rate_as_number) %]</td>
-  </tr>
-
-  [% cvars = SELF.requirement_spec.cvars_by_config %]
-
-  [% FOREACH var = cvars %]
-   <tr class="listrow">
-    <td>[% HTML.escape(var.config.description) %]</td>
-    <td>[% HTML.escape(var.value_as_text) %]</td>
-   </tr>
-  [% END %]
-
-[%- END %]
-
- </table>
+<table class="tbl-horizontal">
+  <tbody>
+    <tr>
+      <th>[% LxERP.t8("Title") %]:</th>
+      <td>[% HTML.escape(SELF.requirement_spec.title) %]</td>
+    </tr>
+    <tr>
+      <th>[% LxERP.t8("Requirement Spec Type") %]:</th>
+      <td>[% HTML.escape(SELF.requirement_spec.type.description) %]</td>
+    </tr>
+    [% UNLESS SELF.requirement_spec.is_template %]
+      <tr>
+        <th>[% LxERP.t8("Requirement Spec Status") %]:</th>
+        <td>[% HTML.escape(SELF.requirement_spec.status.description) %]</td>
+      </tr>
+      <tr>
+        <th>[% LxERP.t8("Customer") %]:</th>
+        <td>[% HTML.escape(SELF.requirement_spec.customer.name) %]</td>
+      </tr>
+      <tr>
+        <th>[% LxERP.t8("Hourly Rate") %]:</th>
+        <td>[% HTML.escape(SELF.requirement_spec.hourly_rate_as_number) %]</td>
+      </tr>
+      [% cvars = SELF.requirement_spec.cvars_by_config %]
+      [% FOREACH var = cvars %]
+        <tr>
+          <th>[% HTML.escape(var.config.description) %]</th>
+          <td>[% HTML.escape(var.value_as_text) %]</td>
+        </tr>
+      [% END %]
+    [% END %]
+  </tbody>
+</table>
 
 [% UNLESS SELF.requirement_spec.is_template %]
+  <h2>[% LxERP.t8("Project Link") %]</h2>
 
- <h2>[% LxERP.t8("Project Link") %]</h2>
+  [% IF !SELF.requirement_spec.project_id %]
+    <p>[% LxERP.t8("This requirement spec is currently not linked to a project.") %]</p>
+  [% ELSE %]
+    [% INCLUDE 'requirement_spec/_project_link_details.html' requirement_spec=SELF.requirement_spec %]
+  [% END %]
 
- [% IF !SELF.requirement_spec.project_id %]
-  <p>[% LxERP.t8("This requirement spec is currently not linked to a project.") %]</p>
-
- [% ELSE %]
-  [% INCLUDE 'requirement_spec/_project_link_details.html' requirement_spec=SELF.requirement_spec %]
- [% END %]
 [% END %]
-</div>
+</div><!-- /.wrapper -->
+
+</div><!-- /#basic_settings -->
