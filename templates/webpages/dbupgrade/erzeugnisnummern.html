@@ -1,5 +1,6 @@
-[%- USE T8 %]
-[% USE HTML %][%- USE LxERP -%]
+[% USE T8 %]
+[% USE HTML %]
+[% USE LxERP %]
 <h1>[% 'Double partnumbers' | $T8 %]</h1>
 
 <script type="text/javascript">
@@ -27,25 +28,25 @@ function show_parts(vc) {
 <p>[% 'Please change the partnumber of the following parts and run the update again:' | $T8 %]</p>
 <table>
   <tr>
-    <th class="listheading">[% 'Partnumber' | $T8 %]</th>
-    <th class="listheading">[% 'Description' | $T8 %]</th>
-    <th class="listheading">[% 'Unit' | $T8 %]</th>
-    <th class="listheading">[% 'Notes' | $T8 %]</th>
-    <th class="listheading">[% 'EAN' | $T8 %]</th>
-    <th class="listheading">[% 'Service, assembly or part' | $T8 %]</th>
-    <th class="listheading">[% 'Obsolete' | $T8 %]</th>
+    <th>[% 'Partnumber' | $T8 %]</th>
+    <th>[% 'Description' | $T8 %]</th>
+    <th>[% 'Unit' | $T8 %]</th>
+    <th>[% 'Notes' | $T8 %]</th>
+    <th>[% 'EAN' | $T8 %]</th>
+    <th>[% 'Service, assembly or part' | $T8 %]</th>
+    <th>[% 'Obsolete' | $T8 %]</th>
   </tr>
 
   [% SET row_odd = '1' %][% FOREACH row = PARTS %]
   <tr class="listrow[% IF row_odd %]1[% SET row_odd = '0' %][% ELSE %]0[% SET row_odd = '1' %][% END %]">
-    <td align="right"><input name='partnumber_[% loop.count %]' value='[% HTML.escape(row.partnumber) %]'></td>
+    <td><input type="text" name='partnumber_[% loop.count %]' value='[% HTML.escape(row.partnumber) %]'></td>
     <input type="hidden" name='partid_[% loop.count %]' value='[% HTML.escape(row.id) %]'>
-    <td align="left"> [% HTML.escape(row.description) %]</a></td>
-    <td align="right">[% HTML.escape(row.unit) %]</td>
-    <td align="right">[% HTML.escape(row.notes) %]</td>
-    <td align="right">[% HTML.escape(row.ean) %]</td>
-    <td align="right">[% IF row.assembly %] [% 'assembly' | $T8 %] [% ELSE %] [% IF row.inventory_accno_id %] [% 'part' | $T8 %] [% ELSE %] [% 'service' | $T8 %] [% END %] [% END %]</td>
-    <td>[% IF row.obsolete %][%- LxERP.t8("Obsolete") %][%- ELSE %][%- LxERP.t8("Not obsolete") %][%- END %]</td>
+    <td> [% HTML.escape(row.description) %]</a></td>
+    <td>[% HTML.escape(row.unit) %]</td>
+    <td>[% HTML.escape(row.notes) %]</td>
+    <td>[% HTML.escape(row.ean) %]</td>
+    <td>[% IF row.assembly %] [% 'assembly' | $T8 %] [% ELSE %] [% IF row.inventory_accno_id %] [% 'part' | $T8 %] [% ELSE %] [% 'service' | $T8 %] [% END %] [% END %]</td>
+    <td>[% IF row.obsolete %][% LxERP.t8("Obsolete") %][% ELSE %][% LxERP.t8("Not obsolete") %][% END %]</td>
   </tr>
   [% SET rowcount = loop.count %]
   [% END %]

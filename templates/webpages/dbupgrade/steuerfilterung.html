@@ -14,28 +14,28 @@
 <p>[% 'Please choose for which categories the taxes should be displayed (otherwise remove the ticks):' | $T8 %]</p>
 <table>
   <tr>
-    <th class="listheading">[% 'Taxkey' | $T8 %]</th>
-    <th class="listheading">[% 'Description' | $T8 %]</th>
-    <th class="listheading">[% 'Tax rate' | $T8 %]</th>
-    <th class="listheading">[% 'Asset' | $T8 %] (A)</th>
-    <th class="listheading">[% 'Liability' | $T8 %] (L)</th>
-    <th class="listheading">[% 'Equity' | $T8 %] (Q)</th>
-    <th class="listheading">[% 'Costs' | $T8 %] (C)</th>
-    <th class="listheading">[% 'Revenue' | $T8 %] (I)</th>
-    <th class="listheading">[% 'Expense' | $T8 %] (E)</th>
+    <th>[% 'Taxkey' | $T8 %]</th>
+    <th>[% 'Description' | $T8 %]</th>
+    <th>[% 'Tax rate' | $T8 %]</th>
+    <th>[% 'Asset' | $T8 %] (A)</th>
+    <th>[% 'Liability' | $T8 %] (L)</th>
+    <th>[% 'Equity' | $T8 %] (Q)</th>
+    <th>[% 'Costs' | $T8 %] (C)</th>
+    <th>[% 'Revenue' | $T8 %] (I)</th>
+    <th>[% 'Expense' | $T8 %] (E)</th>
   </tr>
 
   [% SET row_odd = '1' %][% FOREACH row = PARTS %]
   <tr class="listrow[% IF row_odd %]1[% SET row_odd = '0' %][% ELSE %]0[% SET row_odd = '1' %][% END %]">
-    <td align="right">[% HTML.escape(row.taxkey) %]</td>
-    <td align="left"> [% HTML.escape(row.taxdescription) %]</a></td>
-    <td align="right">[% HTML.escape(row.rate) %] %</td>
-    <td align="center">[% L.checkbox_tag('asset_' _ loop.count, value => 1, checked => 1, class => 'checkbox') %]</td>
-    <td align="center">[% L.checkbox_tag('liability_' _ loop.count, value => 1, checked => 1, class => 'checkbox') %]</td>
-    <td align="center">[% L.checkbox_tag('equity_' _ loop.count, value => 1, checked => 1, class => 'checkbox') %]</td>
-    <td align="center">[% L.checkbox_tag('costs_' _ loop.count, value => 1, checked => 1, class => 'checkbox') %]</td>
-    <td align="center">[% L.checkbox_tag('revenue_' _ loop.count, value => 1, checked => 1, class => 'checkbox') %]</td>
-    <td align="center">[% L.checkbox_tag('expense_' _ loop.count, value => 1, checked => 1, class => 'checkbox') %]</td>
+    <td>[% HTML.escape(row.taxkey) %]</td>
+    <td> [% HTML.escape(row.taxdescription) %]</a></td>
+    <td>[% HTML.escape(row.rate) %] %</td>
+    <td>[% L.checkbox_tag('asset_' _ loop.count, value => 1, checked => 1, class => 'checkbox') %]</td>
+    <td>[% L.checkbox_tag('liability_' _ loop.count, value => 1, checked => 1, class => 'checkbox') %]</td>
+    <td>[% L.checkbox_tag('equity_' _ loop.count, value => 1, checked => 1, class => 'checkbox') %]</td>
+    <td>[% L.checkbox_tag('costs_' _ loop.count, value => 1, checked => 1, class => 'checkbox') %]</td>
+    <td>[% L.checkbox_tag('revenue_' _ loop.count, value => 1, checked => 1, class => 'checkbox') %]</td>
+    <td>[% L.checkbox_tag('expense_' _ loop.count, value => 1, checked => 1, class => 'checkbox') %]</td>
   </tr>
   <input type="hidden" name="tax_id_[% loop.count %]" value="[% row.tax_id %]">
   [% SET rowcount = loop.count %]

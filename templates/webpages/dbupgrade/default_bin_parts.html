@@ -1,14 +1,14 @@
-[%- USE T8 %]
-[%- USE HTML %]
-[%- USE LxERP %]
-[%- USE JavaScript %]
+[% USE T8 %]
+[% USE HTML %]
+[% USE LxERP %]
+[% USE JavaScript %]
 <h1>[% '<b>Default Bins Migration !READ CAREFULLY!</b>' | $T8 %]</h1>
 
  <script type="text/javascript" src="js/common.js"></script>
  <script type="text/javascript">
   <!--
      warehouses = new Array();
-     [%- USE WAREHOUSES_it = Iterator(WAREHOUSES) %][%- FOREACH warehouse = WAREHOUSES_it %]
+     [% USE WAREHOUSES_it = Iterator(WAREHOUSES) %][% FOREACH warehouse = WAREHOUSES_it %]
       warehouses[[% WAREHOUSES_it.count - 1 %]] = new Array();
       warehouses[[% WAREHOUSES_it.count - 1 %]]['id'] = [% warehouse.id %];
       warehouses[[% WAREHOUSES_it.count - 1 %]]['bins'] = new Array();
@@ -92,61 +92,78 @@
 
 
 <form name="Form" method="post" action="login.pl">
-<input type="hidden" name="action" value="login">
-<input type="hidden" name="continued" value="1">
+  <input type="hidden" name="action" value="login">
+  <input type="hidden" name="continued" value="1">
 
-
-
-<p>[% 'There are Bins defined in your Inventory.' | $T8 %]</p>
-<p>[% 'The Bins in Inventory were only a information text field.' | $T8 %]</p>
-<p>[% 'This has been changed in this version, therefore please change the "old" bins to some real warehouse bins.' | $T8 %]</p>
-<p>[% 'If your old bins match exactly Bins in the Warehouse CLICK on <b>AUTOMATICALLY MATCH BINS</b>.' | $T8 %]</p>
-<p>[% 'Otherwise you can simply check create warehouse and bins and define a name for the warehouse (Bins will be created automatically) and then continue'  | $T8 %]</p>
-<p>[% 'Empty selection for warehouse will not be added, even if the old bin is still visible (use back and forth to edit again).'  | $T8 %]</p>
+  <p>[% 'There are Bins defined in your Inventory.' | $T8 %]</p>
+  <p>[% 'The Bins in Inventory were only a information text field.' | $T8 %]</p>
+  <p>[% 'This has been changed in this version, therefore please change the "old" bins to some real warehouse bins.' | $T8 %]</p>
+  <p>[% 'If your old bins match exactly Bins in the Warehouse CLICK on <b>AUTOMATICALLY MATCH BINS</b>.' | $T8 %]</p>
+  <p>[% 'Otherwise you can simply check create warehouse and bins and define a name for the warehouse (Bins will be created automatically) and then continue'  | $T8 %]</p>
+  <p>[% 'Empty selection for warehouse will not be added, even if the old bin is still visible (use back and forth to edit again).'  | $T8 %]</p>
 
 <table>
+<thead>
   <tr>
-    <th class="listheading">[% 'Partnumber' | $T8 %]</th>
-    <th class="listheading">[% 'Description' | $T8 %]</th>
-    <th class="listheading">[% 'Bin' | $T8 %]</th>
-    <th class="listheading">[% 'Default Warehouse' | $T8 %]</th>
-    <th class="listheading">[% 'Default Bin' | $T8 %]</th>
+    <th>[% 'Partnumber' | $T8 %]</th>
+    <th>[% 'Description' | $T8 %]</th>
+    <th>[% 'Bin' | $T8 %]</th>
+    <th>[% 'Default Warehouse' | $T8 %]</th>
+    <th>[% 'Default Bin' | $T8 %]</th>
   </tr>
+</thead>
 
-  [% SET row_odd = '1' %][% FOREACH row = PARTS %]
-  <tr class="listrow[% IF row_odd %]1[% SET row_odd = '0' %][% ELSE %]0[% SET row_odd = '1' %][% END %]">
-   <td align="left"> [% HTML.escape(row.partnumber) %]</a></td>
-    <td align="left"> [% HTML.escape(row.description) %]</a></td>
-    <td align="right">[% HTML.escape(row.bin) %]
-    <input type="hidden" id="bin_[% loop.count %]" name="bin_[% loop.count %]" value="[% HTML.escape(row.bin) %]">
-    </td>
-    <td>
-    <input type="hidden" name='partid_[% loop.count %]' value='[% HTML.escape(row.id) %]'>
-     <select id="warehouse_id_[% loop.count %]" name="warehouse_id_[% loop.count %]" onchange="warehouse_selected(warehouses[this.selectedIndex]['id'], 0, [% loop.count %])">
-             [%- FOREACH warehouse = WAREHOUSES %]
-               <option value="[% HTML.escape(warehouse.id) %]"[% IF warehouse_id  == warehouse.id %] selected[% END %]>[% warehouse.description %]</option>
-             [%- END %]
-                <option value=""  [% IF warehouse_id  == 0 %] selected[% END %] ></option>
-     </select>
-    </td>
-    <td><select id="bin_id_[% loop.count %]" name="bin_id_[% loop.count %]"></select></td>
-  </tr>
-  [% SET rowcount = loop.count %]
-  [% END %]
-  <input type="hidden" name="rowcount" value="[% rowcount %]">
-  <tr><td colspan="5"><hr/></td></tr>
-  <tr><td colspan="5">
-         <input type="checkbox" name="create_new_bins"> [% '<b>Automatically create new bins</b> in the following warehouse if not selected in the list above' | $T8 %]
-          <select id="warehouse_id_default" name="warehouse_id_default">
-             [%- FOREACH warehouse = WAREHOUSES %]
-               <option value="[% HTML.escape(warehouse.id) %]"[% IF warehouse_id  == warehouse.id %] selected[% END %]>[% warehouse.description %]</option>
-             [%- END %]
-                <option value=""  [% IF warehouse_id  == 0 %] selected[% END %] ></option>
-         </select>
+  [% SET row_odd = '1' %]
+  [% FOREACH row = PARTS %]
+    <tr class="listrow[% IF row_odd %]1[% SET row_odd = '0' %][% ELSE %]0[% SET row_odd = '1' %][% END %]">
+      <td> [% HTML.escape(row.partnumber) %]</a></td>
+      <td> [% HTML.escape(row.description) %]</a></td>
+      <td>
+        [% HTML.escape(row.bin) %]
+        <input type="hidden" id="bin_[% loop.count %]" name="bin_[% loop.count %]" value="[% HTML.escape(row.bin) %]">
       </td>
-  </tr>
-
-  <tr><td colspan="5"><hr/></td></tr>
- <tr><td><input type="button" class="submit" onclick="history.back()" value="[% 'Back' | $T8 %]"> </td><td colspan="3" align="center"><b><input style="background-color:#FFEE66" type="button" value="[% 'AUTOMATICALLY MATCH BINS' | $T8 %]"  onclick="bin_match([% rowcount %])"></b> </td><td><input type="submit" value="[% 'Continue' | $T8 %]"></td></tr>
+      <td>
+        <input type="hidden" name='partid_[% loop.count %]' value='[% HTML.escape(row.id) %]'>
+        <select id="warehouse_id_[% loop.count %]" name="warehouse_id_[% loop.count %]" onchange="warehouse_selected(warehouses[this.selectedIndex]['id'], 0, [% loop.count %])">
+        [% FOREACH warehouse = WAREHOUSES %]
+          <option value="[% HTML.escape(warehouse.id) %]"[% IF warehouse_id==warehouse.id %] selected[% END %]>[% warehouse.description %]</option>
+        [% END %]
+        <option value=""[% IF warehouse_id==0 %] selected[% END %]></option>
+        </select>
+      </td>
+      <td><select id="bin_id_[% loop.count %]" name="bin_id_[% loop.count %]"></select></td>
+    </tr>
+    [% SET rowcount = loop.count %]
+  [% END %]
 </table>
+<input type="hidden" name="rowcount" value="[% rowcount %]">
+
+<table class="tbl-horizontal">
+  <caption>[% '' | $T8 %]</caption>
+  <colgroup> <col class="wi-small"><col class="wi-lightwide"> </colgroup>
+  <tbody>
+    <tr>
+      <th>[% '<b>Automatically create new bins</b> in the following warehouse if not selected in the list above' | $T8 %]</th>
+      <td><<input type="checkbox" name="create_new_bins">/td>
+    </tr>
+    <tr>
+      <th>[% '<b>Automatically create new bins</b> in the following warehouse if not selected in the list above' | $T8 %]</th>
+      <td>
+        <select id="warehouse_id_default" name="warehouse_id_default">
+        [% FOREACH warehouse = WAREHOUSES %]
+          <option value="[% HTML.escape(warehouse.id) %]"[% IF warehouse_id  == warehouse.id %] selected[% END %]>[% warehouse.description %]</option>
+        [% END %]
+        <option value=""[% IF warehouse_id  == 0 %] selected[% END %] ></option>
+        </select>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="buttons">
+  <input type="button" onclick="history.back()" value="[% 'Back' | $T8 %]">
+  <input style="background-color:#FFEE66" type="button" value="[% 'AUTOMATICALLY MATCH BINS' | $T8 %]" onclick="bin_match([% rowcount %])">
+  <input type="submit" value="[% 'Continue' | $T8 %]">
+</div>
+
 </form>

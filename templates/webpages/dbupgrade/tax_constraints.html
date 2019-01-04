@@ -1,4 +1,4 @@
-[%- USE T8 %]
+[% USE T8 %]
 [% USE HTML %]
 <h1>[% 'Inconsistency in database' | $T8 %]</h1>
 
@@ -13,16 +13,16 @@
   <p>[% 'Please set another taxnumber for the following taxes and run the update again:' | $T8 %]</p>
   <table>
     <tr>
-      <th class="listheading">[% 'tax_taxkey' | $T8 %]</th>
-      <th class="listheading">[% 'tax_taxdescription' | $T8 %]</th>
-      <th class="listheading">[% 'tax_rate' | $T8 %]</th>
+      <th>[% 'tax_taxkey' | $T8 %]</th>
+      <th>[% 'tax_taxdescription' | $T8 %]</th>
+      <th>[% 'tax_rate' | $T8 %]</th>
     </tr>
 
     [% SET row_odd = '1' %][% FOREACH row = TAX %]
     <tr class="listrow[% IF row_odd %]1[% SET row_odd = '0' %][% ELSE %]0[% SET row_odd = '1' %][% END %]">
-      <td align="right">[% HTML.escape(row.taxkey) %]</td>
-      <td align="left"> [% HTML.escape(row.taxdescription) %]</a></td>
-      <td align="right">[% HTML.escape(row.rate) %] %</td>
+      <td>[% HTML.escape(row.taxkey) %]</td>
+      <td> [% HTML.escape(row.taxdescription) %]</a></td>
+      <td>[% HTML.escape(row.rate) %] %</td>
     </tr>
     [% END %]
   </table>
@@ -34,17 +34,17 @@
   <p>[% 'Please define a taxkey for the following taxes and run the update again:' | $T8 %]</p>
   <table>
     <tr>
-      <th class="listheading">[% 'tax_taxdescription' | $T8 %]</th>
-      <th class="listheading">[% 'tax_rate' | $T8 %]</th>
-      <th class="listheading">[% 'taxnumber' | $T8 %]</th>
-      <th class="listheading">[% 'account_description' | $T8 %]</th>
+      <th>[% 'tax_taxdescription' | $T8 %]</th>
+      <th>[% 'tax_rate' | $T8 %]</th>
+      <th>[% 'taxnumber' | $T8 %]</th>
+      <th>[% 'account_description' | $T8 %]</th>
     </tr>
 
     [% SET row_odd = '1' %][% FOREACH row = TAX %]
     <tr class="listrow[% IF row_odd %]1[% SET row_odd = '0' %][% ELSE %]0[% SET row_odd = '1' %][% END %]">
-      <td align="left"> [% HTML.escape(row.taxdescription) %]</a></td>
-      <td align="right">[% HTML.escape(row.rate) %] %</td>
-      <td align="right">[% HTML.escape(row.taxnumber) %]</td>
+      <td> [% HTML.escape(row.taxdescription) %]</a></td>
+      <td>[% HTML.escape(row.rate) %] %</td>
+      <td>[% HTML.escape(row.taxnumber) %]</td>
       <td>[% HTML.escape(row.account_description) %]</td>
     </tr>
     [% END %]
