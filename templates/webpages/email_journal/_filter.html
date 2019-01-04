@@ -10,26 +10,26 @@
  <div class="filter_toggle" style="display:none">
   <a href="#" onClick="javascript:$('.filter_toggle').toggle()">[% LxERP.t8('Hide Filter') %]</a>
   <table id="filter_table">
-   <tr>
     <th align="right">[% LxERP.t8("From") %]</th>
-    <td>[% L.input_tag("filter.from:substr::ilike", filter.from_substr__ilike, size = 20) %]</td>
-   </tr>
-   <tr>
     <th align="right">[% LxERP.t8("Recipients") %]</th>
-    <td>[% L.input_tag("filter.recipients:substr::ilike", filter.recipients_substr__ilike, size = 20) %]</td>
-   </tr>
-   <tr>
     <th align="right">[% LxERP.t8("Sent on") %]</th>
-    <td>
-     [% L.date_tag("filter.sent_on:date::ge", filter.sent_on_date__ge) %]
-     [% LxERP.t8("To Date") %]
-     [% L.date_tag("filter.sent_on:date::le", filter.sent_on_date__le) %]
-    </td>
-   </tr>
-   <tr>
     <th align="right">[% LxERP.t8("Status") %]</th>
-    <td>[% L.select_tag("filter.status:eq_ignore_empty", [ [ "", "" ], [ "failed", LxERP.t8("failed") ], [ "ok", LxERP.t8("succeeded") ] ], default=filter.status_eq_ignore_empty) %]</td>
-   </tr>
+    <tr>
+      <td>[% L.input_tag("filter.from:substr::ilike", filter.from_substr__ilike, size = 20) %]
+      </td>
+    </tr>
+    <tr>
+      <td>[% L.input_tag("filter.recipients:substr::ilike", filter.recipients_substr__ilike, size = 20) %]
+      </td>
+    </tr>
+    <tr>
+      <td>[% L.date_tag("filter.sent_on:date::ge", filter.sent_on_date__ge) %] [% LxERP.t8("To Date") %] [% L.date_tag("filter.sent_on:date::le", filter.sent_on_date__le) %]
+      </td>
+    </tr>
+    <tr>
+      <td>[% L.select_tag("filter.status:eq_ignore_empty", [ [ "", "" ], [ "failed", LxERP.t8("failed") ], [ "ok", LxERP.t8("succeeded") ] ], default=filter.status_eq_ignore_empty) %]
+      </td>
+    </tr>
   </table>
 
   [% L.hidden_tag("sort_by", FORM.sort_by) %]
@@ -38,6 +38,6 @@
 
   [% L.button_tag('$("#filter_form").resetForm()', LxERP.t8('Reset')) %]
 
- </div>
+</div>
 
 </form>
