@@ -1,33 +1,37 @@
-[%- USE L %][%- USE LxERP %][%- USE HTML %]
-<div>
- <form action="controller.pl" method="post" id="search_form">
-  <div class="filter_toggle" [% IF noshow == 0 %]style="display:none"[% END %]>
-   <a href="#" onClick="javascript:$('.filter_toggle').toggle()">[% LxERP.t8('Show Filter') %]</a>
-      [% SELF.filter_summary %]
-  </div>
+[% USE L %]
+[% USE LxERP %]
+[% USE HTML %]
 
-  <div class="filter_toggle" [% IF noshow  == 1 %]style="display:none"[% END %]>
-   <a href="#" onClick="javascript:$('.filter_toggle').toggle()">[% LxERP.t8('Hide Filter') %]</a>
-   <table id="filter_table">
-    <tr>
-     <th align="right">[% LxERP.t8('Customer') %]</th>
-     <td>[% L.input_tag('filter.customer.name:substr::ilike', filter.customer.name_substr__ilike, size = 20) %]</td>
-    </tr>
-     <th align="right">[% LxERP.t8('Delivery Order Date') %] [% LxERP.t8('From Date') %]</th>
-     <td>[% L.date_tag('filter.transdate:date::ge', filter.transdate_date__ge) %]</td>
-    </tr>
-    <tr>
-     <th align="right">[% LxERP.t8('Delivery Order Date') %] [% LxERP.t8('To Date') %]</th>
-     <td>[% L.date_tag('filter.transdate:date::le', filter.transdate_date__le) %]</td>
-    </tr>
+[% BLOCK filter_toggle_panel %]
+  <table id="filter_table" class="tbl-horizontal">
+    <colgroup> <col class="wi-mediumsmall"><col class="wi-lightwide"> </colgroup>
+    <tbody>
+      <tr>
+        <th>[% LxERP.t8('Customer') %]</th>
+        <td>[% L.input_tag('filter.customer.name:substr::ilike', filter.customer.name_substr__ilike, size = 20, class='wi-lightwide' ) %]</td>
+      </tr>
+      <tr>
+        <th>[% LxERP.t8('Delivery Order Date') %] [% LxERP.t8('From Date') %]</th>
+        <td>[% L.date_tag('filter.transdate:date::ge', filter.transdate_date__ge, class='wi-date' ) %]</td>
+      </tr>
+      <tr>
+        <th>[% LxERP.t8('Delivery Order Date') %] [% LxERP.t8('To Date') %]</th>
+        <td>[% L.date_tag('filter.transdate:date::le', filter.transdate_date__le, class='wi-date' ) %]</td>
+      </tr>
+    </tbody>
   </table>
 
-   [% L.hidden_tag('action', 'MassInvoiceCreatePrint/' _ LIST_ACTION, id='filter_action') %]
-   [% L.hidden_tag('sort_by', FORM.sort_by) %]
-   [% L.hidden_tag('sort_dir', FORM.sort_dir) %]
-   [% L.hidden_tag('page', FORM.page) %]
-   [% L.button_tag('$("#search_form").resetForm()', LxERP.t8('Reset')) %]
+  [% L.hidden_tag('action', 'MassInvoiceCreatePrint/' _ LIST_ACTION, id='filter_action') %]
+  [% L.hidden_tag('sort_by', FORM.sort_by) %]
+  [% L.hidden_tag('sort_dir', FORM.sort_dir) %]
+  [% L.hidden_tag('page', FORM.page) %]
+  <div class="buttons">
+    [% L.button_tag('$("#search_form").resetForm()', LxERP.t8('Reset'), class='neutral') %]
   </div>
+[% END %]
 
- </form>
-</div>
+<form action="controller.pl" method="post" id="search_form">
+  <div class="wrapper">
+    [% PROCESS common/toggle_panel.html %]
+  </div>
+</form>
