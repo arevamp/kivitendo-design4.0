@@ -1,29 +1,42 @@
-[%- USE T8 %][%- USE HTML %][%- USE LxERP %][%- USE L %][%- USE P %]
+[% USE T8 %]
+[% USE HTML %]
+[% USE LxERP %]
+[% USE L %]
+[% USE P %]
 
- <div>
-  <table id="input_row_table_id">
-    <thead>
-      <tr class="listheading">
-        <th class="listheading" nowrap >[%- 'Part'         | $T8 %] </th>
-        <th class="listheading" nowrap >[%- 'Description'  | $T8 %] </th>
-        <th class="listheading" nowrap width="5" >[%- 'Qty'          | $T8 %] </th>
-        <th class="listheading" nowrap width="15">[%- 'Price'        | $T8 %] </th>
-        <th class="listheading" nowrap width="5" >[%- 'Discount'     | $T8 %] </th>
-        <th></th>
-      </tr>
-    </thead>
+<div class="wrapper">
+<div class="input-panel control-panel">
+  <table id="input_row_table_id" class="tbl-plain condensed">
+    <caption>[% 'Add Parts here!' | $T8 %]</caption>
     <tbody>
-      <tr valign="top" class="listrow">
-        <td>[% P.part.picker('add_item.parts_id', '', fat_set_item=1, style='width: 300px', class="add_item_input") %]</td>
-        <td>[% L.input_tag('add_item.description', '', class="add_item_input") %]</td>
+      <tr>
         <td>
-          [% L.input_tag('add_item.qty_as_number', '', size = 5, class="add_item_input numeric") %]
+          <span class="label above">[% 'Part' | $T8 %] </span>
+          [% P.part.picker('add_item.parts_id', '', fat_set_item=1, class="add_item_input wi-normal") %]
+        </td>
+        <td>
+          <span class="label above">[% 'Description' | $T8 %] </span>
+          [% L.input_tag('add_item.description', '', class="add_item_input wi-normal") %]
+        </td>
+        <td>
+          <span class="label above">[% 'Qty' | $T8 %]</span>
+          [% L.input_tag('add_item.qty_as_number', '', class="add_item_input numeric wi-verysmall") %]
           [% L.hidden_tag('add_item.unit', '', class="add_item_input") %]
         </td>
-        <td>[% L.input_tag('add_item.sellprice_as_number', '', size = 10, class="add_item_input numeric") %]</td>
-        <td>[% L.input_tag('add_item.discount_as_percent', '', size = 5, class="add_item_input numeric") %]</td>
-        <td>[% L.button_tag('kivi.Order.add_item()', LxERP.t8('Add part')) %]</td>
+        <td>
+          <span class="label above">[% 'Price' | $T8 %]</span>
+          [% L.input_tag('add_item.sellprice_as_number', '', class="add_item_input numeric wi-verysmall") %]
+        </td>
+        <td>
+          <span class="label above">[% 'Discount' | $T8 %]</span>
+          [% L.input_tag('add_item.discount_as_percent', '', class="add_item_input numeric wi-smallest") %]
+        </td>
+        <td style="vertical-align:bottom;">[% L.button_tag('kivi.Order.add_item()', LxERP.t8('Add part'), style='margin:0;') %]</td>
       </tr>
     </tbody>
   </table>
- </div>
+  <div style="clear:both">[% L.button_tag('kivi.Order.show_multi_items_dialog()', LxERP.t8('Add multiple items'), class='neutral') %]</div>
+
+</div><!-- /.entry-panel -->
+</div><!-- /.wrapper -->
+
