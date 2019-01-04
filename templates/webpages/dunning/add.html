@@ -1,63 +1,66 @@
-[%- USE T8 %]
-[% USE HTML %]<script type="text/javascript" src="js/common.js"></script>
+[% USE T8 %]
+[% USE HTML %]
+
+<script type="text/javascript" src="js/common.js"></script>
+
 <h1>[% title %]</h1>
 
- <form method="post" name="search" action="dn.pl" id="form">
+<form method="post" name="search" action="dn.pl" id="form">
 
-  <table>
-   <tr>
-    <th align="right">[% 'Customer' | $T8 %]</th>
-    <td colspan="3">
-      <input name="customer" size="35" class="initial_focus">
-    </td>
-   </tr>
+<div class="wrapper">
 
-   [% IF SHOW_DUNNING_LEVEL_SELECTION %]
+<table class="tbl-horizontal">
+  <colgroup> <col class="wi-mediumsmall"><col class="wi-lightwide"> </colgroup>
+  <tbody>
     <tr>
-     <th align="right">[% 'Next Dunning Level' | $T8 %]</th>
-     <td colspan="3">
-      <select name="dunning_level">
-       <option></option>
-       [% FOREACH row = DUNNING %]<option value="[% HTML.escape(row.id) %]">[% HTML.escape(row.dunning_description) %]</option>[% END %]
-      </select>
-     </td>
+      <th>[% 'Customer' | $T8 %]</th>
+      <td><input type="text" name="customer" class="initial_focus wi-lightwide"></td>
     </tr>
-   [% END %]
+    [% IF SHOW_DUNNING_LEVEL_SELECTION %]
+    <tr>
+      <th>[% 'Next Dunning Level' | $T8 %]</th>
+      <td>
+        <select name="dunning_level" class="wi-lightwide">
+          <option></option>
+          [% FOREACH row = DUNNING %]
+            <option value="[% HTML.escape(row.id) %]">[% HTML.escape(row.dunning_description) %]</option>
+          [% END %]
+        </select>
+      </td>
+    </tr>
+    [% END %]
+    <tr>
+      <th>[% 'Invoice Number' | $T8 %]</th>
+      <td><input type="text" name="invnumber" class="wi-lightwide"></td>
+    </tr>
+    <tr>
+      <th>[% 'Order Number' | $T8 %]</th>
+      <td><input type="text" name="ordnumber" class="wi-lightwide"></td>
+    </tr>
+    <tr>
+      <th>[% 'Notes' | $T8 %]</th>
+      <td><input type="text" name="notes" class="wi-lightwide"></td>
+    </tr>
+    <tr class="separator below">
+      <th>[% 'Country' | $T8 %]</th>
+      <td><input type="text" name="country"  class="wi-lightwide"></td>
+    </tr>
+    <tr>
+      <th>[% 'Minimum Amount' | $T8 %]</th>
+      <td><input type="text" name="minamount" class="wi-lightwide"></td>
+    </tr>
+    <tr>
+      <th><label for="groupinvoices">[% 'Group Invoices' | $T8 %]</label></th>
+      <td><input type="checkbox" value="1" id="groupinvoices" name="groupinvoices" checked></td>
+    </tr>
+    <tr>
+      <th><label for="l_include_direct_debit">[% 'Include invoices with direct debit' | $T8 %]</label></th>
+      <td><input type="checkbox" value="1" id="l_include_direct_debit" name="l_include_direct_debit"></td>
+    </tr>
+  </tbody>
+</table>
 
-   <tr>
-    <th align="right" nowrap>[% 'Invoice Number' | $T8 %]</th>
-    <td colspan="3"><input name="invnumber" size="20"></td>
-   </tr>
+</div><!-- /.wrapper -->
 
-   <tr>
-    <th align="right" nowrap>[% 'Order Number' | $T8 %]</th>
-    <td colspan="3"><input name="ordnumber" size="20"></td>
-   </tr>
 
-   <tr>
-    <th align="right" nowrap>[% 'Notes' | $T8 %]</th>
-    <td colspan="3"><input name="notes" size="40"></td>
-   </tr>
-   <tr>
-    <th align="right" nowrap>[% 'Country' | $T8 %]</th>
-    <td colspan="3"><input name="country" size="40"></td>
-   </tr>
-
-   <tr><td colspan="2"><hr size="3" noshade></td></tr>
-
-   <tr>
-    <th align="right" nowrap>[% 'Minimum Amount' | $T8 %]</th>
-    <td><input name="minamount" size="6"></td>
-   </tr>
-
-   <tr>
-    <th align="right" nowrap><label for="groupinvoices">[% 'Group Invoices' | $T8 %]</label></th>
-    <td><input type="checkbox" value="1" id="groupinvoices" name="groupinvoices" checked></td>
-   </tr>
-
-   <tr>
-    <th align="right" nowrap><label for="l_include_direct_debit">[% 'Include invoices with direct debit' | $T8 %]</label></th>
-    <td><input type="checkbox" value="1" id="l_include_direct_debit" name="l_include_direct_debit"></td>
-   </tr>
-  </table>
- </form>
+</form>
