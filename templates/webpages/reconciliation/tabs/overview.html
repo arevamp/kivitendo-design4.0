@@ -1,14 +1,14 @@
-[%- USE T8 %]
-[%- USE HTML %]
-[%- USE LxERP %]
-[%- USE L %]
+[% USE T8 %]
+[% USE HTML %]
+[% USE LxERP %]
+[% USE L %]
 
 [% SET debug = 0 %]
 
   <div style="height:500px; overflow:auto;">
     <table width=99% id="link_table">
       <thead>
-        <tr class="listheading">
+        <tr>
           <th></th>
 
           <th></th>
@@ -33,8 +33,8 @@
           <td class="top_border"></td>
           <td class="top_border"></td>
           <td class="top_border"></td>
-          <td class="bt_balance top_border" align="right">[% LxERP.format_amount(SELF.bt_balance, 2) %]</td>
-          <td class="bb_balance top_border" align="right">[% LxERP.format_amount(-1 * SELF.bb_balance, 2) %]</td>
+          <td class="bt_balance top_border">[% LxERP.format_amount(SELF.bt_balance, 2) %]</td>
+          <td class="bb_balance top_border">[% LxERP.format_amount(-1 * SELF.bb_balance, 2) %]</td>
           <td class="top_border"></td>
           <td class="top_border"></td>
           <td class="top_border"></td>
