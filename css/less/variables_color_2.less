@@ -67,7 +67,9 @@
 
 // --------------
 // Brand colors
-@brand-standard:            hsl( 128, 83%, 34%) ; // Standard color
+@brand-standard:            hsl( 128, 60%, 44%) ; // Standard color
+//@brand-standard:            hsl( 6, 79%, 40%) ; // Standard color
+//@brand-standard:            hsl(211, 12%, 0%); // Standard color
 
 @brand-strong:              @brand-standard ; // Strong brand color (for text)
 @brand-strong-dimmed:       lighten( @brand-strong , 10% ) ;
@@ -80,6 +82,7 @@
 @brand-lighter:             lighten( @brand-strong , 40% ) ;
 @brand-verylight:           lighten( @brand-strong , 50% ) ;
 @brand-superlight:          lighten( @brand-strong , 60% ) ;
+@brand-superverylight:      lighten( @brand-strong , 70% ) ;
 
 
 @brand-table-text-color:    @brand-darkest ; //
@@ -125,13 +128,13 @@
 // --------------------------------------
 // SCAFFOLDING
 // --------------------------------------
-@body-bg:               @brand-verylight; // general
-@content-bg:            @brand-superlight; // background first tabs
+@body-bg:               @gray-light; // general
+@content-bg:            @gray-light; // background first tabs
 @heading-bg:            @brand-lighter ; // controlpanels & other stuff
 
 // Tabs
-@tabs-bg:               @brand-verylight; // background tabs panel (data/content)
-@tabs-bg-hover:         @brand-superlight; // background tabs panel (data/content)
+@tabs-bg:               @gray-light; // background tabs panel (data/content)
+@tabs-bg-hover:         @gray-light; // background tabs panel (data/content)
 @tabs-bg-hover-active:  @tabs-bg; // background tabs panel (data/content)
 @tabs-text-hover:       @brand-strong; // background tabs panel (data/content)
 
