@@ -116,7 +116,7 @@
         <td>
           <select name="dst_warehouse_id_[% loop.count %]" onchange="warehouse_selected([% loop.count %], this.selectedIndex)">
             [% FOREACH wh = WAREHOUSES %]
-              <option value="[% HTML.escape(wh.id) %]" [% if wh.selected %] selected[% end %]>[% HTML.escape(wh.description) %]</option>
+              <option value="[% HTML.escape(wh.id) %]" [% IF wh.selected %] selected[% END %]>[% HTML.escape(wh.description) %]</option>
             [% END %]
           </select>
         </td>
