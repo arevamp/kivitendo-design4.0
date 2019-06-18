@@ -1,7 +1,3 @@
-[%- USE T8 %]
-[%- USE HTML %]
-[%- USE L %]
-[%- USE LxERP %]
 [%- PROCESS 'amcvar/render_inputs_block.html' %]
 <tr>
  <td>
@@ -40,6 +36,11 @@
      </tr>
      <tr class="listrow[% loop.count % 2 %]" id="row2.[% loop.count %]" [% UNLESS show_details %]style="display:none;"[% END %]>
       <td colspan="[% row.colspan %]">
+[% USE T8 %]
+[% USE HTML %]
+[% USE L %]
+[% USE LxERP %]
+[% USE Math %]
 
  [%# render all row2 entries except cvars  %]
  [%- FOREACH row2 = row.ROW2 %]
@@ -47,6 +48,7 @@
      [% row2.value %]
    [%- END %]
  [%- END %]
+[% PROCESS 'amcvar/render_inputs_block.html' %]
 
  [%# process editable cvars  %]
  <table class='row2-cvars-table'>
