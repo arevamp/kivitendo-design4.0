@@ -1,5 +1,3 @@
-[%- USE T8 %]
-[%- USE HTML %]
 <h1>[% 'Carry over shipping address' | $T8 %]</h1>
 
  <p>[% 'You have entered or selected the following shipping address for this customer:' | $T8 %]</p>
@@ -50,6 +48,8 @@
     <th align="right" valign="top">[% 'Contact' | $T8 %]:</th>
     <td valign="top">[% HTML.escape(CFDD_shiptocontact) %]</td>
    </tr>
+[% USE T8 %]
+[% USE HTML %]
 
    <tr>
     <th align="right" valign="top">[% 'Phone' | $T8 %]:</th>

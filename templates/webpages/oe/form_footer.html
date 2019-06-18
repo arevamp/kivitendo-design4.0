@@ -1,7 +1,3 @@
-[%- USE T8 %]
-[%- USE HTML %]
-[%- USE LxERP %]
-[%- USE L %]
 [%- IF is_req_quo || is_pur_ord %]
   [%- SET allow_invoice=1 %]
 [%- ELSIF is_sales_quo && INSTANCE_CONF.get_allow_sales_invoice_from_sales_quotation %]
@@ -25,6 +21,10 @@
                 <td>[% notes %]</td>
                 <td>[% intnotes %]</td>
               </tr>
+[% USE T8 %]
+[% USE HTML %]
+[% USE LxERP %]
+[% USE L %]
               <tr>
                 <th align="right">[% 'Payment Terms' | $T8 %]</th>
                 <td>[% L.select_tag('payment_id', ALL_PAYMENTS, default = payment_id, title_key = 'description', with_empty = 1, style="width: 250px") %]</td>
