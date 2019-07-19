@@ -1,5 +1,3 @@
-[%- USE LxERP -%][%- USE L -%][%- USE HTML -%][%- USE JavaScript -%]
-
 <div id="record_links_list">
  [%- IF output %]
   [% output %]
@@ -32,6 +30,11 @@ function record_links_delete() {
   var checkboxes = $('.record_links_delete').filter(function () { return $(this).prop('checked'); });
 
   if ((checkboxes.size() == 0) || !confirm('[% LxERP.t8('Do you really want to delete the selected links?') %]'))
+[% USE LxERP %]
+[% USE L %]
+[% USE HTML %]
+[% USE JavaScript %]
+
     return false;
 
   var data = {
