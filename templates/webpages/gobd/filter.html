@@ -1,7 +1,7 @@
-[%- USE HTML %]
-[%- USE T8 %]
-[%- USE L %]
-[%- USE LxERP %]
+[% USE HTML %]
+[% USE T8 %]
+[% USE L %]
+[% USE LxERP %]
 
 <h1>[% title | html %]</h1>
 
@@ -11,18 +11,19 @@
 
 <form id='filter_form'>
 
-<table>
-  <tr>
-    <td>[% L.radio_button_tag('method', value='year', checked=1) %]
-    <td>[% 'Year' | $T8 %]</td>
-    <td>[% L.select_tag('year', SELF.available_years, default=current_year) %]</td>
-  </tr>
-  <tr>
-    <td>[% L.radio_button_tag('method') %]
-    <td>[% 'From Date' | $T8 %]</td>
-    <td>[% L.date_tag('from', SELF.from) %]</td>
-    <td>[% 'To Date' | $T8 %]</td>
-    <td>[% L.date_tag('to', SELF.to) %]</td>
-  </tr>
+<table class="tbl-horizontal">
+  <tbody>
+    <tr>
+      <th>[% 'Year' | $T8 %]</th>
+      <td>[% L.radio_button_tag('method', value='year', checked=1) %]
+      <td>[% L.select_tag('year', SELF.available_years, default=current_year) %]</td>
+    </tr>
+    <tr>
+      <th>[% 'Period' | $T8 %]</th>
+      <td>[% L.radio_button_tag('method') %]
+      <!-- <td>[% 'From Date' | $T8 %]</td> -->
+      <td>[% L.date_tag('from', SELF.from) %] [% 'To Date' | $T8 %] [% L.date_tag('to', SELF.to) %]</td>
+    </tr>
+  </tbody>
 </table>
 </form>
