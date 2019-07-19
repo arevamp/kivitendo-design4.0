@@ -68,8 +68,13 @@
      [% P.input_tag("payment_term.description_long_invoice", SELF.payment_term.description_long_invoice, size="60", "data-validate"="required", "data-title"=LxERP.t8("Long Description for invoices")) %]
     </td>
    </tr>
+<div class="instructions">
+<p>[% LxERP.t8("You can use the following strings in the long description and all translations. They will be replaced by their actual values by kivitendo before they're output.") %]</p>
+
 
    [%- FOREACH language = SELF.languages %]
+<table class="tbl-list-plain">
+  <thead>
     <tr>
      <td>[%- HTML.escape(language.description) %] ([%- LxERP.t8('Translation') %])</td>
      <td>
@@ -79,6 +84,8 @@
      <td>
       <input name="translation_invoice_[% language.id %]" value="[%- HTML.escape(SELF.payment_term.translated_attribute('description_long_invoice', language, 1)) %]" size="60">
      </td>
+      <th> [%- LxERP.t8('Field') %] </th>
+      <th> [%- LxERP.t8('Description') %] </th>
     </tr>
    [%- END %]
   </table>
@@ -86,27 +93,80 @@
   [% P.hidden_tag("id", SELF.payment_term.id) %]
 
   <hr size="3" noshade>
+  </thead>
+  <tbody>
+    <tr>
+      <td> &lt;%netto_date%&gt; </td>
+      <td> [% LxERP.t8("Date the payment is due in full") %] </td>
+    </tr>
+    <tr>
+      <td> &lt;%skonto_date%&gt; </td>
+      <td> [% LxERP.t8("Date the payment is due with discount") %] </td>
+    </tr>
+    <tr>
+      <td> &lt;%skonto_amount%&gt; </td>
+      <td> [% LxERP.t8("The deductible amount") %] </td>
+    </tr>
+    <tr>
+      <td> &lt;%skonto_in_percent%&gt; </td>
+      <td> [% LxERP.t8("The discount in percent") %] </td>
+    </tr>
+    <tr>
+      <td> &lt;%total%&gt; </td>
+      <td> [% LxERP.t8("Amount payable") %] </td>
+    </tr>
+    <tr>
+      <td> &lt;%total_wo_skonto%&gt; </td>
+      <td> [% LxERP.t8("Amount payable less discount") %] </td>
+    </tr>
+    <tr>
+      <td> &lt;%invtotal%&gt; </td>
+      <td> [% LxERP.t8("Invoice total") %] </td>
+    </tr>
+    <tr>
+      <td> &lt;%invtotal_wo_skonto%&gt; </td>
+      <td> [% LxERP.t8("Invoice total less discount") %] </td>
+    </tr>
+    <tr>
+      <td> &lt;%currency%&gt; </td>
+      <td> [% LxERP.t8("The selected currency") %] </td>
+    </tr>
+    <tr>
+      <td> &lt;%terms_netto%&gt; </td>
+      <td> [% LxERP.t8("The number of days for full payment") %] </td>
+    </tr>
+    <tr>
+      <td> &lt;%bank%&gt; </td>
+      <td> [% LxERP.t8("Customer's/vendor's bank") %] </td>
+    </tr>
+    <tr>
+      <td> &lt;%bic%&gt; </td>
+      <td> [% LxERP.t8("Customer's/vendor's BIC") %] </td>
+    </tr>
+    <tr>
+      <td> &lt;%iban%&gt; </td>
+      <td> [% LxERP.t8("Customer's/vendor's IBAN") %] </td>
+    </tr>
+    <tr>
+      <td> &lt;%mandator_id%&gt; </td>
+      <td> [% LxERP.t8("Customer's SEPA mandator ID") %] </td>
+    </tr>
+    <tr>
+      <td> &lt;%mandate_date_of_signature%&gt; </td>
+      <td> [% LxERP.t8("Customer's Mandate Date of Signature") %] </td>
+    </tr>
+    <tr>
+      <td> &lt;%account_number%&gt; </td>
+      <td> [% LxERP.t8("Customer's/vendor's account number") %] </td>
+    </tr>
+    <tr>
+      <td> &lt;%bank_code%&gt; </td>
+      <td> [% LxERP.t8("Customer's/vendor's bank code") %] </td>
+    </tr>
+  </tbody>
+</table>
 
-  <p>[% LxERP.t8("You can use the following strings in the long description and all translations. They will be replaced by their actual values by kivitendo before they're output.") %]</p>
 
-  <table>
-   <tr class="listheading"><th>[%- LxERP.t8('Field') %]</th><th>[%- LxERP.t8('Description') %]</th></tr>
-   <tr><td>&lt;%netto_date%&gt;</td><td>[% LxERP.t8("Date the payment is due in full") %]</td></tr>
-   <tr><td>&lt;%skonto_date%&gt;</td><td>[% LxERP.t8("Date the payment is due with discount") %]</td></tr>
-   <tr><td>&lt;%skonto_amount%&gt;</td><td>[% LxERP.t8("The deductible amount") %]</td></tr>
-   <tr><td>&lt;%skonto_in_percent%&gt;</td><td>[% LxERP.t8("The discount in percent") %]</td></tr>
-   <tr><td>&lt;%total%&gt;</td><td>[% LxERP.t8("Amount payable") %]</td></tr>
-   <tr><td>&lt;%total_wo_skonto%&gt;</td><td>[% LxERP.t8("Amount payable less discount") %]</td></tr>
-   <tr><td>&lt;%invtotal%&gt;</td><td>[% LxERP.t8("Invoice total") %]</td></tr>
-   <tr><td>&lt;%invtotal_wo_skonto%&gt;</td><td>[% LxERP.t8("Invoice total less discount") %]</td></tr>
-   <tr><td>&lt;%currency%&gt;</td><td>[% LxERP.t8("The selected currency") %]</td></tr>
-   <tr><td>&lt;%terms_netto%&gt;</td><td>[% LxERP.t8("The number of days for full payment") %]</td></tr>
-   <tr><td>&lt;%bank%&gt;</td><td>[% LxERP.t8("Customer's/vendor's bank") %]</td></tr>
-   <tr><td>&lt;%bic%&gt;</td><td>[% LxERP.t8("Customer's/vendor's BIC") %]</td></tr>
-   <tr><td>&lt;%iban%&gt;</td><td>[% LxERP.t8("Customer's/vendor's IBAN") %]</td></tr>
-   <tr><td>&lt;%mandator_id%&gt;</td><td>[% LxERP.t8("Customer's SEPA mandator ID") %]</td></tr>
-   <tr><td>&lt;%mandate_date_of_signature%&gt;</td><td>[% LxERP.t8("Customer's Mandate Date of Signature") %]</td></tr>
-   <tr><td>&lt;%account_number%&gt;</td><td>[% LxERP.t8("Customer's/vendor's account number") %]</td></tr>
-   <tr><td>&lt;%bank_code%&gt;</td><td>[% LxERP.t8("Customer's/vendor's bank code") %]</td></tr>
-  </table>
+</div>
+
  </form>
