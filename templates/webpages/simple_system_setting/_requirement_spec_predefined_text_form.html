@@ -1,4 +1,3 @@
-[%- USE LxERP -%][%- USE L -%]<table>
  <tr>
   <th align="right">[% LxERP.t8("Description") %]</th>
   <td>[% L.input_tag("object.description", SELF.object.description, size=60, class="initial_focus", "data-validate"="required", "data-title"=LxERP.t8("Description")) %]</td>
@@ -21,4 +20,6 @@
    [% L.checkbox_tag("object.useable_for_sections",    label=LxERP.t8("Sections"),    for_submit=1, value=1, checked=SELF.object.useable_for_sections) %]
   </td>
  </tr>
+[%- USE LxERP -%]
+[%- USE L -%]
 </table>
