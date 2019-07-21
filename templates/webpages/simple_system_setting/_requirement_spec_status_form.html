@@ -1,10 +1,10 @@
-[%- USE LxERP -%][%- USE L -%]
-[% SET style="width: 250px" %]
 <table>
  <tr>
   <td>[% LxERP.t8("Name") %]</td>
   <td>[% L.select_tag("object.name",  SELF.valid_names, default=SELF.object.name, style=style) %]</td>
  </tr>
+[%- USE LxERP -%]
+[%- USE L -%]
 
  <tr>
   <td>[% LxERP.t8("Description") %]</td>

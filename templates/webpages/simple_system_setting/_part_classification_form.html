@@ -1,4 +1,3 @@
-[%- USE LxERP -%][%- USE L -%]
 <table>
  <tr>
   <th align="right">[% LxERP.t8('Description') %]</th>
@@ -21,3 +20,5 @@
   <td>[% L.checkbox_tag("object.report_separate", checked=(SELF.object.report_separate ? 1:''), for_submit=1) %]</td>
  </tr>
 </table>
+[%- USE LxERP -%]
+[%- USE L -%]
