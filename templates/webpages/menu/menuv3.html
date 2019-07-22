@@ -1,6 +1,7 @@
-[%- USE L %]
-[%- USE HTML %]
 <div id="menuv3">[% FOREACH node = menu.tree %][% NEXT UNLESS node.visible %]<ul><li>[% PROCESS submenu top=1 %]</li></ul>[% END %]</div>
+[% USE L %]
+[% USE HTML %]
+
 <div style="clear: both;"></div>
 [%- %]
 [%- BLOCK submenu %]

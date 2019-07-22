@@ -1,4 +1,3 @@
-[%- USE T8 %][%- USE LxERP -%]
 [%- UNLESS skip_frame_header %]
 <div id="frame-header">
 [%- UNLESS is_links %]
@@ -18,6 +17,8 @@
 [%- FOREACH search = quick_search.enabled_modules %]
    <span class='frame-header-quicksearch'><input id="top-quick-search-[% search.name %]" module="[% search.name %]" placeholder="[% search.description_field %]" maxlength="20"></span>
 [%- END %]
+[% USE T8 %]
+[% USE LxERP %]
 
 </div>
 [%- END %]
