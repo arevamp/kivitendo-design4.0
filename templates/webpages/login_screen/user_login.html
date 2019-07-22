@@ -1,13 +1,16 @@
-[%- USE T8 %]
-[%- USE HTML %][%- USE L -%][%- USE LxERP -%]
-[%- SET auth_client = '{AUTH}client' %]
-[%- SET auth_login  = '{AUTH}login'  %]
  <center>
   <table class="login" border="3" cellpadding="20">
    <tr>
     <td class="login" align="center">
      <a href="http://www.kivitendo.de" target="_top" class="no-underlined-links"><img src="image/kivitendo.png" class='kivitendo-logo' border="0"></a>
      <h1>[% LxERP.t8('kivitendo v#1', version) %]</h1>
+[% USE T8 %]
+[% USE HTML %]
+[% USE L %]
+[% USE LxERP %]
+[% SET auth_client = '{AUTH}client' %]
+[% SET auth_login  = '{AUTH}login'  %]
+
 
 [% IF error %]
      <div class="message_error_login">[% HTML.escape(error) %]</div>
