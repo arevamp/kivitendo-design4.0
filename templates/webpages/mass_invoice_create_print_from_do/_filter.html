@@ -1,10 +1,12 @@
-[%- USE L %][%- USE LxERP %][%- USE HTML %]
 <div>
  <form action="controller.pl" method="post" id="search_form">
   <div class="filter_toggle" [% IF noshow == 0 %]style="display:none"[% END %]>
    <a href="#" onClick="javascript:$('.filter_toggle').toggle()">[% LxERP.t8('Show Filter') %]</a>
       [% SELF.filter_summary %]
   </div>
+[% USE L %]
+[% USE LxERP %]
+[% USE HTML %]
 
   <div class="filter_toggle" [% IF noshow  == 1 %]style="display:none"[% END %]>
    <a href="#" onClick="javascript:$('.filter_toggle').toggle()">[% LxERP.t8('Hide Filter') %]</a>
