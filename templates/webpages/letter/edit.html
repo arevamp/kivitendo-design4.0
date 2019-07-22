@@ -1,9 +1,11 @@
-[%- USE HTML %]
-[%- USE T8 %]
-[%- USE L %]
-[%- USE P %]
-[%- USE LxERP %]
-[%- SET WEBDAV = SELF.webdav_objects %]
+[% USE HTML %]
+[% USE T8 %]
+[% USE L %]
+[% USE P %]
+[% USE LxERP %]
+
+[% SET WEBDAV = SELF.webdav_objects %]
+
 <h1>[% title | html %]</h1>
 
 <form action='controller.pl' method='POST' id='form'>
