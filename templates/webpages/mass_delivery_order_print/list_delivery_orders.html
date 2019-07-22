@@ -4,24 +4,24 @@
 
 <h1>[% FORM.title %]</h1>
 
-[%- INCLUDE "common/flash.html" %]
+[% INCLUDE "common/flash.html" %]
 
 [% LIST_ACTION     = 'action_list_delivery_orders' %]
-[%- PROCESS 'mass_delivery_order_print/_filter.html' filter=SELF.filter %]
+[% PROCESS 'mass_delivery_order_print/_filter.html' filter=SELF.filter %]
 
 [% IF nowshow==1 %]
 [% delivery_orders = SELF.delivery_order_models.get;
    MODELS          = SELF.delivery_order_models %]
-[%- IF !delivery_orders.size %]
+[% IF !delivery_orders.size %]
  <p>
-  [%- LxERP.t8("There are currently no delivery orders, or none matches your filter conditions.") %]
+  [% LxERP.t8("There are currently no delivery orders, or none matches your filter conditions.") %]
  </p>
-[%- ELSE %]
+[% ELSE %]
 
  <form method="post" action="controller.pl">
   <table width="100%">
    <thead>
-    <tr class="listheading">
+    <tr>
      <th>[% L.checkbox_tag("", id="check_all", checkall="[data-checkall=1]") %]</th>
      <th>[% L.sortable_table_header("transdate") %]</th>
      <th>[% L.sortable_table_header("reqdate") %]</th>
@@ -33,7 +33,7 @@
    </thead>
 
    <tbody>
-    [%- FOREACH delivery_order = delivery_orders %]
+    [% FOREACH delivery_order = delivery_orders %]
      [% delivery_order_id = delivery_order.id
         sales_order       = delivery_order.sales_order %]
      <tr class="listrow">
@@ -45,7 +45,7 @@
       <td>[% HTML.escape(delivery_order.customer.name) %]</td>
       <td>[% HTML.escape(SELF.make_shipto_title(delivery_order.shipto || delivery_order.custom_shipto)) %]</td>
      </tr>
-    [%- END %]
+    [% END %]
    </tbody>
   </table>
 
@@ -70,5 +70,5 @@
    [% L.submit_tag("action_print", LxERP.t8("Print")) %]
   </p>
  </form>
-[%- END %]
-[%- END %]
+[% END %]
+[% END %]
