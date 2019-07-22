@@ -1,4 +1,5 @@
-[% USE L %][%- USE LxERP -%]
+[% USE L %]
+[% USE LxERP %]
 [% FOR row = TAX_ACCOUNTS %]
-<option value='[% row.id %]--[% row.rate %]'[% IF row.is_default %] selected[% END %]>[% row.taxdescription %] [% LxERP.round_amount(row.rate * 100) %] %</option>
+  <option value='[% row.id %]--[% row.rate %]'[% IF row.is_default %] selected[% END %]>[% row.taxdescription %] [% LxERP.round_amount(row.rate * 100) %] %</option>
 [% END %]
