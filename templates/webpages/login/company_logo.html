@@ -1,7 +1,9 @@
-[%- USE T8 %]
-[%- USE HTML %][%- USE LxERP %]
    <noscript>
    [% INCLUDE 'generic/information.html'
+[% USE T8 %]
+[% USE HTML %]
+[% USE LxERP %]
+
      title_information = LxERP.t8('Your browser does not currently support Javascript.'),
      label_information = LxERP.t8('A lot of the usability of kivitendo has been enhanced with javascript. Although it is currently possible to use every aspect of kivitendo without javascript, we strongly recommend it. In a future version this may change and javascript may be necessary to access advanced features.'),
    %]
@@ -50,4 +52,4 @@
    </table>
  </center>
 
- [%- todo_list %]
+[% todo_list %]
