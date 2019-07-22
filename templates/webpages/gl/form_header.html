@@ -4,25 +4,21 @@
 [% USE L %]
 <h1>[% title | html %]</h1>
 
-[%- INCLUDE 'common/flash.html' %]
-
-<script type="text/javascript">
-  <!--
+<script type="text/javascript"><!--
   function copy_debit_to_credit() {
     var txt = document.getElementsByName('debit_1')[0].value;
     document.getElementsByName('credit_2')[0].value = txt;
   };
-  //-->
-  </script>
-  <script type="text/javascript" src="js/show_form_details.js"></script>
+  //--></script>
+<script type="text/javascript" src="js/show_form_details.js"></script>
 <script type="text/javascript" src="js/follow_up.js"></script>
 <script type="text/javascript" src="js/kivi.Draft.js"></script>
 
 <form method="post" name="gl" action="gl.pl" id="form">
 
 [% FOREACH name IN [ 'id', 'closedto', 'locked', 'storno', 'storno_id', 'previous_id', 'previous_gldate' ] %]
-[% L.hidden_tag(name, $name) %]
-[%- END %]
+  [% L.hidden_tag(name, $name) %]
+[% END %]
 
 <input type=hidden name=title value="[% hide_title | html %]">
 
@@ -32,121 +28,117 @@
 <input type="hidden" name="follow_up_rowcount" value="1">
 
 <div id="ir_tabs" class="tabwidget">
- <ul>
+
+<ul>
   <li><a href="#ui-tabs-basic-data">[% 'Basic Data' | $T8 %]</a></li>
-[%- IF INSTANCE_CONF.get_webdav %]
-  <li><a href="#ui-tabs-webdav">[% 'WebDAV' | $T8 %]</a></li>
-[%- END %]
-[%- IF id %]
-[%- IF INSTANCE_CONF.get_doc_storage %]
-  <li><a href="controller.pl?action=File/list&file_type=document&object_type=gl_transaction&object_id=[% HTML.url(id) %]">[% 'Documents' | $T8 %]</a></li>
-  <li><a href="controller.pl?action=File/list&file_type=attachment&object_type=gl_transaction&object_id=[% HTML.url(id) %]">[% 'Attachments' | $T8 %]</a></li>
-[%- END %]
-[%- END %]
- </ul>
- <div id="ui-tabs-basic-data">
+  [% IF INSTANCE_CONF.get_webdav %]
+    <li><a href="#ui-tabs-webdav">[% 'WebDAV' | $T8 %]</a></li>
+  [% END %]
+  [% IF id %]
+    [% IF INSTANCE_CONF.get_doc_storage %]
+      <li><a href="controller.pl?action=File/list&file_type=document&object_type=gl_transaction&object_id=[% HTML.url(id) %]">[% 'Documents' | $T8 %]</a></li>
+      <li><a href="controller.pl?action=File/list&file_type=attachment&object_type=gl_transaction&object_id=[% HTML.url(id) %]">[% 'Attachments' | $T8 %]</a></li>
+    [% END %]
+  [% END %]
+</ul>
 
-<table width=100%>
-[%- IF saved_message %]
-  <tr>
-    <td>[% saved_message | html %]</th>
-  </tr>
-[%- END %]
+<div id="ui-tabs-basic-data">
+[% INCLUDE 'common/flash.html' %][% # PENDENT: SOLL DAS AUCH IN DEN ANDEREN TABS STEHEN? WIRD SCHWIERIG ZUM CSS-PLAZIEREN %]
 
-  <tr height="5"></tr>
-  <tr>
-    <td>
-      <table width=100%>
-        <tr>
-          <td colspan="6" align="left">[% 'Previous transnumber text' | $T8 %] [% previous_id  %] . [% 'Previous transdate text' | $T8 %] [% previous_gldate %]</td>
-        </tr>
-        <tr>
-          <th align=right>[% 'Reference' | $T8 %]</th>
-          <td>[% L.input_tag('reference', reference,  size=20, readonly=readonly) %]</td>
-          <td align=left>
-            <table>
-              <tr>
-                <th align=right width=50% nowrap>[% 'Transdate' | $T8 %]</th>
-                <td>[% L.date_tag('transdate', transdate, readonly=readonly) %]</td>
-              </tr>
-            </table>
-          </td>
-        </tr>
-[%- IF id %]
-        <tr>
-          <th align=right>[% 'ID' | $T8 %]</th>
-          <td>[% L.input_tag('id', id,  size=20, readonly=readonly) %]</td>
-          <td align=left>
-          <table>
-              <tr>
-                <th align=right width=50%>[% 'Gldate' | $T8 %]</th>
-                <td align=left>[% L.date_tag('gldate', gldate, readonly=1) %]</td>
-              </tr>
-            </table>
-          </td>
-        </tr>
-[%- END %]
+<div class="wrapper">
 
-[%- IF ALL_DEPARTMENTS %]
-        <tr>
-          <th align=right nowrap>[% 'Department' | $T8 %]</th>
-          <td>[% L.select_tag('department_id', ALL_DEPARTMENTS, default = department_id, title_key = 'description', with_empty = 1) %]</td>
-        </tr>
-[%- END %]
+[% IF saved_message %]
+  <div class="message">[% saved_message | html %]</div>
+[% END %]
 
-        <tr>
-          <th align=right width=1%>[% 'Description' | $T8 %]</th>
-          <td width=1%>[% L.areainput_tag('description', description, cols=50, readonly=readonly) %]</td>
-          <td>
-            <table>
-              <tr>
-                <th align=left>[% 'MwSt. inkl.' | $T8 %]</th>
-                <td>[% L.checkbox_tag('taxincluded', checked=taxincluded) %]</td>
-              </tr>
-            </table>
-         </td>
-[%- IF id %]
-          <td align=left>
-            <table width=100%>
-              <tr>
-                <th align=right width=50%>[% 'Mitarbeiter' | $T8 %]</th>
-                <td align=left>[% L.input_tag('employee', employee, size=20, readonly=readonly) %]</td>
-              </tr>
-            </table>
-          </td>
-[%- END %]
-        </tr>
+[% IF previous_id %]
+  <div class="message message_hint">
+    [% 'Previous transnumber text' | $T8 %] <b>[% previous_id %]</b> [% 'Previous transdate text' | $T8 %] <b>[% previous_gldate %] </b>
+  </div>
+[% END %]
 
-      <tr>
-       <td colspan=4>
-        <table>
-         <tr>
-          <td>[% 'OB Transaction' | $T8 %] [% L.checkbox_tag('ob_transaction' checked=ob_transaction) %]</td>
-          <td>[% 'CB Transaction' | $T8 %] [% L.checkbox_tag('cb_transaction' checked=cb_transaction) %]</td>
-         </tr>
-        </table>
-       </td>
-      </tr>
-      <tr>
-       <td width="1%" align="right" nowrap>[% 'Show details' | $T8 %]</td>
-       <td width="1%">[% L.checkbox_tag('show_details', checked=show_details, onclick='show_form_details();') %]</td>
-      </tr>
+</div><!-- /.wrapper -->
 
-      <tr>
-      <td colspan=4>
-          <table width=100%>
-           <tr class=listheading>
-          <th class=listheading style="width:15%">[% 'Account' | $T8 %]</th>
-          <th class=listheading style="width:10%">[% 'Chart balance' | $T8 %]</th>
-          <th class=listheading style="width:10%">[% 'Debit' | $T8 %]</th>
-          <th class=listheading style="width:10%">[% 'Credit' | $T8 %]</th>
-          <th class=listheading style="width:10%">[% 'Tax' | $T8 %]</th>
-          <th class=listheading style="width:5%">[% 'Taxkey' | $T8 %]</th>
+<div class="wrapper">
 
-[%- IF show_details %]
-          <th class=listheading style="width:20%">[% 'Source' | $T8 %]</th>
-          <th class=listheading style="width:20%">[% 'Memo' | $T8 %]</th>
-          <th class=listheading style="width:20%">[% 'Project Number' | $T8 %]</th>
-[%- END %]
+<table class="tbl-horizontal">
+  <tbody>
+    <tr>
+      <th>[% 'Reference' | $T8 %]</th>
+      <td>[% L.input_tag('reference', reference, class='wi-wide', readonly=readonly) %]</td>
+    </tr>
+    <tr>
+      <th>[% 'Transdate' | $T8 %]</th>
+      <td>[% L.date_tag('transdate', transdate, readonly=readonly) %]</td>
+    </tr>
+    [% IF id %]
+    <tr>
+      <th>[% 'ID' | $T8 %]</th>
+      <td>[% L.input_tag('id', id, class="wi-small", readonly=readonly) %]</td>
+    </tr>
+    <tr>
+      <th>[% 'Gldate' | $T8 %]</th>
+      <td>[% L.date_tag('gldate', gldate, readonly=1) %]</td>
+    </tr>
+    [% END %]
+    [% IF ALL_DEPARTMENTS %]
+    <tr>
+      <th>[% 'Department' | $T8 %]</th>
+      <td>[% L.select_tag('department_id', ALL_DEPARTMENTS, default=department_id, title_key='description', with_empty=1, class='wi-wide') %]</td>
+    </tr>
+    [% END %]
+    <tr>
+      <th>[% 'Description' | $T8 %]</th>
+      <td class="wi-wide">[% L.areainput_tag('description', description, readonly=readonly, cols=10, class='wi-wide') %]</td>
+    </tr>
+    <tr>
+      <th><label for="taxincluded">[% 'MwSt. inkl.' | $T8 %]</label></th>
+      <td>[% L.checkbox_tag('taxincluded', checked=taxincluded) %]</td>
+    </tr>
+    [% IF id %]
+    <tr>
+      <th>[% 'Mitarbeiter' | $T8 %]</th>
+      <td>[% L.input_tag('employee', employee, class='wi-normal', readonly=readonly, class='wi-wide') %]</td>
+    </tr>
+    [% END %]
+  </tbody>
+</table>
 
-        </tr>
+<table class="tbl-horizontal">
+  <tbody>
+    <tr>
+      <th>
+        <span class="label above">[% 'Optional Transaction Type' | $T8 %]</span>
+        <label for="ob_transaction">[% L.checkbox_tag('ob_transaction' checked=ob_transaction) %] [% 'CB Transaction' | $T8 %]</label> <br>
+        <label for="cb_transaction">[% L.checkbox_tag('cb_transaction' checked=cb_transaction) %] [% 'OB Transaction' | $T8 %]</label>
+      </th>
+    </tr>
+  </tbody>
+</table>
+
+</div><!-- /.wrapper -->
+<div class="wrapper">
+
+<div class="buttons positions">
+  <label class="button neutral" for="show_details">[% IF show_details %][% 'Hide details' | $T8 %][% ELSE %][% 'Show details' | $T8 %][% END %]</label>
+  [% L.checkbox_tag('show_details', checked=show_details, onclick='show_form_details();', style='display:none') %]
+</div>
+
+<table class="tbl-list wi-moderate">
+  <caption>[% 'Transaction' | $T8 %]</caption>
+  <thead>
+    <tr>
+      <th>[% 'Account' | $T8 %]</th>
+      <th class="right">[% 'Chart balance' | $T8 %]</th>
+      <th class="right">[% 'Debit' | $T8 %]</th>
+      <th class="right">[% 'Credit' | $T8 %]</th>
+      <th class="right">[% 'Tax' | $T8 %]</th>
+      <th>[% 'Taxkey' | $T8 %]</th>
+      [% IF show_details %]
+        <th>[% 'Source' | $T8 %]</th>
+        <th>[% 'Memo' | $T8 %]</th>
+        <th>[% 'Project Number' | $T8 %]</th>
+      [% END %]
+    </tr>
+  </thead>
+  <tbody>
