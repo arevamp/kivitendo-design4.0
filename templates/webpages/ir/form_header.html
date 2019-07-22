@@ -1,10 +1,12 @@
-[%- USE T8 %]
-[%- USE HTML %]
-[%- USE LxERP %]
-[%- USE L %][%- USE P -%]
+[% USE T8 %]
+[% USE HTML %]
+[% USE LxERP %]
+[% USE L %]
+[% USE P %]
+
 <h1>[% title %]</h1>
 
-[%- SET follow_up_trans_info = invnumber _ ' (' _ vendor_obj.name _ ')' %]
+[% SET follow_up_trans_info = invnumber _ ' (' _ vendor_obj.name _ ')' %]
 <script type="text/javascript" src="js/common.js"></script>
 <script type="text/javascript" src="js/calculate_qty.js"></script>
 <script type="text/javascript" src="js/follow_up.js"></script>
