@@ -1,8 +1,3 @@
-[%- USE T8 %]
-[%- USE L %]
-[%- USE LxERP %]
-[%- USE HTML %]
-[%- SET style='width: 400px' %]
 <form action='controller.pl' method='post' id='filter_form'>
 <div class='filter_toggle'>
 <a href='#' onClick='javascript:$(".filter_toggle").toggle()'>[% 'Show Filter' | $T8 %]</a>
@@ -44,6 +39,10 @@
    <td>[% L.date_tag('filter.transdate:date::le', filter.transdate_date__le, cal_align = 'BR') %]</td>
   </tr>
  </table>
+[% USE T8 %]
+[% USE L %]
+[% USE LxERP %]
+[% USE HTML %]
 
 [% L.hidden_tag('sort_by', FORM.sort_by) %]
 [% L.hidden_tag('sort_dir', FORM.sort_dir) %]
