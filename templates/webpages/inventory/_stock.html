@@ -1,9 +1,8 @@
-[%- USE HTML %]
-[%- USE LxERP %]
-[%- USE L %]
-[%- USE T8 %]
-[%- IF SELF.part.id %]
 <h3>[% LxERP.t8('Stock for part #1', SELF.part.displayable_name) %][%- IF SELF.part.ean -%] ([%- SELF.part.ean -%])[%- END -%]</h3>
+[% USE HTML %]
+[% USE LxERP %]
+[% USE L %]
+[% USE T8 %]
 
 [%- IF SELF.stock_empty && !SELF.part.bin_id  %]
 <p>[% 'Nothing stocked yet.' | $T8 %]</p>
