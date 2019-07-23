@@ -1,8 +1,10 @@
-[%- USE LxERP -%][% USE L %][% USE HTML %]
 [%- IF ! json %]
 <div id="[% file_type %]_list_[% object_type %]">
 [%- END %]
 <div class="listtop">[% title %]</div>
+[% USE LxERP %]
+[% USE L %]
+[% USE HTML %]
 
 <div style="padding-bottom: 15px">
 [%- SET can_rename = 0 %]
