@@ -1,5 +1,3 @@
-[%- USE T8 %]
-[%- USE HTML %]
 <h1>[% title %]</h1>
 
  <form name="Form">
@@ -12,6 +10,8 @@
 
    <tr>
     <td>
+[% USE T8 %]
+[% USE HTML %]
 
      <table>
       <tr class="listheading">
@@ -46,6 +46,10 @@
  </form>
 
  <script type="text/javascript">
+
+</form>
+
+<script type="text/javascript">
   <!--
       function customer_selected(selected) {
         var name = document.getElementsByName("name_" + selected)[0].value

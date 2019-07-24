@@ -1,5 +1,3 @@
-[%- USE T8 %]
-[%- USE HTML %]
 [%- IF is_wrong_pclass == NOTFORSALE %]
 <h4 class="error">[% 'searched part not for sale' | $T8 %]</h4>
 [%- ELSE %]
@@ -9,6 +7,8 @@
 <h4 class="error">[% 'Item does not exists in the database' | $T8 %]
 [% IF INSTANCE_CONF.get_create_part_if_not_found %]
     <p>[% 'What type of item is this?' | $T8 %]</h4>
+[% USE T8 %]
+[% USE HTML %]
 
     <form method="post" action="controller.pl">
 
