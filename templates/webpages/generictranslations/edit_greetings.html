@@ -2,35 +2,35 @@
 [% USE HTML %]
 <h1>[% HTML.escape(title) %]</h1>
 
- [%- IF message %]
- <p>
-  [% HTML.escape(message) %]
- </p>
- [%- END %]
+<div class="wrapper">
 
- <form method="post" action="generictranslations.pl" id="form">
+<!-- UPDATE: Message -->
+[% IF message %]
+  <p>[% HTML.escape(message) %]</p>
+[% END %]
 
-  <table>
+<form method="post" action="generictranslations.pl" id="form">
 
-   <tr>
-    <th class="listheading">&nbsp;</th>
-    <th class="listheading">[% 'male' | $T8 %]</th>
-    <th class="listheading">[% 'female' | $T8 %]</th>
-   </tr>
 
-   [%- FOREACH language = LANGUAGES %]
-   <tr>
-    <td>
-     [%- IF language.id == 'default' %]
-     [% 'Default (no language selected)' | $T8 %]
-     [%- ELSE %]
-     [%- HTML.escape(language.description) %]
-     [%- END %]
-    </td>
-    <td><input name="translation__[% language.id %]__male" size="40" value="[% HTML.escape(language.male) %]"></td>
-    <td><input name="translation__[% language.id %]__female" size="40" value="[% HTML.escape(language.female) %]"></td>
-   </tr>
-   [%- END %]
+<table class="tbl-list">
+  <thead>
+    <tr>
+      <th>&nbsp;</th>
+      <th>[% 'male' | $T8 %]</th>
+      <th>[% 'female' | $T8 %]</th>
+    </tr>
+  </thead>
+  <tbody>
+    [% FOREACH language = LANGUAGES %]
+    <tr>
+      <td>[% IF language.id == 'default' %] [% 'Default (no language selected)' | $T8 %] [% ELSE %] [% HTML.escape(language.description) %] [% END %]</td>
+      <td><input name="translation__[% language.id %]__male" value="[% HTML.escape(language.male) %]" class="wi-wide" type="text"></td>
+      <td><input name="translation__[% language.id %]__female" value="[% HTML.escape(language.female) %]" class="wi-wide" type="text"> </td>
+    </tr>
+    [% END %]
+  </tbody>
+</table>
 
-  </table>
- </form>
+</form>
+
+</div><!-- /.wrapper -->
