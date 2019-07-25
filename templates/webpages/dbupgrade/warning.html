@@ -1,6 +1,3 @@
-[%- USE T8 %]
-[%- USE HTML %]
-[%- USE LxERP %][%- USE L -%]
 <form name="Form" method="post" action="controller.pl">
 
  <input type="hidden" name="action" value="LoginScreen/login">
@@ -8,6 +5,10 @@
  <p class="message_hint">
   [% LxERP.t8('kivitendo is about to update the database [ #1 ].', dbname) | html %]
  </p>
+[% USE T8 %]
+[% USE HTML %]
+[% USE LxERP %]
+[% USE L %]
 
  [% IF superuser.need_privileges && !superuser.have_privileges %]
   <p>
