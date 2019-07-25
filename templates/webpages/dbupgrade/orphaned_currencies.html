@@ -10,7 +10,7 @@
 <p>[% 'There are undefined currencies in your system.' | $T8 %]</p>
 <p>[% 'The following currencies have been used, but they are not defined:' | $T8 %]</p>
 [% FOREACH row = ORPHANED_CURRENCIES %]
-<input name="[% row.name %]" value="[% HTML.escape(row.curr) %]"><br>
+<input type="text" name="[% row.name %]" value="[% HTML.escape(row.curr) %]"><br>
 <input type="hidden" name="old_[% row.name %]" value="[% HTML.escape(row.curr) %]">
 [% END %]
 <p>[% 'There are several options you can handle this problem, please select one:' | $T8 %]</p>
