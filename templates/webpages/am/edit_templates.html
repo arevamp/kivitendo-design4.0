@@ -1,6 +1,3 @@
-[%- USE T8 %]
-[%- USE HTML %]
-
  <h1>[% title %]</h1>
 
   [% IF type == 'templates' %]
@@ -18,6 +15,8 @@
      [% FOREACH row = FORMNAME %]<option value="[% HTML.escape(row.value) %]" [% IF row.value == formname %]selected[% END %]>[% HTML.escape(row.label) %]</option>[% END %]
     </select>
 
+[% USE T8 %]
+[% USE HTML %]
     [% IF LANGUAGE.size %]
      [% 'Language' | $T8 %]
      <select name="language">
