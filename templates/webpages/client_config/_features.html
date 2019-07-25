@@ -1,4 +1,3 @@
-[%- USE LxERP -%][%- USE L -%][%- USE P -%][%- USE T8 %]
 [% SET style="width: 250px" %]
 <div id="features">
  <table>
@@ -173,6 +172,10 @@
    <td>[% L.yes_no_tag('defaults.allow_sales_invoice_from_sales_quotation', SELF.defaults.allow_sales_invoice_from_sales_quotation) %]</td>
    <td>[% LxERP.t8('If disabled sales quotations cannot be converted into sales invoices directly.') %]</td>
   </tr>
+[% USE LxERP %]
+[% USE L %]
+[% USE P %]
+[% USE T8 %]
 
   <tr>
    <td align="right">[% LxERP.t8('Allow conversion from sales orders to sales invoices') %]</td>
