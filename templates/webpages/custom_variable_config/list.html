@@ -1,8 +1,13 @@
-[%- USE HTML -%][%- USE LxERP -%][%- USE L -%][%- USE T8 -%][%- INCLUDE 'common/flash.html' %]
+[% USE HTML %]
+[% USE LxERP %]
+[% USE L %]
+[% USE T8 %]
 
 <h1>[% title %]</h1>
 
 <p>
+[% INCLUDE 'common/flash.html' %]
+
  [% 'Custom variables for module' | $T8 %]
  [% L.select_tag('module', SELF.modules, value_key='module', title_key='description', default=SELF.module, onchange='show_module_list()') %]
 </p>
