@@ -1,5 +1,3 @@
-[%- USE T8 %]
-[%- USE HTML %][%- USE LxERP %]
 <h1>[% title %]</h1>
 
  [%- IF delivered %]
@@ -49,6 +47,10 @@
   </script>
 
   [%- ELSE %]
+[% USE T8 %]
+[% USE HTML %]
+[% USE LxERP %]
+
 
   <input type="hidden" name="nextsub"   value="set_stock_out">
   <input type="hidden" name="rowcount"  value="[% HTML.escape(WHCONTENTS.size) %]">

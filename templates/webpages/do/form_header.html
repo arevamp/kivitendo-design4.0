@@ -1,8 +1,3 @@
-[%- USE T8 %]
-[%- USE HTML %]
-[%- USE LxERP %]
-[%- USE L %][%- USE P -%]
-
 [%# Determine which shipping address to show if the delivery order has been shipped already. %]
 [%- IF delivered;
       SET shipto_label = [];
@@ -14,6 +9,12 @@
         END ;
       ELSE ;
         SET shipto_label = [ shiptoname, shiptodepartment_1, shiptostreet, shiptocity ] ;
+[% USE T8 %]
+[% USE HTML %]
+[% USE LxERP %]
+[% USE L %]
+[% USE P %]
+
       END ;
 
       SET shipto_label = shipto_label.grep('.') ;
