@@ -1,18 +1,20 @@
- [% P.hidden_tag("type", type) %]
- [% P.hidden_tag("vc", vc) %]
- [% P.hidden_tag("rowcount", rowcount) %]
- [% P.hidden_tag("callback", callback) %]
 [% USE HTML %]
 [% USE T8 %]
 [% USE LxERP %]
 [% USE P %]
 
- <div id="print_options" class="hidden">
+[% P.hidden_tag("type", type) %]
+[% P.hidden_tag("vc", vc) %]
+[% P.hidden_tag("rowcount", rowcount) %]
+[% P.hidden_tag("callback", callback) %]
+
+<div id="print_options" class="hidden">
   [% print_options %]
- </div>
+</div>
+
 </form>
 
 <div id="print_dialog" class="hidden">
- [%- PROCESS 'common/_print_dialog.html' %]
+  [% PROCESS 'common/_print_dialog.html' %]
 </div>
 <div id="mass_print_dialog" style="display: none"></div>
