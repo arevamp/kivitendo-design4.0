@@ -17,27 +17,53 @@
 <p>[% '<b> I DO CARE!</b> Please click back and cancel the update and come back after there has been at least one warehouse defined with bin(s).:' | $T8 %]</p>
 <p>[% '<b> I DO CARE!</b> Please check create warehouse and bins and define a name for the warehouse (Bins will be created automatically) and then continue'  | $T8 %]</p>
 
-<table>
+<table class="tbl-list">
+<thead>
   <tr>
-    <th class="listheading">[% 'Partnumber' | $T8 %]</th>
-    <th class="listheading">[% 'Description' | $T8 %]</th>
-    <th class="listheading">[% 'Master Data Bin Text Deleted' | $T8 %]</th>
+    <th>[% 'Partnumber' | $T8 %]</th>
+    <th>[% 'Description' | $T8 %]</th>
+    <th>[% 'Master Data Bin Text Deleted' | $T8 %]</th>
   </tr>
+</thead>
 
-  [% SET row_odd = '1' %][% FOREACH row = PARTS %]
-  <tr class="listrow[% IF row_odd %]1[% SET row_odd = '0' %][% ELSE %]0[% SET row_odd = '1' %][% END %]">
-   <td align="left"> [% HTML.escape(row.partnumber) %]</a></td>
-    <td align="left"> [% HTML.escape(row.description) %]</a></td>
-    <td align="right">[% HTML.escape(row.bin) %]
-    <input type="hidden" name='partid_[% loop.count %]' value='[% HTML.escape(row.id) %]'>
-    <input type="hidden" id="bin_[% loop.count %]" name="bin_[% loop.count %]" value="[% HTML.escape(row.bin) %]">
-   </tr>
-  [% SET rowcount = loop.count %]
+<tbody>
+
+  [% SET row_odd = '1' %]
+  [% FOREACH row = PARTS %]
+    <tr class="listrow[% IF row_odd %]1[% SET row_odd = '0' %][% ELSE %]0[% SET row_odd = '1' %][% END %]">
+      <td>[% HTML.escape(row.partnumber) %]</a></td>
+      <td>[% HTML.escape(row.description) %]</a></td>
+      <td>
+        [% HTML.escape(row.bin) %]
+        <input type="hidden" name='partid_[% loop.count %]' value='[% HTML.escape(row.id) %]'>
+        <input type="hidden" id="bin_[% loop.count %]" name="bin_[% loop.count %]" value="[% HTML.escape(row.bin) %]">
+      </td>
+    </tr>
+    [% SET rowcount = loop.count %]
   [% END %]
   <input type="hidden" name="rowcount" value="[% rowcount %]">
-<tr><td colspan="5"><hr/></td></tr>
-<tr><td colspan="5"><input type="checkbox" name="create_new_bins"> [% '<b>Automatically create new bins</b> in the following new warehouse ' | $T8 %] <input type="text" name="new_warehouse"></td></tr>
-<tr><td colspan="5"><hr/></td></tr>
-<tr><td><input type="button" class="submit" onclick="history.back()" value="[% 'Back' | $T8 %]"> </td><td colspan="3" align="center"><td><input style="background-color:#FA1400" type="submit" value="[% 'Continue' | $T8 %]"></td></tr>
+
+</tbody>
 </table>
+
+<table class="tbl-horizontal">
+  <caption>[% 'New Bins' | $T8 %]</caption>
+  <colgroup> <col class="wi-small"><col class="wi-lightwide"> </colgroup>
+  <tbody>
+    <tr>
+      <th>[% 'Automatically create new bins' | $T8 %]</th>
+      <td><input type="checkbox" name="create_new_bins"></td>
+    </tr>
+    <tr>
+      <th>[% 'In the following new warehouse ' | $T8 %]</th>
+      <td><input type="text" name="new_warehouse"></td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="buttons">
+  <input type="button" onclick="history.back()" value="[% 'Back' | $T8 %]" class="neutral">
+  <input type="submit" value="[% 'Continue' | $T8 %]">
+</div>
+
 </form>
