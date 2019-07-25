@@ -1,63 +1,63 @@
-[% SET style="width: 500px" %]
-[%# L.dump( SELF.defaults ) %]
-<div id="default_accounts">
- <table>
-  <tr>
-   <td align="right">[% LxERP.t8("Inventory Account") %]</td>
-   <td>
-   [% P.chart.picker('defaults.inventory_accno_id', SELF.defaults.inventory_accno_id, type='IC', choose=1, style=style) %]
-   <td>
-  </tr>
-
-  <tr>
-   <td align="right">[% LxERP.t8("Revenue Account") %]</td>
-   <td>[% P.chart.picker('defaults.income_accno_id', SELF.defaults.income_accno_id, type='IC_income,IC_sale', choose=1, style=style) %]</td>
-  </tr>
-
-  <tr>
-   <td align="right">[% LxERP.t8("Expense Account") %]</td>
-   <td>[% P.chart.picker('defaults.expense_accno_id', SELF.defaults.expense_accno_id, type='IC_expense,IC_cogs', choose=1, style=style) %]</td>
-  </tr>
-
-  <tr>
-   <td align="right">[% LxERP.t8("Foreign Exchange Gain") %]</td>
-   <td>[% P.chart.picker('defaults.fxgain_accno_id', SELF.defaults.fxgain_accno_id, category='I,A', choose=1, style=style) %]<td>
-  </tr>
 [% USE HTML %]
 [% USE LxERP %]
 [% USE L %]
 [% USE T8 %]
 [% USE P %]
 
-  <tr>
-   <td align="right">[% LxERP.t8("Foreign Exchange Loss") %]</td>
-   <td>[% P.chart.picker('defaults.fxloss_accno_id', SELF.defaults.fxloss_accno_id, category='E,A', choose=1, style=style) %]<td>
-  </tr>
+[% SET style="width: 500px" %]
 
-  <tr>
-   <td align="right">[% LxERP.t8("Rounding Gain") %]</td>
-   <td>[% P.chart.picker('defaults.rndgain_accno_id', SELF.defaults.rndgain_accno_id, category='I,A', choose=1, style=style) %]</td>
-  </tr>
+[%# L.dump( SELF.defaults ) %]
 
-  <tr>
-   <td align="right">[% LxERP.t8("Rounding Loss") %]</td>
-   <td>[% P.chart.picker('defaults.rndloss_accno_id', SELF.defaults.rndloss_accno_id,  category='E,A', choose=1, style=style) %]</td>
-  </tr>
+<div id="default_accounts">
+<div class="wrapper">
 
-  <tr>
-   <td align="right">[% LxERP.t8("Current assets account") %]</td>
-   <td>[% P.chart.picker('defaults.ar_paid_accno_id', SELF.defaults.ar_paid_accno_id, type='AR_paid', choose=1, style=style) %]<td>
-  </tr>
 
-  <tr>
-   <td align="right">[% LxERP.t8("Payable account") %]</td>
-   <td>[% P.chart.picker('defaults.ap_chart_id', SELF.defaults.ap_chart_id, type='AP', choose=1, style=style) %]<td>
-  </tr>
+<table class="tbl-horizontal">
+  <caption>[% 'Default Accounts' | $T8 %]</caption>
+  <tbody>
+    <tr>
+      <th>[% LxERP.t8("Inventory Account") %]</th>
+      <td>[% P.chart.picker('defaults.inventory_accno_id', SELF.defaults.inventory_accno_id, type='IC', choose=1, style=style) %] </td> 
+    </tr>
+    <tr>
+      <th>[% LxERP.t8("Revenue Account") %]</th>
+      <td>[% P.chart.picker('defaults.income_accno_id', SELF.defaults.income_accno_id, type='IC_income,IC_sale', choose=1, style=style) %]</td>
+    </tr>
+    <tr>
+      <th>[% LxERP.t8("Expense Account") %]</th>
+      <td>[% P.chart.picker('defaults.expense_accno_id', SELF.defaults.expense_accno_id, type='IC_expense,IC_cogs', choose=1, style=style) %]</td>
+    </tr>
+    <tr>
+      <th>[% LxERP.t8("Foreign Exchange Gain") %]</th>
+      <td>[% P.chart.picker('defaults.fxgain_accno_id', SELF.defaults.fxgain_accno_id, category='I,A', choose=1, style=style) %]</td> 
+    </tr>
+    <tr>
+      <th>[% LxERP.t8("Foreign Exchange Loss") %]</th>
+      <td>[% P.chart.picker('defaults.fxloss_accno_id', SELF.defaults.fxloss_accno_id, category='E,A', choose=1, style=style) %]</td> 
+    </tr>
+    <tr>
+      <th>[% LxERP.t8("Rounding Gain") %]</th>
+      <td>[% P.chart.picker('defaults.rndgain_accno_id', SELF.defaults.rndgain_accno_id, category='I,A', choose=1, style=style) %]</td>
+    </tr>
+    <tr>
+      <th>[% LxERP.t8("Rounding Loss") %]</th>
+      <td>[% P.chart.picker('defaults.rndloss_accno_id', SELF.defaults.rndloss_accno_id, category='E,A', choose=1, style=style) %]</td>
+    </tr>
+    <tr>
+      <th>[% LxERP.t8("Current assets account") %]</th>
+      <td>[% P.chart.picker('defaults.ar_paid_accno_id', SELF.defaults.ar_paid_accno_id, type='AR_paid', choose=1, style=style) %]</td> 
+    </tr>
+    <tr>
+      <th>[% LxERP.t8("Payable account") %]</th>
+      <td>[% P.chart.picker('defaults.ap_chart_id', SELF.defaults.ap_chart_id, type='AP', choose=1, style=style) %]</td> 
+    </tr>
+    <tr>
+      <th>[% LxERP.t8("Receivable account") %]</th>
+      <td>[% P.chart.picker('defaults.ar_chart_id', SELF.defaults.ar_chart_id, type='AR', choose=1, style=style) %]</td> 
+    </tr>
+  </tbody>
+</table>
 
-  <tr>
-   <td align="right">[% LxERP.t8("Receivable account") %]</td>
-   <td>[% P.chart.picker('defaults.ar_chart_id', SELF.defaults.ar_chart_id, type='AR', choose=1, style=style) %]<td>
-  </tr>
+</div><!-- /.wrapper -->
+</div><!-- /#default_accounts-->
 
- </table>
-</div>
