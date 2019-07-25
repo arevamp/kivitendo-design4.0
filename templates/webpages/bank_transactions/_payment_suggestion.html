@@ -1,4 +1,7 @@
-[%- USE P -%][%- USE HTML -%][%- USE LxERP -%]
+[% USE P %]
+[% USE HTML %]
+[% USE LxERP %]
+
 <span id="[% HTML.escape(bt_id) %].[% HTML.escape(prop_id) %]" data-invoice-amount="[% HTML.escape(invoice.open_amount * 1) %]">
  [% P.hidden_tag("invoice_ids." _ bt_id _ "[]", prop_id) %]
  [% LxERP.t8("Invno.") %]: [% HTML.escape(invoice.invnumber) %]
