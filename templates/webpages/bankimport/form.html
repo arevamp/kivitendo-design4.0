@@ -3,18 +3,15 @@
 [% USE L %]
 [% USE T8 %]
 
- <div class="listtop">[% FORM.title %]</div>
+<h1>[% FORM.title %]</h1>
 
- [% IF profile %]
- <p>
- [% "Import a MT940 file:" | $T8 %]
- </p>
-
- <form method="post" action="controller.pl" enctype="multipart/form-data" id="form">
+<div class="wrapper">
+[% IF profile %]
+  <h3 class="caption">[% "Import a MT940 file" | $T8 %]</h3>
+  <form method="post" action="controller.pl" enctype="multipart/form-data" id="form" class="box">
     [% L.input_tag('file', '', type => 'file', accept => '*') %]
- </form>
- [% ELSE %]
- <p>
- [% "Please create a CSV import profile called \"MT940\" for the import type bank transactions:" | $T8 %] <a href="[% SELF.url_for(controller => 'CsvImport', action => 'new', 'profile.type' => 'bank_transactions' ) %]">CsvImport</a>
- </p>
- [% END %]
+  </form>
+[% ELSE %]
+  <p>[% "Please create a CSV import profile called \"MT940\" for the import type bank transactions:" | $T8 %] <a href="[% SELF.url_for(controller => 'CsvImport', action => 'new', 'profile.type' => 'bank_transactions' ) %]">CsvImport</a></p>
+[% END %]
+</div>
