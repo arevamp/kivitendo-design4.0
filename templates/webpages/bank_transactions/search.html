@@ -3,29 +3,27 @@
 [% USE L %]
 [% USE LxERP %]
 
-[%- INCLUDE 'common/flash.html' %]
+[% INCLUDE 'common/flash.html' %]
+<h1>[% 'Search bank transactions' | $T8 %]</h1>
 
- <form method="post" action="controller.pl" id="search_form">
 
-  <div class="listtop">[% 'Search bank transactions' | $T8 %]</div>
+<form method="post" action="controller.pl" id="search_form">
+<div class="wrapper">
 
-  <p>
-   <table>
-
+  <table class="tbl-horizontal">
     <tr>
-     <th align="right">[% 'Bank account' | $T8 %]</th>
-     <td>[% L.select_tag('filter.bank_account', BANK_ACCOUNTS, default=bank_account, title_key='displayable_name', with_empty=0, style='width:450px') %]</td>
+      <th>[% 'Bank account' | $T8 %]</th>
+      <td>[% L.select_tag('filter.bank_account', BANK_ACCOUNTS, default=bank_account, title_key='displayable_name', with_empty=0, class='wi-wide') %]</td>
     </tr>
-
     <tr>
-     <th align="right">[% 'Transdate from' | $T8 %]</th>
-     <td>[% L.date_tag('filter.fromdate', filter.fromdate) %]</td>
+      <th>[% 'Transdate from' | $T8 %]</th>
+      <td><span class="wi-date">[% L.date_tag('filter.fromdate', filter.fromdate) %]</span></td>
     </tr>
-
     <tr>
-     <th align="right">[% 'to (date)' | $T8 %]</th>
-     <td>[% L.date_tag('filter.todate', filter.todate) %]</td>
+      <th>[% 'to (date)' | $T8 %]</th>
+      <td><span class="wi-date">[% L.date_tag('filter.todate', filter.todate) %]</span></td>
     </tr>
-   </table>
-  </p>
- </form>
+  </table>
+
+</div>
+</form>
