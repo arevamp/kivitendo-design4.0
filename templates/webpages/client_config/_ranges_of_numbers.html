@@ -1,4 +1,3 @@
-[%- USE LxERP -%][%- USE L -%][%- USE HTML -%]
 <div id="ranges_of_numbers">
  <table>
   <tr>
@@ -14,6 +13,10 @@
    <td align="right" nowrap>[% LxERP.t8('Last Vendor Number') %]</td>
    <td>[% L.input_tag("defaults.vendornumber", SELF.defaults.vendornumber, size="15") %]</td>
   </tr>
+[% USE LxERP %]
+[% USE L %]
+[% USE HTML %]
+[% USE T8 %]
 
   <tr>
    <td align="right" nowrap>[% LxERP.t8('Last Sales Order Number') %]</td>

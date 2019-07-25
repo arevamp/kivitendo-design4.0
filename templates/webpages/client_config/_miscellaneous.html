@@ -1,4 +1,3 @@
-[%- USE LxERP -%][%- USE L -%][%- USE HTML -%]
 [% SET style="width: 400px" %]
 <div id="miscellaneous">
  <table>
@@ -54,6 +53,10 @@
    <td align="right">[% LxERP.t8('Default Customer/Vendor Language') %]</td>
    <td>[% L.select_tag('defaults.language_id', SELF.all_languages, title_key='description', default=SELF.defaults.language_id, with_empty=1, style=style) %]</td>
   </tr>
+[% USE LxERP %]
+[% USE L %]
+[% USE HTML %]
+[% USE T8 %]
 
   <tr><td class="listheading" colspan="4">[% LxERP.t8("Print templates") %]</td></tr>
 

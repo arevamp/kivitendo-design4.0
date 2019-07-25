@@ -1,4 +1,3 @@
-[%- USE HTML -%][%- USE LxERP -%][%- USE L -%][%- USE P -%][%- USE T8 -%]
 [% SET style="width: 500px" %]
 [%# L.dump( SELF.defaults ) %]
 <div id="default_accounts">
@@ -24,6 +23,11 @@
    <td align="right">[% LxERP.t8("Foreign Exchange Gain") %]</td>
    <td>[% P.chart.picker('defaults.fxgain_accno_id', SELF.defaults.fxgain_accno_id, category='I,A', choose=1, style=style) %]<td>
   </tr>
+[% USE HTML %]
+[% USE LxERP %]
+[% USE L %]
+[% USE T8 %]
+[% USE P %]
 
   <tr>
    <td align="right">[% LxERP.t8("Foreign Exchange Loss") %]</td>
