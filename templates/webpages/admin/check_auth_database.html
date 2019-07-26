@@ -1,5 +1,3 @@
-[%- USE T8 %]
-[%- USE HTML %][%- USE L -%][%- USE LxERP -%]
 
  <h1>[% title %]</h1>
 
@@ -28,6 +26,10 @@
     <td>[% 'Database name' | $T8 %]:</td>
     <td>[% HTML.escape(SELF.db_cfg.db) %]</td>
    </tr>
+[% USE T8 %]
+[% USE HTML %]
+[% USE L %]
+[% USE LxERP %]
   </table>
 
   <p>
