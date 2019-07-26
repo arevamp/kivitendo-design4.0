@@ -19,6 +19,8 @@ $(function() {
 
 <form method="post" name="EditAccount" action="am.pl" id="form">
 
+<div class="wrapper">
+
 <input type="hidden" name="id"                 value="[% HTML.escape(id) %]">
 <input type="hidden" name="type"               value="account">
 <input type="hidden" name="orphaned"           value="[% HTML.escape(orphaned) %]">
@@ -31,271 +33,234 @@ $(function() {
 <input type="hidden" name="rndgain_accno_id"   value="[% HTML.escape(rndgain_accno_id) %]">
 <input type="hidden" name="rndloss_accno_id"   value="[% HTML.escape(rndloss_accno_id) %]">
 
-<fieldset>
-  <legend>
-    [% 'Main Preferences' | $T8 %]
-  </legend>
-  <table>
+<div class="col">
+
+<table class="tbl-horizontal">
+  <caption>[% 'Main Preferences' | $T8 %]</caption>
+  <colgroup><col class="wi-mediumsmall"><col class="wi-wide"></colgroup>
+  <tbody>
     <tr>
-      <td>
-        <label>
-          [% 'Account Number' | $T8 %]
-        </label></td>
-        <td><input id="accno" name="accno" size="20" value="[% HTML.escape(accno) %]"></td>
+      <th> [% 'Account Number' | $T8 %] </th>
+      <td><input id="accno" name="accno" type="text" size="10" class="wi-small" value="[% HTML.escape(accno) %]"></td>
     </tr>
     <tr>
-      <td>
-        <label>
-          [% 'Description' | $T8 %]
-        </label>
-      </td>
-      <td><input id="description" name="description" size="40" value="[% HTML.escape(description) %]"></td>
+      <th> [% 'Description' | $T8 %] </th>
+      <td><input id="description" name="description" type="text" size="40" class="wi-wide" value="[% HTML.escape(description) %]"></td>
     </tr>
     <tr>
-      <td>
-        <label>
-          [% 'Chart Type' | $T8 %]
-
-        </label>
-      </td>
-      <td>
-[% IF AccountIsPosted %]
-        [% L.select_tag('dummy_charttype',
-                        all_charttypes,
-                        title_key => 'name',
-                        value_key => 'value',
-                        default => selected_charttype,
-                        disabled => '1') %]
-        [% L.hidden_tag('charttype', selected_charttype) %]
-[% ELSE %]
-        [% L.select_tag('charttype',
-                        all_charttypes,
-                        title_key => 'name',
-                        value_key => 'value',
-                        default => selected_charttype) %]
-[% END %]
-      </td>
-    </tr>
-  </table>
-</fieldset>
-
-<fieldset class="DEPENDS ON charttype BEING A">
-  <legend>[% 'Account Type' | $T8 %]</legend>
-  <select name="category" id="AccountType" class="DEPENDS ON charttype BEING A">
-          [% select_category %]</select>
-</fieldset>
-
-[% IF ChartTypeIsAccount %]
-<fieldset class="DEPENDS ON charttype BEING A">
-  <legend>[% 'Is this a summary account to record' | $T8 %]</legend>
-        [% L.radio_button_tag('summary_account',
-          value => 'AR',
-          disabled => AccountIsPosted,
-          checked  => AR) %]
-        &nbsp;[% 'AR' | $T8 %]
-        [% L.radio_button_tag('summary_account',
-          value => 'AP',
-          disabled => AccountIsPosted,
-          checked  => AP) %]
-        &nbsp;[% 'AP' | $T8 %]
-        [% L.radio_button_tag('summary_account',
-          value => 'IC',
-          disabled => AccountIsPosted,
-          checked  => IC) %]
-        &nbsp;[% 'Inventory' | $T8 %]
-        [% L.radio_button_tag('summary_account',
-          value => '',
-          disabled => AccountIsPosted) %]
-        &nbsp;[% 'No summary account' | $T8 %]
-
-[% IF AccountIsPosted %]
-    [% IF AR %] [% L.hidden_tag('AR', 'AR') %] [% END %]
-    [% IF AP %] [% L.hidden_tag('AP', 'AP') %] [% END %]
-    [% IF IC %] [% L.hidden_tag('IC', 'IC') %] [% END %]
-[% END %]
-
-</fieldset>
-
-[% IF AccountIsPosted %]
-  [% IF AR_amount %] [% L.hidden_tag('AR_amount', 'AR_amount') %] [% END %]
-  [% IF AR_paid   %] [% L.hidden_tag('AR_paid',   'AR_paid')   %] [% END %]
-  [% IF AR_tax    %] [% L.hidden_tag('AR_tax',    'AR_tax')    %] [% END %]
-  [% IF AP_amount %] [% L.hidden_tag('AP_amount', 'AP_amount') %] [% END %]
-  [% IF AP_paid   %] [% L.hidden_tag('AP_paid',   'AP_paid')   %] [% END %]
-  [% IF AP_tax    %] [% L.hidden_tag('AP_tax',    'AP_tax')    %] [% END %]
-  [%- SET DIS = ' disabled="disabled"' %]
-[% END %]
-<fieldset class="DEPENDS ON charttype BEING A">
-  <legend>[% 'Include in drop-down menus' | $T8 %]</legend>
-  <p style='font-weight:normal'>[% 'Changes in this block are only sensible if the account is NOT a summary account AND there exists one valid taxkey. To select both Receivables and Payables only make sense for Payment / Receipt (i.e. account cash).' | $T8 %]</p>
-  <p style='font-weight:normal'>[% 'Changes to Receivables and Payables are only possible if no transactions to this account are posted yet.' | $T8 %]
-  [% 'The changing of tax-o-matic account is NOT recommended, but if you do so please also (re)configure booking groups and reconfigure ALL charts which point to this tax-o-matic account. ' | $T8 %]</p>
-  <table width="100%">
-    <tr>
-      <th align="left">[% 'Receivables' | $T8 %]</th>
-      <th align="left">[% 'Payables' | $T8 %]</th>
-      <th align="left">[% 'Parts Inventory' | $T8 %]</th>
-      <th align="left">[% 'Service Items' | $T8 %]</th>
+      <th> [% 'Chart Type' | $T8 %] </th>
+      <td> [% IF AccountIsPosted %]
+              [% L.select_tag('dummy_charttype',
+                              all_charttypes,
+                              title_key => 'name',
+                              value_key => 'value',
+                              default => selected_charttype,
+                              disabled => '1',
+                              class = 'wi-wide') %]
+              [% L.hidden_tag('charttype', selected_charttype) %]
+          [% ELSE %]
+              [% L.select_tag('charttype',
+                              all_charttypes,
+                              title_key => 'name',
+                              value_key => 'value',
+                              default => selected_charttype,
+                              class = 'wi-wide') %]
+          [% END %] </td>
     </tr>
     <tr>
+      <th>[% 'Account Type' | $T8 %]</th>
+      <td><select name="category" id="AccountType" class="wi-wide">[% select_category %]</select></td>
+    </tr>
+    [% IF ChartTypeIsAccount %]
+    <tr>
+      <th>[% 'Is this a summary account to record' | $T8 %]</th>
       <td>
-        [% L.radio_button_tag('AR_include_in_dropdown',
-          value => 'AR_amount',
-          disabled => AccountIsPosted,
-          checked  => AR_amount) %]
-        &nbsp;[% 'Revenue' | $T8 %] <br>
-        [% L.radio_button_tag('AR_include_in_dropdown',
-          value => 'AR_paid',
-          disabled => AccountIsPosted,
-          checked  => AR_paid) %]
-        &nbsp;[% 'Receipt' | $T8 %] <br>
-        [% L.radio_button_tag('AR_include_in_dropdown',
-          value => 'AR_tax',
-          disabled => AccountIsPosted,
-          checked  => AR_tax) %]
-        &nbsp;[% 'Tax' | $T8 %] <br>
-        [% L.radio_button_tag('AR_include_in_dropdown',
-          value => '',
-          disabled => AccountIsPosted) %]
-        &nbsp;[% 'do not include' | $T8 %]
-      </td>
-      <td>
-        [% L.radio_button_tag('AP_include_in_dropdown',
-          value => 'AP_amount',
-          disabled => AccountIsPosted,
-          checked  => AP_amount) %]
-        &nbsp;[% 'Expense/Asset' | $T8 %] <br>
-        [% L.radio_button_tag('AP_include_in_dropdown',
-          value => 'AP_paid',
-          disabled => AccountIsPosted,
-          checked  => AP_paid) %]
-        &nbsp;[% 'Payment' | $T8 %] <br>
-        [% L.radio_button_tag('AP_include_in_dropdown',
-          value => 'AP_tax',
-          disabled => AccountIsPosted,
-          checked  => AP_tax) %]
-        &nbsp;[% 'Tax' | $T8 %] <br>
-        [% L.radio_button_tag('AP_include_in_dropdown',
-          value => '',
-          disabled => AccountIsPosted) %]
-        &nbsp;[% 'do not include' | $T8 %]
-      </td>
-      <td>
-        <input name="IC_sale" type="checkbox" class="checkbox" value="IC_sale"
-          [% HTML.escape(IC_sale) %]>&nbsp;
-        [% 'Revenue' | $T8 %] <br>
-        <input name="IC_cogs" type="checkbox" class="checkbox" value="IC_cogs"
-          [% HTML.escape(IC_cogs) %]>&nbsp;
-        [% 'Expense' | $T8 %] <br>
-        <input name="IC_taxpart" type="checkbox" class="checkbox" value="IC_taxpart"
-          [% HTML.escape(IC_taxpart) %]>&nbsp;
-        [% 'Tax' | $T8 %]
-        <br><br>
-      </td>
-      <td>
-        <input name=IC_income type=checkbox class=checkbox value="IC_income"
-          [% HTML.escape(IC_income) %]>&nbsp;
-        [% 'Revenue' | $T8 %] <br>
-        <input name=IC_expense type=checkbox class=checkbox value="IC_expense"
-          [% HTML.escape(IC_expense) %]>&nbsp;
-        [% 'Expense' | $T8 %] <br>
-        <input name=IC_taxservice type=checkbox class=checkbox value="IC_taxservice"
-          [% HTML.escape(IC_taxservice) %]>&nbsp;
-        [% 'Tax' | $T8 %]
-        <br><br>
+        [% L.radio_button_tag('summary_account', value => 'AR', disabled => AccountIsPosted, checked  => AR) %]
+        [% 'AR' | $T8 %]<br>
+        [% L.radio_button_tag('summary_account', value => 'AP', disabled => AccountIsPosted, checked  => AP) %]
+        [% 'AP' | $T8 %]<br>
+        [% L.radio_button_tag('summary_account', value => 'IC', disabled => AccountIsPosted, checked  => IC) %]
+        [% 'Inventory' | $T8 %]<br>
+        [% L.radio_button_tag('summary_account', value => '', disabled => AccountIsPosted) %]
+        [% 'No summary account' | $T8 %]
+
+        [% IF AccountIsPosted %]
+          [% IF AR %] [% L.hidden_tag('AR', 'AR') %] [% END %]
+          [% IF AP %] [% L.hidden_tag('AP', 'AP') %] [% END %]
+          [% IF IC %] [% L.hidden_tag('IC', 'IC') %] [% END %]
+        [% END %]
+
+        [% IF AccountIsPosted %]
+          [% IF AR_amount %] [% L.hidden_tag('AR_amount', 'AR_amount') %] [% END %]
+          [% IF AR_paid   %] [% L.hidden_tag('AR_paid',   'AR_paid')   %] [% END %]
+          [% IF AR_tax    %] [% L.hidden_tag('AR_tax',    'AR_tax')    %] [% END %]
+          [% IF AP_amount %] [% L.hidden_tag('AP_amount', 'AP_amount') %] [% END %]
+          [% IF AP_paid   %] [% L.hidden_tag('AP_paid',   'AP_paid')   %] [% END %]
+          [% IF AP_tax    %] [% L.hidden_tag('AP_tax',    'AP_tax')    %] [% END %]
+          [% SET DIS = ' disabled="disabled"' %]
+        [% END %]
       </td>
     </tr>
-  </table>
-</fieldset>
+  </tbody>
+</table>
 
-<fieldset class="DEPENDS ON charttype BEING A">
-  <legend>
-    [% 'Taxkeys and Taxreport Preferences' | $T8 %]
-  </legend>
-  <p style='font-weight:normal'>[% 'Note: Taxkeys must have a "valid from" date, and will not behave correctly without.' | $T8 %]</p>
-
-            <table>
-              <tr>
-                <th align="left">[% 'Taxkey' | $T8 %]</th>
-                <th align="left">[% 'valid from' | $T8 %]</th>
-                [% IF feature_ustva %]
-                  <th align="left">[% 'pos_ustva' | $T8 %]</th>
-                [% END %]
-                <th align="left">[% 'delete' | $T8 %] ? </th>
-              </tr>
-[% FOREACH tk = ACCOUNT_TAXKEYS %]
-
-              <tr>
-    [% IF tk.id %]
-                <input type="hidden" name="taxkey_id_[% tk.runningnumber %]" value="[% tk.id %]">
-                <td><select name="taxkey_tax_[% tk.runningnumber %]">[% tk.selecttaxkey %]</select></td>
-                <td><input name="taxkey_startdate_[% tk.runningnumber %]" value="[% HTML.escape(tk.startdate) %]"></td>
-                [% IF feature_ustva %]
-                  <td><select name="taxkey_pos_ustva_[% tk.runningnumber %]">[% tk.select_tax %]</select></td>
-                [% END %]
-                <td><input name="taxkey_del_[% tk.runningnumber %]" type="checkbox"
-                class="checkbox" value="delete"></td>
-    [% ELSE %]
-                <input type="hidden" name="taxkey_id_[% tk.runningnumber %]" value="NEW">
-                <td><select name="taxkey_tax_[% tk.runningnumber %]">[% tk.selecttaxkey %]</select></td>
-                <td><input name="taxkey_startdate_[% tk.runningnumber %]" value="[% HTML.escape(tk.startdate) %]"></td>
-                [% IF feature_ustva %]
-                  <td><select name="taxkey_pos_ustva_[% tk.runningnumber %]">[% tk.select_tax %]</select></td>
-                [% END %]
-                <td>&nbsp;</td>
+<h3 class="caption">[% 'Taxkeys and Taxreport Preferences' | $T8 %]</h3>
+<div class="long-desc small">
+  <p>[% 'Note: Taxkeys must have a "valid from" date, and will not behave correctly without.' | $T8 %]</p>
+</div>
+<table class="tbl-horizontal">
+  <thead>
+    <tr>
+      <th>[% 'Taxkey' | $T8 %]</th>
+      <th>[% 'valid from' | $T8 %]</th>
+      [% IF feature_ustva %]<th>[% 'pos_ustva' | $T8 %]</th>[% END %]
+      <th>[% 'delete' | $T8 %]? </th>
+    </tr>
+  </thead>
+  <tbody>
+    [% FOREACH tk = ACCOUNT_TAXKEYS %]
+      <tr>
+        [% IF tk.id %]
+          <td>
+            <input type="hidden" name="taxkey_id_[% tk.runningnumber %]" value="[% tk.id %]">
+            <select name="taxkey_tax_[% tk.runningnumber %]" class="wi-wider">[% tk.selecttaxkey %]</select>
+          </td>
+          <td><input name="taxkey_startdate_[% tk.runningnumber %]" value="[% HTML.escape(tk.startdate) %]" type="text" class="wi-date"></td>
+          [% IF feature_ustva %]
+            <td><select name="taxkey_pos_ustva_[% tk.runningnumber %]" class="wi-wider">[% tk.select_tax %]</select></td>
+          [% END %]
+          <td class="center">
+            <input name="taxkey_del_[% tk.runningnumber %]" type="checkbox" value="delete">
+          </td>
+        [% ELSE %]
+          <td>
+            <input type="hidden" name="taxkey_id_[% tk.runningnumber %]" value="NEW">
+            <select name="taxkey_tax_[% tk.runningnumber %]" class="wi-wider">[% tk.selecttaxkey %]</select>
+          </td>
+          <td><input name="taxkey_startdate_[% tk.runningnumber %]" value="[% HTML.escape(tk.startdate) %]" type="text" class="wi-date"></td>
+          [% IF feature_ustva %]
+            <td><select name="taxkey_pos_ustva_[% tk.runningnumber %]" class="wi-wider">[% tk.select_tax %]</select></td>
+          [% END %]
+          <td>&nbsp;</td>
+        [% END %]
+      </tr>
     [% END %]
-              </tr>
+  </tbody>
+</table>
 
 
+<table class="tbl-horizontal">
+  <caption>[% 'Report and misc. Preferences' | $T8 %]</caption>
+  <colgroup><col class="wi-mediumsmall"><col class="wi-wide"></colgroup>
+  <tbody>
+  [% IF feature_erfolgsrechnung %]
+    <tr>
+      <th>[% 'Erfolgsrechnung' | $T8 %]</th>
+      <td><select name="pos_er" class="wi-wider">[% select_er %]</select></td>
+    </tr>
+  [% END %]
+  [% IF feature_eurechnung %]
+    <tr>
+      <th>[% 'EUER' | $T8 %]</th>
+      <td><select name="pos_eur" class="wi-wider">[% select_eur %]</select></td>
+    </tr>
+    <tr>
+      <th>[% 'BWA' | $T8 %]</th>
+      <td><select name="pos_bwa" class="wi-wider">[% select_bwa %]</select></td>
+    </tr>
+  [% END %]
+  [% IF feature_datev %]
+    <tr>
+      <th>[% 'Datevautomatik' | $T8 %]</th>
+      <td><input name="datevautomatik" type="checkbox" value="T" [% IF datevautomatik %]checked [% END %]>[% 'If checked the taxkey will not be exported in the DATEV Export, but only IF chart taxkeys differ from general ledger taxkeys' | $T8 %] </td>
+    </tr>
+  [% END %]
+  <tr>
+    <th>[% 'Folgekonto' | $T8 %]</th>
+    <td>
+      <select name="new_chart_id" class="wi-wider">[% selectnewaccount %]</select>
+      <span class="label with-element">[% 'Valid from' | $T8 %]
+      <input name="valid_from" value="[% valid_from %]" type="text" class="wi-mediumsmall"></span>
+    </td>
+  </tr>
+  [% #IF feature_balance %]
+    <!-- PENDENT: UPDATE: Diese Steuerfunktion hat keine Auswirkung in der Bilanz und wird erstmal deaktiviert. -->
+    <!--
+    <tr>
+      <th>[% 'Bilanz' | $T8 %]</th>
+      <td colspan="3"><select name="pos_bilanz">[% select_bilanz %]</select></td>
+    </tr>
+   -->
+  [% #END %]
+  </tbody>
+</table>
 [% END %]
-    </table>
-</fieldset>
 
-<fieldset class="DEPENDS ON charttype BEING A">
-  <legend>[% 'Report and misc. Preferences' | $T8 %]</legend>
-  <table>
-        [% IF feature_erfolgsrechnung %]
-          <tr>
-            <th align="left">[% 'Erfolgsrechnung' | $T8 %]</th>
-            <td colspan="3"><select name="pos_er">[% select_er %]</select></td>
-          </tr>
-        [% END %]
-        [% IF feature_eurechnung %]
-          <tr>
-            <th align="left">[% 'EUER' | $T8 %]</th>
-            <td colspan="3"><select name="pos_eur">[% select_eur %]</select></td>
-          </tr>
-          <tr>
-            <th align="left">[% 'BWA' | $T8 %]</th>
-            <td colspan="3"><select name="pos_bwa">[% select_bwa %]</select></td>
-          </tr>
-        [% END %]
-        [% IF feature_balance %]
-          <!-- Diese Steuerfunktion hat keine Auswirkung in der Bilanz und wird erstmal deaktiviert. -->
-          <!-- tr>
-            <th align="left">[% 'Bilanz' | $T8 %]</th>
-            <td colspan="3"><select name="pos_bilanz">[% select_bilanz %]</select></td>
-          </tr -->
-        [% END %]
-        [% IF feature_datev %]
-          <tr>
-            <th align="left">[% 'Datevautomatik' | $T8 %]</th>
-            <td colspan="3"><input name="datevautomatik" type="checkbox" class="checkbox" value="T" [% IF datevautomatik %]checked [% END %]>[% 'If checked the taxkey will not be exported in the DATEV Export, but only IF chart taxkeys differ from general ledger taxkeys' | $T8 %] </td>
-          </tr>
-        [% END %]
-        <tr>
-          <th align="left">[% 'Folgekonto' | $T8 %]</th>
-          <td><select name="new_chart_id">[% selectnewaccount %]</select></td>
-          <th align="left">[% 'Valid from' | $T8 %]</th>
-          <td><input name="valid_from" value="[% valid_from %]"></td>
-        </tr>
-  </table>
-[% END %]
-</fieldset>
-<hr size="3" noshade>
+</div><!-- /.col -->
+
+<div class="col" style="width:30.0em;">
+
+
+<h3 class="caption">[% 'Include in drop-down menus' | $T8 %]</h3>
+<div class="long-description small"><p>[% 'Changes in this block are only sensible if the account is NOT a summary account AND there exists one valid taxkey. To select both Receivables and Payables only make sense for Payment / Receipt (i.e. account cash).' | $T8 %]</p>
+  <p>
+    [% 'Changes to Receivables and Payables are only possible if no transactions to this account are posted yet.' | $T8 %]
+    [% 'The changing of tax-o-matic account is NOT recommended, but if you do so please also (re)configure booking groups and reconfigure ALL charts which point to this tax-o-matic account. ' | $T8 %]</p>
+</div><!-- /.long-description -->
+
+
+<table class="tbl-horizontal">
+  <colgroup><col class="wi-normal"><col class="wi-normal"></colgroup>
+  <tbody>
+    <tr>
+      <td><b>[% 'Receivables' | $T8 %]</b><br>
+        [% L.radio_button_tag('AR_include_in_dropdown', value => 'AR_amount', disabled => AccountIsPosted, checked  => AR_amount) %]
+        [% 'Revenue' | $T8 %] <br>
+        [% L.radio_button_tag('AR_include_in_dropdown', value => 'AR_paid', disabled => AccountIsPosted, checked  => AR_paid) %]
+        [% 'Receipt' | $T8 %] <br>
+        [% L.radio_button_tag('AR_include_in_dropdown', value => 'AR_tax', disabled => AccountIsPosted, checked  => AR_tax) %]
+        [% 'Tax' | $T8 %] <br>
+        [% L.radio_button_tag('AR_include_in_dropdown', value => '', disabled => AccountIsPosted) %]
+        [% 'do not include' | $T8 %]
+      </td>
+      <td><b>[% 'Payables' | $T8 %]</b><br>
+        [% L.radio_button_tag('AP_include_in_dropdown', value => 'AP_amount', disabled => AccountIsPosted, checked  => AP_amount) %]
+        [% 'Expense/Asset' | $T8 %] <br>
+        [% L.radio_button_tag('AP_include_in_dropdown', value => 'AP_paid', disabled => AccountIsPosted, checked  => AP_paid) %]
+        [% 'Payment' | $T8 %] <br>
+        [% L.radio_button_tag('AP_include_in_dropdown', value => 'AP_tax', disabled => AccountIsPosted, checked  => AP_tax) %]
+        [% 'Tax' | $T8 %] <br>
+        [% L.radio_button_tag('AP_include_in_dropdown', value => '', disabled => AccountIsPosted) %]
+        [% 'do not include' | $T8 %]      </td>
+    </tr>
+    <tr>
+      <td><b>[% 'Parts Inventory' | $T8 %]</b><br>
+        <input name="IC_sale" type="checkbox" value="IC_sale"[% HTML.escape(IC_sale) %]>
+        [% 'Revenue' | $T8 %] <br>
+        <input name="IC_cogs" type="checkbox" value="IC_cogs"[% HTML.escape(IC_cogs) %]>
+        [% 'Expense' | $T8 %] <br>
+        <input name="IC_taxpart" type="checkbox" value="IC_taxpart" [% HTML.escape(IC_taxpart) %]>
+        [% 'Tax' | $T8 %]
+      </td>
+      <td><b>[% 'Service Items' | $T8 %]</b><br>
+        <input name=IC_income type=checkbox value="IC_income"[% HTML.escape(IC_income) %]>
+        [% 'Revenue' | $T8 %] <br>
+        <input name=IC_expense type=checkbox value="IC_expense"[% HTML.escape(IC_expense) %]>
+        [% 'Expense' | $T8 %] <br>
+        <input name=IC_taxservice type=checkbox value="IC_taxservice"[% HTML.escape(IC_taxservice) %]>
+        [% 'Tax' | $T8 %]
+      </td>
+    </tr>
+  </tbody>
+</table>
+</div><!-- /.col -->
+
+</div>
+
+
 
 [% IF ( id ) %]
-  <script type="text/javascript">
+<script type="text/javascript">
   function callback_save() {
     var prev_desc = "[% description | html %]";
     var prev_accno = "[% accno | html %]";
@@ -307,7 +272,7 @@ $(function() {
     else
       return true;
   }
-  </script>
+</script>
 [% END %]
 [% L.hidden_tag('callback', callback) %]
 </form>
