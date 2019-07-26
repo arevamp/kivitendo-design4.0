@@ -1,7 +1,7 @@
 [%- USE HTML -%][%- USE T8 -%]
 
 <h1>[% title %]</h1>
-
+<div class="wrapper">
 [% UNLESS BINS.size %]
  <p>[% 'No bins have been added to this warehouse yet.' | $T8 %]</p>
 
@@ -18,36 +18,41 @@
   <input type="hidden" name="type" value="bin">
   <input type="hidden" name="callback" value="[% HTML.escape(callback) %]">
 
-  <table border="0">
+  <!-- UPDATE: dieses unlustige Konstrukt mit einem echten Mehrspalter versehen, und das ab einer bestimmten Anzahl Plaetze-->
+  <table class="tbl-list width-moderate">
+    <thead>
    <tr>
-    <th class="listheading">[% 'Delete' | $T8 %]</th><th class="listheading">[% 'Description' | $T8 %]</th>
-    <th class="listheading">[% 'Delete' | $T8 %]</th><th class="listheading">[% 'Description' | $T8 %]</th>
+    <th>[% 'Delete' | $T8 %]</th><th>[% 'Description' | $T8 %]</th>
+    <!-- <th>[% #'Delete' | $T8 %]</th><th>[% #'Description' | $T8 %]</th> -->
    </tr>
+   </thead>
+   <tbody>
    [%- SET row_odd = '1' %]
    [%- USE bin_it = Iterator(BINS) %]
    [%- FOREACH bin = bin_it %]
-   [%- IF row_odd %]
+   [%- #IF row_odd %]
    <tr>
-    [%- END %]
+    [%- #END %]
 
-    <td>[% IF bin.in_use %]&nbsp;[% ELSE %]<input type="checkbox" name="delete_[% bin_it.count %]" value="1">[% END %]</td>
+    <td class="center">[% IF bin.in_use %]&nbsp;[% ELSE %]<input type="checkbox" name="delete_[% bin_it.count %]" value="1">[% END %]</td>
     <td>
      <input type="hidden" name="id_[% bin_it.count %]" value="[% HTML.escape(bin.id) %]">
-     <input name="description_[% bin_it.count %]" value="[% HTML.escape(bin.description) %]">
+     <input name="description_[% bin_it.count %]" value="[% HTML.escape(bin.description) %]" type="text" class="wi-wide">
     </td>
 
-    [%- SET end_tr = '0' %]
-    [%- UNLESS row_odd %][%- SET end_tr = '1' %][%- END %]
-    [%- IF bin_it.last %][%- SET end_tr = '1' %][%- END %]
-    [%- IF end_tr %]
+    [%- #SET end_tr = '0' %]
+    [%- #UNLESS row_odd %][%- #SET end_tr = '1' %][%- #END %]
+    [%- #IF bin_it.last %][%- #SET end_tr = '1' %][%- #END %]
+    [%- #IF end_tr %]
    </tr>
-   [%- END %]
+   [%- #END %]
 
-   [%- IF row_odd %][% SET row_odd = '0' %][% ELSE %][% SET row_odd = '1' %][% END %]
+   [%- #IF row_odd %][% #SET row_odd = '0' %][% #ELSE %][% #SET row_odd = '1' %][% #END %]
    [%- END %]
+   </tbody>
   </table>
 
   <input type="hidden" name="rowcount" value="[% BINS.size %]">
  </form>
-
+</div>
 [% END %]
