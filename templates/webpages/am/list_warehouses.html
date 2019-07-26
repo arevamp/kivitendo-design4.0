@@ -2,26 +2,32 @@
 [% USE HTML %]
 <h1>[% title %]</h1>
 
- [% IF saved_message %]<p>[% saved_message %]</p>[% END %]
 
- <p>
-  <table width="100%" id="warehouse_list">
-   <tr class="listheading">
-    <th align="center"><img src="image/updown.png" alt="[%- LxERP.t8('reorder item') %]"></th>
-    <th width="70%">[% 'Description' | $T8 %]</th>
-    <th width="20%">[% 'Number of bins' | $T8 %]</th>
-    <th width="10%">[% 'Invalid' | $T8 %]</th>
+<div class="wrapper">
+  <!-- UPDATe: Message Container -->
+  [% IF saved_message %]<p>[% saved_message %]</p>[% END %]
+
+  <table class="tbl-list width-moderate" id="warehouse_list">
+    <thead>
+   <tr>
+    <th><img src="image/updown.png" alt="[%- LxERP.t8('reorder item') %]"></th>
+    <th>[% 'Description' | $T8 %]</th>
+    <th>[% 'Number of bins' | $T8 %]</th>
+    <th>[% 'Invalid' | $T8 %]</th>
    </tr>
+   </thead>
 
+    <tbody>
    [% FOREACH warehouse = WAREHOUSES %]
-   <tr class="listrow[% loop.count % 2 %]" id="warehouse_id_[% warehouse.id %]">
-    <td align="center" class="dragdrop"><img src="image/updown.png" alt="[%- LxERP.t8('reorder item') %]"></td>
+   <tr id="warehouse_id_[% warehouse.id %]">
+    <td class="dragdrop center img"><img src="image/updown.png" alt="[%- LxERP.t8('reorder item') %]"></td>
     <td><a href="[% url_base %]&action=edit_warehouse&id=[% HTML.url(warehouse.id) %]">[% HTML.escape(warehouse.description) %]</a></td>
     <td>[% HTML.escape(warehouse.number_of_bins) %]</td>
     <td>[% IF warehouse.invalid %][% 'Yes' | $T8 %][% ELSE %][% 'No' | $T8 %][% END %]</td>
    </tr>
    [% END %]
+   </tbody>
   </table>
- </p>
 
  [% L.sortable_element('#warehouse_list tbody', url => 'controller.pl?action=Warehouse/reorder', with => 'warehouse_id') %]
+</div>
