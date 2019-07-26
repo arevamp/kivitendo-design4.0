@@ -8,33 +8,30 @@
 <h1>[% HTML.escape(title) %]</h1>
 
 <p>
- [% LxERP.t8('You can only delete datasets that are not in use.') %]
- [% LxERP.t8('If you want to delete such a dataset you have to edit the client(s) that are using the dataset in question and have them use another dataset.') %]
+  [% LxERP.t8('You can only delete datasets that are not in use.') %]
+  [% LxERP.t8('If you want to delete such a dataset you have to edit the client(s) that are using the dataset in question and have them use another dataset.') %]
 </p>
 
 [% IF SELF.all_dbsources.size %]
 
 <form method="post" action="controller.pl">
- <p>
+<p>
   [% LxERP.t8('Please select the dataset you want to delete:') %]
   [% L.select_tag('db', SELF.all_dbsources, class="initial_focus") %]
- </p>
+</p>
 
- [% L.hidden_tag("dbhost", FORM.dbhost) %]
- [% L.hidden_tag("dbport", FORM.dbport) %]
- [% L.hidden_tag("dbuser", FORM.dbuser) %]
- [% L.hidden_tag("dbpasswd", FORM.dbpasswd) %]
- [% L.hidden_tag("dbdefault", FORM.dbdefault) %]
- [% L.hidden_tag("action", "Admin/do_delete_dataset") %]
+[% L.hidden_tag("dbhost", FORM.dbhost) %]
+[% L.hidden_tag("dbport", FORM.dbport) %]
+[% L.hidden_tag("dbuser", FORM.dbuser) %]
+[% L.hidden_tag("dbpasswd", FORM.dbpasswd) %]
+[% L.hidden_tag("dbdefault", FORM.dbdefault) %]
+[% L.hidden_tag("action", "Admin/do_delete_dataset") %]
 
- <div>
-  [% L.submit_tag('dummy', LxERP.t8('Delete Dataset'), id='submit') %]
- </div>
+<div class="buttons">[% L.submit_tag('dummy', LxERP.t8('Delete Dataset'), id='submit') %]</div>
 
 </form>
 
-<script type="text/javascript">
- <!--
+<script type="text/javascript"><!--
 
 var used_dbsources = {[% FOREACH client = SELF.all_clients %]
   "[% JavaScript.escape(client.dbhost || 'localhost') %]:[% JavaScript.escape(client.dbport || '5432') %]:[% JavaScript.escape(client.dbname || 'localhost') %]": "[% JavaScript.escape(client.name) %]"[% UNLESS loop.last %],[% END %][% END %]
@@ -49,7 +46,6 @@ $(function() {
   });
 });
 
-   -->
-</script>
+--></script>
 
 [% END %]
