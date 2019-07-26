@@ -1,9 +1,3 @@
-[%- USE T8 %]
-[%- USE HTML %]
-[%- USE L %]
-[%- USE P %]
-[%- USE LxERP %][%- USE P -%]
-[%- BLOCK cvar_inputs %]
 [%- SET render_cvar_tag_options = {};
     render_cvar_tag_options.import(cvar_tag_options) IF cvar_tag_options;
     SET cvar_tag_name = HTML.escape(cvar.name_prefix) _ "cvar_" _ HTML.escape(cvar.var.name) _ HTML.escape(cvar.name_postfix);
@@ -11,6 +5,12 @@
       SET render_cvar_tag_options.no_id = 1;
     END;
 %]
+[% USE T8 %]
+[% USE HTML %]
+[% USE L %]
+[% USE P %]
+[% USE LxERP %]
+[% USE P %]
 
 [%- IF (!cvar.hide_non_editable || cvar.var.flag_editable) && !cvar.partsgroup_filtered %]
 
