@@ -4,21 +4,13 @@
 
 <h1>[% title %]</h1>
 
- <p>
-  [% 'The following transaction contains wrong taxkeys:' | $T8 %]
-  <a href="[% problem.link %]">
-   [%- IF problem.data.module == 'ar' %]
-   [% 'AR Transaction' | $T8 %]
-   [%- ELSIF problem.data.module == 'ap' %]
-   [% 'AP Transaction' | $T8 %]
-   [%- ELSE %]
-   [% 'General Ledger Transaction' | $T8 %]
-   [%- END %]
-   [% HTML.escape(problem.data.reference) %]
-  </a>
- </p>
+<p>[% 'The following transaction contains wrong taxkeys:' | $T8 %]<a href="[% problem.link %]">
+[% IF problem.data.module == 'ar'    %][% 'AR Transaction'             | $T8 %]
+[% ELSIF problem.data.module == 'ap' %][% 'AP Transaction'             | $T8 %]
+[% ELSE                              %][% 'General Ledger Transaction' | $T8 %][% END %]
+[% HTML.escape(problem.data.reference) %]
+</a></p>
 
- <p>
   [% 'This could have happened for two reasons:' | $T8 %]
 
   [% 'The first reason is that kivitendo contained a bug which resulted in the wrong taxkeys being recorded for transactions in which two entries are posted for the same chart with different taxkeys.' | $T8 %]
