@@ -1,13 +1,13 @@
-[%- USE T8 %]
-[%- USE L %]
-[%- USE P %]
-[%- USE HTML %]
-[%- USE LxERP %]
 <table>
  <tr>
   <th align="right">[% 'Number' | $T8 %]</th>
   <td>[% L.input_tag("project.projectnumber", SELF.project.projectnumber, size=60, style='width: 300px', class="initial_focus") %]</td>
  </tr>
+[% USE T8 %]
+[% USE L %]
+[% USE P %]
+[% USE HTML %]
+[% USE LxERP %]
 
  <tr>
   <th align="right">[% 'Description' | $T8 %]</th>

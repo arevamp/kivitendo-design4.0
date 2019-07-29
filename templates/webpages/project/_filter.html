@@ -1,8 +1,3 @@
-[%- USE T8 %]
-[%- USE HTML %]
-[%- USE L %]
-[%- USE LxERP %]
-
 <table id="filter_table">
  <tr>
   <th align="right">[% 'Number' | $T8 %]</th>
@@ -35,6 +30,11 @@
   <th>[% 'Include in Report' | $T8 %]</th>
   <td>
    <table>
+[% USE T8 %]
+[% USE HTML %]
+[% USE L %]
+[% USE LxERP %]
+
     <tr>
      <td>[% L.select_tag('filter.active', [ [ 'active', LxERP.t8('Active') ], [ 'inactive', LxERP.t8('Inactive') ], [ 'both', LxERP.t8('Both') ] ], default=filter.active, style="width: 200px") %]</td>
     </tr>
