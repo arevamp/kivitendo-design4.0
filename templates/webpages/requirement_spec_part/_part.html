@@ -1,6 +1,6 @@
 [%- USE HTML -%][%- USE L -%][%- USE LxERP -%]
-<tr class="listrow edit-additional-parts-row-context-menu">
- <td align="center">
+<tr class="edit-additional-parts-row-context-menu">
+ <td class="center">
   [% L.hidden_tag("additional_parts[+].part_id", part.part.id) %]
   [% L.hidden_tag("additional_parts[].id", part.id) %]
   [% L.img_tag(src="image/updown.png", alt=LxERP.t8("reorder item"), class="dragdrop") %]
