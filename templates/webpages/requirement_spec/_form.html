@@ -1,6 +1,8 @@
-[%- USE LxERP -%][%- USE L -%][%- USE HTML -%]
 [%- DEFAULT id_prefix = 'basic_settings_form'
             submit_as = 'post'
+[% USE LxERP %]
+[% USE L %]
+[% USE HTML %]
 %]
 <form method="post" action="controller.pl" id="[% id_prefix %]"[% UNLESS submit_as == 'post' %] class="edit-basic-settings-context-menu"[% END %]>
  <h2>[% LxERP.t8("Edit general settings") %]</h2>

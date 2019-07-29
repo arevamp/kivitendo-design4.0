@@ -1,11 +1,12 @@
-[%- USE LxERP -%][%- USE L -%]
-[%- SET id_prefix = "project_link_form"
-        style     = "width: 300px" %]
 <form method="post" action="controller.pl" id="[% id_prefix %]"[% UNLESS submit_as == 'post' %] class="edit-project-link-context-menu"[% END %]>
  <h2>[% LxERP.t8("Edit project link") %]: [% LxERP.t8("Create a new project") %]</h2>
 
  [% L.hidden_tag("id", SELF.requirement_spec.id, id=id_prefix _ "_id") %]
  [% L.hidden_tag("project_link_action", "create", id=id_prefix _ "_project_link_action") %]
+[% USE LxERP %]
+[% USE L %]
+[% SET id_prefix = "project_link_form" %]
+[% style = "width:300px;" %]
 
  <table class="rs_input_field">
   <tr>

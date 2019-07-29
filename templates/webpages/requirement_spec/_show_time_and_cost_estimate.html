@@ -1,6 +1,9 @@
-[%- USE LxERP -%][%- USE L -%][%- USE HTML -%][%- USE P -%]
-[%- DEFAULT id_prefix = 'time_and_cost_estimate_form' %]
-[%- SET total_cost = 0 %]
+[% USE LxERP %]
+[% USE L %]
+[% USE HTML %]
+[% USE P %]
+[% DEFAULT id_prefix = 'time_and_cost_estimate_form' %]
+[% SET total_cost = 0 %]
 
 <div id="time_cost_estimate"[% IF initially_hidden %] style="display: none;"[% END %]>
  [%- IF !SELF.requirement_spec.sections.size %]

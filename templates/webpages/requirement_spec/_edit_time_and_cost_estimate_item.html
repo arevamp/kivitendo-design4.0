@@ -1,6 +1,9 @@
-[%- USE HTML -%][%- USE LxERP -%][%- USE P -%][%- USE L -%]
 <tr class="listrow">
  [% L.hidden_tag("requirement_spec_items[+].id", item.id, id = id_prefix _ '_item_id') %]
+[% USE HTML %]
+[% USE LxERP %]
+[% USE P %]
+[% USE L %]
 
  <td style="padding-left: [%- level * 50 -%]px">
   [%- item.fb_number _ ": " _ item.description_as_restricted_html -%]

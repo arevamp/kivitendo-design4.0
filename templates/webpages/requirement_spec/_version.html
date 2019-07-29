@@ -1,4 +1,7 @@
-[%- USE L -%][%- USE LxERP -%][%- USE HTML -%]
+[% USE L %]
+[% USE LxERP %]
+[% USE HTML %]
+
 [% L.hidden_tag('current_version_id', requirement_spec.version.id) %]
 [% LxERP.t8("Current version") %]:
 [% IF !requirement_spec.version.id %]

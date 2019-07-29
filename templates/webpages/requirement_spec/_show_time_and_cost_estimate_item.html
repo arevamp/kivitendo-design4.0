@@ -1,4 +1,3 @@
-[%- USE HTML -%][%- USE LxERP -%][%- USE P -%]
 <tr class="listrow">
  <td style="padding-left: [%- level * 50 -%]px">
   [%- item.fb_number _ ": " _ item.description_as_restricted_html -%]
@@ -14,6 +13,9 @@
   <td>&nbsp;</td>
   <td>&nbsp;</td>
  [%- END -%]
+[% USE HTML %]
+[% USE LxERP %]
+[% USE P %]
 </tr>
 
 [%- IF item.children.size -%]
