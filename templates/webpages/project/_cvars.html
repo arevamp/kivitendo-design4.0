@@ -1,6 +1,6 @@
-[%- USE HTML  %]
 <table>
 [%- FOREACH var = CUSTOM_VARIABLES %]
+[% USE HTML  %]
 <tr>
  <td align="right" valign="top">[% HTML.escape(var.description) %]</td>
  <td valign="top">[% var.HTML_CODE %]</td>
