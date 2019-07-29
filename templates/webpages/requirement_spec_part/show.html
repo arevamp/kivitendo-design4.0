@@ -9,9 +9,9 @@
   [% LxERP.t8("No articles have been added yet.") %]
  </div>
 
- <table id="additional_parts_list"[% IF !parts.size %] style="display: none;"[% END %]>
+ <table id="additional_parts_list"[% IF !parts.size %] style="display:none;"[% END %] class="tbl-list">
   <thead>
-   <tr class="listheading">
+   <tr>
     <th>[%- LxERP.t8("Part Number") %]</th>
     <th>[%- LxERP.t8("Description") %]</th>
     <th>[%- LxERP.t8("Qty") %]</th>
@@ -20,10 +20,10 @@
 
   <tbody>
    [% FOREACH part = parts %]
-    <tr class="listrow">
+    <tr>
      <td>[% HTML.escape(part.part.partnumber) %]</td>
      <td>[% HTML.escape(part.description) %]</td>
-     <td valign="right">[% HTML.escape(part.qty_as_number) %] [% HTML.escape(part.unit.name) %]</td>
+     <td class="numeric">[% HTML.escape(part.qty_as_number) %] [% HTML.escape(part.unit.name) %]</td>
     </tr>
    [% END %]
   </tbody>
