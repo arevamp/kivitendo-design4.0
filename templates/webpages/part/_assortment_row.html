@@ -1,11 +1,12 @@
-[%- USE T8 %]
-[%- USE HTML %]
-[%- USE LxERP %]
-[%- USE L %]
-[%- USE P %]
   <tr class="listrow[% listrow %] assortment_item_row">
     <td style='display:none'>
       [% IF orphaned %]
+[% USE T8 %]
+[% USE HTML %]
+[% USE LxERP %]
+[% USE L %]
+[% USE P %]
+
       [% L.hidden_tag("assortment_items[+].parts_id", ITEM.part.id) %]
       [% END %]
     </td>

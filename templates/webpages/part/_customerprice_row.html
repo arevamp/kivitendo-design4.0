@@ -1,7 +1,3 @@
-[%- USE T8 %]
-[%- USE L %]
-[%- USE HTML %]
-[%- USE LxERP %]
         <tr class="listrow customerprice_row">
          <td style='display:none'>
          [% L.hidden_tag("customerprices[+].customer_id", customerprice.customer_id) %]
@@ -21,3 +17,8 @@
          <td>[% L.input_tag('customerprices[].price_as_number'    , customerprice.price_as_number    , size=15 , class="reformat_number numeric") %]</td>
          <td>[% L.hidden_tag('customerprices[].lastupdate'         , customerprice.lastupdate.to_kivitendo) %][% customerprice.lastupdate.to_kivitendo | html %]</td>
         </tr>
+[% USE T8 %]
+[% USE L %]
+[% USE HTML %]
+[% USE LxERP %]
+
