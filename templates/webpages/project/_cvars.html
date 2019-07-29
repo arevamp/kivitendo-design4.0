@@ -1,9 +1,9 @@
-<table>
-[%- FOREACH var = CUSTOM_VARIABLES %]
 [% USE HTML  %]
+<table class="tbl-horizontal">
+[% FOREACH var = CUSTOM_VARIABLES %]
 <tr>
- <td align="right" valign="top">[% HTML.escape(var.description) %]</td>
- <td valign="top">[% var.HTML_CODE %]</td>
+ <th>[% HTML.escape(var.description) %]</th>
+ <td>[% var.HTML_CODE %]</td>
 </tr>
-[%- END %]
+[% END %]
 </table>
