@@ -3,36 +3,34 @@
 [% USE L %]
 [% USE LxERP %]
 
+<h1>[% 'Reconciliation of bank accounts' | $T8 %]</h1>
 <form method="post" action="controller.pl" id="search_form">
 
-<div class="listtop">[% 'Choose bank account for reconciliation' | $T8 %]</div>
-
-<p>
- <table>
-  <tr>
-   <th align="right">[% 'Bank account' | $T8 %]</th>
-   <td>[% L.select_tag('filter.local_bank_account_id:number', SELF.BANK_ACCOUNTS, title_key='displayable_name', with_empty=0, style='width:450px') %]</td>
-  </tr>
-
-  <tr>
-   <th align="right">[% 'From' | $T8 %]</th>
-   <td>[% L.date_tag('filter.fromdate:date::ge') %]</td>
-  </tr>
-
-  <tr>
-   <th align="right">[% 'to (date)' | $T8 %]</th>
-   <td>[% L.date_tag('filter.todate:date::le') %]</td>
-  </tr>
-
-  <tr>
-   <th align="right">[% 'Cleared/uncleared only' | $T8 %]</th>
-   <td>[% L.select_tag('filter.cleared:eq_ignore_empty', SELF.cleared, value_key = 'value', title_key = 'title', default = 'FALSE' ) %]</td>
-  </tr>
-
-  <tr>
-   <th align="right">[% 'Show Stornos' | $T8 %]</th>
-   <td>[% L.checkbox_tag('filter.show_stornos', value='1') %]</td>
-  </tr>
- </table>
-</p>
+<div class="wrapper">
+  <table class="tbl-horizontal">
+    <caption>[% 'Choose bank account for reconciliation' | $T8 %]</caption>
+    <tbody>
+      <tr>
+       <th>[% 'Bank account' | $T8 %]</th>
+       <td>[% L.select_tag('filter.local_bank_account_id:number', SELF.BANK_ACCOUNTS, title_key='displayable_name', with_empty=0, class='wi-wide') %]</td>
+      </tr>
+      <tr>
+       <th>[% 'From' | $T8 %]</th>
+       <td><span class="wi-date">[% L.date_tag('filter.fromdate:date::ge') %]</span></td>
+      </tr>
+      <tr>
+       <th>[% 'to (date)' | $T8 %]</th>
+       <td><span class="wi-date">[% L.date_tag('filter.todate:date::le') %]</span></td>
+      </tr>
+      <tr>
+       <th>[% 'Cleared/uncleared only' | $T8 %]</th>
+       <td>[% L.select_tag('filter.cleared:eq_ignore_empty', SELF.cleared, value_key = 'value', title_key = 'title', default = 'FALSE', class='wi-wide' ) %]</td>
+      </tr>
+      <tr>
+       <th>[% 'Show Stornos' | $T8 %]</th>
+       <td>[% L.checkbox_tag('filter.show_stornos', value='1') %]</td>
+      </tr>
+    </tbody>
+   </table>
+</div>
 </form>
