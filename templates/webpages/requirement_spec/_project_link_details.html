@@ -1,9 +1,10 @@
-[%- USE HTML -%][%- USE LxERP -%]
 <table>
  <tr class="listrow">
   <td>[% LxERP.t8("Project Number") %]:</td>
   <td>[% HTML.escape(requirement_spec.project.projectnumber) %]</td>
  </tr>
+[% USE HTML %]
+[% USE LxERP %]
 
  <tr class="listrow">
   <td>[% LxERP.t8("Description") %]:</td>

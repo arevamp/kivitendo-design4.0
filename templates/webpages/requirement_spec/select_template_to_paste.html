@@ -1,8 +1,10 @@
-[%- USE LxERP -%][%- USE HTML -%][%- USE L -%]
 [%- BLOCK text_blocks %]
  [%- IF blocks.size %]
      <li>
       [%- title %]:
+[% USE LxERP %]
+[% USE HTML %]
+[% USE L %]
       <ol>
        [%- FOREACH block = blocks %]
         <li>[%- HTML.escape(block.title) %]</li>
