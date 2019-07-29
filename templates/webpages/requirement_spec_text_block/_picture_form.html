@@ -1,4 +1,8 @@
-[%- USE LxERP -%][%- USE L -%][%- USE HTML -%][%- USE JavaScript -%][% USE Base64 %][% SET style="width: 500px" %]
+[% USE LxERP %]
+[% USE L %]
+[% USE HTML %]
+[% USE JavaScript %]
+[% USE Base64 %][% SET style="width: 500px" %]
 [% SET id_base = 'edit_text_block_picture_' _ (SELF.picture.id ? SELF.picture.id : 'new') %]
 <form method="post" id="[% id_base %]_form" method="POST" enctype="multipart/form-data">
  [% L.hidden_tag('form_prefix',                    id_base,         id=id_base _ '_form_prefix') %]
