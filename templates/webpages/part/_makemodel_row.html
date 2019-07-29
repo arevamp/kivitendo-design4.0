@@ -1,7 +1,3 @@
-[%- USE T8 %]
-[%- USE L %]
-[%- USE HTML %]
-[%- USE LxERP %]
         <tr class="listrow makemodel_row">
          <td style='display:none'>
          [% L.hidden_tag("makemodels[+].make", makemodel.make) %]
@@ -21,3 +17,8 @@
          <td>[% L.input_tag('makemodels[].lastcost_as_number' , makemodel.lastcost_as_number      , size=15 , class="reformat_number numeric") %]</td>
          <td>[% L.hidden_tag('makemodels[].lastupdate'         , makemodel.lastupdate.to_kivitendo) %][% makemodel.lastupdate.to_kivitendo | html %]</td>
         </tr>
+[% USE T8 %]
+[% USE L %]
+[% USE HTML %]
+[% USE LxERP %]
+
