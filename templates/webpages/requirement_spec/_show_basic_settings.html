@@ -1,4 +1,3 @@
-[%- USE HTML -%][%- USE LxERP -%]
 <div id="basic_settings" class="basic-settings-context-menu">
  <h2>
   [% IF SELF.requirement_spec.is_template %]
@@ -35,6 +34,8 @@
    <td>[% LxERP.t8("Hourly Rate") %]:</td>
    <td>[% HTML.escape(SELF.requirement_spec.hourly_rate_as_number) %]</td>
   </tr>
+[% USE HTML %]
+[% USE LxERP %]
 
   [% cvars = SELF.requirement_spec.cvars_by_config %]
 
