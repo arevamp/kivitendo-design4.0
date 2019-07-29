@@ -17,9 +17,9 @@
 
   [% L.hidden_tag("rs_order_id", SELF.rs_order.id, no_id=1) %]
 
-  <table style="width: 100%">
+  <table class="tbl-list">
    <thead>
-    <tr class="listheading">
+    <tr>
      <th>[% LxERP.t8("Part Number") %]</th>
      <th>[% LxERP.t8("Description") %]</th>
      <th align="right">[% LxERP.t8("Qty") %]</th>
@@ -30,7 +30,7 @@
 
    <tbody>
     [% FOREACH item = orderitems %]
-    <tr class="listrow">
+    <tr>
      [% L.hidden_tag("orderitems[+].id", item.item.id, no_id=1) %]
      <td>[% HTML.escape(item.item.part.partnumber) %]</td>
      <td>[% HTML.escape(item.item.description_as_stripped_html) %]</td>
