@@ -1,4 +1,5 @@
-[%- USE T8 %][%- USE HTML %]
+[% USE T8 %]
+[% USE HTML %]
 
 <tr id='business_info_row' [%- IF !SELF.order.customervendor.business_id %]style='display:none'[%- END %]>
   <th align="right">[%- IF SELF.cv == 'customer' -%]
