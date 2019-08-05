@@ -1,4 +1,3 @@
-[%- USE HTML %][%- USE LxERP -%][%- USE L -%]
 [%- IF ok %]
 
  <p class="message_ok">[% LxERP.t8('The connection to the shop was established successfully.') %]</p>
@@ -15,6 +14,9 @@
 
 [%- END %]
 
+[% USE HTML %]
+[% USE LxERP %]
+[% USE L %]
 <div>
  <a href="#" onclick="$('#test_shop_connection_window').dialog('close');">[% LxERP.t8("Close Window") %]</a>
 </div>
