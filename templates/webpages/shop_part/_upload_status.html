@@ -8,46 +8,59 @@
 
 [% L.hidden_tag('', job.id, id="smu_job_id") %]
 
-JOBID: [% job.id %] <p>
- [% LxERP.t8("This status output will be refreshed every five seconds.") %]
-</p>
 <p>
- <table>
-  <tr>
-   <th valign="top" align="left">[% LxERP.t8("Current status:") %]</th>
-   <td valign="top">
-    [% IF !data.status %]
-     [% LxERP.t8("waiting for job to be started") %]
-    [% ELSIF data.status == 1 %]
-     [% LxERP.t8("Uploading Data") %]
-    [% ELSE %]
-     [% LxERP.t8("Done.") %]
-    [% END %]
-   </td>
-  </tr>
-  <tr>
-   <th valign="top" align="left">[% LxERP.t8("Number of data uploaded:") %]</th>
-   <td valign="top">[% IF data.status > 0 %][% HTML.escape(data.num_uploaded) %] / [% HTML.escape(data.shop_part_record_ids.size) %][% ELSE %]–[% END %]</td>
-  </tr>
-
-  <tr>
-   <th valign="top" align="left">[% LxERP.t8("Conversion:") %]</th>
-   <td valign="top">
-  –
-    <table>
-     <tr class="listheader">
-      <th>[% LxERP.t8("Part")       %]</th>
-      <th>[% LxERP.t8("Partnumber") %]</th>
-      <th>[% LxERP.t8("Message")    %]</th>
-     </tr>
-
- [% FOREACH message = data.conversion %]
-     <tr>
-      <td valign="top">[% HTML.escape(message.id)      %]</td>
-      <td valign="top">[% HTML.escape(message.number)  %]</td>
-      <td valign="top">[% HTML.escape(message.message) %]</td>
-     </tr>
- [% END %]
-    </table>
- </table>
+  JOBID: [% job.id %]<br>
+  [% LxERP.t8("This status output will be refreshed every five seconds.") %]
 </p>
+
+<table class="tbl-horizontal">
+  <tbody>
+    <tr>
+      <th>[% LxERP.t8("Current status:") %]</th>
+      <td>
+        [% IF !data.status %]
+          [% LxERP.t8("waiting for job to be started") %]
+        [% ELSIF data.status == 1 %]
+          [% LxERP.t8("Uploading Data") %]
+        [% ELSE %]
+          [% LxERP.t8("Done.") %]
+        [% END %]
+      </td>
+    </tr>
+    <tr>
+      <th>[% LxERP.t8("Number of data uploaded:") %]</th>
+      <td>
+        [% IF data.status > 0 %]
+          [% HTML.escape(data.num_uploaded) %] / [% HTML.escape(data.shop_part_record_ids.size) %]
+        [% ELSE %]
+          –
+        [% END %]
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+
+
+<table class="tbl-list">
+  <caption>[% LxERP.t8("Conversion:") %]</caption>
+  <thead>
+    <tr>
+      <th>[% LxERP.t8("Part") %]</th>
+      <th>[% LxERP.t8("Partnumber") %]</th>
+      <th>[% LxERP.t8("Message") %]</th>
+    </tr>
+  </thead>
+  <tbody>
+    [% FOREACH message = data.conversion %]
+    <tr>
+      <td>[% HTML.escape(message.id) %]</td>
+      <td>[% HTML.escape(message.number) %]</td>
+      <td >[% HTML.escape(message.message) %]</td>
+    </tr>
+    [% END %]
+  </tbody>
+</table>
+
+
+
