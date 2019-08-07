@@ -1,14 +1,15 @@
-<table width="100%" id="images_list">
 [% USE HTML %]
 [% USE L %]
 [% USE P %]
 [% USE LxERP %]
 [% USE T8 %]
 [% USE Base64 %]
+
+<table class="tbl-list" id="images_list">
   <thead>
-    <tr class="listheading">
-      <th width="10px"><img src="image/updown.png" alt="[%- LxERP.t8('reorder item') %]" class="dragdrop"></th>
-      <th width="70px"></th>
+    <tr>
+      <th><img src="image/updown.png" alt="[% LxERP.t8('reorder item') %]" class="dragdrop"></th>
+      <th></th>
       <th>[% 'Title'          | $T8 %]</th>
       <th>[% 'Description'    | $T8 %]</th>
       <th>[% 'Filename'       | $T8 %]</th>
@@ -17,10 +18,10 @@
     </tr>
   </thead>
   <tbody>
-   [%-  FOREACH img = IMAGES %]
+   [% FOREACH img = IMAGES %]
     <tr class="listrow" id="image_id_[%  img.id %]">
-      <td><img src="image/updown.png" alt="[%- LxERP.t8('reorder item') %]" class="dragdrop"></td>
-      <td width="70px"><img src="data:[%  img.thumbnail_content_type %];base64,[%  img.thumbnail_content.encode_base64 %]" alt="[%  img.file.title %]"></td>
+      <td><img src="image/updown.png" alt="[% LxERP.t8('reorder item') %]" class="dragdrop"></td>
+      <td><img src="data:[%  img.thumbnail_content_type %];base64,[%  img.thumbnail_content.encode_base64 %]" alt="[%  img.file.title %]"></td>
       <td>[% HTML.escape(img.file.title)       %]</td>
       <td>[% HTML.escape(img.file.description) %]</td>
       <td>[% HTML.escape(img.file.file_name)   %]</td>
@@ -32,6 +33,4 @@
 </table>
 
 [% L.sortable_element('#images_list tbody', url=SELF.url_for(action='reorder'), with='image_id') %]
-<p>
-[% L.button_tag("kivi.ShopPart.imageUpload(" _ FORM.id _ ",'shop_image','image', '',0);", LxERP.t8('File upload') ) %]
-</p>
+<div class="buttons">[% L.button_tag("kivi.ShopPart.imageUpload(" _ FORM.id _ ",'shop_image','image', '',0);", LxERP.t8('File upload') ) %]</div>
