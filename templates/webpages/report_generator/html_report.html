@@ -1,5 +1,3 @@
-[%- USE T8 %]
-[%- USE HTML %]
  <style type="text/css">
   <!--
 .top_border {
@@ -40,6 +38,9 @@
      >
       [%- IF col.raw_header_data %]
        [% col.raw_header_data %]
+[% USE T8 %]
+[% USE HTML %]
+
       [% ELSE %]
        [%- IF col.link -%]<a class="[% col.link_class ? col.link_class : 'report-generator-header-link' %]" href="[% HTML.escape(col.link) %]">[%- END -%]
        [%- col.text -%]
