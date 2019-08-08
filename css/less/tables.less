@@ -1,66 +1,75 @@
-//  ----------------------------------------------------------------------------
+/* ------------------------------------------------------------- */
+/* tables (tables.less)                                          */
+/* ------------------------------------------------------------- */
+
+//----------------------------------------------------------------------------
 //
-//  TABLES
+//  tables
 //
-//  ----------------------------------------------------------------------------
-//  DESCRIPTION: for all kind of tables in #content
+//----------------------------------------------------------------------------
+//  description: for all kind of tables in #content
 //
-//  CONTENTS:
-//  - MIXINS
+//  contents:
 //  - TABLE
 //  - CELLS (TD & TH)
-//    - Data Format
-//    - Images within Cells
+//    - Data format
+//    - Headings (within TD & TH)
+//    - Links (within TD & TH)
+//    - Images within cells
+//    - Description & labels within cells
 //    - TD
 //    - TH
-//    - TR (Table Row)
-//  - THEAD
-//  - TBODY
-//  - TFOOT
-//  - CAPTION
-//  - HEADINGS (Print Style)
-//  - COLGROUP & COLS
-//    - Dimensions for Table Colums (COL)
-//  - TABLE LIST
-//  - TABLE PLAIN
-//  - TABLE HORIZONTAL
-//  - TABLE DIALOG
-//  - TABLE CLASS TEST
-//  - DIMENSIONS (Classes) FOR TABLES
-//  - LINKS
-//  - HEADINGS
-//  - SUBTOTALS
+//    - TR (Table row)
+//  - thead
+//  - tbody
+//  - tfoot
+//  - caption
+//  - headings (print style)
+//  - colgroup & cols
+//    - dimensions for table colums (col)
+//  - table list
+//  - table plain
+//  - table horizontal
+//  - table dialog
+//  - table class test
+//  - dimensions (classes) for tables
+//  - links
+//  - headings
+//  - subtotals
 //
-//  - TABLES in Requirement Specs
-//  - TABLES with DIVS
-//  - LIST WITH PARAGRAPHS
-//  ----------------------------------------------------------------------------
+//  - tables in requirement specs
+//  - tables with divs
+//  - list with paragraphs
+//----------------------------------------------------------------------------
 
 
-//  --------------------------------------
-//  TABLE
-//  --------------------------------------
 
+// ----------------------------------------------------------------------------
+//
+// TABLE
+//
+// ----------------------------------------------------------------------------
+//
 table {
-  font-size: @font-size-base ;
+  //font-size: @font-size-base ;
   table-layout: auto ;
   border-spacing: 1px ;
 
 
-  //  --------------------------------------
+  //--------------------------------------
   //  CELLS (TD & TH)
-  //  --------------------------------------
+  //--------------------------------------
   td,
   th {
     text-align: left ;
     vertical-align: top ;
-    font-size: @font-size-smaller ;
+    //font-size: @font-size-smaller ;
     font-weight: normal ;
 
 
-    //  --------------
-    //  Data format
-    //
+    // -----------------------
+    //  Data Format
+    // -----------------------
     &.right             { text-align:      right  !important ; }
     &.center            { text-align:      center !important ;
       input             { float:           none   !important ; }
@@ -73,18 +82,36 @@ table {
     &.img               { text-align:      center !important ; }
     &.top               { vertical-align:  top    !important ; }
     // see also div.longdesc in main.css
-    // PENDENT: Mixin und Variablen erstellen
+    // PENDENT: mixin und variablen erstellen
     &.long-desc,
     &.long-description,
     &.longdesc,
-    &.longdescription {
+    &.longdescription,
+    div.description {
       font-size: 80% ;
-      color: @t-cell-head-text ;
+      color: @t-cell-label-text ;
     }
     &.highlight { background-color: @t-row-zebra-bg-highlight ; }
-    //  --------------
-    //  Images within Cells
-    //
+
+
+    // -----------------------
+    //  Headings (within TD & TH)
+    // -----------------------
+    // PENDENT: ueberpruefen
+    h3,
+    h4 {
+      margin: 0 !important ;
+      padding: 0.8em 0 0.2em 0 !important ;
+    }
+
+    // -----------------------
+    //  Links (within TD & TH)
+    // -----------------------
+    &> a { display: block ; }
+
+    // -----------------------
+    //  Images Within Cells
+    // -----------------------
     img {
       display:        inline ;
       vertical-align: top    ;
@@ -94,13 +121,10 @@ table {
     &~a img,
     &~img { float:    right  ; }
 
-
-    //  --------------
-    //  Description & labels within cells
-    //
+    // -----------------------
+    //  Description & Labels Within Cells
+    // -----------------------
     div.description {
-      font-size: 90% ;
-      color:     @t-cell-head-text ;
       float:     none ;
       clear:     both ;
     }
@@ -110,11 +134,11 @@ table {
     }
 
     span {
-      // simulates TH in horizontal tables
+      // simulates th in horizontal tables
       &.label {
         display:              block ;
         padding:              0 0 0.5em 0 ;
-        color:                @brand-data-label-color ;
+        color:                @t-cell-th-text-color ;
       }
       &.below {
         //clear: both ;
@@ -134,11 +158,15 @@ table {
       }
     }
 
+    // -----------------------
+    //  Form Element Within Cells
+    // -----------------------
 
+    // if a .below class follows directly after a td/th
+    & + input.below {
+      margin: 0 !important;
+    }
 
-    //  --------------
-    //  Form Element within Cells
-    //
     input,
     select {
       //float: left ;
@@ -147,9 +175,11 @@ table {
         clear: left ;
         float: none ;
         overflow: hidden ;
-        margin: 0.3em 0 0 0 !important ;
+        // PENDENT: anschauen! vor allem button customer information -> Lieferadresse
+        margin: 0.3em 0 0 0 ;
       }
     }
+
     textarea {
       margin: -0.14em -0.0em ;
     }
@@ -158,31 +188,31 @@ table {
   //  /th, td
 
 
-  //  --------------
-  //  TH (Table Header Cells)
-  //
+  //--------------------------------------
+  //  TH (TABLE HEADER CELLS)
+  //--------------------------------------
   th {
     white-space: normal !important ;
   }
 
-  //  --------------
-  //  TD (Table Data)
-  //
+  //--------------------------------------
+  //  TD (TABLE DATA)
+  //--------------------------------------
   td {
-    color: @gray-mediumdark;
+    color: @t-cell-text-color;
   }
 
 
-  //  --------------
-  //  TR
-  //
+  //--------------------------------------
+  //  TR (TABLE ROW)
+  //--------------------------------------
   tr {
-    //  if header-cell is in the same row as a caption-header-cell (TH.CAPTION)
+    //  if header-cell is in the same row as a caption-header-cell (th.caption)
     &.header-caption th {
       vertical-align: bottom ;
     }
     &.separator {
-      // Standard separator is below
+      // standard separator is below
       th, td {
         padding-bottom: 3.0em ;
       }
@@ -198,15 +228,58 @@ table {
         }
       }
     }
+
+    // -----------------------
+    //  SUB-TOTALS
+    // -----------------------
+    //  PENDENT: ggf. obsolete
+    &.total-sub {
+      height: 2.0em ;
+
+      td {
+        border-top: 1px solid @table-border-color ;
+        border-bottom: 2px solid @table-border-color ;
+        font-weight: bold ;
+        color: @t-cell-text-color ;
+      }
+    }
+
+    // -----------------------
+    //  HEADINGS (alternativ version [print style])
+    // -----------------------
+    // PENDENT: ueberpruefen
+    &.heading th {
+      font-size: 120% ;
+      border-top: 1px @table-border-color solid ;
+    }
+
+
+  } // /tr
+
+
+
+  //--------------------------------------
+  //  CAPTION
+  //--------------------------------------
+
+  //  this must be placed here
+  //  otherwise th.caption will be overridden if placed above
+  caption,
+  th.caption {
+    .mx-h3-caption ; //   mixin
+    white-space:       nowrap ;
+    //  addition with smaller font-size
+    small { font-size : @font-size-small ; }
   }
 
 
-  //  --------------------------------------
+
+  //--------------------------------------
   //  THEAD
-  //  --------------------------------------
+  //--------------------------------------
   thead {
     th {
-      .mx-thead-th ; //  Mixin
+      .mx-thead-th ; //  mixin
 
       a {
         img {
@@ -219,22 +292,22 @@ table {
   }
 
 
-  //  --------------------------------------
+  //--------------------------------------
   //  TBODY
-  //  --------------------------------------
+  //--------------------------------------
 
   tbody {
     tr {
-      //  common cells within TBODY
+      //  common cells within tbody
       td {  }
       th {  }
     }
   }
 
 
-  //  --------------------------------------
+  //--------------------------------------
   //  TFOOT
-  //  --------------------------------------
+  //--------------------------------------
   tfoot {
     tr {
       th,
@@ -242,6 +315,8 @@ table {
         vertical-align: middle ;
         border-bottom: @table-border-color 2px solid ;
         height: 1.8em ;
+        padding-top: 0.6em !important;
+        padding-bottom: 0.6em !important;
       }
       td {
         font-weight: bold ;
@@ -251,7 +326,7 @@ table {
         font-weight: normal ;
         color: @t-cell-foot-text ;
        }
-      //  if more than one row in TFOOT first row has other properties
+      //  if more than one row in tfoot first row has other properties
       &:first {
         td,
         th { border-top: @table-border-color 2px solid ; }
@@ -265,7 +340,7 @@ table {
         }
       }
     } //  /tr
-    // This is just for expecption (eg. form in price-rules)
+    // this is just for expecption (eg. form in price-rules)
     // tfoot.blank
     &.blank {
       tr {
@@ -279,54 +354,27 @@ table {
         }
       }
     } // /tfoot.blank
-  } //  /TFOOT
+  } //  /tfoot
 
 
-  //  --------------------------------------
-  //  CAPTION
-  //  --------------------------------------
 
-  //  this must be placed here
-  //  otherwise th.caption will be overridden if placed above
-  caption,
-  th.caption {
-    background-color:  @table-caption-bg ;
-    white-space:       nowrap ;
-    .mx-h3-caption ; //   Mixin
-    //  Addition with smaller font-size
-    small { font-size : @font-size-small ; }
-    margin: 0.1em 0 0.4em 0 ;
-  }
-
-
-  //  --------------------------------------
-  //  HEADINGS
-  //  --------------------------------------
-
-  //  alternativ Version (Print style)
-  tr.heading th {
-    font-size: 120% ;
-    border-top: 1px @table-border-color solid ;
-  }
-
-
-  //  --------------------------------------
+  //--------------------------------------
   //  COLGROUP & COLS
-  //  --------------------------------------
+  //--------------------------------------
 
   colgroup {
 
-    //  Table Columns
+    //  table columns
     //  only for background-color and width
-    //   PENDENT: funktioniert Text-Ausrichtung?
+    //  PENDENT: funktioniert text-ausrichtung?
     col {
       &.right     { text-align: right  ; }
       &.center    { text-align: center ; }
       &.long-desc { font-size:  70%    ; }
 
-      //  --------------
-      //  Width of Columns (Dimensions)
-      //
+      // -----------------------
+      //  width of columns (dimensions)
+      // -----------------------
       &.wi-smallest    { width: (@tcol-wi-smallest    ) ; }
       &.wi-verysmall   { width: (@tcol-wi-verysmall   ) ; }
       &.wi-small       { width: (@tcol-wi-small       ) ; }
@@ -341,12 +389,261 @@ table {
 
   }
 
-  //  --------------------------------------
-  //  TABLE LIST (vertical)
-  //  --------------------------------------
-  //  Table with Zebra Effect
-  //  This table has at least a THEAD and a TBODY
-  //  Optional a TFOOT for Totals
+
+
+
+  //--------------------------------------
+  //  STANDARD KIVITENDO TABLES
+  //--------------------------------------
+
+  &.tbl-horizontal,
+  &.tbl-plain,
+  &.tbl-list,
+  &.tbl-list-plain {
+    margin-bottom: 0.6em ;
+    border-collapse: collapse ;
+    border: none ;
+
+    tr td {
+      &>span {
+        //padding: 0.3em 0.3em 0.6em 0.3em ;
+        padding: 0.3em 0.3em 0.6em 0 ;
+      }
+    }
+  }
+
+
+
+
+
+  //--------------------------------------
+  //  TABLE HORIZONTAL
+  //--------------------------------------
+
+  &.tbl-horizontal {
+
+    th,
+    td {
+      background: none ;
+      padding-top: 0.3em ;
+      padding-right: 0.2em ;
+      padding-bottom: 0.2em ;
+      padding-left: 0.3em ;
+
+      // adjust form elements in this table type
+      &>input[type="checkbox"],
+      &>input[type="radio"] {
+        margin: 0.2em 0.3em 0 0 !important ;
+      }
+      &>input,
+      &>select {
+        margin: -0.3em 1px 0 0 ;
+        // if there are further form elements within a table cell separated with a linebreak br
+        &.addition { margin-top: 0.3em !important ; }
+      }
+
+      // in some cases labels can be placed within the same cell as the form element
+      // best is to have it above the element
+      // PENDENT: plazierung in less-dateien, ggf. ueberfluessig
+      .label-above {
+        display: block ;
+        clear: both ;
+        overflow: hidden ;
+        margin-top: -0.5em ; // pendent: ansehen
+        //height: 1.8em ; // pendent: besser loesen, gefaellt mir nicht
+      }
+      &.single-col {
+        padding-top: 0 ;
+        padding-bottom: 0 ;
+      }
+
+      // form labels within table cells
+      label {
+        //color: @t-cell-th-text-color ;
+        //cursor: pointer ;
+      }
+
+    } // /td /th
+
+    th {
+      color: @t-cell-th-text-color ;
+      //vertical-align: top ;
+      & > a {
+        &:link,
+        &:visited {
+          text-decoration:   none ;
+          color:             @t-cell-label-text-accent ;
+        }
+        &:hover,
+        &:active {
+          text-decoration:   underline ;
+        }
+      }
+      h4{
+        margin: 0 ;
+        padding: 0 ;
+      }
+    } // /th
+
+    td {
+      // 2nd to x column with plain data
+      // no form elements inside the cell
+      //color: @t-cell-data-text;
+      &.data {
+        //padding: 0.4363em 0.3em 0.4363em @padding-databoxes-left ;
+      }
+
+      & > span {
+        padding: 0 ;
+        margin:  0 ;
+        &.wi-smallest    { width: (@input-wi-smallest    ) ; }
+        &.wi-verysmall   { width: (@input-wi-verysmall   ) ; }
+        &.wi-small       { width: (@input-wi-small       ) ; }
+        &.wi-mediumsmall { width: (@input-wi-mediumsmall ) ; }
+        &.wi-normal      { width: (@input-wi-normal      ) ; }
+        &.wi-lightwide   { width: (@input-wi-lightwide   ) ; }
+        &.wi-wide        { width: (@input-wi-wide        ) ; }
+        &.wi-wider       { width: (@input-wi-wider       ) !important ; }
+        &.wi-verywide    { width: (@input-wi-verywide    ) ; }
+
+        &.data,
+        &.plain-data {
+          //padding:        0.1em 0.3em 0.1em @padding-databoxes-left ;
+          margin-top:    -0.2em ;
+          display:        block ;
+        }
+        &.label {
+          color:          @t-cell-th-text-color ;
+          padding:        0 0.3em 0.5em 0 !important ;
+          //display:        block ;
+        }
+        &.button-inline {
+          margin:         0 !important ;
+          padding:        0.3em 0 0 0 ;
+          clear:          both ;
+          display:        inline-block ;
+          vertical-align: middle ;
+
+          input.button,
+          input[type="button"],
+          button,
+          a.button {
+            float:        left ;
+            margin:       0 0.3em 0 0 !important ;
+          }
+        }
+
+        // special select-element
+        &.customer_vendor_picker {
+          padding:         0 !important ;
+          margin:          0 !important ;
+          display:        inline-block ;
+        }
+        &.project_picker {
+          margin:        -0.3em 0 0 0 ;
+        }
+        // switch form element
+        &.switch-form-element {
+          padding:        0 !important ;
+          margin:        -0.3em 1px 0 0 !important ;
+        }
+      } // / > span
+
+      &>div.data { padding: 0.1363em 0 ; }
+      // pendent: braucht es das?
+      // pendent: span nicht td
+      .plus1 {
+        display: inline-block ;
+        padding: 0 ;
+      }
+      & > .condensed {
+        padding: 0 !important ;
+        margin: 0 ;
+        input, select {
+          margin-top: 0.2em ;
+        }
+      }
+
+      &>span.wi-small-wide { margin: 0 24px 0 0 ; display: block ; }
+    }
+
+    // exception: thead in horizontal table
+    // Caption!
+    thead th {
+//      padding: 0.5em 0.4em 0.5em 0.3em ;
+//      font-weight: normal ;
+//      font-size: @h3-size ;
+//      color: @brand-heading-color ;
+      .mx-h3-caption ;
+      border: none ;
+    }
+
+
+    // zebra effect
+    // pendent: klasse .zebra hier wahrscheinlich kaum eingsetzt
+    &.zebra {
+      tbody {
+        tr:nth-child(odd){
+          background-color: @t-row-zebra-bg-odd ;
+          th { background-color: @t-row-zebra-bg-odd  ; }
+        }
+        tr:nth-child(even){
+          background-color: @t-row-zebra-bg-even ;
+          th { background-color: @t-row-zebra-bg-even ; }
+        }
+      }
+    } // /.zebra
+
+    // checkered (bordered) table
+    &.checkered {
+      border-collapse: collapse ;
+      tbody {
+        tr {
+          background-color: @table-bg-accent ;
+          //th { background-color: #fff ; }
+          td, th {
+            border-color:   @table-border-color ;
+            border-width:   1px ;
+            border-style:   solid ;
+            padding:         0.3em 0.6em ;
+          }
+        }
+      } // /tbody
+    } // /.checkered
+
+    //PENDENT: ueberpruefen
+    &.expanded {
+      th.caption { padding-top: 1.2em ; padding-bottom: 0.6em ; }
+    }
+
+  } // /.tbl-horizontal
+
+
+
+
+
+  //--------------------------------------
+  //  LIST TABLES
+  //--------------------------------------
+
+  &.tbl-plain,
+  &.tbl-list,
+  &.tbl-list-plain {
+    tbody td a {
+      display: inline-block !important ;
+    }
+  }
+
+
+
+
+
+  //--------------------------------------
+  //  TABLE LIST (VERTICAL)
+  //--------------------------------------
+  //  table with zebra effect
+  //  this table has at least a thead and a tbody
+  //  optional a tfoot for totals
   &.tbl-list {
     border-spacing:       1px ;
     border-collapse:      collapse ;
@@ -368,31 +665,41 @@ table {
     & > tfoot > tr td:first-child {
         padding-left:     0.8em !important ;
     }
+
     thead {
+      display: table-header-group;
+
       tr {
-        height:           2.2em ;
+        height:  2.2em ;
         th {
-          .mx-thead-th ; // Mixin
-          &.nowrap { white-space: nowrap  !important ; }
+          .mx-thead-th ; // mixin
+          &.nowrap { white-space: nowrap !important ; }
 
           & > a {
             display: block ;
-            //margin-top: -2px ;
             &:link,
             &:visited {
-              color: @t-cell-head-text-accent ;
-              text-decoration: none ;
+              color:              @t-cell-head-text-accent ;
+              text-decoration:    none ;
             }
             &:hover {
-              color: @t-cell-head-text-accent ;
-              text-decoration: underline ;
+              color:              @t-cell-head-text-accent ;
+              text-decoration:    underline ;
             }
             &:active,
             &:focus {
-              color: @t-cell-head-text-accent ;
-              text-decoration: underline ;
+              color:              @t-cell-head-text-accent ;
+              text-decoration:    underline ;
             }
           } // /a
+          label {
+              color:              @t-cell-head-text-accent ;
+              //text-decoration:  none ;
+              &:hover {
+                //color:          @t-cell-head-text-accent ;
+                text-decoration:  underline ;
+              }
+          }
         } // /th
       } // tr
       &.links-condensed {
@@ -401,23 +708,32 @@ table {
     } // /thead
 
     tbody {
-      border-bottom:       @table-border-color 1px solid ;
+      border-bottom:        @table-border-color 1px solid ;
+      display:              table-row-group;
+
       // zebra effect
-      tr:nth-child(odd){   background-color:   @t-row-zebra-bg-odd  ; }
-      tr:nth-child(even){  background-color:   @t-row-zebra-bg-even ; }
-      // PENDENT: funktioniert nicht
+      tr:nth-child(odd) {   background-color:   @t-row-zebra-bg-odd  ; }
+      tr:nth-child(even){   background-color:   @t-row-zebra-bg-even ; }
+      // pendent: funktioniert nicht
       & > tr:last-child > td {
-        border-bottom:   1px @table-border-color solid !important ;
-        //padding-left:    0.8em !important;
+        border-bottom:      1px @table-border-color solid !important ;
+        //padding-left:     0.8em !important;
       }
       tr:hover {            background-color:   @t-row-zebra-bg-hover ; }
-      tr.listrow_error {    background-color:   @brand-error-bg !important          ; }
-      td {
-        color: @brand-darkest ;
+      tr.listrow_error {    background-color:   @brand-error-bg !important ; }
+
+      td, th {
+        color:              @table-list-zebra-text-color ;
+        a,
+        a:link,
+        a:visited { color:  @table-list-zebra-link-color ;
+        }
       }
     } // /tbody
 
     tfoot {
+      display: table-footer-group;
+
       tr {
         th,
         td { }
@@ -429,16 +745,20 @@ table {
 
 
 
-  //  --------------------------------------
-  //  TABLE PLAIN
-  //  --------------------------------------
 
-  //  Simple Table without Zebra Effect
+  //--------------------------------------
+  //  TABLE PLAIN
+  //--------------------------------------
+  //  simple table without zebra effect
 
   &.tbl-list-plain,
   &.tbl-plain {
     caption,
-    th.caption { font-size: 80% !important ; }
+    th.caption {
+      font-size:  120% !important ;
+      margin:     0;
+      padding:    0.6em 0 0.2em 0;
+    }
 
     thead,
     tbody {
@@ -461,8 +781,7 @@ table {
     &.condensed {
       caption { padding-left: 0 ; }
       td, th {
-        padding-right: 7px ;
-        padding-left:  1px ;
+        padding: 0.1em 7px 0.1em 1px ;
       }
     }
     // liniert
@@ -494,221 +813,12 @@ table {
 
 
 
-  //  --------------------------------------
-  //  TABLE HORIZONTAL
-  //  --------------------------------------
 
-  &.tbl-horizontal {
-
-    th,
-    td {
-      background: none ;
-      padding-top: 0.3em ;
-      padding-right: 0.2em ;
-      padding-bottom: 0.2em ;
-      padding-left: 0.3em ;
-
-      // Adjust Form Elements in this table type
-      &>input[type="checkbox"],
-      &>input[type="radio"] {
-        margin: 0.2em 0.3em 0 0 !important ;
-      }
-      &>input,
-      &>select {
-        margin: -0.3em 1px 0 0 ;
-        // if there are further form elements within a table cell separated with a Linebreak BR
-        &.addition { margin-top: 0.3em !important ; }
-      }
-
-      // In some cases labels can be placed within the same cell as the form element
-      // best is to have it above the element
-      // PENDENT: Plazierung in LESS-Dateien
-      .label-above {
-        display: block ;
-        clear: both ;
-        overflow: hidden ;
-        margin-top: -0.5em ; // PENDENT: ansehen
-        //height: 1.8em ; // PENDENT: besser loesen, gefaellt mir nicht
-      }
-      &.single-col {
-        padding-top: 0 ;
-        padding-bottom: 0 ;
-      }
-    } // /td /th
-
-    th {
-      color: @brand-data-label-color ;
-      vertical-align: top ;
-      & > a {
-        &:link,
-        &:visited {
-          text-decoration:   none ;
-          color:             @t-cell-label-text-accent ;
-        }
-        &:hover,
-        &:active {
-          text-decoration:   underline ;
-        }
-      }
-      h4{
-        margin: 0 ;
-        padding: 0 ;
-      }
-    } // /th
-
-    td {
-      // 2nd to x column with plain data
-      // no form elements inside the cell
-      color: @t-cell-data-text;
-      &.data {
-        padding: 0.4363em 0.3em 0.4363em 0.3em ;
-      }
-
-      & > span {
-        padding: 0 ;
-        margin:  0 ;
-        &.wi-smallest    { width: (@input-wi-smallest    ) ; }
-        &.wi-verysmall   { width: (@input-wi-verysmall   ) ; }
-        &.wi-small       { width: (@input-wi-small       ) ; }
-        &.wi-mediumsmall { width: (@input-wi-mediumsmall ) ; }
-        &.wi-normal      { width: (@input-wi-normal      ) ; }
-        &.wi-lightwide   { width: (@input-wi-lightwide   ) ; }
-        &.wi-wide        { width: (@input-wi-wide        ) ; }
-        &.wi-wider       { width: (@input-wi-wider       ) !important ; }
-        &.wi-verywide    { width: (@input-wi-verywide    ) ; }
-
-        &.data,
-        &.plain-data {
-          padding:        0.1em 0.3em 0.1em 0.2em ;
-          margin-top:    -0.2em ;
-          display:        block ;
-        }
-        &.label {
-          padding:        0 0.3em 0.5em 0 !important ;
-          display:        block ;
-        }
-        &.button-inline {
-          margin:         0 !important ;
-          padding:        0.3em 0 0 0 ;
-          clear:          both ;
-          display:        inline-block ;
-          vertical-align: middle ;
-
-          input.button,
-          input[type="button"],
-          button,
-          a.button {
-            float:        left ;
-            margin:       0 0.3em 0 0 !important ;
-          }
-        }
-
-        // Special Select-Element
-        &.customer_vendor_picker {
-          padding-left:   0 !important ;
-          display:        inline-block ;
-        }
-        &.project_picker {
-          margin:        -0.3em 0 0 0 ;
-        }
-        // Switch form element
-        &.switch-form-element {
-          padding:        0 !important ;
-          margin:        -0.3em 1px 0 0 !important ;
-        }
-      } // / > span
-
-      &>div.data { padding: 0.1363em 0 ; }
-      // PENDENT: braucht es das?
-      // PENDENT: span nicht td
-      .plus1 {
-        display: inline-block ;
-        padding: 0 ;
-      }
-      & > .condensed {
-        padding: 0 !important ;
-        margin: 0 ;
-        input, select {
-          margin-top: 0.2em ;
-        }
-      }
-
-      &>span.wi-small-wide { margin: 0 24px 0 0 ; display: block ; }
-    }
-
-    // Exception: Thead in horizontal table
-    thead th {
-      padding: 0.5em 0.4em 0.5em 0.3em ;
-      font-weight: bold ;
-      color: @t-cell-head-text ;
-      border: none ;
-    }
-
-
-    // Zebra effect
-    // PENDENT: Klasse .zebra wahrscheinlich kaum eingsetzt
-    &.zebra {
-      tbody {
-        tr:nth-child(odd){
-          background-color: @gray-lighter ;
-          th { background-color: #fff ; }
-        }
-        tr:nth-child(even){
-          background-color: @gray-verylight ;
-          th { background-color: #fff ; }
-        }
-      }
-    } // /.zebra
-
-    // checkered (bordered) table
-    &.checkered {
-      border-collapse: collapse ;
-      tbody {
-        tr {
-          background-color: #F3F3F3 ;
-          //th { background-color: #fff ; }
-          td, th {
-            border-color: @table-border-color ;
-            border-width: 1px ;
-            border-style: solid ;
-            padding: 0.3em 0.6em ;
-          }
-        }
-      }
-    } // /.zebra
-
-  } // /.tbl-horizontal
-
-
-
-  //  --------------------------------------
-  //  STANDARD KIVITENDO TABLES
-  //  --------------------------------------
-  &.tbl-horizontal,
-  &.tbl-plain,
-  &.tbl-list {
-    margin-bottom: 0.6em ;
-    border-collapse: collapse ;
-    border: none ;
-
-    tr td {
-      &>span {
-        padding: 0.3em 0.3em 0.6em 0.3em ;
-      }
-    }
-  }
-
-  &.tbl-horizontal.expanded {
-    th.caption { padding-top: 1.2em ; padding-bottom: 0.6em ; }
-  }
-
-
-
-  //  --------------------------------------
+  //--------------------------------------
   //  TABLE DIALOG
-  //  --------------------------------------
+  //--------------------------------------
 
-  //  Table within DIV-Dialogs
+  //  table within div-dialogs
   &.tbl-dialog {
     th,
     td {
@@ -722,36 +832,105 @@ table {
   }
 
 
-  //  --------------------------------------
+  //--------------------------------------
   //  CLEAR-TABLE WITH NO FLOATING
-  //  --------------------------------------
+  //--------------------------------------
   &.clear {
     float: none ;
     clear: both ;
   }
 
 
-  //  --------------------------------------
-  //  DIMENSIONS (Classes) FOR TABLES
-  //  --------------------------------------
 
-  &.width-full,
-  &.full-width,
-  &.wi-full { width: 100% ; }
+  //--------------------------------------
+  //  TABLE CLASS TEST
+  //--------------------------------------
+  //  use this class for reviewing your table html
 
-  //  moderate width with padding on the right side
-  &.width-moderate,
-  &.moderate-width,
-  &.wi-moderate {
-    width: auto ;
-    td,
+  &.test,
+  &.test-plain {
+
     th {
-      // PENDENT: vielleicht in Pixeln angeben, statt in EMs (siehe tbl-plain)
-      padding-left: 0.6em ;
-      padding-right: 1.2em ;
-    }
-  }
+      background-color: #b3b3b3 ;
+      color: @t-cell-text-color ;
+      font-weight: normal ;
 
+      &.caption {
+        background-color: #b3b3b3 ;
+      }
+    }
+    td {
+      background-color: #cfcdd2 ;
+
+      &.longdesc,
+      &.longdescription,
+      &.long-desc,
+      &.long-description {
+        border: 1px solid green !important ;
+      }
+    }
+
+    table {
+      border: 1px #0000ff solid ;
+      border-collapse: collapse ;
+
+      td, th {
+        border: 1px #c20d18 dotted !important ;
+      }
+    }
+
+  } // /.test
+
+  &.test {
+    //border: 1px @table-border-color solid ;
+    //background-color: #bfd2ad ;
+
+    th {
+      border: 1px @gray-dark solid !important ;
+      background-color: #b3b3b3 ;
+      color: #000 ;
+      font-weight: normal ;
+
+      &.caption {
+        background-color: @table-caption-bg ;
+        //border: 1px solid red !important ;
+      }
+    }
+    td {
+      border: 1px #000 solid ;
+      background-color: #cfcdd2 ;
+
+      &.longdesc,
+      &.longdescription,
+      &.long-desc,
+      &.long-description {
+        border: 1px solid green !important ;
+      }
+    }
+
+    table {
+      border: 2px #0000ff solid ;
+      border-collapse: collapse ;
+
+      td, th {
+        border: 1px #c20d18 dotted !important ;
+      }
+    }
+
+  } // /.test
+
+
+}
+//  /table
+
+
+
+//--------------------------------------
+// TABLE & COLS DIMENSIONS
+//--------------------------------------
+
+table,
+table colgroup col {
 
   &.wi-smallest    { width: @tcol-wi-smallest     ; }
   &.wi-verysmall   { width: @tcol-wi-verysmall    ; }
@@ -763,13 +942,11 @@ table {
   &.wi-wider       { width: @tcol-wi-wider        ; }
   &.wi-verywide    { width: @tcol-wi-verywide     ; }
 
-
-
   &.wi-small-small           { width: @tcol-wi-small + @tcol-wi-small ; }
   &.wi-small-mediumsmall     { width: @tcol-wi-small + @tcol-wi-mediumsmall ; }
   &.wi-small-normal          { width: @tcol-wi-small + @tcol-wi-normal ; }
   &.wi-small-lightwide       { width: @tcol-wi-small + @tcol-wi-lightwide ; }
-  // PENDENT: noch genauer anschauen, sollte eigentlich nur für horizontale Tabellen vorgesehen sein
+  // pendent: noch genauer anschauen, sollte eigentlich nur für horizontale tabellen vorgesehen sein
   &.wi-small-wide            { width: @tcol-wi-small + @tcol-wi-wide + ( @diff-input-select )  ; }
   //&.wi-small-wide            { width: 460px ; }
   &.wi-small-wider           { width: @tcol-wi-small + @tcol-wi-wider ; }
@@ -799,216 +976,33 @@ table {
   &.wi-lightwide-wider       { width: @tcol-wi-lightwide + @tcol-wi-wider ; }
   &.wi-lightwide-verywide    { width: @tcol-wi-lightwide + @tcol-wi-verywide ; }
 
-
-
-
-  //  --------------------------------------
-  //  LINKS (within TD & TH)
-  //  --------------------------------------
-
-  td > a,
-  th > a {
-    display: block ;
-  }
-
-
-
-  //  --------------------------------------
-  //  HEADINGS (within TD & TH)
-  //  --------------------------------------
-
-  td,
-  th {
-    h3,
-    h4 {
-      margin: 0 !important ;
-      padding: 0.8em 0 0.2em 0 !important ;
-    }
-    h4 {
-        //font-weight: normal ;
-    }
-  }
-
-
-
-
-  //  --------------------------------------
-  //  SUB-TOTALS
-  //  --------------------------------------
-
-  tr {
-
-    //  PENDENT: ggf. OBSOLETE
-    &.total-sub {
-      height: 2.0em ;
-
-      td {
-        border-top: 1px solid @table-border-color ;
-        border-bottom: 2px solid @table-border-color ;
-        font-weight: bold ;
-        color: @t-cell-text-color ;
-      }
-    }
-
-  } //  /tr
-
-
-
-  //  --------------------------------------
-  //  TABLE CLASS TEST
-  //  --------------------------------------
-  //  Use this class for reviewing your Table HTML
-
-  &.test,
-  &.test-plain {
-    //border: 1px @table-border-color solid ;
-    //background-color: #BFD2AD ;
-
-    th {
-      background-color: #B3B3B3 ;
-      color: @t-cell-text-color ;
-      font-weight: normal ;
-
-      &.caption {
-        background-color: #B3B3B3 ;
-      }
-    }
-    td {
-      background-color: #CFCDD2 ;
-
-      &.longdesc,
-      &.longdescription,
-      &.long-desc,
-      &.long-description {
-        border: 1px solid green !important ;
-      }
-    }
-
-    table {
-      border: 1px #0000FF solid ;
-      border-collapse: collapse ;
-
-      td, th {
-        border: 1px #C20D18 dotted !important ;
-      }
-    }
-
-  } // /.test
-
-  &.test {
-    //border: 1px @table-border-color solid ;
-    //background-color: #BFD2AD ;
-
-    th {
-      border: 1px @gray-mediumdark solid !important ;
-      background-color: #B3B3B3 ;
-      color: #000 ;
-      font-weight: normal ;
-
-      &.caption {
-        background-color: @table-caption-bg ;
-        //border: 1px solid red !important ;
-      }
-    }
-    td {
-      border: 1px #000 solid ;
-      background-color: #CFCDD2 ;
-
-      &.longdesc,
-      &.longdescription,
-      &.long-desc,
-      &.long-description {
-        border: 1px solid green !important ;
-      }
-    }
-
-    table {
-      border: 2px #0000FF solid ;
-      border-collapse: collapse ;
-
-      td, th {
-        border: 1px #C20D18 dotted !important ;
-      }
-    }
-
-  } // /.test
-
-
-
 }
-//  /table
 
+table {
+  &.width-full,
+  &.full-width,
+  &.wi-full { width: 100% ; }
 
-//
-// **********************************
-// TABLE & COLs DIMENSIONS
-// **********************************
-
-table,
-table colgroup col {
-
-  &.wi-smallest    { width: @tcol-wi-smallest     ; }
-  &.wi-verysmall   { width: @tcol-wi-verysmall    ; }
-  &.wi-small       { width: @tcol-wi-small        ; }
-  &.wi-mediumsmall { width: @tcol-wi-mediumsmall  ; }
-  &.wi-normal      { width: @tcol-wi-normal       ; }
-  &.wi-lightwide   { width: @tcol-wi-lightwide    ; }
-  &.wi-wide        { width: @tcol-wi-wide         ; }
-  &.wi-wider       { width: @tcol-wi-wider        ; }
-  &.wi-verywide    { width: @tcol-wi-verywide     ; }
-
-
-
-  &.wi-small-small             { width: @tcol-wi-small-small ; }
-  &.wi-small-mediumsmall       { width: @tcol-wi-small-mediumsmall ; }
-  &.wi-small-normal            { width: @tcol-wi-small-normal ; }
-  &.wi-small-lightwide         { width: @tcol-wi-small-lightwide ; }
-  // PENDENT: noch genauer anschauen, sollte eigentlich nur für horizontale Tabellen vorgesehen sein
-  &.wi-small-wide              { width: ( @tcol-wi-small-wide )  ; }
-  //&.wi-small-wide            { width: 460px ; }
-  &.wi-small-wider             { width: @tcol-wi-small-wider ; }
-  &.wi-small-verywide          { width: @tcol-wi-small-verywide ; }
-
-  &.wi-mediumsmall-small       { width: @tcol-wi-mediumsmall-lightwide ; }
-  &.wi-mediumsmall-mediumsmall { width: @tcol-wi-mediumsmall-mediumsmall ; }
-  &.wi-mediumsmall-normal      { width: @tcol-wi-mediumsmall-normal ; }
-  &.wi-mediumsmall-lightwide   { width: @tcol-wi-mediumsmall-lightwide ; }
-  &.wi-mediumsmall-wide        { width: @tcol-wi-mediumsmall-wide ; }
-  &.wi-mediumsmall-wider       { width: @tcol-wi-mediumsmall-wider ; }
-  &.wi-mediumsmall-verywide    { width: @tcol-wi-mediumsmall-verywide ; }
-
-  &.wi-normal-small            { width: @tcol-wi-normal-small ; }
-  &.wi-normal-mediumsmall      { width: @tcol-wi-normal-mediumsmall ; }
-  &.wi-normal-normal           { width: @tcol-wi-normal-normal ; }
-  &.wi-normal-lightwide        { width: @tcol-wi-normal-lightwide ; }
-  &.wi-normal-wide             { width: @tcol-wi-normal-wide ; }
-  &.wi-normal-wider            { width: @tcol-wi-normal-wider ; }
-  &.wi-normal-verywide         { width: @tcol-wi-normal-verywide ; }
-
-  &.wi-lightwide-small         { width: @tcol-wi-lightwide-small ; }
-  &.wi-lightwide-mediumsmall   { width: @tcol-wi-lightwide-mediumsmall ; }
-  &.wi-lightwide-normal        { width: @tcol-wi-lightwide-normal ; }
-  &.wi-lightwide-lightwide     { width: @tcol-wi-lightwide-lightwide ; }
-  &.wi-lightwide-wide          { width: @tcol-wi-lightwide-wide ; }
-  &.wi-lightwide-wider         { width: @tcol-wi-lightwide-wider ; }
-  &.wi-lightwide-verywide      { width: @tcol-wi-lightwide-verywide ; }
-
+  //  moderate width with padding on the right side
+  &.width-moderate,
+  &.moderate-width,
+  &.wi-moderate {
+    width: auto ;
+    td,
+    th {
+      // PENDENT: vielleicht in pixeln angeben, statt in ems (siehe tbl-plain)
+      padding-left: 0.6em ;
+      padding-right: 1.2em ;
+    }
+  }
 }
 
 
 
-
-
-
-
-
-
-
-
-//  --------------------------------------
-//  LIST-TABLES in Wrappers
-//  --------------------------------------
-
+//--------------------------------------
+//  LIST-TABLES IN WRAPPERS
+//--------------------------------------
+// creates a border on the left & right side of the table
 div.wrapper,
 div.cols {
   table.tbl-list tr {
@@ -1017,21 +1011,41 @@ div.cols {
   }
 }
 
+//--------------------------------------
+//  LIST-TABLES NOT IN WRAPPERS
+//--------------------------------------
+#content .ui-tabs-panel > table.tbl-list caption {
+  //margin-left: @margin-from-panel-left - 0.2em ;
+  margin-left: 0.3em ;
+}
+#content {
+  .ui-tabs-panel > table.tbl-list caption {
+    //margin-left: @margin-from-panel-left - 0.2em ;
+    margin-left: 0.3em ;
+  }
+
+  & > table.tbl-plain,
+  & > table.tbl-list-plain {
+    margin-top: 1.0em ;
+  }
+}
 
 
-
-
-
+// --------------------------------------
+// SORT SYMBOLS
+// --------------------------------------
 
 span.sort {
   display: inline-block ;
   height: 100% ;
+  vertical-align: top;
+  padding-top: 6px;
 }
 span.sort_symbol {
   display: inline-block ;
   width: 10px ;
   padding: 0 ;
-  margin: 0 ;
+  margin: 0 10px 0 0 ;
   a {
     display: block ;
     width: 8px ;
@@ -1054,8 +1068,12 @@ span.sort_symbol {
       border-left:   1px @table-border-color solid ;
     }
     &.active {
-       background-color: #000000 ;
+       //background-color: #000000 ;
        color: #ffffff ;
+    }
+    &:link,
+    &:visited{
+      color: @brand-light ;
     }
   }
 }
@@ -1064,13 +1082,93 @@ span.sort_symbol {
 
 
 
-// --------------------------------------
-// SPECIFIX TABLES
-// --------------------------------------
-
+//--------------------------------------
+// SPECIFIX TABLES (#REPORT_TABLE)
+//--------------------------------------
+// Ueberpruefen
 table#report_table_id.tbl-list {
   & > tbody > tr > td { vertical-align: top ; }
 }
 
+
+
+//  Benutzerdefinierte Tabellen-Angaben
+//  Diese uebersteuern alle Anweisungen aus tables.less
+//  Es dürfen nur Tabellen mit Zusatzklassen oder mit IDs uebersteuert werden.
+//  Uebersteuern Sie nur wenige, bestehende Elemente, um ein einheitliches
+//  Design zu gewaehrleisten
+//  Diese Datei wird am Schluss von tables.less includiert.
+
+table{
+
+    //  Zusatzklasse zur Tabelle (Beispiel)
+    //  Betreff: xyz
+    //  Autor: hanspeter.schlaepfer@revamp-it.ch
+    &.meine-tabellen-klasse {
+
+    }
+
+    //  Tabelle mit spezieller ID (Beispiel)
+    //  Betreff: xyz
+    //  Autor: hanspeter.schlaepfer@revamp-it.ch
+    &#meine-spezielle-tabelle {
+
+    }
+
+
+    //  Tabelle mit Konten-Uebersicht (Kontoplan)
+    //  Betreff: Kontoplan
+    //  Autor: hanspeter.schlaepfer@revamp-it.ch
+    &#konten-plan {
+        tbody tr{
+            td:first-child {
+                text-align: right !important;
+            }
+            &.heading td {
+                font-size: @font-size-large;
+                border-top: 1px #999 solid;
+            }
+        }
+        tr:first-child {
+             &.heading td {
+                border: none;
+            }
+        }
+    }
+
+
+// PENDENT: genauer anschauen
+
+  &#eurtable {
+    border-collapse: collapse;
+    width: 100%;
+  }
+
+  tr.category {
+    //  background set via jquery
+  }
+
+  tr.chart {
+    border: 0;
+  }
+
+  td.chartname {
+    padding-left: 50px;
+  }
+
+  tr.chartrow {
+    font-size: 75%;
+  }
+
+  .guv_row_background {
+    background:#f0f0f0;
+  }
+
+  .tr_error {
+    background-color: #ffc9c9;
+  }
+
+
+}
 
 

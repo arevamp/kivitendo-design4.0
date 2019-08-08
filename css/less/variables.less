@@ -1,3 +1,7 @@
+/* ------------------------------------------------------------- */
+/* VARIABLES (variables.less)                                    */
+/* ------------------------------------------------------------- */
+
 // ----------------------------------------------------------------------------
 //
 // VARIABLES (Less-Style) for general use (most of it is Bootstrap-Stuff)
@@ -18,51 +22,68 @@
 //   - Font family
 //   - Font size
 //   - Line height
-//   - Heading 1 - 6
+//   - Heading 1 - 4
 //   - Heading 1 (H1)
-// - ICONOGRAPHY
+//   - Heading Controlpanels
+//   - Data Types
+// - ICONOGRAPHY (ggf. OBSOLETE)
+// - PAGE COMPONENTS
+//   - Z-Index
+//   - Dashboard (frame-header)
+//   - Menu Top (CSS)
+//   - Menu Left (JS)
+//   - Context Menu (layout-actionbar) -> missing
+//   - Component properties
+//   - Tabs
 // - TABLES
 //   - Table & Caption
 //   - Table Cells
-//   - Dimensions (Table Cells Only)
+//   - Zebra effect in list tables
+//   - Dimensions (Table Cells Only) (OBSOLETE)
 // - BUTTONS
+//   - STANDARD-Button Strong (with Submission / data manipulation)
+//   - NEUTRAL-Button (NO Submission)
+//   - Diverse Button states
+// - DROPDOWNS (OBSOLETE)
 // - FORMS
-//   - Input fields
+//   - Input elements
 //   - Legend, Labels, Fieldsets
 //   - Highlighting (Focus and so on)
-//   - Dimensions (input, select)
-// - DROPDOWNS
-// - COMPONENTS
-//   - Z-Index
-//   - Dashboard (frame-header)
-//   - Menu (menuv3)
-//   - Context-Menu (layout-actionbar) -> missing
-//   - Component properties
+//   - Dimensions (input, select) (OBSOLETE)
 // - MESSAGES
-//   - Messages Old Style
-//   - Flash Messages
 // - DIMENSIONS
-//   - Standard Dimensions
-//   - Dimensions for Table Colums (COL)
+//   - Standard Dimensions (even for TABLE CELLS)
+//   - Dimensions for for DIVs
+//   - Dimensions for Table Colums (TH, TD & Col)
+//   - Dimensions for combined rows with combination Table column widths
+//   - Dimensions for Form input elements
+//   - Dimensions for Form Select elements
+//   - Dimensions for Textarea elements with standard dimensions
+//   -
+//   -
 // ----------------------------------------------------------------------------
 
 
+
+
 // --------------------------------------
-// COLORS
+// COLORS (GREYs, BRAND COLORS & OTHERS)
 // --------------------------------------
-// Base Colors see variables_color_scheme.less
+// Base Colors see variables_color[*-9].less
+// Include the preferred color scheme in style.less before including this less file
 
-
-
-// -------------------
+// -----------------------
 // General text color (label & data)
-//
+// -----------------------
 // Standard text
 @brand-primary:         @brand-text-color;
 @brand-label:           @brand-data-label-color;
 @brand-label-bg:        @brand-lighter;
 
-// Messages & info types
+// -----------------------
+// MESSAGES & INFO TYPES
+// -----------------------
+// color definitions in variables_color_[*-9].less
 @brand-ok:              @color-green-strong;
 @brand-ok-bg:           @color-green-light;
 
@@ -82,47 +103,30 @@
 @brand-negative-bg:     @color-red-light;
 
 
-// -------------------
-// Messages & info types
-//
-@brand-ok:              @color-green-strong;
-@brand-ok-bg:           @color-green-light;
-
-@brand-error:           @color-red-strong;
-@brand-error-bg:        @color-red-light;
-
-@brand-info:            @color-blue-strong;
-@brand-info-bg:         @color-blue-light;
-
-@brand-warning:         @color-orange-strong;
-@brand-warning-bg:      @color-orange-light;
-
-// Positive & negative colors
-@brand-positive:        @color-green-strong;
-@brand-positive-bg:     @color-green-light;
-@brand-negative:        @color-red-strong;
-@brand-negative-bg:     @color-red-light;
 
 
 
-// --------------
-// Content Boxes
-//
+// --------------------------------------
+// CONTENT CONTAINER
+// --------------------------------------
 
 @text-min-width:            400px ;
 @text-max-width:            600px ;
 
-
 // like Wrappers, Colums Containers, Flash-Messages and Record Selection
-@content-padding:           0 0 0 0; // 0 is OK otherwise there will be a border after the ui-tabs-panels
-@content-margin:            104px 0 1.0em 0; // PENDENT: ueberpruefen
+//@content-padding:           0 0 0 0; // 0 is OK otherwise there will be a border after the ui-tabs-panels
+//@content-margin:            101px 0 1.0em 0; // PENDENT: ueberpruefen
+// working alternative
+@content-padding:           101px 0 0 0; // 0 is OK otherwise there will be a border after the ui-tabs-panels
+@content-margin:            0 0 1.0em 0; // PENDENT: ueberpruefen
 
 
-@margin-left-from-content:  0.6em ; // directly inside #content
+
+@margin-left-from-content:  1.2em ; // directly inside #content
 @margin-left-from-wrapper:  0   ;       // directly inside .wrapper
 
-@margin-from-content:       1em 1em 1em   @margin-left-from-content ; // directly inside #content
-@margin-from-wrapper:       0   0   0.4em @margin-left-from-wrapper ;       // directly inside .wrapper
+@margin-from-content:       1em   1em 1em   @margin-left-from-content ; // directly inside #content
+@margin-from-wrapper:       1.6em 0   0.4em @margin-left-from-wrapper ; // directly inside .wrapper
 
 // Paragraphs, messages
 @text-container-width:      auto ;
@@ -133,41 +137,47 @@
 @messages-min-width:        60.0em;
 @messages-max-width:        40.0em;
 
-
-@contentbox-margin:         1.0em 1.0em 1.0em 0.6em ;
+@contentbox-margin:         1.0em 1.0em 1.0em @margin-from-panel-left ;
 @contentbox-padding:        0.6em 1.0em 1.2em 1.8em ;
 @contentbox-radius:         0.6em ;
 
-// --------------
-// Content Panels
-//
-@controlpanel-margin:       @contentbox-margin      ;
-@controlpanel-padding:      1.2em 1.0em 0.8em 1.2em ;
-@controlpanel-padding-bold: 0.8em 1.0em 1.4em 1.2em ;
-@controlpanel-bg:           @brand-lighter          ;
-@controlpanel-color:        @brand-darkest          ;
-@controlpanel-border:       1px @brand-darkest solid  ;
-@controlpanel-radius:       @contentbox-radius      ;
-@controlpanel-bg-hover:     @brand-darkest          ;
-@controlpanel-bg-hover-text:@brand-light          ;
-@controlpanel-active-bg:    @brand-strong-dimmed          ;
-@controlpanel-active-text:  @brand-lighter          ;
+// -----------------------
+// Component properties
+// -----------------------
+// Based on 14px font-size and 1.428 line-height (~20px to start)
+// PENDENT: UI-Tabs und so weiter
+// PENDENT: genauer anschauen, ggf. obsolete da nicht verwendet
 
-@controlpanel-h3-color:     @brand-heading-color ;
-@controlpanel-h3-size:      110%    ;
-@controlpanel-h3-style:     normal  ;
-@controlpanel-h3-weight:    normal  ;
+@padding-base-vertical:         6px;
+@padding-base-horizontal:       12px;
 
-@controlpanel-h4-color:     @brand-heading-color ;
-@controlpanel-h4-size:      105%    ;
-@controlpanel-h4-weight:    bold    ;
-@controlpanel-h4-style:     normal  ;
+@padding-large-vertical:        10px;
+@padding-large-horizontal:      16px;
 
-// select item control panel
-@controlpanel-select-item-padding:   0.6em 1.0em 0.6em 0.8em ;
+@padding-small-vertical:        5px;
+@padding-small-horizontal:      10px;
 
-@instructionbox-bg:       @controlpanel-bg ;
-@instructionbox-border:   1px @brand-darkest solid ;
+@line-height-large:             1.33;
+@line-height-small:             1.5;
+
+@border-radius-base:            4px;
+@border-radius-large:           6px;
+@border-radius-small:           3px;
+
+@component-active-color:        @brand-superlight;
+@component-active-bg:           @brand-primary; // PENDENT: Variable nicht vorgesehen dafuer
+
+@caret-width-base:              4px;
+@caret-width-large:             5px;
+
+@margin-from-panel-left:        1.2em; // for panels and wrappers
+
+@padding-databoxes-left:        0.6em ; // for input, span.data in data tables
+
+
+
+
+
 
 
 
@@ -181,22 +191,24 @@
 
 
 
+
+
 // --------------------------------------
 // TYPOGRAPHY
 // --------------------------------------
 
-// --------------
+// -----------------------
 // Font family
-//
+// -----------------------
 @font-family-sans-serif:  Verdana, "Helvetica Neue", Helvetica, Arial, sans-serif ;
 @font-family-serif:       Georgia, "Times New Roman", Times, serif ;
 @font-family-monospace:   Monaco, Menlo, Consolas, "Courier New", monospace;
 
 @font-family-base:        @font-family-sans-serif;
 
-// --------------
+// -----------------------
 // Font size
-//
+// -----------------------
 @font-size-base:          11pt; // vorh.14px
 @font-size-large:         ceil(@font-size-base * 1.25); //  ~18px
 @font-size-medium:        ceil(@font-size-base * 1.0 ); //  ~18px
@@ -204,16 +216,15 @@
 @font-size-smaller:       ceil(@font-size-base * 0.76); //  ~12px
 @font-size-verysmall:     ceil(@font-size-base * 0.6); //   ~12px
 
-// --------------
+// -----------------------
 // Line height
-//
+// -----------------------
 @line-height-base:        1.428571429; //  20/14
 @line-height-computed:    floor(@font-size-base * @line-height-base); //  ~20px
 
-
-// --------------
-// Heading 1-6
-//
+// -----------------------
+// Heading 1-4
+// -----------------------
 @headings-font-family:    @font-family-base;
 @headings-weight:         500;
 @headings-line-height:    1.3em;
@@ -240,16 +251,18 @@
 @h3-weight:          normal;
 @h4-weight:          normal;
 
-// --------------
+// -----------------------
 // Heading 1 (H1)
+// -----------------------
 // Fixed on top of every page together with the action bar
-@h1-color:    @brand-h1-color;
-@h1-bg:       @brand-h1-bg;
-@h1-padding:  0.7em 0.5em 0.7em 0.7em;
-@h1-margin:   0;
-
+@brand-h1-color:        @_brand-h1-color;
+@brand-h1-bg:           @_brand-h1-bg;
+@h1-padding:            0.7em 0.5em 0.7em 1.3em;
+@h1-margin:             0;
+@brand-h1-border-top:  @_brand-h1-border-top;
+// -----------------------
 // Heading Controlpanels
-
+// -----------------------
 @h3-controlpanel-size:    @h3-size;
 @h4-controlpanel-size:    @h4-size;
 
@@ -257,12 +270,11 @@
 @h4-controlpanel-style:   bold;
 
 @h3-controlpanel-weight:  normal;
-@he-controlpanel-weight:  bold;
+@h4-controlpanel-weight:  bold;
 
-
-// -------------------
+// -----------------------
 // Data types
-//
+// -----------------------
 @heading-and-label-color:   @brand-data-label-color  ;
 @heading-and-label-bg:      @brand-data-label-color  ;
 @data-color:                @brand-data-color ;
@@ -273,7 +285,7 @@
 
 
 // --------------------------------------
-// Iconography
+// Iconography (ggf. OBSOLETE)
 // --------------------------------------
 //@icon-font-path:          "../bootstrap/fonts/";
 //@icon-font-name:          "glyphicons-halflings-regular";
@@ -281,171 +293,130 @@
 
 
 
-// --------------------------------------
-// TABLES
-// --------------------------------------
-
-// --------------
-// Table & Caption
-//
-@table-bg:                       transparent; //  overall background-color
-@table-bg-accent:                @brand-lighter; //  for striping
-@table-bg-hover:                 #ffffff;
-@table-bg-active:                @table-bg-hover;
-@table-border-color:             @brand-darkest; //  table and cell border
-
-@table-caption-bg:               transparent ;
-@table-caption-color:            @brand-darkest;
-@table-caption-size:             @h3-size - 1pt ;
-@table-caption-style:            @h3-style ;
-@table-caption-weight:           @h3-weight ;
-
-
-// --------------
-// Table Cells
-//
-@t-cell-padding:                 8px;
-@t-cell-padding-condensed:       5px;
-
-@t-cell-text-color:              @brand-darkest;
-
-@t-cell-head-bg:                 @brand-strong;
-@t-cell-head-bg-accent:          @gray-light;
-@t-cell-head-text:               @brand-light;
-@t-cell-head-text-accent:        @brand-lighter;
-
-@t-cell-label-text:              @brand-strong-dimmed;
-@t-cell-label-text-accent:       @brand-strong-dimmed-hover;
-@t-cell-data-text:               @brand-darkest;
-@t-cell-data-text-accent:        @brand-darkest;
-
-
-@t-cell-foot-text:               @brand-darkest;
-
-// Zebra effect in list tables
-@t-row-zebra-bg-odd:             @brand-lighter;
-@t-row-zebra-bg-even:            @brand-light;
-@t-row-zebra-bg-hover:           #ffffff;
-
-@t-row-zebra-bg-error:           @brand-error-bg;
-@t-row-zebra-bg-special:         #FEF2C5; // PENDENT: ANSCHAUEN
-@t-row-zebra-bg-highlight:       #B4F4FE; // PENDENT: ANSCHAUEN
-
 
 // --------------------------------------
-// BUTTONS
+// PAGE COMPONENTS
 // --------------------------------------
 
-@btn-font-weight:                normal;
-// -------------------
-// STANDARD-Button Strong (with Submission / data manipulation)
-//
-// Standard
-@btn-default-color:               @brand-verylight;
-@btn-default-bg:                  @brand-strong;
-@btn-default-border:              @brand-darkest;
-// Hover
-@btn-default-hover-color:         #ffffff;
-@btn-default-hover-bg:            @brand-strong-dimmed;
-@btn-default-hover-border:        @brand-darkest;
-// Active
-@btn-default-active-color:        #ffffff;
-@btn-default-active-bg:           @brand-strong-dimmed;
-@btn-default-active-border:       @brand-darkest;
+// -----------------------
+// Z-index
+// -----------------------
+// Stack-/Layer Positions of components
+// only for specialists
 
-// -------------------
-// NEUTRAL-Button (NO Submission)
-//
-// Standard
-@btn-neutral-color:               @brand-strong;
-@btn-neutral-bg:                  @brand-lighter;
-@btn-neutral-border:              @brand-darkest;
-// Hover
-@btn-neutral-hover-color:         @brand-strong;
-@btn-neutral-hover-bg:            @brand-light;
-@btn-neutral-hover-border:        @brand-darkest;
-// Active
-@btn-neutral-active-color:        #ffffff;
-@btn-neutral-active-bg:           @brand-light;
-@btn-neutral-active-border:       @brand-darkest;
+// General
+@zindex-dropdown:          1000;
+@zindex-popover:           1010;
+@zindex-tooltip:           1030;
+@zindex-navbar-fixed:      1030;
+@zindex-modal-background:  1040;
+@zindex-modal:             1050;
 
+// Components
+@zindex-dashboard:         1040; // frame-header
+@zindex-navbar:            1999; // menuv3 must be on top
+@zindex-h1:                1020; // h1 inside content
 
-// -------------------
-// Diverse Button states
-//
+@zindex-actionbar:               1030; // action-bar (Workflow)
+@zindex-actionbar-action:        1031;
+@zindex-actionbar-combobox:      1031;
+@zindex-actionbar-combobox-head: 1033;
+@zindex-actionbar-combobox-list: 1032;
 
-@btn-primary-color:              #ffffff;
-@btn-primary-bg:                 @brand-primary;
-@btn-primary-border:             darken(@btn-primary-bg, 5%);
+// -----------------------
+// DASHBOARD (FRAME HEADER)
+// -----------------------
+@dashbrd_bg:            @_dashbrd_bg ;
+@dashbrd_text:          @_dashbrd_text ;
+@dashbrd_link:          @_dashbrd_link ;
+@dashbrd_link_hover:    @_dashbrd_link_hover ;
+@dashbrd_link_deco:     underline ;
+@dashbrd_input_bg:      @_dashbrd_input_bg;
+@dashbrd_input_text:    @_dashbrd_input_text ;
 
-@btn-success-color:              #ffffff;
-@btn-success-bg:                 @color-green-strong;
-@btn-success-border:             darken(@color-green-light, 5%);
+// -----------------------
+// Menue (menuv3)
+// -----------------------
+@menu_bg:               @_menu_bg ;
+@menu_link:             @_menu_link ;
 
-@btn-warning-color:              #ffffff;
-@btn-warning-bg:                 @brand-warning;
-@btn-warning-border:             darken(@btn-warning-bg, 5%);
+@menu_link_bg:          @_menu_link_bg ; // display:block
+@menu_link_hover:       @_menu_link_hover ;
+@menu_link_hover_bg:    @_menu_link_hover_bg ;
+@menu_link_hover_deco:  underline ;
+@menu_border_color:     @_menu_border_color ;
+@menu_border:           1px @menu_border_color solid ;
 
-@btn-info-color:                 #ffffff;
-@btn-info-bg:                    @brand-info;
-@btn-info-border:                darken(@btn-info-bg, 5%);
-
-@btn-link-disabled-color:        @gray-light;
-
-
+@menu_link_bg_level1:         @_menu_link_bg_level1 ;
+@menu_link_bg_level1_hover:   @_menu_link_bg_level1_hover ;
+@menu_link_bg_level2:         @_menu_link_bg_level2 ;
+@menu_link_bg_level2_hover:   @_menu_link_bg_level2_hover ;
+@menu_link_bg_level3:         @_menu_link_bg_level3 ;
+@menu_link_bg_level3_hover:   @_menu_link_bg_level3_hover ;
 
 
-// --------------------------------------
-// FORMS
-// --------------------------------------
+// -----------------------
+// Menu Left (JS & HTML)
+// -----------------------
+@menu_left_bg:                    @_menu_left_bg ;
+@menu_left_level_1_color:         @_menu_left_level_1_color ;
+@menu_left_level_1_bg:            @_menu_left_level_1_bg ;
+@menu_left_level_1_hover_color:   @_menu_left_level_1_hover_color ;
+@menu_left_level_1_hover_bg:      @_menu_left_level_1_hover_bg ;
+@menu_left_level_2_color:         @_menu_left_level_2_color ;
+@menu_left_level_2_bg:            @_menu_left_level_2_bg ;
+@menu_left_level_2_hover_color:   @_menu_left_level_2_hover_color ;
+@menu_left_level_2_hover_bg:      @_menu_left_level_2_hover_bg ;
+@menu_left_level_3_color:         @_menu_left_level_3_color ;
+@menu_left_level_3_bg:            @_menu_left_level_3_bg ;
+@menu_left_level_3_hover_color:   @_menu_left_level_3_hover_color ;
+@menu_left_level_3_hover_bg:      @_menu_left_level_3_hover_bg ;
 
+// Additional Variables for Menu Left (JS)
+@menu_open_color: @_menu_open_color;
+@menu_open_bg:    @_menu_open_bg;
 
-// --------------
-// Input elements
-//
+// -----------------------
+// CONTEXT-MENU (LAYOUT-ACTIONBAR)
+// -----------------------
+@actionbar-bg:                  @_actionbar-bg;
+@actionbar-bg-active:           @_actionbar-bg-active;
+//@actionbar-bg-hover:          @_actionbar-bg-hover;
+@actionbar-font-color:          @_actionbar-font-color;
+@actionbar-font-color-active:   @_actionbar-font-color-active;
+@actionbar-border-color:        @_actionbar-border-color;
+@actionbar-border-color-active: @_actionbar-border-color-active;
+@actionbar-hover-bg:            @_actionbar-hover-bg;
+@actionbar-hover-color:         @_actionbar-hover-color;
+@actionbar-border-radius:       4px ;
+@actionbar-font-color-disabled: @_actionbar-font-color-disabled;
 
-@input-bg:                       #fff;
-@input-bg-disabled:              @gray-lighter;
+// -----------------------
+// Tabs
+// -----------------------
+// background tabs panel (data/content)
 
-@input-color:                    @gray;
-@input-border:                   #ccc;
-@input-border-radius:            @border-radius-base;
-@input-border-focus:             #66afe9;
+@tabs-bg:                   @_tabs-bg ;
+@tabs-panel-bg:             @_tabs-panel-bg ;
+@tabs-border-color:         @_tabs-border-color ;
+@tabs-border-radius:        4px ;
 
-@input-color-placeholder:        @gray-light;
+@tabs-default-bg:           @_tabs-default-bg;
+@tabs-default-color:        @_tabs-default-color;
+@tabs-default-hover-bg:     @_tabs-default-hover-bg;
+@tabs-default-hover-color:  @_tabs-default-hover-color;
 
-@input-height-base:              (@line-height-computed + (@padding-base-vertical * 2) + 2);
-@input-height-large:             (floor(@font-size-large * @line-height-large) + (@padding-large-vertical * 2) + 2);
-@input-height-small:             (floor(@font-size-small * @line-height-small) + (@padding-small-vertical * 2) + 2);
-
-@input-group-addon-bg:           @gray-lighter;
-@input-group-addon-border-color: @input-border;
-
-
-
-// --------------
-// Legend, Labels, Fieldsets
-//
-
-@legend-color:                   @gray-dark;
-@legend-border-color:            #e5e5e5;
-
-
-// --------------
-//  Highlighting (Focused, Activated)
-//
-
-@formelement-focus-bg:     #E7FFCE ;
-@formelement-focus-border: 1px solid #9ccb21 ;
-
-
+@tabs-active-bg:            @_tabs-active-bg;
+@tabs-active-color:         @_tabs-active-color;
+@tabs-active-hover-bg:      @_tabs-active-hover-bg;
+@tabs-active-hover-color:   @_tabs-active-hover-color;
 
 
 
 
 
 // --------------------------------------
-// Dropdowns
+// Dropdowns (OBSOLETE?)
 // --------------------------------------
 
 @dropdown-bg:                    #fff;
@@ -469,119 +440,221 @@
 
 
 
+
 // --------------------------------------
-// COMPONENTS
+// FORMS
 // --------------------------------------
 
+// -------------------
+// Input elements
+// -------------------
+@input-bg:                       #fff;
+@input-bg-disabled:              @gray-lighter;
 
-// --------------
-// Z-index
-// Stack-/Layer Positions of components
-// only for specialists
+@input-color:                    @gray-standard;
+@input-border:                   #ccc;
+@input-border-radius:            @border-radius-base;
+@input-border-focus:             #66afe9;
 
-// General
-@zindex-dropdown:          1000;
-@zindex-popover:           1010;
-@zindex-tooltip:           1030;
-@zindex-navbar-fixed:      1030;
-@zindex-modal-background:  1040;
-@zindex-modal:             1050;
+@input-color-placeholder:        @gray-light;
 
-// Components
-@zindex-dashboard:         1040; // frame-header
-@zindex-navbar:            1999; // menuv3 muss zuoberst sein
-@zindex-h1:                1020; // h1 innerhalb content
+@input-height-base:              (@line-height-computed + (@padding-base-vertical * 2) + 2);
+@input-height-large:             (floor(@font-size-large * @line-height-large) + (@padding-large-vertical * 2) + 2);
+@input-height-small:             (floor(@font-size-small * @line-height-small) + (@padding-small-vertical * 2) + 2);
 
-@zindex-actionbar:         1030; // action-bar (Workflow)
-@zindex-actionbar-action:  1031;
-@zindex-actionbar-combobox: 1031;
-@zindex-actionbar-combobox-head: 1033;
-@zindex-actionbar-combobox-list: 1032;
+@input-group-addon-bg:           @gray-lighter;
+@input-group-addon-border-color: @input-border;
 
+// -------------------
+// Legend, Labels, Fieldsets
+// -------------------
+@legend-color:                   @gray-dark;
+@legend-border-color:            #e5e5e5;
 
+// -------------------
+//  Highlighting (Focused, Activated)
+// -------------------
+@formelement-focus-bg:             @_formelement-focus-bg ;
+@formelement-focus-text:           @_formelement-focus-text ;
+@formelement-focus-border:         @_formelement-focus-border ;
 
-// --------------
-// Dashboard (frame-header)
-//
-@dashbrd_bg:            @brand-darkest ;
-@dashbrd_text:          @brand-light ;
-@dashbrd_link:          @brand-light ;
-@dashbrd_link_hover:    #ffffff ;
-@dashbrd_link_deco:     underline ;
-@dashbrd_input_bg:      @brand-light;
-@dashbrd_input_text:    #000000 ;
-
-
-// --------------
-// Menue (menuv3)
-//
-
-@menu_bg:               #fff ;
-@menu_link:             #000 ;
-@menu_link_bg:          #ebebeb ; // display:block
-@menu_link_hover:       #000 ;
-@menu_link_hover_bg:    #ebebeb ;
-@menu_link_hover_deco:  underline ;
-
-
-@menu_link_bg_level1:         #dcdcdc ;
-@menu_link_bg_level1_hover:   #cdcdcd ;
-@menu_link_bg_level2:         #cdcdcd ;
-@menu_link_bg_level2_hover:   #dcdcdc ;
-@menu_link_bg_level3:         #dcdcdc ;
-@menu_link_bg_level3_hover:   #cdcdcd ;
-
-
-
-// --------------
-// Context-Menu (layout-actionbar)
-//
-@actionbar-bg:                  @brand-light;
-@actionbar-bg-active:           @brand-light;
-@actionbar-font-color:          #ffffff;
-@actionbar-font-color-active:   #ffffff;
-@actionbar-border-color:        @brand-strong;
-@actionbar-border-color-active: @brand-strong;
-
-
-
-// --------------
-// Component properties
-//
-// Based on 14px font-size and 1.428 line-height (~20px to start)
-// PENDENT: UI-Tabs und so weiter
-
-
-@padding-base-vertical:          6px;
-@padding-base-horizontal:        12px;
-
-@padding-large-vertical:         10px;
-@padding-large-horizontal:       16px;
-
-@padding-small-vertical:         5px;
-@padding-small-horizontal:       10px;
-
-@line-height-large:              1.33;
-@line-height-small:              1.5;
-
-@border-radius-base:             4px;
-@border-radius-large:            6px;
-@border-radius-small:            3px;
-
-@component-active-color:         #fff;
-@component-active-bg:            @brand-primary;
-
-@caret-width-base:               4px;
-@caret-width-large:              5px;
 
 
 
 
 // --------------------------------------
-// Messages
+// BUTTONS
 // --------------------------------------
-@message-margin:          3.6em 2.0em 0.6em 1.0em ;
-@message-padding:         0.6em 0.6em 0.5em 0.6em ;
+@button-font-weight:                normal;
+@button-border-radius:              6px ;
+// -------------------
+// STANDARD-Button Strong (with Submission / data manipulation)
+// -------------------
+// Standard
+@button-strong-color:               @_button-strong-color;
+@button-strong-bg:                  @_button-strong-bg;
+@button-strong-border:              1px @_button-strong-border-color solid;
+
+// Hover
+@button-strong-hover-color:         @_button-strong-hover-color;
+@button-strong-hover-bg:            @_button-strong-hover-bg;
+@button-strong-hover-border:        1px @_button-strong-hover-border-color solid;
+
+// Active
+@button-strong-active-color:        @_button-strong-active-color;
+@button-strong-active-bg:           @_button-strong-active-bg;
+@button-strong-active-border:       1px @_button-strong-active-border-color solid;
+
+// -------------------
+// NEUTRAL-Button (NO Submission)
+// -------------------
+// Standard
+@button-neutral-color:               @_button-neutral-color;
+@button-neutral-bg:                  @_button-neutral-bg;
+@button-neutral-border:              1px @_button-neutral-border-color solid;
+
+// Hover
+@button-neutral-hover-color:         @_button-neutral-hover-color;
+@button-neutral-hover-bg:            @_button-neutral-hover-bg;
+@button-neutral-hover-border:        1px @_button-neutral-hover-border-color solid;
+
+// Active
+@button-neutral-active-color:        @_button-neutral-active-color;
+@button-neutral-active-bg:           @_button-neutral-active-bg;
+@button-neutral-active-border:       1px @_button-neutral-active-border-color solid;
+
+// -------------------
+// Diverse Button states
+// -------------------
+//@button-primary-color:              @_button-primary-color;
+//@button-primary-bg:                 @_button-primary-bg;
+//@button-primary-border:             1px darken(@button-primary-bg, 5%) solid;
+
+@button-success-color:              @_button-success-color;
+@button-success-bg:                 @_button-success-bg;
+@button-success-border:             1px darken(@color-green-light, 5%) solid;
+
+@button-warning-color:              @_button-warning-color;
+@button-warning-bg:                 @_button-warning-bg;
+@button-warning-border:             1px darken(@button-warning-bg, 5%) solid;
+
+@button-info-color:                 @_button-info-color;
+@button-info-bg:                    @_button-info-bg;
+@button-info-border:                1px darken(@button-info-bg, 5%) solid;
+
+@button-link-disabled-color:        @_button-link-disabled-color;
+
+
+
+
+
+// --------------------------------------
+// CONTROL PANELS
+// --------------------------------------
+
+@controlpanel-margin:         @contentbox-margin      ;
+@controlpanel-padding:        1.2em 1.0em 0.8em 0.9em ;
+@controlpanel-padding-narrow: 0.4em 1.0em 0.6em 0.9em ; // e.g. for input-panels
+@controlpanel-padding-bold:   0.8em 1.0em 1.4em 1.2em ; // PENDENT: wozu?
+@controlpanel-bg-color:       @_controlpanel-bg-color ;
+@controlpanel-bg-style:        @_bg_style_controlpanel ;
+@controlpanel-color:          @_controlpanel-color    ;
+@controlpanel-border:         1px @_controlpanel-border-color solid  ;
+@controlpanel-radius:         @contentbox-radius      ;
+
+// PENDENT: noetig?
+@controlpanel-bg-hover:       @brand-superdark        ;
+@controlpanel-bg-hover-text:  @brand-light            ;
+@controlpanel-active-bg:      @brand-darker            ;
+@controlpanel-active-text:    @brand-lighter          ;
+
+@controlpanel-h3-color:       @h3-size ;
+@controlpanel-h3-size:        110%    ;
+@controlpanel-h3-style:       normal  ;
+@controlpanel-h3-weight:      normal  ;
+
+@controlpanel-h4-color:       @_controlpanel-header-color ;
+@controlpanel-h4-size:        @h4-size    ;
+@controlpanel-h4-weight:      normal ;
+@controlpanel-h4-style:       normal  ;
+
+// select item control panel
+@controlpanel-select-item-padding:   0.6em 1.0em 0.6em 0.8em ;
+
+@instructionbox-bg:           @controlpanel-bg-color ;
+@instructionbox-border:       1px @_controlpanel-border-color solid ;
+
+
+
+
+
+// --------------------------------------
+// TABLES
+// --------------------------------------
+
+@table-border-color:             @_table-border-color; //  table and cell border
+
+@table-bg:                       @_table-bg; // overall background-color
+@table-bg-accent:                @_table-bg-accent; // for striping
+@table-bg-hover:                 @_table-bg-hover;
+@table-bg-active:                @_table-bg-active;
+
+@table-caption-bg:               @_table-caption-bg;
+@table-caption-color:            @_table-caption-color;
+@table-caption-size:             @h3-size - 2pt ;
+@table-caption-style:            @h3-style ;
+@table-caption-weight:           @h3-weight ;
+
+
+// --------------
+// Table Cells
+// --------------
+@t-cell-text-color:              @_t-cell-text-color;
+@t-cell-th-text-color:           @_t-cell-th-text-color; // even for label/.label in tables
+
+@t-cell-head-bg:                 @_t-cell-head-bg;
+@t-cell-head-bg-accent:          @_t-cell-head-bg-accent;
+@t-cell-head-text:               @_t-cell-head-text;
+@t-cell-head-text-accent:        @_t-cell-head-text-accent;
+
+@t-cell-label-text:              @_t-cell-label-text;
+@t-cell-label-text-accent:       @_t-cell-label-text-accent;
+@t-cell-data-text:               @_t-cell-data-text;
+@t-cell-data-text-accent:        @_t-cell-data-text-accent;
+
+@t-cell-databox-text-color:       @_t-cell-databox-text-color ;
+@t-cell-databox-border-color:     @_t-cell-databox-border-color ;
+
+
+@t-cell-foot-text:               @_t-cell-foot-text;
+
+// -----------------------
+// Zebra effect in list tables
+// -----------------------
+@t-row-zebra-bg-odd:             @_t-row-zebra-bg-odd;
+@t-row-zebra-bg-even:            @_t-row-zebra-bg-even;
+
+@t-row-zebra-bg-hover:           @_t-row-zebra-bg-hover;
+
+@t-row-zebra-bg-error:           @msg-error-light;
+
+@table-list-zebra-text-color:     @_table-list-zebra-text-color ;
+@table-list-zebra-link-color:     @_table-list-zebra-link-color ;
+
+@t-row-zebra-bg-special:         #FEF2C5; // PENDENT: ANSCHAUEN
+@t-row-zebra-bg-highlight:       #B4F4FE; // PENDENT: ANSCHAUEN
+
+
+// PENDENT: Footer
+
+
+
+// --------------------------------------
+// MESSAGES
+// --------------------------------------
+
+@message-margin:         3.6em 2.0em 0.6em 1.0em ;
+@message-padding:        0.6em 0.6em 0.5em 0.6em ;
 
 // Error
 @message_error_bg:       @brand-error-bg ;
@@ -606,17 +679,55 @@
 
 
 
+
+
+// --------------------------------------
+// JQUERY-UI STUFF
+// --------------------------------------
+
+
+// -----------------------
+// Date picker
+// -----------------------
+@jquery_datepicker-bg-color: @brand-superlight ;
+
+// -----------------------
+// UI-Dialog
+// -----------------------
+@jquery_ui_dialog-bg-color:   @brand-verylight ;
+@jquery_ui_dialog-bg-style:   @_bg_style_body ;
+
+// -----------------------
+// TOOLTIPSTER
+// -----------------------
+@jquery_ui_tooltipster-bg-color:       @brand-standard ;
+@jquery_ui_tooltipster-border-color:   @brand-lighter ;
+@jquery_ui_tooltipster-color:         @brand-verylight ;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // --------------------------------------
 // DIMENSIONS (width)
 // --------------------------------------
-
-
-// --------------
-// Standard Dimensions
 // Only for Containers like DIV, TABLE, TH, TD, COL, P
-//
+
+// -----------------------
+// Standard Dimensions (even for table cells)
+// -----------------------
 // Table cells:   COL, TD, TH, DIV
-//
 @wi-smallest:       42px ;  //   2.6em ; // one or two ciphers
 @wi-verysmall:      80px ;  //   5.0em ;
 @wi-small:         128px ;   //   8.0em ; // also date e.g. 2018/06/06
@@ -627,9 +738,9 @@
 @wi-wider:         384px ;   //  24.0em ;
 @wi-verywide:      576px ;   //  36.0em ;
 
-// --------------
-// Dimensions for DIVs
-//
+// -----------------------
+// Standard Dimensions for for DIVs
+// -----------------------
 @div-wi-smallest:     (@wi-smallest    ) ;
 @div-wi-verysmall:    (@wi-verysmall   ) ;
 @div-wi-small:        (@wi-small       ) ;
@@ -640,9 +751,9 @@
 @div-wi-wider:        (@wi-wider       ) ; // min-width
 @div-wi-verywide:     (@wi-verywide    ) ; // min-width
 
-// --------------
+// -----------------------
 // Dimensions for Table Colums (TH, TD & Col)
-//
+// -----------------------
 @tcol-wi-smallest:     (@wi-smallest    ) ;
 @tcol-wi-verysmall:    (@wi-verysmall   ) ;
 @tcol-wi-small:        (@wi-small       ) ;
@@ -653,9 +764,9 @@
 @tcol-wi-wider:        (@wi-wider       ) ; // min-width
 @tcol-wi-verywide:     (@wi-verywide    ) ; // min-width
 
-// --------------
+// -----------------------
 // Dimensions for combined rows with combination Table column widths
-//
+// -----------------------
 @tcol-wi-small-small:            (@tcol-wi-small       + @tcol-wi-small        ) ;
 @tcol-wi-small-mediumsmall:      (@tcol-wi-small       + @tcol-wi-mediumsmall  ) ;
 @tcol-wi-small-normal:           (@tcol-wi-small       + @tcol-wi-normal       ) ;
@@ -688,9 +799,9 @@
 @tcol-wi-lightwide-wider:        (@tcol-wi-lightwide   + @tcol-wi-wider        ) ;
 @tcol-wi-lightwide-verywide:     (@tcol-wi-lightwide   + @tcol-wi-verywide     ) ;
 
-// --------------
-// Dimensions for Form elements
-//
+// -----------------------
+// Dimensions for Form input elements
+// -----------------------
 @diff-input-select: 36px ; //1.6em ;
 
 // Input elements
@@ -712,7 +823,9 @@
 @input-wi-lightwide--verysmall: ( @input-wi-lightwide - @input-wi-verysmall ) - 1 ;
 @input-wi-wide--verysmall:      ( @input-wi-wide      - @input-wi-verysmall ) - ( @form-element-margin-right  ) + 4px ;
 
-// Select elements
+// -----------------------
+// Dimensions for Form Select elements
+// -----------------------
 @select-wi-smallest:    (@wi-smallest    ) ;
 @select-wi-verysmall:   (@wi-verysmall   ) ;
 @select-wi-small:       (@wi-small       - @diff-input-select ) ;
@@ -752,7 +865,10 @@
 @select-wi-wide-wider:            ((@wi-wide + (@wi-wider - @diff-input-select))      - @diff-select-combined ) ;
 @select-wi-wide-verywide:         ((@wi-wide + (@wi-verywide - @diff-input-select))   - @diff-select-combined ) ;
 
-// Textarea elements with standard dimensions
+// -----------------------
+// Dimensions for Textarea elements with standard dimensions
+// -----------------------
+
 @textarea-wi-normal:      (@wi-normal      - @diff-input-select ) ;
 @textarea-wi-lightwide:   (@wi-lightwide   - @diff-input-select ) ;
 @textarea-wi-wide:        (@wi-wide        - @diff-input-select ) ; // min-width
@@ -802,3 +918,41 @@
 @textarea-wi-wide-wide:         ((@tcol-wi-wide + @input-wi-wide)          - @diff-input-textarea-combined) ;
 @textarea-wi-wide-wider:        ((@tcol-wi-wide + @input-wi-wider)         - @diff-input-textarea-combined) ;
 @textarea-wi-wide-verywide:     ((@tcol-wi-wide + @input-wi-verywide)      - @diff-input-textarea-combined) ;
+
+
+/* ------------------------------------------------------------- */
+/* This CSS-Vars are just for testing                            */
+/* ------------------------------------------------------------- */
+
+:root {
+  --gray-standard:      @gray-standard;
+  --gray-superdark:     @gray-superdark; // Black
+  --gray-verydark:      @gray-verydark;
+  --gray-darker:        @gray-darker;
+  --gray-dark:          @gray-dark;
+  --gray-light:         @gray-light;
+  --gray-lighter:       @gray-lighter;
+  --gray-verylight:     @gray-verylight;
+  --gray-superlight:    @gray-superlight; // White
+
+  --color-standard:     @brand-standard;
+  --color-superlight:   @brand-superlight;
+  --color-verylight:    @brand-verylight;
+  --color-lighter:      @brand-lighter;
+  --color-light:        @brand-light;
+  --color-dark:         @brand-dark;
+  --color-darker:       @brand-darker;
+  --color-verydark:     @brand-verydark;
+  --color-superdark:    @brand-superdark;
+
+  --msg-ok-strong:        @msg-green-strong;
+  --msg-ok-light:         @msg-green-light;
+  --msg-error-strong:     @msg-red-strong;
+  --msg-error-light:      @msg-red-light;
+  --msg-hint-strong:      @msg-blue-strong;
+  --msg-hint-light:       @msg-blue-light;
+  --msg-warning-strong:   @msg-orange-strong;
+  --msg-warning-light:    @msg-orange-light;
+
+}
+

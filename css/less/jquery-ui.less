@@ -1,3 +1,8 @@
+/* ------------------------------------------------------------- */
+/* JQUERY UI (jquery-ui.less)                                    */
+/* ------------------------------------------------------------- */
+
+
 // ----------------------------------------------------------------------------
 //
 // jQuery UI (Version 1.10.3 / 2014-01-14 / http://jqueryui.com)
@@ -33,7 +38,7 @@
 // - ICONS
 // - MISC VISUALS
 // - RESIZABLE
-// - RESIZABLE
+// - ACCORDION
 // - AUTOCOMPLETE
 // - UI-BUTTON
 // - DATEPICKER
@@ -233,34 +238,38 @@
 // ACCORDION
 // --------------------------------------
 
-.ui-accordion .ui-accordion-header {
-  display: block;
-  cursor: pointer;
-  position: relative;
-  margin-top: 2px;
-  padding: .5em .5em .5em .7em;
-  min-height: 0; //  support: IE7
-}
-.ui-accordion .ui-accordion-icons {
-  padding-left: 2.2em;
-}
-.ui-accordion .ui-accordion-noicons {
-  padding-left: .7em;
-}
-.ui-accordion .ui-accordion-icons .ui-accordion-icons {
-  padding-left: 2.2em;
-}
-.ui-accordion .ui-accordion-header .ui-accordion-header-icon {
-  position: absolute;
-  left: .5em;
-  top: 50%;
-  margin-top: -8px;
-}
-.ui-accordion .ui-accordion-content {
-  padding: 1em 2.2em;
-  border-top: 0;
-  overflow: auto;
-}
+.ui-accordion {
+
+  .ui-accordion-header {
+    display: block;
+    cursor: pointer;
+    position: relative;
+    margin-top: 2px;
+    padding: .5em .5em .5em .7em;
+    min-height: 0; //  support: IE7
+
+    .ui-accordion-header-icon {
+      position: absolute;
+      left: .5em;
+      top: 50%;
+      margin-top: -8px;
+    }
+  } // /.ui-accordion-header
+
+  .ui-accordion-content {
+    padding: 1em 2.2em;
+    border-top: 0;
+    overflow: auto;
+  }
+
+  .ui-accordion-icons {
+    padding-left: 2.2em;
+    .ui-accordion-icons { padding-left: 2.2em; }
+  }
+  .ui-accordion-noicons { padding-left: .7em; }
+
+} // /.ui-accordion
+
 
 
 
@@ -273,7 +282,33 @@
   top: 0;
   left: 0;
   cursor: default;
+  z-index: 9000 ;
+
+  .ui-menu-item {
+    a {
+      &:hover{
+         background-color: @brand-dark;
+         color: #fff ;
+      }
+    }
+  }
+  li{
+    a{
+      display: block ;
+      font-size: 80% ;
+      padding-top: 0.4em !important;
+      padding-bottom: 0.4em !important;
+      &:hover{
+        background-color: #C9C9C9;
+        border: none ;
+        color: #000 ;
+      }
+    }
+  }
 }
+
+
+
 
 
 
@@ -394,142 +429,224 @@ button.ui-button::-moz-focus-inner {
 // --------------------------------------
 
 .ui-datepicker {
-  width: 17em;
-  padding: .2em .2em 0;
-  display: none;
-}
-.ui-datepicker .ui-datepicker-header {
-  position: relative;
-  padding: .2em 0;
-}
-.ui-datepicker .ui-datepicker-prev,
-.ui-datepicker .ui-datepicker-next {
-  position: absolute;
-  top: 2px;
-  width: 1.8em;
-  height: 1.8em;
-}
-.ui-datepicker .ui-datepicker-prev-hover,
-.ui-datepicker .ui-datepicker-next-hover {
-  top: 1px;
-}
-.ui-datepicker .ui-datepicker-prev {
-  left: 2px;
-}
-.ui-datepicker .ui-datepicker-next {
-  right: 2px;
-}
-.ui-datepicker .ui-datepicker-prev-hover {
-  left: 1px;
-}
-.ui-datepicker .ui-datepicker-next-hover {
-  right: 1px;
-}
-.ui-datepicker .ui-datepicker-prev span,
-.ui-datepicker .ui-datepicker-next span {
-  display: block;
-  position: absolute;
-  left: 50%;
-  margin-left: -8px;
-  top: 50%;
-  margin-top: -8px;
-}
-.ui-datepicker .ui-datepicker-title {
-  margin: 0 2.3em;
-  line-height: 1.8em;
-  text-align: center;
-}
-.ui-datepicker .ui-datepicker-title select {
-  font-size: @font-size-base;
-  margin: 1px 0;
-}
-.ui-datepicker select.ui-datepicker-month-year {
-  width: 100%;
-}
-.ui-datepicker select.ui-datepicker-month,
-.ui-datepicker select.ui-datepicker-year {
-  width: 49%;
-}
-.ui-datepicker table {
-  width: 100%;
-  font-size: @font-size-base;
-  border-collapse: collapse;
-  margin: 0 0 .4em;
-}
-.ui-datepicker th {
-  padding: .7em .3em;
-  text-align: center;
-  font-weight: bold;
-  border: 0;
-}
-.ui-datepicker td {
-  border: 0;
-  padding: 1px;
-}
-.ui-datepicker td span,
-.ui-datepicker td a {
-  display: block;
-  padding: .2em;
-  text-align: right;
-  text-decoration: none;
-}
-.ui-datepicker .ui-datepicker-buttonpane {
-  background-image: none;
-  margin: .7em 0 0 0;
-  padding: 0 .2em;
-  border-left: 0;
-  border-right: 0;
-  border-bottom: 0;
-}
-.ui-datepicker .ui-datepicker-buttonpane button {
-  float: right;
-  margin: .5em .2em .4em;
-  cursor: pointer;
-  padding: .2em .6em .3em .6em;
-  width: auto;
-  overflow: visible;
-}
-.ui-datepicker .ui-datepicker-buttonpane button.ui-datepicker-current {
-  float: left;
-}
+  width:             17em;
+  padding:           .2em .2em 0;
+  display:           none;
+  &.ui-widget-content{
+    background-color: @jquery_datepicker-bg-color;
+    border: @controlpanel-border ;
+  }
 
-//  with multiple calendars
-.ui-datepicker.ui-datepicker-multi {
-  width: auto;
-}
-.ui-datepicker-multi .ui-datepicker-group {
-  float: left;
-}
-.ui-datepicker-multi .ui-datepicker-group table {
-  width: 95%;
-  margin: 0 auto .4em;
-}
-.ui-datepicker-multi-2 .ui-datepicker-group {
-  width: 50%;
-}
-.ui-datepicker-multi-3 .ui-datepicker-group {
-  width: 33.3%;
-}
-.ui-datepicker-multi-4 .ui-datepicker-group {
-  width: 25%;
-}
-.ui-datepicker-multi .ui-datepicker-group-last .ui-datepicker-header,
-.ui-datepicker-multi .ui-datepicker-group-middle .ui-datepicker-header {
-  border-left-width: 0;
-}
-.ui-datepicker-multi .ui-datepicker-buttonpane {
-  clear: left;
-}
+
+  // -----------------------
+  // Header with Select-Elements
+  // -----------------------
+  .ui-datepicker-header {
+    position:       relative;
+    padding:         0.2em 0;
+
+    &.ui-datepicker-prev,
+    &.ui-datepicker-next {
+      position:     absolute;
+      top:           2px;
+      width:         1.8em;
+      height:       1.8em;
+
+      &-hover { top: 1px; }
+
+      span {
+        display:       block;
+        position:     absolute;
+        left:         50%;
+        margin-left: -8px;
+        top:           50%;
+        margin-top:  -8px;
+      }
+    }
+    .ui-datepicker-prev {
+      float:           left;
+      left:           2px;
+      &-hover { left: 1px; background-position: 25% 25% ; }
+    }
+    .ui-datepicker-next {
+      float:           right ;
+      right:           2px;
+      &-hover { right: 1px; background-position: 25% 25% ; }
+    }
+
+    .ui-datepicker-title {
+      margin:       0 2.3em;
+      line-height:   1.8em;
+      text-align:   center;
+
+      select {
+        margin:     1px 0;
+        &.ui-datepicker-month{ margin-right: 0.2em ; }
+      }
+    }
+
+    select.ui-datepicker-month-year {
+      width: 100%;
+    }
+    select.ui-datepicker-month,
+    select.ui-datepicker-year {
+      width: 49%;
+    }
+
+    &.ui-corner-all{
+      cursor: pointer ;
+      &.ui-state-hover {
+        border: none !important ;
+        curser: pointer ;
+      }
+    }
+
+    &.ui-widget-header {
+      .ui-icon {
+        background-image: url(ui-lightness/images/ui-icons_222222_256x240.png);
+      }
+      .ui-state-hover{
+        .ui-icon{
+          background-image: url(ui-lightness/images/ui-icons_ef8c08_256x240.png);
+          //background: #ffffff;
+        }
+      }
+    }
+  } // /.ui-datepicker-header
+
+
+  // -----------------------
+  // Table with Calendar
+  // -----------------------
+  table {
+    width:             100%;
+    font-size:         @font-size-smaller;
+    border-collapse:   collapse;
+    margin:           0 0 0.4em;
+
+    th {
+      padding:         0.7em 0.3em;
+      text-align:     center;
+      font-weight:     bold;
+      border:         0;
+    }
+    td {
+      border:         0;
+      padding:         1px;
+
+      span,
+      a {
+        display:           block;
+        padding:           0.2em;
+        text-align:       right;
+        text-decoration:   none;
+      }
+      a.ui-state-hover{
+        color: #ffffff ;
+        background-color: @brand-darker;
+      }
+    }
+
+    &.ui-datepicker-calendar {
+      // current date
+      .ui-state-highlight{
+        color: #ffffff ;
+        background-color: @brand-darker;
+        border: 1px @gray-standard solid
+      }
+      // Days
+      td a {
+        &.ui-state-default { color: @brand-dark; }
+        &.ui-state-hover {
+          color: #ffffff ;
+          background-color: #000000;
+          border: #000000 ;
+        }
+        &.ui-state-active {
+          border: 1px solid @brand-dark;
+          background-color: @brand-dark;
+          color: @brand-verylight;
+        }
+      } // /td
+    }    // /.ui-datepicker-calendar
+  }  // /table
+
+  .ui-datepicker-buttonpane {
+    background-image:   none;
+    margin:             0.7em 0 0 0;
+    padding:             0 0.2em;
+    border-left:         0;
+    border-right:       0;
+    border-bottom:       0;
+
+    button {
+      float:       right;
+      margin:     .5em .2em .4em;
+      cursor:     pointer;
+      padding:     .2em .6em .3em .6em;
+      width:       auto;
+      overflow:   visible;
+
+      &.ui-datepicker-current {
+        float:     left;
+      }
+      &.ui-datepicker-current,
+      &.ui-datepicker-close {
+        .mx-button-neutral ;
+        font-weight: normal ;
+      }
+
+
+
+    }
+  }  // /.ui-datepicker-buttonpane
+
+
+  // -----------------------
+  // Multiple Calendars
+  // -----------------------
+  //  with multiple calendars
+  &.ui-datepicker-multi {
+    width: auto;
+    .ui-datepicker-group {
+      float: left;
+      table {
+        width:   95%;
+        margin: 0 auto .4em;
+      }
+    }
+    .ui-datepicker-group-last,
+    .ui-datepicker-group-middle {
+       .ui-datepicker-header{ border-left-width: 0; }
+    }
+    .ui-datepicker-buttonpane { clear: left; }
+  }  // .&.ui-datepicker-multi
+
+} // /.ui-datepicker
+
+//  Date picker with multiple calendars
+.ui-datepicker-multi-2 .ui-datepicker-group { width: 50%; }
+.ui-datepicker-multi-3 .ui-datepicker-group { width: 33.3%; }
+.ui-datepicker-multi-4 .ui-datepicker-group { width: 25%; }
+//
 .ui-datepicker-row-break {
   clear: both;
   width: 100%;
   font-size: 0;
 }
 
+// -----------------------
+// Calendar symbol
+// -----------------------
+img.ui-datepicker-trigger{
+  vertical-align: middle;
+  margin-left: 0.2em ;
+}
 
 
 
 //  RTL support properties removed
+
 
 
 
@@ -540,62 +657,68 @@ button.ui-button::-moz-focus-inner {
 // --------------------------------------
 
 .ui-dialog {
-  z-index: 8001 ;
-  position: absolute;
-  top: 0;
-  left: 0;
-  //padding: .2em;
-  outline: 0;
-  border: 1px solid black; // Custom
+  z-index:         8001 ;
+  position:       absolute;
+  top:             0;
+  left:           0;
+  outline:         0;
+  border:         @controlpanel-border ; // Custom
+  border-radius:   @controlpanel-radius;
+  //color:           #333333;
 
   .ui-dialog-titlebar {
-    padding:      0.4em 1.0em;
-    border:       none;
-    background:   @h1-bg ;
-    color:        @h1-color ;
-    font-weight:  normal;
-    position:     relative;
-    text-align:   left;
-    font-size:    @h3-size;
+    padding:          0.4em 1.0em;
+    border:           none;
+    background-color: @brand-h1-bg !important;
+    color:            @brand-h1-color !important;
+    font-weight:      normal;
+    position:         relative;
+    text-align:       left;
+    font-size:        @h3-size;
 
     .ui-dialog-title {
-      float:           left;
-      white-space:     nowrap;
-      overflow:        hidden;
-      text-overflow:   ellipsis;
-      display:         block;
+      float:          left;
+      white-space:    nowrap;
+      overflow:       hidden;
+      text-overflow:  ellipsis;
+      display:        block;
     }
 
     .ui-dialog-titlebar-close {
       position:     absolute;
       right:        0.3em;
-      top:          50%;
+      //top:        50%;
+      top:           0;
       width:        21px;
-      margin:       10px 0 0 0;
+      //margin:     10px 0 0 0;
+      margin:       5px 0 0 0;
       padding:      1px;
       height:       20px;
+//      background: #bbb !important;
     }
-  }
-  // /.ui-dialog-titlebar
+  } // /.ui-dialog-titlebar
 
   .ui-dialog-content {
-    position: relative;
-    border: 0;
-    padding: .5em 1em;
-    background: none;
-    overflow: auto;
-
+    position:         relative;
+    border:           0;
+    padding:           0.5em 1em;
+    background-color: @jquery_ui_dialog-bg-color !important;
+    background:       @jquery_ui_dialog-bg-style !important;
+    overflow:         auto;
+  }
+  .wrapper {
+    margin: 0 ;
   }
 
   .ui-dialog-buttonpane {
-    text-align: left;
-    border-width: 1px 0 0 0;
+    text-align:       left;
+    border-width:     1px 0 0 0;
     background-image: none;
-    margin-top: .5em;
-    padding: .3em 1em .5em .4em;
+    margin-top:       0.5em;
+    padding:           0.3em 1em 0.5em 0.4em;
 
     .ui-dialog-buttonset {
-      float: right;
+      float:           right;
     }
 
     button {
@@ -613,17 +736,20 @@ button.ui-button::-moz-focus-inner {
     background-position: 16px 16px;
   }
 
+//  .ui-widget-header {
+//    button.ui-dialog-titlebar-close {
+//      right: 0.3em;
+//      top: 0;
+//      width: 21px;
+//      margin: 5px 0 0 0;
+//    }
+//  }
+
   &.ui-draggable .ui-dialog-titlebar {
     cursor: move;
   }
 
-}
-// /.ui-dialog
-
-
-
-
-
+} // /.ui-dialog
 
 
 
@@ -632,76 +758,266 @@ button.ui-button::-moz-focus-inner {
 // UI-MENU
 // --------------------------------------
 
-
 .ui-menu {
   list-style: none;
   padding: 2px;
   margin: 0;
   display: block;
   outline: none;
-}
-.ui-menu .ui-menu {
-  margin-top: -3px;
-  position: absolute;
-}
-.ui-menu .ui-menu-item {
-  margin: 0;
-  padding: 0;
-  width: 100%;
-  //  support: IE10, see #8844
-  list-style-image: url(data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7);
-}
-.ui-menu .ui-menu-divider {
-  margin: 5px -2px 5px -2px;
-  height: 0;
-  font-size: 0;
-  line-height: 0;
-  border-width: 1px 0 0 0;
-}
-.ui-menu .ui-menu-item a {
-  text-decoration: none;
-  display: block;
-  padding: 2px .4em;
-  line-height: 1.5;
-  min-height: 0; //  support: IE7
-  font-weight: normal;
-}
-.ui-menu .ui-menu-item a.ui-state-focus,
-.ui-menu .ui-menu-item a.ui-state-active {
-  font-weight: normal;
-  margin: -1px;
-}
+  display: inline-table ;
+  border-collapse: collapse ;
 
-.ui-menu .ui-state-disabled {
-  font-weight: normal;
-  margin: .4em 0 .2em;
-  line-height: 1.5;
-}
-.ui-menu .ui-state-disabled a {
-  cursor: default;
-}
+  &.ui-widget-content {
+    border: 1px @_menu_border_color solid ;
+  }
 
-//  icon support
-.ui-menu-icons {
-  position: relative;
-}
-.ui-menu-icons .ui-menu-item a {
-  position: relative;
-  padding-left: 2em;
-}
+  .ui-menu-item {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    background-color: @brand-lighter;
+    border-bottom: 1px @_menu_border_color solid ;
 
-//  left-aligned
-.ui-menu .ui-icon {
-  position: absolute;
-  top: .2em;
-  left: .2em;
-}
+    a {
+      text-decoration: none;
+      display: block;
+      padding: 2px .4em;
+      line-height: 1.5;
+      min-height: 0; //  support: IE7
+      font-weight: normal;
+      border: 0 ;
+      background: none ;
+      border: 0 ;
 
-//  right-aligned
-.ui-menu .ui-menu-icon {
-  position: static;
-  float: right;
-}
+      &.ui-state-focus,
+      &.ui-state-active {
+        font-weight: normal;
+        margin: -1px;
+      }
+    }
+  } // /.ui-menu-item
+
+  .ui-menu-divider {
+    margin: 5px -2px 5px -2px;
+    height: 0;
+    font-size: 0;
+    line-height: 0;
+    border-width: 1px 0 0 0;
+  }
+
+  .ui-state-disabled {
+    font-weight: normal;
+    margin: .4em 0 .2em;
+    line-height: 1.5;
+    a { cursor: default; }
+  }
+
+  // ui-menu within a ui-menu
+  .ui-menu {
+    margin-top: -3px;
+    position: absolute;
+  }
+
+  //  icon support
+  &.ui-menu-icons {
+    position: relative;
+
+    .ui-menu-item a {
+      position: relative;
+      padding-left: 2em;
+    }
+  }
+
+  //  left-aligned
+  .ui-icon {
+    position: absolute;
+    top: .2em;
+    left: .2em;
+  }
+  //  right-aligned
+  .ui-menu-icon {
+    position: static;
+    float: right;
+  }
+
+} // /.ui-menu
+
+
+
+// --------------------------------------
+// CONTEXT MENU
+// --------------------------------------
+
+// -----------------------
+// Context Menu List
+// -----------------------
+ul.context-menu-list{
+  margin:             0;
+  padding:            0;
+  min-width:          120px;
+  max-width:          250px;
+  display:            inline-block;
+  position:           absolute;
+  list-style-type:    none;
+  border:             1px solid #DDD;
+  background:         #EEE;
+
+  -webkit-box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+     -moz-box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+      -ms-box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+       -o-box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+          box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+
+  //font-family: Verdana, Arial, Helvetica, sans-serif;
+  //font-size: 11px;
+
+  &.context-menu-root {}
+
+
+	// -----------------------
+	// Context Menu Item
+	// -----------------------
+  li.context-menu-item {
+    padding:              2px 2px 2px 24px;
+    background-color:     #EEE;
+    position:             relative;
+    -webkit-user-select:  none;
+       -moz-user-select:  -moz-none;
+        -ms-user-select:  none;
+            user-select:  none;
+
+    // Header within the menu
+    &.context-menu-heading {
+      text-decoration: underline;
+      font-weight: bold;
+    }
+
+    // States
+    &.hover {
+      cursor: pointer;
+      background-color: #39F;
+
+      & > .context-menu-list {
+        display: block ;
+      }
+    }
+    &.disabled { color: #666; }
+    &.hover,
+    &.disabled.hover {
+        cursor: default ;
+        background-color: #EEE ;
+    }
+
+
+
+    // -----------------------
+    // Icons in Menu Item
+    // -----------------------
+    .icon {
+      // Original code
+      min-height:           18px;
+      background-repeat:    no-repeat;
+      background-position:  4px 2px;
+
+      // Original Code (but now disabled)
+      // &.icon-edit   { background-image: url(../image/jquery.contextMenu/page_white_edit.png)  ; }
+      // &.icon-cut    { background-image: url(../image/jquery.contextMenu/cut.png)              ; }
+      // &.icon-copy   { background-image: url(../image/jquery.contextMenu/page_white_copy.png)  ; }
+      // &.icon-paste  { background-image: url(../image/jquery.contextMenu/page_white_paste.png) ; }
+      // &.icon-delete { background-image: url(../image/jquery.contextMenu/page_white_delete.png); }
+      // &.icon-add    { background-image: url(../image/jquery.contextMenu/page_white_add.png)   ; }
+      // &.icon-quit   { background-image: url(../image/jquery.contextMenu/door.png)             ; }
+
+      // All Icons are listed here
+      &.icon-add      {  }
+      &.icon-edit     {  }
+      &.icon-delete   {  }
+      &.icon-flag     {  }
+      &.icon-copy     {  }
+      &.icon-paste    {  }
+      &.icon-pdf      {  }
+      &.icon-new      {  }
+      &.icon-renumber {  }
+    }
+
+    span {}
+
+    &.context-menu-separator {
+      padding-bottom:0;
+      border-bottom: 1px solid #DDD;
+
+      &.not-selectable {}
+    }
+
+    // Item has submenu
+    &.context-menu-submenu:after {
+      content: ">";
+      color: #666;
+      position: absolute;
+      top: 0;
+      right: 3px;
+      z-index: 1;
+    }
+
+    // Submenu-List
+    & > .context-menu-list {
+      display: none;
+      /* re-positioned by js */
+      right: -5px;
+      top: 5px;
+    }
+
+    .context-menu-accesskey {
+        text-decoration: underline;
+    }
+
+
+    & > label > input,
+    & > label > textarea {
+      -webkit-user-select: text;
+         -moz-user-select: text;
+          -ms-user-select: text;
+              user-select: text;
+    }
+
+
+  } // /li.context-menu-item
+
+
+
+	// -----------------------
+	// Context Menu Input
+	// -----------------------
+
+  .context-menu-input {
+    /* vertically align inside labels */
+    & > label > * { vertical-align: top; }
+
+    /* position checkboxes and radios as icons */
+    & > label > input[type="checkbox"],
+    & > label > input[type="radio"] {  margin-left: -17px; }
+    & > label,
+    & > label > input[type="text"],
+    & > label > textarea,
+    & > label > select {
+      display: block;
+      width: 100%;
+      -webkit-box-sizing: border-box;
+         -moz-box-sizing: border-box;
+          -ms-box-sizing: border-box;
+           -o-box-sizing: border-box;
+              box-sizing: border-box;
+    }
+
+    & > label > span {  margin-left: 5px ; }
+    & > label > textarea { height: 100px; }
+
+  } // /.context-menu-input
+
+
+} // /ul.context-menu-list
+
+
 
 
 
@@ -713,20 +1029,22 @@ button.ui-button::-moz-focus-inner {
   height: 2em;
   text-align: left;
   overflow: hidden;
-}
-.ui-progressbar .ui-progressbar-value {
-  margin: -1px;
-  height: 100%;
-}
-.ui-progressbar .ui-progressbar-overlay {
-  background: url("ui-lightness/images/animated-overlay.gif");
-  height: 100%;
-  filter: alpha(opacity=25);
-  opacity: 0.25;
-}
-.ui-progressbar-indeterminate .ui-progressbar-value {
-  background-image: none;
-}
+
+  .ui-progressbar-value {
+    margin: -1px;
+    height: 100%;
+  }
+  .ui-progressbar-overlay {
+    background: url("ui-lightness/images/animated-overlay.gif");
+    height: 100%;
+    filter: alpha(opacity=25);
+    opacity: 0.25;
+  }
+  .ui-progressbar-indeterminate .ui-progressbar-value {
+    background-image: none;
+  }
+} // /.ui-progressbar
+
 
 
 
@@ -738,66 +1056,69 @@ button.ui-button::-moz-focus-inner {
 .ui-slider {
   position: relative;
   text-align: left;
-}
-.ui-slider .ui-slider-handle {
-  position: absolute;
-  z-index: 2;
-  width: 1.2em;
-  height: 1.2em;
-  cursor: default;
-}
-.ui-slider .ui-slider-range {
-  position: absolute;
-  z-index: 1;
-  font-size: @font-size-smaller;
-  display: block;
-  border: 0;
-  background-position: 0 0;
-}
 
-//  For IE8 - See #6727
-.ui-slider.ui-state-disabled .ui-slider-handle,
-.ui-slider.ui-state-disabled .ui-slider-range {
-  filter: inherit;
-}
+  .ui-slider-handle {
+    position: absolute;
+    z-index: 2;
+    width: 1.2em;
+    height: 1.2em;
+    cursor: default;
+  }
+
+  .ui-slider-range {
+    position: absolute;
+    z-index: 1;
+    //font-size: @font-size-smaller;
+    display: block;
+    border: 0;
+    background-position: 0 0;
+  }
+
+  //  For IE8 - See #6727
+  &.ui-state-disabled .ui-slider-handle,
+  &.ui-state-disabled .ui-slider-range {
+    filter: inherit;
+  }
+} // /.ui-slider
 
 .ui-slider-horizontal {
   height: .8em;
-}
-.ui-slider-horizontal .ui-slider-handle {
-  top: -.3em;
-  margin-left: -.6em;
-}
-.ui-slider-horizontal .ui-slider-range {
-  top: 0;
-  height: 100%;
-}
-.ui-slider-horizontal .ui-slider-range-min {
-  left: 0;
-}
-.ui-slider-horizontal .ui-slider-range-max {
-  right: 0;
-}
+
+  .ui-slider-handle {
+    top: -.3em;
+    margin-left: -.6em;
+  }
+  .ui-slider-range {
+    top: 0;
+    height: 100%;
+  }
+  .ui-slider-range-min { left: 0;  }
+  .ui-slider-range-max { right: 0; }
+}// /.ui-slider-horizontal
 
 .ui-slider-vertical {
   width: .8em;
   height: 100px;
-}
-.ui-slider-vertical .ui-slider-handle {
-  left: -.3em;
-  margin-left: 0;
-  margin-bottom: -.6em;
-}
-.ui-slider-vertical .ui-slider-range {
-  left: 0;
-  width: 100%;
-}
-.ui-slider-vertical .ui-slider-range-min {
-  bottom: 0;
-}
-.ui-slider-vertical .ui-slider-range-max {
-  top: 0;
-}
+
+  .ui-slider-handle {
+    left: -.3em;
+    margin-left: 0;
+    margin-bottom: -.6em;
+  }
+  .ui-slider-range {
+    left: 0;
+    width: 100%;
+  }
+  .ui-slider-range-min {
+    bottom: 0;
+  }
+  .ui-slider-range-max {
+    top: 0;
+  }
+
+
+} // /.ui-slider-vertical
+
 
 
 
@@ -811,55 +1132,53 @@ button.ui-button::-moz-focus-inner {
   overflow: hidden;
   padding: 0;
   vertical-align: middle;
-}
-.ui-spinner-input {
-  border: none;
-  background: none;
-  color: inherit;
-  padding: 0;
-  margin: .2em 0;
-  vertical-align: middle;
-  margin-left: .4em;
-  margin-right: 22px;
-}
-.ui-spinner-button {
-  width: 16px;
-  height: 50%;
-  font-size: @font-size-smaller;
-  padding: 0;
-  margin: 0;
-  text-align: center;
-  position: absolute;
-  cursor: default;
-  display: block;
-  overflow: hidden;
-  right: 0;
-}
-//  more specificity required here to overide default borders
-.ui-spinner a.ui-spinner-button {
-  border-top: none;
-  border-bottom: none;
-  border-right: none;
-}
-//  vertical centre icon
-.ui-spinner .ui-icon {
-  position: absolute;
-  margin-top: -8px;
-  top: 50%;
-  left: 0;
-}
-.ui-spinner-up {
-  top: 0;
-}
-.ui-spinner-down {
-  bottom: 0;
-}
 
-//  TR overrides
-.ui-spinner .ui-icon-triangle-1-s {
-  //  need to fix icons sprite
-  background-position: -65px -16px;
-}
+  .ui-spinner-input {
+    border: none;
+    background: none;
+    color: inherit;
+    padding: 0;
+    margin: .2em 0;
+    vertical-align: middle;
+    margin-left: .4em;
+    margin-right: 22px;
+  }
+  .ui-spinner-button {
+    width: 16px;
+    height: 50%;
+    //font-size: @font-size-smaller;
+    padding: 0;
+    margin: 0;
+    text-align: center;
+    position: absolute;
+    cursor: default;
+    display: block;
+    overflow: hidden;
+    right: 0;
+  }
+  //  more specificity required here to overide default borders
+  a.ui-spinner-button {
+    border-top: none;
+    border-bottom: none;
+    border-right: none;
+  }
+  //  vertical centre icon
+  .ui-icon {
+    position: absolute;
+    margin-top: -8px;
+    top: 50%;
+    left: 0;
+  }
+  .ui-spinner-up   { top: 0; }
+  .ui-spinner-down { bottom: 0; }
+
+  //  TR overrides
+  .ui-spinner .ui-icon-triangle-1-s {
+    //  need to fix icons sprite
+    background-position: -65px -16px;
+  }
+} // /.ui-spinner
+
 
 
 
@@ -873,36 +1192,54 @@ button.ui-button::-moz-focus-inner {
   // auto appear as "fixed")
   position: relative;
   padding: .2em;
-}
-.ui-tabs .ui-tabs-nav {
-  margin: 0;
-  padding: .2em .2em 0;
-}
-.ui-tabs .ui-tabs-nav li {
-  list-style: none;
-  float: left;
-  position: relative;
-  top: 0;
-  margin: 1px .2em 0 0;
-  border-bottom-width: 0;
-  padding: 0;
-  white-space: nowrap;
-}
-.ui-tabs .ui-tabs-nav li a {
-  float: left;
-  padding: .5em 1em;
-  text-decoration: none;
-}
-.ui-tabs .ui-tabs-nav li.ui-tabs-active {
-  margin-bottom: -1px;
-  padding-bottom: 1px;
-}
-.ui-tabs .ui-tabs-nav li.ui-tabs-active a,
-.ui-tabs .ui-tabs-nav li.ui-state-disabled a,
-.ui-tabs .ui-tabs-nav li.ui-tabs-loading a {
-  cursor: text;
-  outline: 0 ; // hps: gepunketen Rahmen nach Klick ausblenden
-}
+
+  .ui-tabs-nav {
+    margin: 0;
+    padding: .2em .2em 0;
+
+    li {
+      list-style: none;
+      float: left;
+      position: relative;
+      top: 0;
+      margin: 1px .2em 0 0;
+      border-bottom-width: 0;
+      padding: 0;
+      white-space: nowrap;
+
+      a {
+        float: left;
+        padding: .5em 1em;
+        text-decoration: none;
+        cursor: pointer;
+      }
+
+      .ui-tabs-active {
+        margin-bottom: -1px;
+        padding-bottom: 1px;
+      }
+      .ui-tabs-active,
+      .ui-state-disabled,
+      .ui-tabs-loading {
+        a {
+          cursor: text;
+          outline: 0 ; // hps: gepunketen Rahmen nach Klick ausblenden
+        }
+      }
+
+    } // /li
+  } // /.ui-tabs-nav
+
+  .ui-tabs-panel {
+    display: block;
+    border-width: 0;
+    padding: 0.4em 0 1.0em 0;
+    //background: none;
+  }
+
+} // /.ui-tabs
+
+
 // first selector in group seems obsolete,
 // but required to overcome bug in Opera applying cursor:
 // text overall if defined elsewhere...
@@ -910,12 +1247,7 @@ button.ui-button::-moz-focus-inner {
 .ui-tabs-collapsible .ui-tabs-nav li.ui-tabs-active a {
   cursor: pointer;
 }
-.ui-tabs .ui-tabs-panel {
-  display: block;
-  border-width: 0;
-  padding: 0.4em 0 1.0em 0;
-  background: none;
-}
+
 
 
 
@@ -924,162 +1256,212 @@ button.ui-button::-moz-focus-inner {
 // --------------------------------------
 
 .ui-tooltip {
-  padding: 8px;
-  position: absolute;
-  z-index: 9999;
-  max-width: 300px;
-  -webkit-box-shadow: 0 0 5px #aaa;
-  box-shadow: 0 0 5px #aaa;
+  position:           absolute;
+  z-index:            9999;
+  max-width:          300px;
+  padding:            8px;
+  -webkit-box-shadow: 0 0 5px #aaa ;
+  box-shadow:         0 0 5px #aaa;
+  background-color:   @jquery_ui_tooltipster-bg-color !important ;
+
+  .ui-tooltip-content{
+    color:            #ffffff ;
+  }
 }
 body .ui-tooltip {
-  border-width: 2px;
+  border-width: 2px ;
 }
 
-// Component containers
+
+
+
+
+// ----------------------------------
+// Component containers (UI-WIDGET)
 // ----------------------------------
 .ui-widget {
-  font-size: @font-size-smaller;
+  //font-size: @font-size-smaller;
+
+  .ui-widget-header {
+    background: none;
+    color: #ffffff;
+    font-weight: bold;
+
+    a { color: #ffffff; }
+  }
+
+  .ui-widget-content {
+    //border: 1px solid #dddddd;
+    border: none;
+    background: none ;
+    //background-color: #ffffff ; // or Transparent
+    //color: #333333;
+
+    a {
+      //color: #333333;
+    }
+  } // .ui-widget-content
+
+  .ui-widget { font-size: @font-size-small; }
+
+  input,
+  select,
+  textarea,
+  button {
+    //font-size: @font-size-smaller ;
+  }
+
+} // /.ui-widget
+
+
+
+
+
+// --------------------------------------
+// CKEditor
+// --------------------------------------
+.cke_editable {
+  background-color: white;
+  padding: 6px;
+  //margin-left: -0.3em ;
+  border-top: 1px #999 solid;
+  border-right: 1px #ddd solid;
+  border-left: 1px #ddd solid;
+  overflow: auto ;
+  font-size: 11pt ;
+  min-width: @textarea-wi-lightwide ;
+  min-height: 4.0em ;
+  &:focus {
+    outline: none ;
+    background-color: @formelement-focus-bg ;
+    border: @formelement-focus-border ;
+  }
+
+  p {
+    font-size: 10pt !important;
+    padding: 0  ;
+    margin: 0 0 0.4em 0 ;
+    font-weight: normal;
+  }
 }
-.ui-widget .ui-widget {
-  font-size: @font-size-small;
+div.cke_editable.wi-small-wide{
+  margin-right: 24px !important ;
 }
-.ui-widget input,
-.ui-widget select,
-.ui-widget textarea,
-.ui-widget button {
-  font-size: @font-size-smaller ;
+body > .ui-dialog > .ui-dialog-content > p > .cke_editable {
+  border: 1px #dcdcdc solid !important;
+  padding: 0.4em;
+  margin: 0;
+  font-size: 100%;
+  width: 100% !important;
 }
-.ui-widget-content {
-  border: 1px solid #dddddd;
-  //background: #eeeeee url(ui-lightness/images/ui-bg_highlight-soft_100_eeeeee_1x100.png) 50% top repeat-x;
-  background: none ;
-  color: #333333;
-}
-.ui-widget-content a {
-  color: #333333;
-}
-.ui-widget-header {
-  // border: 1px solid #e78f08; /* hps */
-  background: none;
-  color: #ffffff;
-  font-weight: bold;
-}
-.ui-widget-header a {
-  color: #ffffff;
-}
+
+
 
 
 
 // ----------------------------------
 // Interaction states
 // ----------------------------------
+
 .ui-state-default,
-.ui-widget-content .ui-state-default,
-.ui-widget-header .ui-state-default {
+.ui-state-hover,
+.ui-state-focus,
+.ui-state-active {
+  .ui-icon {
+    background-image: url(ui-lightness/images/ui-icons_777777_256x240.png) !important;
+  }
+}
+
+.ui-state-default {
   border: 1px solid #cccccc;
   //background: #f6f6f6 url(ui-lightness/images/ui-bg_glass_100_f6f6f6_1x400.png) 50% 50% repeat-x;
   background: none ;
   font-weight: bold;
-  color: #1c94c4;
-}
-.ui-state-default a,
-.ui-state-default a:link,
-.ui-state-default a:visited {
-  color: #1c94c4;
-  text-decoration: none;
-}
+  color: @brand-darker;
+  a,
+  a:link,
+  a:visited {
+    color: #1c94c4;
+    text-decoration: none;
+  }
+} // /.ui-state-default
+
 .ui-state-hover,
-.ui-widget-content .ui-state-hover,
-.ui-widget-header .ui-state-hover,
-.ui-state-focus,
-.ui-widget-content .ui-state-focus,
-.ui-widget-header .ui-state-focus {
-  border: 1px solid #fbcb09;
+.ui-state-focus {
+  //border: 1px solid #fbcb09;
   //background: #fdf5ce url(ui-lightness/images/ui-bg_glass_100_fdf5ce_1x400.png) 50% 50% repeat-x;
   background: none ;
   font-weight: bold;
   color: #c77405;
-}
-.ui-state-hover a,
-.ui-state-hover a:hover,
-.ui-state-hover a:link,
-.ui-state-hover a:visited {
-  color: #000;
-  text-decoration: underline;
-}
-.ui-state-active,
-.ui-widget-content .ui-state-active,
-.ui-widget-header .ui-state-active {
+  a,
+  a:hover,
+  a:link,
+  a:visited {
+    color: #000;
+    text-decoration: underline;
+  }
+} // .ui-state-hover, .ui-state-focus
+
+.ui-state-active {
   border: 1px solid #fbd850;
   //background: #ffffff url(ui-lightness/images/ui-bg_glass_65_ffffff_1x400.png) 50% 50% repeat-x;
   background: none ;
   font-weight: bold;
   color: #eb8f00;
-}
-.ui-state-active a,
-.ui-state-active a:link,
-.ui-state-active a:visited {
-  color: #eb8f00;
-  text-decoration: none;
-}
+  a,
+  a:link,
+  a:visited {
+    color: #eb8f00;
+    text-decoration: none;
+  }
+} // .ui-state-active
+
 
 
 // ----------------------------------
 // Interaction Cues
 // ----------------------------------
-.ui-state-highlight,
-.ui-widget-content .ui-state-highlight,
-.ui-widget-header .ui-state-highlight {
+.ui-state-highlight {
   border: 1px solid #fed22f;
   //background: #ffe45c url(ui-lightness/images/ui-bg_highlight-soft_75_ffe45c_1x100.png) 50% top repeat-x;
   background: none ;
   color: #363636;
+  a { color: #363636; }
 }
-.ui-state-highlight a,
-.ui-widget-content .ui-state-highlight a,
-.ui-widget-header .ui-state-highlight a {
-  color: #363636;
-}
-.ui-state-error,
-.ui-widget-content .ui-state-error,
-.ui-widget-header .ui-state-error {
+
+.ui-state-error {
   border: 1px solid #cd0a0a;
   //background: #b81900 url(ui-lightness/images/ui-bg_diagonals-thick_18_b81900_40x40.png) 50% 50% repeat;
   background: none ;
   color: #ffffff;
+  a { color: #ffffff; }
 }
-.ui-state-error a,
-.ui-widget-content .ui-state-error a,
-.ui-widget-header .ui-state-error a {
+
+.ui-state-error-text {
   color: #ffffff;
 }
-.ui-state-error-text,
-.ui-widget-content .ui-state-error-text,
-.ui-widget-header .ui-state-error-text {
-  color: #ffffff;
-}
-.ui-priority-primary,
-.ui-widget-content .ui-priority-primary,
-.ui-widget-header .ui-priority-primary {
+
+.ui-priority-primary {
   font-weight: bold;
 }
-.ui-priority-secondary,
-.ui-widget-content .ui-priority-secondary,
-.ui-widget-header .ui-priority-secondary {
+.ui-priority-secondary {
   opacity: .7;
   filter:Alpha(Opacity=70);
   font-weight: normal;
 }
-.ui-state-disabled,
-.ui-widget-content .ui-state-disabled,
-.ui-widget-header .ui-state-disabled {
+
+.ui-state-disabled {
   opacity: .35;
   filter:Alpha(Opacity=35);
   background-image: none;
+  .ui-icon { filter:Alpha(Opacity=35); } //  For IE8 - See #6059
 }
-.ui-state-disabled .ui-icon {
-  filter:Alpha(Opacity=35); //  For IE8 - See #6059
-}
+
+// Overrides
+
+
+
+
 
 
 
@@ -1306,25 +1688,25 @@ body .ui-tooltip {
 .ui-corner-top,
 .ui-corner-left,
 .ui-corner-tl {
-  //border-top-left-radius: 4px;
+  //border-top-left-radius: @tabs-border-radius;
 }
 .ui-corner-all,
 .ui-corner-top,
 .ui-corner-right,
 .ui-corner-tr {
-  //border-top-right-radius: 4px;
+  //border-top-right-radius: @tabs-border-radius;
 }
 .ui-corner-all,
 .ui-corner-bottom,
 .ui-corner-left,
 .ui-corner-bl {
-  //border-bottom-left-radius: 4px;
+  //border-bottom-left-radius: @tabs-border-radius;
 }
 .ui-corner-all,
 .ui-corner-bottom,
 .ui-corner-right,
 .ui-corner-br {
-  //border-bottom-right-radius: 4px;
+  //border-bottom-right-radius: @tabs-border-radius;
 }
 
 // Overlays */
@@ -1341,32 +1723,96 @@ body .ui-tooltip {
   background: #000000 ;
   opacity: .2;
   filter: Alpha(Opacity=20);
-  border-radius: 5px;
+  border-radius: @controlpanel-radius;
 }
 
-// datepicker
-.ui-datepicker-header .ui-datepicker-prev,
-.ui-datepicker-header .ui-datepicker-next {
-  &.ui-corner-all{
-    cursor: pointer ;
-    &.ui-state-hover {
-      border: none !important ;
-      curser: pointer ;
-    }    
+
+
+// --------------------------------------
+// KIVITENDO STUFF
+// --------------------------------------
+
+
+// -----------------------
+// Part, Chart & Customer Vendor Picker
+// -----------------------
+
+//  Chart-Picker
+//  Entnommen aus main.less, gehoert vielleicht zu Autocomplete
+
+.chart_picker,
+.part_picker {
+  display: inline-block;
+
+  &:before{
+    display: inline-block;
+    vertical-align: middle;
+    height: 100%;
   }
 }
-// current date
-.ui-datepicker-calendar {
-  .ui-state-highlight{
-    color: #ffffff ;
-    background-color: #c77405; 
-  }
-  td a.ui-state-hover{
-    color: #ffffff ;
-    background-color: #c77405;   
+
+span.chart_picker,
+span.part_picker {
+  white-space: nowrap ;
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+  input {
+    //  padding-right: 20px;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
   }
 }
-.ui-datepicker-title select.ui-datepicker-month{
-  margin-right: 0.2em ;
+
+div.part_picker_part,
+div.chart_picker_chart {
+  padding: 5px;
+  margin: 5px;
+  border: 1px;
+  border-color: darkgray;
+  border-style: solid;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+  background-color: white;
+  cursor: pointer;
+
+  &:hover {
+    color: #000;
+    text-decoration: underline;
+  }
 }
+
+
+
+
+// Part_Picker
+// Select Customer in input-fields
+// PENDENT: Ausrichtung vertikal in Zelle
+span.customer_vendor_picker{
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.customer-vendor-picker-undefined,
+.chartpicker-undefined,
+.projectpicker-undefined,
+.partpicker-undefined {
+  color: red;
+  font-style: italic;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

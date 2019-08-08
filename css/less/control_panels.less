@@ -1,3 +1,7 @@
+/* ------------------------------------------------------------- */
+/* CONTROL PANELS (control_panels.less)                          */
+/* ------------------------------------------------------------- */
+
 // ----------------------------------------------------------------------------
 //
 // CONTROL PANELS
@@ -21,35 +25,43 @@
 // --------------------------------------
 // General Class for all control panels
 .control-panel {
-  border:           @controlpanel-border;
-  background-color: @controlpanel-bg;
+  border:           @controlpanel-border !important;
+  background-color: @controlpanel-bg-color;
+  background:        @controlpanel-bg-style ;
   border-radius:    @controlpanel-radius;
-  color:            red ;
+  //color:            red ;
   overflow:         hidden ;
+
+  span.label{
+    padding-right: 0.6em ;
+  }
 }
+
+
+
 
 // --------------------------------------
 // FORM-ADDITION
 // --------------------------------------
 // Settings for including fields in a report
 .form-addition{
-  padding:          @controlpanel-padding-bold ;
+  padding:          @controlpanel-padding-bold !important ;
   margin:           @controlpanel-margin !important ;
   width:            auto !important ;
   display:          inline-block ;
 
   h3{
-    color:          @controlpanel-h3-color  !important;
-    font-size:      @controlpanel-h3-size   !important;
-    font-weight:    @controlpanel-h3-weight !important;
-    margin: 0.3em 0 0.1em 0 !important;
-    padding: 0 ;
+//    color:          @controlpanel-h3-color  !important;
+//    font-size:      @controlpanel-h3-size   !important;
+//    font-weight:    @controlpanel-h3-weight !important;
+    margin:         0.3em 0 0.1em 0 !important;
+    padding:         0 ;
   }
   h4{
-    color:        @controlpanel-h4-color !important;;
-    font-size:    @controlpanel-h4-size;
-    font-weight:  @controlpanel-h4-weight;
-    font-style:   @controlpanel-h4-style;
+   color:          @controlpanel-h4-color !important;;
+   font-size:      @controlpanel-h4-size;
+   font-weight:    @controlpanel-h4-weight;
+   font-style:     @controlpanel-h4-style;
   }
 
   div.list{
@@ -66,18 +78,20 @@
 // --------------------------------------
 // SELECT ITEM
 // --------------------------------------
-// for selecting a hidden Record (e.g. Contacts, Delivery Address etc.)
+// Panel for selecting a hidden Record (e.g. Contacts, Delivery Address etc.)
 .select-item{
   display:          inline-block ;
   width:            auto ;
   height:           auto;
   padding:          @controlpanel-select-item-padding ;
   margin:           @controlpanel-margin ;
-  border:           @controlpanel-border ;
-  border-radius:    @controlpanel-radius ;
-  background-color: @controlpanel-bg ;
   color:            @controlpanel-color ;
   font-size:        @font-size-smaller ;
+  border:           @controlpanel-border ;
+  border-radius:    @controlpanel-radius ;
+  background-color: @controlpanel-bg-color ;
+  background:        @_bg_style_button ; // PENDENT:
+
   input,
   select{
     margin-left:    0.6em ;
@@ -117,14 +131,22 @@
       select { margin: -0.3em 0 0 0; }
     }
   }
+
 } // /.select-item
+
 // Select function within standard wrapper
 .ui-tabs-panel > .select-item {
-  margin:     @contentbox-margin;
+  margin:         @contentbox-margin;
+  vertical-align: top ;
+
 }
 .wrapper > .select-item {
   margin:     0.8em 0 1.0em 0 ;
 }
+
+
+
+
 
 
 
@@ -133,39 +155,48 @@
 // --------------------------------------
 // for togglin a filter panel
 // see inlcude file /templates/webpages/common/filter-toggle.html
+.toggle_panel.control-panel{
+  border:         none !important;
+  background:     none !important;
+  border-radius:   0 !important;
+  overflow:       visible !important;
+}
 .toggle_panel{
   & > a.button.toggle {
-    padding: 0.2em 0 0.2em 1.4em;
+    padding:   0.2em 0 0.2em 1.4em;
     &:hover {
-      background-color: @controlpanel-bg !important;
-      text-decoration: underline ;
+      background-color: @controlpanel-bg-color !important;
+      text-decoration:   underline ;
     }
   }
   span.summary {
-    font-size: @font-size-small;
+    font-size:     @font-size-small;
     padding-left: 2.0em;
-    color: @gray-mediumdark;
+    color:         @controlpanel-color;
   }
   .toggle_panel_block {
-    display:  block;
-    overflow: hidden;
+    display:          block;
+    overflow:         hidden;
     padding:          @controlpanel-padding ;
-    margin:           2em 1em 0em 0; ;
+    margin:            2em 1em 0em 0; ;
+    background-color: @controlpanel-bg-color;
 
+    border:                     @controlpanel-border ;
     border-bottom-left-radius:  @controlpanel-radius ;
     border-bottom-right-radius: @controlpanel-radius ;
     border-top-right-radius:    @controlpanel-radius ;
     margin-top: -1px ;
 
     .buttons{
-      clear: left ;
-      padding: 0 !important;
-      margin: 0;
+      clear:     left ;
+      padding:   0 !important;
+      margin:   0;
     }
   }
 
+  // PENDENT: ggf. anpassen an Controlpanel-Farbtoene
   .tbl-horizontal {
-    th{ color: @brand-darkest ; }
+    //th{ color: @brand-superdark ; }
   }
 
 }
@@ -178,65 +209,74 @@
 // --------------------------------------
 // Panel for entering data via jQuery-Scripts etc.
 #content .input-panel {
-  overflow: hidden;
-  padding:                    @controlpanel-padding ;
+  display:                    inline-block;
+  overflow:                   hidden ;
+  padding:                    @controlpanel-padding-narrow ;
   margin:                     @margin-from-wrapper ;
-  background-color:           @controlpanel-bg;
+  background-color:           @controlpanel-bg-color;
   border:                     @controlpanel-border ;
-  border-bottom-left-radius:  @controlpanel-radius ;
-  border-bottom-right-radius: @controlpanel-radius ;
-  border-top-right-radius:    @controlpanel-radius ;
-  border-top-left-radius:     @controlpanel-radius ;
-  width: auto ;
-  min-width: 30% ;
+  border-radius:              @controlpanel-radius ;
+//  border-bottom-left-radius:  @controlpanel-radius ;
+//  border-bottom-right-radius: @controlpanel-radius ;
+//  border-top-right-radius:    @controlpanel-radius ;
+//  border-top-left-radius:     @controlpanel-radius ;
+  width:                       auto ;
+  min-width:                   30% ;
   //max-width: 70% ;
-  display: inline-block;
 
   & > h3 {
     margin-top: 0 ;
   }
   p      {
-    font-size: @font-size-smaller ;
-    margin: 0 0 0.4em 0 ;
+    font-size:   @font-size-smaller ;
+    margin:     0 0 0.4em 0 ;
+  }
+  table.condensed {
+    margin-bottom: 0.1em;
+    caption { padding-top: 0.1em ; }
+    td span.label {
+      padding-right: 0.6em ;
+      &.above{ margin-bottom: 0em ; }
+    }
   }
 }
-
+#content .ui-tabs-panel > .input-panel { margin-left: @margin-left-from-content }
 
 
 // --------------------------------------
 // PAGINATE
 // --------------------------------------
-.paginate{
+.paginate {
   display:          inline-block ;
   width:            auto ;
-  height:           auto;
-  padding:          0;
+  height:           auto ;
+  padding:          0 ;
   margin:           @controlpanel-margin ;
-  border:           @controlpanel-border;
+  border:           @controlpanel-border ;
   border-radius:    @controlpanel-radius ;
-  background-color: @controlpanel-bg;
+  background-color: @controlpanel-bg-color ;
   color:            @controlpanel-color ;
 
   & > a,
   & > span {
-    padding: 0.4em 0.6em !important;
-    margin-top: -1px;
+    padding: 0.4em 0.6em !important ;
+    margin-top: -1px ;
   }
 
   .paginate-prev {
     display:          inline-block ;
-    &::before{ content: "◄"; }
+    &::before{ content: "◄" ; }
     &:hover{
-      border-bottom-left-radius: @controlpanel-radius;
-      border-top-left-radius:    @controlpanel-radius;
+      border-bottom-left-radius: @controlpanel-radius ;
+      border-top-left-radius:    @controlpanel-radius ;
     }
   }
   .paginate-next {
     display:          inline-block ;
     &::after{ content: "►"; }
     &:hover{
-      border-bottom-right-radius: @controlpanel-radius;
-      border-top-right-radius:    @controlpanel-radius;
+      border-bottom-right-radius: @controlpanel-radius ;
+      border-top-right-radius:    @controlpanel-radius ;
     }
   }
   .paginate-page {
@@ -267,8 +307,8 @@ table.jump-to {
   &.right { float: right; }
 
   border: @controlpanel-border;
-  border-radius: 0.2em ;
-  background-color: @controlpanel-bg;
+  border-radius: @controlpanel-radius ;
+  background-color: @controlpanel-bg-color;
   margin: 0.8em 2.0em 0 1.2em !important;
 }
 
@@ -307,5 +347,16 @@ div.float-cells-table{
   }
 }
 
+
+
+
+
+// --------------------------------------
+// DEZIDIERTE ELEMENTE
+// --------------------------------------
+
+.control-panel select#contact_cp_id {
+
+}
 
 

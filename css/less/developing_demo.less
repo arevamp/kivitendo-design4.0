@@ -1,3 +1,7 @@
+/* ------------------------------------------------------------- */
+/* DEVELOPING DEMO (developing_demo.less)                        */
+/* ------------------------------------------------------------- */
+
 // ----------------------------------------------------------------------------
 //
 // DEVELOPERS DEMO
@@ -13,20 +17,18 @@
 // ----------------------------------------------------------------------------
 
 
-@import 'variables';
+@import 'variables.less';
 
 // --------------
 // Grey shades
-.gray-darker { background-color: @gray-darker }
-.gray-dark { background-color: @gray-dark }
-.gray-mediumdark { background-color: @gray-mediumdark }
-.gray { background-color: @gray }
-.gray-medium { background-color: @gray-medium }
-.gray-light { background-color: @gray-light }
-.gray-lighter { background-color: @gray-lighter }
-.gray-morelighter { background-color: @gray-morelighter }
+.gray-darker     { background-color: @gray-darker }
+.gray-verydark   { background-color: @gray-verydark }
+.gray-dark       { background-color: @gray-dark }
+.gray-standard   { background-color: @gray-standard }
+.gray-light     { background-color: @gray-light }
+.gray-lighter   { background-color: @gray-lighter }
 .gray-verylight { background-color: @gray-verylight }
-.gray-superlight { background-color: @gray-superlight }
+.gray-superlight{ background-color: @gray-superlight }
 // --------------
 // Divers Color Specications
 // for message and other coloured stuff
@@ -102,11 +104,11 @@
 // --------------------------------------
 // SCAFFOLDING
 // --------------------------------------
-.body-bg { background-color: @body-bg } // general
+.body-bg { background-color: @body-bg } // general PENDENT: obsolete
 .content-bg { background-color: @content-bg } // background first tabs
 .tabs-bg { background-color: @tabs-bg } // background tabs panel (data/content)
 .heading-bg { background-color: @heading-bg } // controlpanels & other stuff
-.controlpanel-bg { background-color: @controlpanel-bg } // controlpanels
+.controlpanel-bg { background-color: @controlpanel-bg-color } // controlpanels
 
 .text-color { background-color: @text-color }
 .heading-color { background-color: @heading-color } // labels & table headings
@@ -116,7 +118,7 @@
   h1,
   h2{
     clear: both;
-    color: @gray !important;
+    color: @gray-standard !important;
     padding: 0 ;
     margin:  0 ;
   }
@@ -131,7 +133,7 @@
     padding: 0 ;
 
     h3{
-      color: @gray !important;
+      color: @gray-standard !important;
       font-size: 9pt;
       font-weight: normal;
       height: 2.8em ;
@@ -158,10 +160,67 @@
 
 
 
+/* -------------------------------------- */
+/* Colors for Developers Color Demo       */
+/* -------------------------------------- */
+
+
+// -----------------------
+// GREY SHADES
+// -----------------------
+.gray-superdark:    #000000 ; // Black
+.gray-verydark:      #222222 ;
+.gray-darker:        #555555 ;
+.gray-dark:          #888888 ;
+
+.gray-standard:      #aaaaaa ;
+
+.gray-light:        #cfcfcf ;
+.gray-lighter:      #dedede ;
+.gray-verylight:    #ececec ;
+.gray-superlight:    #ffffff ; // White
+
+
+// -----------------------
+// BRAND COLORS
+// -----------------------
+.brand-superdark:    @gray-superdark ; // Black
+.brand-verydark:    @gray-verydark ;
+.brand-darker:      @gray-darker ;
+.brand-dark:        @gray-dark ;
+
+.brand-standard:    @gray-standard ;
+
+.brand-light:        @gray-light ;
+.brand-lighter:      @gray-lighter ;
+.brand-verylight:    @gray-verylight ;
+.brand-superlight:  @gray-superlight ; // White
 
 
 
+// -----------------------
+// Special Color Specifications for messages
+// -----------------------
 
+// OK (Green)
+.color-green-strong:    #003c18;
+.color-green-light:     #9ccb21;
 
+// Error (Red)
+.color-red-strong:      #ae0014;
+.color-red-light:       #ffd6d6;
 
+// Info/Hint (Blue)
+.color-blue-strong:     #209ec8;
+.color-blue-light:      #b6e6e5;
+
+// Warning (Orange)
+.color-orange-strong:   #8D6A00; // more brown
+.color-orange-light:    #f6d972;
+
+// Divers
+.rainbow-green:         #408000;
+.rainbow-blue:          #0080FF;
+.rainbow-red:           #FF0000;
+.rainbow-yellow:        #FFFF00;
 

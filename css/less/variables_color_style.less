@@ -1,0 +1,608 @@
+/* ------------------------------------------------------------- */
+/* VARIABLES COLOR (variables_color_gray_standard.less) Standard Grey */
+/* ------------------------------------------------------------- */
+
+// ----------------------------------------------------------------------------
+//
+// VARIABLES COLOR STANDARD
+// Standard is GREY
+//
+// ----------------------------------------------------------------------------
+// DESCRIPTION:
+//
+// CONTENTS:
+// - BASE COLORS
+//   - Grey Shades
+//   - BRAND COLORS
+// - MAIN PROPERTIES (STANDARD TEXT COLORS)
+// - SCAFFOLDING (PAGE)
+// - FRAME HEADER
+// - MENU TOP (CSS)
+// - MENU LEFT (HTML & JS)
+// - HEADER H1
+// - ACTIONBAR
+// - TABS
+// - TABLES
+//    - Table Cells
+//   - Zebra effect in list tables
+// - CONTROL PANELS
+// - MESSAGES
+// - BUTTONS
+//   - With Manipulation
+//   - NEUTRAL
+//   - Diverse Button states
+
+// ----------------------------------------------------------------------------
+
+// --------------------------------------
+// YOUR CUSTOM COLOR STYLE
+// --------------------------------------
+// CUSTOMIZE: Define your style here (get names from the following «list»)
+
+
+
+
+// --------------------------------------
+// BASE COLORS
+// --------------------------------------
+
+// -----------------------
+// COLORS STYLES
+// -----------------------
+// CUSTOMIZE: Do not change, just add a new style
+// Use for colorstyle above just the part of variable name after the prefix «style_»
+// Use a strong color, not a light one
+
+// BLUE Standard Colors
+@style_ocean:         #2E6FFD ;
+@style_light_blue:    #336699 ;
+@style_aqua:          #0F80FF ;
+@style_turquoise:     #21FFFF ;
+
+// GREEN Standard Colors
+@style_pine:          #118040 ;
+@style_asparagus:     #808004 ;
+@style_petrol:        #108080 ;
+@style_spring:        #21FF06 ; // New
+
+// RED Standard Colors
+@style_salmona:       #990033 ;
+@style_salmon:        #FC6666 ;
+@style_tangerine:     #FD8008 ;
+@style_marascino:     #FB0207 ;
+@style_maroon:        #800040 ;
+@style_strawberry:    #FB0280 ;
+@style_pure_red:      #FC7D86 ;
+
+// YELLOW Standard Colors
+@style_old_lemon:       #E0E00A ;
+@style_yellow_to_green: #CAD008 ;
+
+// PURPLE & VIOLETS
+@style_eggplant:      #400080 ;
+@style_plum:          #800080 ;
+@style_grape:         #8000FF ;
+@style_magenta:       #FB02FF ;
+@style_lavender:      #CC66FF ;
+
+// BROWN & ORANGE
+@style_cayenne:       #800002 ;
+@style_mocha:         #804003 ;
+@style_cantaloupe:    #FECC66 ;
+@style_dark_brown:    #6D3702 ;
+@style_orange_brown:  #CC6600 ;
+@style_brown:         #996600 ;
+@style_green_brown:   #666633 ;
+
+
+// -----------------------
+// GREY SHADES
+// -----------------------
+// CUSTOMIZE: If necessary change graduation of the Greys with grey colors
+
+@gray-superdark:      #000000 ; // Black
+@gray-verydark:       #222222 ;
+@gray-darker:         #444444 ;
+@gray-dark:           #666666 ;
+
+@gray-standard:       #888888 ;
+
+@gray-light:          #aaaaaa ;
+@gray-lighter:        #cccccc ;
+@gray-verylight:      #eeeeee ;
+@gray-superlight:     #ffffff ; // White
+
+
+// -----------------------
+// MESSAGE TYPE COLORS
+// -----------------------
+// for messages and other coloured stuff
+// CUSTOMIZE: If necessary change the colors, but only if necessary
+// for backgrounds see
+
+// Error (Red)
+@color-red-strong:      #ae0014;
+// OK (Green)
+@color-green-strong:    #003c18;
+// Info/Hint (Blue)
+@color-blue-strong:     #209ec8;
+// Warning (Orange)
+@color-orange-strong:   #8D6A00; // brown, orange calculated as background below
+
+// light background colors (calculated)
+@color-red-light:       lighten( @color-red-strong ,     50%  );
+@color-green-light:     lighten( @color-green-strong ,   50%  );
+@color-blue-light:       lighten( @color-blue-strong ,   50%  );
+@color-orange-light:    lighten( @color-orange-strong , 50%  );
+
+
+// -----------------------
+// DIVERSE COLOR (NOT USED AT THIS TIME)
+// -----------------------
+// Divers
+@rainbow-green:         #408000;
+@rainbow-blue:          #0080FF;
+@rainbow-red:           #FF0000;
+@rainbow-yellow:        #FFFF00;
+
+
+
+
+
+
+
+// --------------------------------------
+// BRAND COLORS (CALCULATED)
+// --------------------------------------
+// Calculation of the variations of the brand colors
+// It is generally not necessary to touch the following code,
+// change therefore the gray colors above
+
+@colorstyle: "green_brown" ; // not style_*, only * like "plum"
+@brandstyle: "style_@{colorstyle}" ; // DO NOT TOUCH
+
+
+@brand-standard:    @@brandstyle ; // DO NOT TOUCH
+
+@brand-superdark:   multiply( @brand-standard , @gray-superdark) ; //  almost Black
+@brand-verydark:    multiply( @brand-standard , @gray-verydark) ;
+@brand-darker:      multiply( @brand-standard , @gray-darker) ;
+@brand-dark:        multiply( @brand-standard , @gray-dark) ;
+
+@brand-light:       screen( @brand-standard , @gray-light) ;
+@brand-lighter:     screen( @brand-standard , @gray-lighter) ;
+@brand-verylight:   screen( @brand-standard , @gray-verylight) ;
+@brand-superlight:  @gray-superlight ; // White
+
+
+
+// --------------------------------------
+// Backgrounds with Gradient function
+// --------------------------------------
+
+// -----------------------
+// Background specifications
+// -----------------------
+
+// Body
+@_bg_style_body:             linear-gradient(to bottom,   @brand-verylight,  @brand-light);
+// Control panels
+@_bg_style_controlpanel:    linear-gradient(to top,      @brand-light,     @brand-verylight);
+// Buttons
+@_bg_style_button:           linear-gradient(to top,     @brand-light,     @brand-verylight);
+@_bg_style_button_neutral:   linear-gradient(to top,      @gray-light,      @gray-verylight);
+
+
+// -----------------------
+// Body Background
+// -----------------------
+// a mixin for the body background
+// CUSTOMIZE:
+.bg-body {
+  //background-image:     linear-gradient(to bottom, @brand-verylight, @brand-light); // GRADIENT
+  background-color:     @brand-light ;  // same as bottom stop-color bottom in background-image below
+  // background-image:  none; // NO GRADIENT
+}
+.bg-content {
+  background-image:     linear-gradient(to bottom, @brand-verylight, @brand-light); // GRADIENT
+  //background-color:     @brand-light ;  // same as bottom stop-color bottom in background-image below
+  // background-image:  none; // NO GRADIENT
+}
+
+
+
+
+// --------------------------------------
+// COLOR SPECICATIONS FOR MESSAGES
+// --------------------------------------
+// strong is for text and borders
+// light  is for background-colors
+
+// Error (Red)
+@msg-red-strong:      mix(@brand-darker,     @color-red-strong, 20);
+@msg-red-light:       mix(@brand-verylight,  @color-red-light,  60);
+// OK (Green)
+@msg-green-strong:    mix(@brand-darker,     @color-green-strong, 20);
+@msg-green-light:     mix(@brand-verylight,  @color-green-light,  60);
+// Info/Hint (Blue)
+@msg-blue-strong:     mix(@brand-darker,     @color-blue-strong, 20);
+@msg-blue-light:      mix(@brand-verylight,  @color-blue-light,  20);
+// Warning (Orange)
+@msg-orange-strong:   mix(@brand-darker,     @color-orange-strong, 20); // more brown
+@msg-orange-light:    mix(@brand-lighter,    @color-orange-light,  50);
+@msg-orange-strong:   multiply(@brand-darker,     @color-orange-strong); // more brown
+@msg-orange-light:    multiply(@brand-lighter,    @color-orange-light);
+
+//@msg-red-light:       screen( @msg-red-strong , @gray-verylight) ;
+//@msg-red-light:       screen( @msg-red-strong , @brand-light) ;
+//@msg-green-light:     screen( @msg-green-strong , @gray-verylight) ;
+//@msg-green-light:     screen( @msg-green-strong , @brand-light) ;
+//@msg-blue-light:      screen( @msg-blue-strong , @gray-verylight) ;
+//@msg-orange-light:    screen( @msg-orange-strong , @gray-verylight) ;
+
+
+
+
+
+
+// --------------------------------------
+// MAIN PROPERTIES (STANDARD TEXT COLORS)
+// --------------------------------------
+// PENDENT: genauer anschauen
+@brand-text-color:          @gray-dark ; //
+@brand-text-color-accent:   @brand-standard ; //
+
+@brand-link-color:          @brand-dark ; //
+@brand-link-color-hover:    @brand-darker ; //
+
+@brand-table-text-color:    @brand-superdark ; //
+
+@brand-heading-color:       @brand-superdark ; // Standard heading color
+@brand-heading-bg:          @brand-dark ; //
+
+@brand-data-color:          @brand-standard ; //
+@brand-data-label-color:    @brand-darker ; // Standard-Label color
+
+// Text (Label & data)
+@brand-primary:         @brand-text-color;
+@brand-label:           @brand-data-label-color; // PENDENT: wozu?
+@brand-label-bg:        @brand-lighter; // PENDENT: wozu?
+
+
+
+
+
+// --------------------------------------
+// SCAFFOLDING (PAGE)
+// --------------------------------------
+
+@body-bg:               @brand-verylight; // general OBSOLETE
+@content-bg:            @brand-superlight; // background first tabs PENDENT: obsolete!
+@heading-bg:            @brand-lighter ; // controlpanels & other stuff PENDENT: obsolete!
+
+@text-color:            @brand-primary; // PENDENT: obsolete!
+@heading-color:         @brand-heading-color ; // labels & table headings // PENDENT: obsolete!
+@caption-color:         @brand-heading-color ; // caption // PENDENT: obsolete!
+
+
+
+// --------------------------------------
+// FRAME HEADER (DASHBOARD)
+// --------------------------------------
+
+@_dashbrd_bg:            @brand-darker ;
+@_dashbrd_text:          @brand-verylight ;
+@_dashbrd_link:          @brand-light ;
+@_dashbrd_link_hover:    @brand-superlight ;
+@_dashbrd_input_bg:      @brand-light;
+@_dashbrd_input_text:    @brand-superdark ;
+
+
+
+
+// --------------------------------------
+// MENU TOP (CSS)
+// --------------------------------------
+
+@_menu_bg:               @brand-lighter ;
+@_menu_border_color:     @brand-standard ;
+
+
+@_menu_link:             @brand-darker ;
+@_menu_link_bg:          @brand-lighter ;
+@_menu_link_hover:       @brand-verydark ;
+@_menu_link_hover_bg:    @brand-light ;
+
+@_menu_link_bg_level1:         @brand-light ;
+@_menu_link_bg_level1_hover:   @brand-light ;
+@_menu_link_bg_level2:         @brand-light ;
+@_menu_link_bg_level2_hover:   @brand-lighter ;
+@_menu_link_bg_level3:         @brand-lighter ;
+@_menu_link_bg_level3_hover:   @brand-light ;
+
+
+
+
+// --------------------------------------
+// MENU LEFT (JS)
+// --------------------------------------
+@_menu_left_bg:                   @brand-standard ;
+
+@_menu_left_level_1_color:        @brand-darker ;
+@_menu_left_level_1_bg:           @brand-light ;
+@_menu_left_level_1_hover_color:  @brand-verylight ;
+@_menu_left_level_1_hover_bg:     @brand-dark ;
+
+@_menu_left_level_2_color:        @brand-darker ;
+@_menu_left_level_2_bg:           @brand-lighter ;
+@_menu_left_level_2_hover_color:  @brand-superdark ;
+@_menu_left_level_2_hover_bg:     @brand-light ;
+
+@_menu_left_level_3_color:        @brand-darker ;
+@_menu_left_level_3_bg:           @brand-lighter ;
+@_menu_left_level_3_hover_color:  @brand-superdark ;
+@_menu_left_level_3_hover_bg:     @brand-light ;
+
+
+// Just additional stuff
+@_menu_open_color: @brand-lighter ;
+@_menu_open_bg:    @brand-darker ;
+
+
+
+
+
+
+// --------------------------------------
+// HEADER H1
+// --------------------------------------
+// Header right on top of #content (h1 only once per page)
+@_brand-h1-color:       @brand-lighter ;
+@_brand-h1-bg:          @brand-dark ;
+@_brand-h1-border-top:  1px @brand-standard solid ;
+
+
+
+
+
+// --------------------------------------
+// ACTIONBAR
+// --------------------------------------
+// PENDENT: Button-Parameter anwenden
+@_actionbar-bg:                   @brand-light;
+@_actionbar-bg-active:            @brand-lighter;
+
+@_actionbar-font-color:           @brand-dark;
+@_actionbar-font-color-active:    @brand-dark;
+
+@_actionbar-border-color:         @brand-dark;
+@_actionbar-border-color-active:  @brand-dark ;
+
+@_actionbar-hover-bg:             @brand-lighter;
+@_actionbar-hover-color:          @brand-verydark;
+
+@_actionbar-font-color-disabled:  @brand-standard;
+
+
+
+// --------------------------------------
+// TABS
+// --------------------------------------
+// background tabs panel (data/content)
+@_tabs-bg:                    @brand-superlight ;
+@_tabs-panel-bg:              @brand-verylight ; // like active
+@_tabs-border-color:          @brand-standard ;
+
+@_tabs-default-bg:            @brand-superlight;
+@_tabs-default-color:         @brand-darker;
+@_tabs-default-hover-bg:      @brand-lighter;
+@_tabs-default-hover-color:   @brand-darker;
+
+@_tabs-active-bg:             darken( @brand-verylight, 3% );
+@_tabs-active-color:          @brand-darker;
+@_tabs-active-hover-bg:       @brand-verylight;
+@_tabs-active-hover-color:    @brand-darker;
+
+
+
+
+
+// --------------------------------------
+// MESSAGES
+// --------------------------------------
+// OK (green)
+@msg-ok-strong:       @msg-green-strong;
+@cmsg-ok-light:       @msg-green-light;
+
+// Error (Red)
+@msg-error-strong:    @msg-red-strong;
+@msg-error-light:     @msg-red-light;
+
+// Info/Hint (Blue)
+@msg-hint-strong:     @msg-blue-strong;
+@msg-hint-light:      @msg-blue-light;
+
+// Warning (Orange)
+@msg-warning-strong:  @msg-orange-strong; // more brown
+@msg-warning-light:   @msg-orange-light;
+
+
+
+
+
+// --------------------------------------
+// TABLES
+// --------------------------------------
+
+@_table-border-color:             @brand-standard; //  table and cell border
+
+@_table-bg:                       transparent; //  overall background-color
+@_table-bg-accent:                @brand-lighter; //  for striping
+@_table-bg-hover:                 @brand-superlight;
+@_table-bg-active:                @_table-bg-hover;
+
+@_table-caption-bg:               transparent ;
+@_table-caption-color:            @brand-dark;
+
+// --------------
+// Table Cells
+// --------------
+@_t-cell-text-color:              @brand-verydark;
+@_t-cell-th-text-color:            @brand-dark; // even for label/.label in tables
+
+@_t-cell-head-bg:                 @brand-dark;
+@_t-cell-head-bg-accent:          @gray-light; // PENDENT: wo eingesetzt
+@_t-cell-head-text:               @brand-superlight;
+@_t-cell-head-text-accent:        @brand-lighter; // Links
+
+@_t-cell-label-text:              @brand-darker;
+@_t-cell-label-text-accent:       @brand-superdark;
+@_t-cell-data-text:               @brand-verydark;
+@_t-cell-data-text-accent:        @brand-superdark;
+
+@_t-cell-databox-text-color:      @brand-darker ;
+@_t-cell-databox-border-color:    @brand-light ;
+
+@_t-cell-foot-text:               @brand-superdark;
+
+// -----------------------
+// Zebra effect in list tables
+// -----------------------
+@_t-row-zebra-bg-odd:             @brand-verylight;
+@_t-row-zebra-bg-even:            @brand-lighter;
+
+@_table-list-zebra-text-color:    @brand-dark ;
+@_table-list-zebra-link-color:    @brand-standard ;
+
+@_t-row-zebra-bg-hover:           @brand-superlight;
+
+
+
+
+
+
+// --------------------------------------
+// TABLE HORIZONTAL (tbl.horizontal)
+// --------------------------------------
+//@_table-horiz-th-color:  @brand-darker ;
+//@_table-horiz-td-color:  @brand-verydark ;
+
+// -----------------------
+// CAPTION (caption & th.caption)
+// -----------------------
+//@_table-horiz-caption-color:  @brand-darker ;
+//@_table-horiz-caption-bg:     @brand-verylight ;
+
+// -----------------------
+// SPAN DATA
+// -----------------------
+
+
+
+
+
+// --------------------------------------
+// TABLE LIST (tbl.list)
+// --------------------------------------
+// Table list with zebra effect, header and footer
+// Zebra effect in list tables
+
+// -----------------------
+// HEADER (thead)
+// -----------------------
+
+// -----------------------
+// FOOTER (tfoot)
+// -----------------------
+
+
+
+
+
+// --------------------------------------
+// CONTROL PANELS
+// --------------------------------------
+
+@_controlpanel-bg-color:      @brand-verylight ;
+@_controlpanel-bg:            @_bg_style_controlpanel ;
+@_controlpanel-color:         @brand-dark  ;
+@_controlpanel-header-color:  @brand-dark  ;
+@_controlpanel-border-color:  @brand-standard  ;
+
+
+
+
+
+// --------------------------------------
+// FORM ELEMENTS
+// --------------------------------------
+@_formelement-focus-bg:     @brand-light ;
+@_formelement-focus-text:   @brand-darker ;
+@_formelement-focus-border: 1px @brand-verydark solid ;
+
+
+
+
+
+// --------------------------------------
+// BUTTONS
+// --------------------------------------
+
+// -----------------------
+// With Manipulation
+// -----------------------
+// Button with manipulation (submit etc.)
+@_button-strong-color:                @brand-verylight;
+@_button-strong-bg:                   @brand-dark;
+@_button-strong-border-color:         @brand-darker;
+
+@_button-strong-hover-color:          @brand-lighter;
+@_button-strong-hover-bg:             @brand-darker;
+@_button-strong-hover-border-color:   @brand-superdark;
+
+@_button-strong-active-color:         @brand-lighter;
+@_button-strong-active-bg:            @brand-superdark;
+@_button-strong-active-border-color:  @brand-superdark;
+
+// -----------------------
+// NEUTRAL
+// -----------------------
+// Button without data manipulation (reset, cancel, open, show etc.)
+@_button-neutral-color:                 @brand-darker;
+@_button-neutral-bg:                    @brand-lighter;
+@_button-neutral-border-color:          @brand-dark;
+
+@_button-neutral-hover-color:           @brand-darker;
+@_button-neutral-hover-bg:              @brand-verylight;
+@_button-neutral-hover-border-color:    @brand-dark;
+
+@_button-neutral-active-color:          @brand-superdark;
+@_button-neutral-active-bg:             @brand-standard;
+@_button-neutral-active-border-color:   @brand-verydark;
+
+
+// -------------------
+// Diverse Button states
+// -------------------
+//@_button-primary-color:               @button-primary-color;
+//@_button-primary-bg:                  @button-primary-bg;
+//@_button-primary-border-color:        darken(@button-primary-bg, 5%) ;
+
+@_button-success-color:                 @color-green-strong;
+@_button-success-bg:                    @color-green-light;
+@_button-success-border-color:          darken(@color-green-strong, 5%) ;
+
+@_button-warning-color:                 @color-orange-strong;
+@_button-warning-bg:                    @color-orange-light;
+@_button-warning-border-color:          darken(@color-orange-strong, 5%) ;
+
+@_button-info-color:                    @color-blue-strong;
+@_button-info-bg:                       @color-blue-light;
+@_button-info-border-color:             darken(@color-blue-strong, 5%) ;
+
+@_button-link-disabled-color:           @brand-light ;
+
+
+
+
+
