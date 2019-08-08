@@ -1,3 +1,8 @@
+/* ------------------------------------------------------------- */
+/* SPECIALS (specials.less)                                      */
+/* ------------------------------------------------------------- */
+
+
 // ----------------------------------------------------------------------------
 //
 // SPECIALS
@@ -22,7 +27,7 @@
   border-width: 0;
   thead{
     th{
-      background-color: #E3E3E3 ; 
+      //background-color: #E3E3E3 ; 
     }
 
   }
@@ -65,40 +70,47 @@
 }
 
 
-//
-// **********************************
-// POSITON DETAILS (E.G. SALES ORDER)
-// **********************************
+
+// --------------------------------------
+// ROW POSITON DETAILS (E.G. SALES ORDER)
+// --------------------------------------
 
 td.row-position-detail{
   padding: 0 0 0.2em 0.4em !important;
   
   div.table{
-    display: table;
+    display:             table;
     div.field{
-      display: table-row;
-      padding: 0.1em 0 ;
-      height: 2.0em !important; ;
+      display:           table-row;
+      padding:           0.1em 0 ;
+      height:           2.0em !important; ;
+      
       span.label{ 
-        width: 10.0em;
-        height: 2.0em !important; 
+        width:           10.0em;
+        height:         2.0em !important; 
         vertical-align: middle;
-        display: table-cell ;
-        padding: 0.3em 0 0 0;
+        display:         table-cell ;
+        padding:         0.3em 0 0 0;
       }
+      
       span.value{
-        height: 2.0em ;
+        height:         2.0em ;
         span.data{ 
-          padding: 0.3em 0 0.2em 0.5em !important;
-          display: block;
+          padding:       0.3em 0 0.2em 0.5em !important;
+          display:       block;
         }
       }
-    }
-  
-  }
+      
+    } //div.field
+  } // /div.table
+
+} // /td.row-position-detail
 
 
-}
+
+// --------------------------------------
+// TABLE #DISPLAY ROW
+// --------------------------------------
 
 table#display_row{
   tbody{
@@ -116,10 +128,4 @@ table#display_row{
   }
 
 } 
-
-
-
-
-
-
 

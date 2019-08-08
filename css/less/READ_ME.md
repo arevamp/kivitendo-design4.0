@@ -11,11 +11,11 @@ pure and valid css code with your LESS and CSS code.
 First set the cursor of your terminal to <code>/css/less/</code> (<code>cd /css/less</code>)<br>
 Use following command: <code>lessc style.less ../style.css</code><br>
 For minifiying the output css:  <code>lessc -x style.less ../style.css</code><br>
-Then a new <code>/css/style.css</code> is created except when errors occurs.
+Then a new <code>/css/style.css</code> is created except if errors occur.
 
 ## Developing kivitendo CSS (not customizing)
 Read style.less.<br>
-This is the comand center for the whole less stuff.<br>
+This is the control center for the whole less stuff.<br>
 Variables can be set or changed in variables.less.<br>
 Variables are efficacious in the other less files.
 
@@ -23,7 +23,7 @@ Variables are efficacious in the other less files.
 There are several overriding LESS files. Some of the files are for
 customizing the original kivitendo LESS stuff.
 
- * <b>jquery-ui-overrides.less</b> (overrides original jquery css)
+ * <b>jquery-ui-overrides.less</b> (overrides original jquery css in jquery.less)
  * <b>main-overrides</b> (overrides a lot of kivitendo less/css stuff)
  * <b>custom-variables.less</b> (overrides variables in variable.less)
  * <b>custom.less</b> (overrides all the original kivitendo LESS stuff)
@@ -47,7 +47,7 @@ For customisation do not touch the original (developers) LESS files.<br>
 Therefore it is recommended to edit only these two files:
 
  * <b>custom-variables.less</b> (overrides variables in variable.less)
- * <b>custom.less</b> (overrides all the original kivitendo LESS stuff)
+ * <b>custom.less</b> (overrides in the end all the original kivitendo LESS stuff)
 
 These files can be empty if you do not want to customize the kivitendo CSS
 stuff. The original custom files contains only comments and deactivated example

@@ -1,3 +1,7 @@
+/* ------------------------------------------------------------- */
+/* DEVELOPING (developing.less)                                  */
+/* ------------------------------------------------------------- */
+
 // ----------------------------------------------------------------------------
 //
 // Developing-Section
@@ -20,12 +24,12 @@
 body.developing{
 
   &>header{
-     background-color: @h1-bg;
+     background-color: @brand-h1-bg;
      display: block;
      overflow: hidden;
     h1{
       float: left;
-      color: @h1-color ;
+      color: @brand-h1-color ;
       padding: 1.0em;
     }
     nav{
@@ -80,7 +84,7 @@ body.developing{
   p.picture{
     background-color: #fff;
     padding: 0.8em;
-    border: 1px @gray-medium solid;
+    border: 1px @gray-standard solid;
     display: inline-block;
     width: auto;
   }
@@ -111,7 +115,7 @@ body.developing{
           //border: 1px black solid ;
           display: block;
           overflow: visible;
-          border-bottom: 1px @gray-mediumdark solid ;
+          border-bottom: 1px @gray-dark solid ;
         }
         tr:last-child td { border: none ;}
 
@@ -138,5 +142,56 @@ body.developing{
     }
 
   } // /.wrapper
+
+  // Buttons
+  // Action SOFT/NEUTRAL (no submission to server page)
+  input[type="submit"], 
+  input[type="button"], 
+  input[type="button"].button, 
+  button[type="submit"], 
+  button[type="button"],
+  a.button {
+    color: @button-strong-color;
+    background-color: @button-strong-bg;
+    border: @button-strong-border;
+
+    &.hover{
+      color: @button-strong-hover-color;
+      background-color: @button-strong-hover-bg;
+      border: @button-strong-hover-border;  
+    }
+    &.active{
+      color: @button-strong-active-color;
+      background-color: @button-strong-active-bg;
+      border: @button-strong-active-border;  
+    }  
+  }
+  // Action SOFT/NEUTRAL (no submission to server page)
+  input[type="button"].neutral,
+  input[type="submit"].neutral,
+  input[type="reset"],
+  input[type="reset"].neutral,
+  button.neutral,
+  button[type="reset"] {
+    color:              @button-neutral-color ;
+    background-color:   @button-neutral-bg;
+    border:             @button-neutral-border ;
+    &.neutral-hover {
+      color:            @button-neutral-hover-color ;
+      background-color: @button-neutral-hover-bg;
+      border:           @button-neutral-hover-border ;
+    }
+    &.neutral-active,
+    &.neutral-focus {
+      color:            @button-neutral-active-color;
+      background-color: @button-neutral-active-bg;
+      border:           @button-neutral-active-border ;
+    }
+  }
+
+
+
+
+
 
 } // /body.developing

@@ -1,3 +1,7 @@
+/* ------------------------------------------------------------- */
+/* Menu Actionbar (menu_actionbar.less)                          */
+/* ------------------------------------------------------------- */
+
 // ----------------------------------------------------------------------------
 //
 // ACTIONBAR
@@ -46,10 +50,15 @@
     user-select:           none;
     height: 25px;
     font-size: @font-size-smaller ;
+    
+    &.layout-actionbar-action-disabled{
+      color: @actionbar-font-color-disabled !important;
+      &:hover{ text-decoration: none !important; }
+    }
   }
 
   & > div.layout-actionbar-action{
-    border-radius: 0.3em ;
+    border-radius: @actionbar-border-radius ;
     border: 1px @actionbar-border-color solid;
     background-color: @actionbar-bg ;
     float: left;
@@ -66,17 +75,17 @@
   div.layout-actionbar-submit,
   div.layout-actionbar-scriptbutton {
     display: block;
-    //width: 90px;
-    width: 110px;
+    min-width: 90px;
+    width: auto;
     box-sizing: border-box;
     border-width: 1px;
     border-style: solid;
     text-align: center;
-    padding: 4px 4px;
+    padding: 4px 10px;
     cursor: default;
     &:focus{
-      border-color: darkgray;
-      background-color: whitesmoke;
+      border-color: darkgray; // PENDENT: Button Border
+      background-color: @actionbar-bg-active;
     }
     &:hover {
       border-width: 1px;
@@ -107,10 +116,10 @@
 
       >div {
         //width: 5.4em;
-        width: 90px;
+        min-width: 90px;
         height: 25px;
-        border-top-left-radius: 0.3em ;
-        border-bottom-left-radius: 0.3em ;
+        border-top-left-radius: @actionbar-border-radius ;
+        border-bottom-left-radius: @actionbar-border-radius ;
         border: 1px @actionbar-border-color solid;
         background-color: @actionbar-bg;
         color: @actionbar-font-color;
@@ -126,8 +135,8 @@
         height: 25px !important;
         border: 1px @actionbar-border-color solid;
         border-left: none;
-        border-top-right-radius: 0.3em ;
-        border-bottom-right-radius: 0.3em ;
+        border-top-right-radius: @actionbar-border-radius ;
+        border-bottom-right-radius: @actionbar-border-radius ;
         padding: 4px;
         background-color: @actionbar-bg ;
         //background-image: url("../image/select-down.png") no-repeat;
@@ -144,13 +153,13 @@
       float: right;
       overflow: hidden;
       border: 1px solid @actionbar-border-color ;
-      border-top-left-radius: 0.3em;
-      border-bottom-left-radius: 0.3em;
-      border-bottom-right-radius: 0.3em;
+      border-top-left-radius: @actionbar-border-radius;
+      border-bottom-left-radius: @actionbar-border-radius;
+      border-bottom-right-radius: @actionbar-border-radius;
       z-index: @zindex-actionbar-combobox-list ;
       top: 1px;
-      padding-bottom: 0.6em;
-      background-color: @actionbar-bg !important ;
+      //padding-bottom: 0.6em;
+      background-color: @actionbar-bg ;
 
       div.layout-actionbar-action {
         white-space: nowrap;
@@ -160,12 +169,14 @@
         text-align: left;
         padding: 0.6em 0.6em 0.6em 1.0em;
         border-bottom: none !important;
-        background-color: @actionbar-bg !important ;
+        background-color: @actionbar-bg ;
         color: @actionbar-font-color;
 
+        // PENDENT: *-active ersetzen durch -hover
         &:hover {
-          color: #000;
+          color: @actionbar-font-color-active;
           text-decoration: underline;
+          background-color: @actionbar-bg-active;
         }
       }
     } // /.layout-actionbar-combobox-list
@@ -177,13 +188,13 @@
         border-bottom: none !important ;
 
         div {
-          background-color: @actionbar-bg-active !important ;
+          //background-color: @actionbar-bg-active !important ;
           border-bottom-left-radius: 0 !important;
           border-bottom: none;
           height: 30px ;
         }
         span {
-          background-color: @actionbar-bg-active !important ;
+          //background-color: @actionbar-bg-active !important ;
           border-bottom-right-radius: 0 !important;
           border-bottom: none;
           height: 30px !important ;
