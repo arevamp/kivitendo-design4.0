@@ -5,46 +5,47 @@
 
 <table width=100%>
   <tr>
-    <th align=left>[% 'DATEV Angaben' | $T8 %]</th>
+    <th>[% 'DATEV Angaben' | $T8 %]</th>
   </tr>
   <tr height="5"></tr>
-  <tr valign=top>
+  <tr>
     <td>
       <table>
         <tr>
-          <td align=left nowrap>[% 'Beraternummer' | $T8 %]</td>
-          <td><input name=beraternr size=10 maxlength=7 value="[% beraternr %]"></td>
+          <td>[% 'Beraternummer' | $T8 %]</td>
+          <td><input type="text" name=beraternr size=10 maxlength=7 value="[% beraternr %]"></td>
 
-          <td align=left nowrap>[% 'DFV-Kennzeichen' | $T8 %]</td>
-          <td><input name=dfvkz size=5 maxlength=2 value="[% dfvkz %]"></td>
+          <td>[% 'DFV-Kennzeichen' | $T8 %]</td>
+          <td><input type="text" name=dfvkz size=5 maxlength=2 value="[% dfvkz %]"></td>
         </tr>
         <tr>
-          <td align=left nowrap>[% 'Beratername' | $T8 %]</td>
-          <td><input name=beratername size=10 maxlength=9 value="[% beratername %]"></td>
+          <td>[% 'Beratername' | $T8 %]</td>
+          <td><input type="text" name=beratername size=10 maxlength=9 value="[% beratername %]"></td>
 
-          <td align=left nowrap>[% 'Password' | $T8 %]</td>
-          <td><input name=passwort size=5 maxlength=4 value="[% passwort %]"></td>
+          <td>[% 'Password' | $T8 %]</td>
+          <!-- PENDENT: Maxlenght 4 ist ein wenig unrealistisch -->
+          <td><input type="text" name=passwort size=5 maxlength=4 value="[% passwort %]"></td>
         </tr>
         <tr>
-          <td align=left nowrap>[% 'Mandantennummer' | $T8 %]</td>
-          <td><input name=mandantennr size=10 maxlength=5 value="[% mandantennr %]"></td>
+          <td>[% 'Mandantennummer' | $T8 %]</td>
+          <td><input type="text" name=mandantennr size=10 maxlength=5 value="[% mandantennr %]"></td>
 
-          <td align=left nowrap>[% 'Medium Number' | $T8 %]</td>
-          <td><input name=datentraegernr size=5 maxlength=3 value="[% datentraegernr %]"></td>
+          <td>[% 'Medium Number' | $T8 %]</td>
+          <td><input type="text" name=datentraegernr size=5 maxlength=3 value="[% datentraegernr %]"></td>
         </tr>
         <tr>
           <td></td>
           <td></td>
 
-          <td align=left nowrap>[% 'Abrechnungsnummer' | $T8 %]</td>
-          <td><input name=abrechnungsnr size=5 maxlength=3 value="[% abrechnungsnr %]"></td>
+          <td>[% 'Abrechnungsnummer' | $T8 %]</td>
+          <td><input type="text" name=abrechnungsnr size=5 maxlength=3 value="[% abrechnungsnr %]"></td>
         </tr>
 
         <tr>
-          <td><input name=exporttype type=radio class=radio value=0 checked> [% 'Export Buchungsdaten' | $T8 %]</td>
+          <td><input name=exporttype type=radio value=0 checked> [% 'Export Buchungsdaten' | $T8 %]</td>
           <td></td>
 
-          <td><input name=exporttype type=radio class=radio value=1> [% 'Export Stammdaten' | $T8 %]</td>
+          <td><input name=exporttype type=radio value=1> [% 'Export Stammdaten' | $T8 %]</td>
           <td></td>
         </tr>
         <tr>
