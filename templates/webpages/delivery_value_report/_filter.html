@@ -1,7 +1,3 @@
-[%- USE T8 %]
-[%- USE L %]
-[%- USE LxERP %]
-[%- USE HTML %]
 <form action='controller.pl' method='post' id='filter_form'>
 <div class='filter_toggle'>
 <a href='#' onClick='javascript:$(".filter_toggle").toggle()'>[% 'Show Filter' | $T8 %]</a>
@@ -39,6 +35,11 @@
    <td>[% L.input_tag('filter.qty:number', filter.qty_number, size = 20) %]</td>
   </tr>
 [% IF SELF.vc == 'customer' %]
+[% USE T8 %]
+[% USE L %]
+[% USE LxERP %]
+[% USE HTML %]
+
     <tr>
      <th align="right">[% 'Customer' | $T8 %]</th>
      <td>[% L.input_tag('filter.order.customer.name:substr::ilike', filter.order.customer.name_substr__ilike, size = 20) %]</td>
